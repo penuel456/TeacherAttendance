@@ -3,21 +3,21 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:title="Buildings" android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_schedule"
-                android:icon="@android:drawable/ic_menu_my_calendar"
-                android:title="Schedule"/>
+                android:id="@+id/nav_lbb"
+                android:title="LBB"/>
+        <item
+                android:id="@+id/nav_smed"
+                android:title="SMED"/>
     </group>
 
-    <item android:title="Buildings">
+    <item android:title="Schedule">
         <menu>
             <item
-                    android:id="@+id/nav_lbb"
-                    android:title="LBB"/>
-            <item
-                    android:id="@+id/nav_smed"
-                    android:title="SMED"/>
+                    android:id="@+id/nav_schedule"
+                    android:icon="@android:drawable/ic_menu_my_calendar"
+                    android:title="Schedule List"/>
         </menu>
     </item>
 

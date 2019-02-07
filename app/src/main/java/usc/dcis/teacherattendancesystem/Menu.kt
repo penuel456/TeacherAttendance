@@ -27,6 +27,8 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        displayFragment(-1)
     }
 
     override fun onBackPressed() {
@@ -53,25 +55,33 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_schedule -> {
-
-            }
+    fun displayFragment(id: Int){
+        val fragment = when(id){
             R.id.nav_lbb -> {
-
+                Menu_fragment_lbb()
             }
             R.id.nav_smed -> {
-
+                Menu_fragment_smed()
+            }
+            else -> {
+                Menu_fragment_lbb()
             }
         }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.relativeLayout, fragment)
+            .commit()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        displayFragment(item.itemId)
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun logout(view: View){
+    private fun logout(){
         // Create an Intent to start the second activity
         val mainActivity = Intent(this, MainActivity::class.java)
 

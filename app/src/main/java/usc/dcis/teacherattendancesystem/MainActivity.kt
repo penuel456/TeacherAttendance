@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity() {
                 && password.text.toString().equals("test123")) "Logged in Successfully" else "Incorrect username/password."
 
           val text =  Toast.makeText(this, status, Toast.LENGTH_SHORT)
-
             text.show()
+            check()
         }
     }
 
-    fun check(view: View){
+    fun check(){
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
 
