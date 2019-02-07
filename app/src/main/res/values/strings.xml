@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Teacher Attendance System</string>
-    <string name="input_1">Input 1</string>
     <string name="name">Name</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Student/Teacher Name</string>
+    <string name="nav_header_subtitle">ID Number</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="log_out">Log Out</string>
 </resources>

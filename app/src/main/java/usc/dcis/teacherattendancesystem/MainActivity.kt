@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
 
         // check username and password first
-    }
 
-    fun login(){
+        // Create an Intent to start the second activity
+        val menuActivity = Intent(this, Menu::class.java)
 
+        // Start the new activity.
+        startActivity(menuActivity)
     }
 }
