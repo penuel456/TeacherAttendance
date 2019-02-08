@@ -69,7 +69,7 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         }
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.relativeLayout, fragment)
+            .replace(R.id.frameLayout, fragment)
             .commit()
     }
 
