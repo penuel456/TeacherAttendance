@@ -63,6 +63,12 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             R.id.nav_smed -> {
                 Menu_fragment_smed()
             }
+            R.id.nav_safad -> {
+                Menu_fragment_safad()
+            }
+            R.id.nav_bct -> {
+                Menu_fragment_bct()
+            }
             else -> {
                 Menu_fragment_lbb()
             }
