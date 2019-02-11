@@ -50,9 +50,11 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_logout -> return true
-            else -> return super.onOptionsItemSelected(item)
+            R.id.action_logout -> logout()
+            //else -> return super.onOptionsItemSelected(item)
         }
+
+        return true
     }
 
     fun displayFragment(id: Int){
@@ -63,11 +65,18 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             R.id.nav_smed -> {
                 Menu_fragment_smed()
             }
+
             R.id.nav_safad -> {
                 Menu_fragment_safad()
             }
             R.id.nav_bct -> {
                 Menu_fragment_bct()
+
+            R.id.nav_pe -> {
+                Menu_fragment_pe()
+            }
+            R.id.nav_lrc -> {
+                Menu_fragment_pe()
             }
             else -> {
                 Menu_fragment_lbb()
