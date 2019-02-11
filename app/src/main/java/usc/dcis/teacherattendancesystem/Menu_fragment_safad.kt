@@ -9,6 +9,6 @@ import android.view.LayoutInflater
 class Menu_fragment_safad : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.menu_fragment_smed, null)
+        return inflater.inflate(R.layout.menu_fragment_safad, null)
     }
 }
