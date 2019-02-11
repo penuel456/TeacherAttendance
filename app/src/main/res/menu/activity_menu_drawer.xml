@@ -5,6 +5,12 @@
 
     <group android:title="Buildings" android:checkableBehavior="single">
         <item
+                android:id="@+id/nav_bct"
+                android:title="BCT"/>
+        <item
+                android:id="@+id/nav_safad"
+                android:title="SAFAD"/>
+        <item
                 android:id="@+id/nav_lbb"
                 android:title="LBB"/>
         <item
