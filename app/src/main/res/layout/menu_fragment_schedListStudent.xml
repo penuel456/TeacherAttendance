@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="@android:color/white"
+                                             android:id="@+id/frameLayout3">
+    <TextView
+            android:text="Schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextScheduleText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextBuildingText"/>
+    <TextView
+            android:text="Room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextBuildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextTeacherText"/>
+    <TextView
+            android:text="LBB 485TC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher" app:layout_constraintHorizontal_bias="0.382"/>
+    <TextView
+            android:text="Teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextTeacherText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCodeText"/>
+    <TextView
+            android:text="Course Code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextCourseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextText"/>
+    <TextView
+            android:text="Stephanie Polinar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode" app:layout_constraintHorizontal_bias="0.464"/>
+    <TextView
+            android:text="IT 5005"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextCourseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="115dp"
+            app:layout_constraintTop_toBottomOf="@+id/status" app:layout_constraintHorizontal_bias="0.147"/>
+    <TextView
+            android:text="Tue 10:30AM - 12:00PM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextSchedule" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextBuilding" app:layout_constraintHorizontal_bias="0.693"/>
+    <TextView
+            android:text="OnGoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/onGoingText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="92dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="Up Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upNextText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="64dp"
+            app:layout_constraintTop_toBottomOf="@+id/statusText" app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:text="Course Code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/courseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/onGoingText"/>
+    <TextView
+            android:text="IT 5001"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/courseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="140dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.147"/>
+    <TextView
+            android:text="Godwin Monserate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/courseCode"/>
+    <TextView
+            android:text="LBB 466TC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/building" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/teacher" app:layout_constraintHorizontal_bias="0.393"/>
+    <TextView
+            android:text="Mon 1:30PM - 4:30PM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/schedule" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/building" app:layout_constraintHorizontal_bias="0.59"/>
+    <TextView
+            android:text="Present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/status" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/statusText" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/schedule" app:layout_constraintHorizontal_bias="0.33"/>
+    <TextView
+            android:text="Teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teacherText" android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/courseCodeText" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
+    <TextView
+            android:text="Room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/teacherText"/>
+    <TextView
+            android:text="Schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scheduleText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/buildingText"/>
+    <TextView
+            android:text="Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleText"/>
+</android.support.constraint.ConstraintLayout>
