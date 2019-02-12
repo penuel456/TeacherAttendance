@@ -24,11 +24,10 @@
             android:text="LBB 485TC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher" app:layout_constraintHorizontal_bias="0.382"/>
+            android:id="@+id/upNextBuilding" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="96dp"
+            android:layout_marginStart="96dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher"/>
     <TextView
             android:text="Teacher"
             android:layout_width="wrap_content"
@@ -47,29 +46,26 @@
             android:text="Stephanie Polinar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode" app:layout_constraintHorizontal_bias="0.464"/>
+            android:id="@+id/upNextTeacher" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="76dp"
+            android:layout_marginStart="76dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode"/>
     <TextView
             android:text="IT 5005"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextCourseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="115dp"
-            app:layout_constraintTop_toBottomOf="@+id/status" app:layout_constraintHorizontal_bias="0.147"/>
+            android:id="@+id/upNextCourseCode" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp" android:layout_marginTop="112dp"
+            app:layout_constraintTop_toBottomOf="@+id/status"/>
     <TextView
             android:text="Tue 10:30AM - 12:00PM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextSchedule" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextBuilding" app:layout_constraintHorizontal_bias="0.693"/>
+            android:id="@+id/upNextSchedule" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="68dp"
+            android:layout_marginStart="68dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextBuilding"/>
     <TextView
             android:text="OnGoing"
             android:layout_width="wrap_content"
@@ -96,49 +92,46 @@
             app:layout_constraintTop_toBottomOf="@+id/onGoingText"/>
     <TextView
             android:text="IT 5001"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/courseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="140dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.147"/>
+            android:layout_width="234dp"
+            android:layout_height="27dp"
+            android:id="@+id/courseCode" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp" android:layout_marginTop="140dp" app:layout_constraintTop_toTopOf="parent"
+    />
     <TextView
             android:text="Godwin Monserate"
-            android:layout_width="wrap_content"
+            android:layout_width="231dp"
+            android:gravity="left"
             android:layout_height="wrap_content"
-            android:id="@+id/teacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/courseCode"/>
+            android:id="@+id/teacher" android:textSize="20sp"
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/courseCode"
+            app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginStart="76dp"
+            android:layout_marginLeft="76dp"/>
     <TextView
             android:text="LBB 466TC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/building" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/teacher" app:layout_constraintHorizontal_bias="0.393"/>
+            android:layout_width="237dp"
+            android:layout_height="30dp"
+            android:id="@+id/building" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="96dp"
+            android:layout_marginStart="96dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/teacher"/>
     <TextView
             android:text="Mon 1:30PM - 4:30PM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/schedule" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/building" app:layout_constraintHorizontal_bias="0.59"/>
+            android:id="@+id/schedule" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginLeft="68dp"
+            android:layout_marginStart="68dp"
+            app:layout_constraintTop_toBottomOf="@+id/building" android:layout_marginTop="12dp"/>
     <TextView
             android:text="Present"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/status" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/statusText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/schedule" app:layout_constraintHorizontal_bias="0.33"/>
+            android:layout_width="199dp"
+            android:layout_height="29dp"
+            android:id="@+id/status" android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/statusText" android:layout_marginLeft="92dp"
+            android:layout_marginStart="92dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/schedule"/>
     <TextView
             android:text="Teacher"
             android:layout_width="wrap_content"

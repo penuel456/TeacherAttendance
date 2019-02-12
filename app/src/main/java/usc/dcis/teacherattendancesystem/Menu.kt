@@ -65,7 +65,6 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             R.id.nav_smed -> {
                 Menu_fragment_smed()
             }
-
             R.id.nav_safad -> {
                 Menu_fragment_safad()
             }
@@ -77,6 +76,9 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             }
             R.id.nav_lrc -> {
                 Menu_fragment_lrc()
+            }
+            R.id.nav_schedule -> {
+                Menu_fragment_schedListStudent()
             }
             else -> {
                 Menu_fragment_lbb()
