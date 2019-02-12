@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import kotlinx.android.synthetic.main.menu_fragment_lbb.view.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
@@ -16,7 +15,7 @@ import java.text.SimpleDateFormat
 class Menu_fragment_schedListStudent : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.menu_fragment_schedListStudent, null)
+        return inflater.inflate(R.layout.menu_fragment_schedliststudent, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
