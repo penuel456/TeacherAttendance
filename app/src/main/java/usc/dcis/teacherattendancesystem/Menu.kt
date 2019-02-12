@@ -76,7 +76,7 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 Menu_fragment_pe()
             }
             R.id.nav_lrc -> {
-                Menu_fragment_pe()
+                Menu_fragment_lrc()
             }
             else -> {
                 Menu_fragment_lbb()
