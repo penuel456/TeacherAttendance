@@ -27,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         //val password = findViewById<EditText>(R.id.password)
 
         // check username and password first
+        val userLists = MutableList(5) { userList() }
 
-        val status = if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(15102593)
-            && password.text.toString().equals("test123")) "Logged in Successfully"
+        val status = if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber)
+            && password.text.toString().equals(userLists[0].password)) "Logged in Successfully"
         else if (username.text.toString().isBlank() || password.text.toString().isBlank()) "Please enter an input in the empty fields."
         else "Incorrect username/password."
 
@@ -37,11 +38,16 @@ class MainActivity : AppCompatActivity() {
         text.show()
 
         // Create an Intent to start the second activity
-        if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(15102593) && password.text.toString().equals("test123")) {
+        if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber) && password.text.toString().equals(userLists[0].password)) {
             val menuActivity = Intent(this, Menu::class.java)
 
             // Start the new activity.
             startActivity(menuActivity)
         }
+    }
+
+    private fun userList() = object {
+        val idnumber: Int = 15102593
+        val password: String = "test123"
     }
 }
