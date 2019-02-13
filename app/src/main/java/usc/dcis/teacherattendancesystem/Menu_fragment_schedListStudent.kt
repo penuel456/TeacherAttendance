@@ -33,7 +33,7 @@ class Menu_fragment_schedListStudent : Fragment() {
         val teacher: String = "Mr. Dummy"
         val room: String = "LBB 305TC"
         val startSchedule: String = "7:30"
-        val endSchedule: String = "10:30"
+        val endSchedule: String = "9:30"
         val status: String = "Present"
     }
 
