@@ -7,163 +7,157 @@
                                              android:background="@color/lightGreen"
                                              android:id="@+id/frameLayout3">
     <TextView
-            android:text="Schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextScheduleText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextBuildingText" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Schedule" android:text="Schedule"/>
     <TextView
-            android:text="Room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextBuildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextTeacherText" android:layout_marginTop="16dp"
-            android:textStyle="bold" android:textColor="@android:color/background_dark"/>
+            android:textStyle="bold" android:textColor="@android:color/background_dark" tools:text="Room"
+            android:text="Room"/>
     <TextView
-            android:text="LBB 485TC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextBuilding" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="100dp"
             android:layout_marginStart="100dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextTeacher"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="LBB 485TC" android:text="LBB 485TC"/>
     <TextView
-            android:text="Teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextTeacherText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextCourseCodeText" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Teacher" android:text="Teacher"/>
     <TextView
-            android:text="Course Code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextCourseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextText" android:layout_marginTop="16dp"
-            android:textStyle="bold" android:textColor="@android:color/background_dark"/>
+            android:textStyle="bold" android:textColor="@android:color/background_dark" tools:text="Course Code"
+            android:text="Course Code"/>
     <TextView
-            android:text="Stephanie Polinar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextTeacher" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="76dp"
             android:layout_marginStart="76dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Stephanie Polinar"
+            android:text="Stephanie Polinar"/>
     <TextView
-            android:text="IT 5005"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextCourseCode" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="36dp"
             android:layout_marginStart="36dp" android:layout_marginTop="103dp"
             app:layout_constraintTop_toBottomOf="@+id/status"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="IT 5005" android:text="IT 5005"/>
     <TextView
-            android:text="Tue 10:30AM - 12:00PM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextSchedule" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="68dp"
             android:layout_marginStart="68dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextBuilding"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Tue 10:30AM - 12:00PM"
+            android:text="Tue 10:30AM - 12:00PM"/>
     <TextView
-            android:text="OnGoing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/onGoingText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="92dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
-            tools:textColor="@android:color/background_dark"/>
+            tools:textColor="@android:color/background_dark" tools:text="OnGoing" android:text="OnGoing"/>
     <TextView
-            android:text="Up Next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="44dp"
             app:layout_constraintTop_toBottomOf="@+id/statusText" app:layout_constraintHorizontal_bias="0.027"
-            android:textStyle="bold" tools:textColor="@android:color/background_dark"/>
+            android:textStyle="bold" tools:textColor="@android:color/background_dark" tools:text="Up Next"
+            android:text="Up Next"/>
     <TextView
-            android:text="Course Code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/courseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/onGoingText" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Course Code" android:text="Course Code"/>
     <TextView
-            android:text="IT 5001"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/courseCode" android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp" android:layout_marginTop="148dp" app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@android:color/background_dark"/>
+            app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp" android:layout_marginTop="72dp" app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@android:color/background_dark" tools:text="IT 5001"/>
     <TextView
-            android:text="Godwin Monserate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/teacher" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginLeft="72dp"
             android:layout_marginStart="72dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/courseCode"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Godwin Monserate"/>
     <TextView
-            android:text="LBB 466TC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/building" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="96dp"
             android:layout_marginStart="96dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/teacher"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="LBB 466TC"/>
     <TextView
-            android:text="Mon 1:30PM - 4:30PM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/schedule" android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginLeft="64dp"
-            android:layout_marginStart="64dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/building"
-            android:textColor="@android:color/background_dark"/>
+            android:id="@+id/startTime" android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/building" tools:text="LBB 466TC"/>
     <TextView
-            android:text="Present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/endTime" android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintStart_toEndOf="@+id/startTime" android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/building" tools:text="LBB 466TC"/>
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/status" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/statusText" android:layout_marginLeft="88dp"
-            android:layout_marginStart="88dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/schedule"
-            tools:textColor="@android:color/background_dark"/>
+            android:layout_marginStart="88dp"
+            tools:textColor="@android:color/background_dark" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/startTime" tools:text="Present"/>
     <TextView
-            android:text="Teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/teacherText" android:textSize="20sp"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/courseCodeText" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Teacher" android:text="Teacher"/>
     <TextView
-            android:text="Room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/teacherText" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" tools:text="Room" android:text="Room"/>
     <TextView
-            android:text="Schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/scheduleText" android:textSize="20sp"
@@ -171,13 +165,12 @@
             android:textColor="@android:color/background_dark" android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/buildingText"/>
+            app:layout_constraintTop_toBottomOf="@+id/buildingText" tools:text="Schedule" android:text="Schedule"/>
     <TextView
-            android:text="Status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/statusText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/scheduleText" android:textStyle="bold"
-            tools:textColor="@android:color/background_dark"/>
+            tools:textColor="@android:color/background_dark" tools:text="Status" android:text="Status"/>
 </android.support.constraint.ConstraintLayout>

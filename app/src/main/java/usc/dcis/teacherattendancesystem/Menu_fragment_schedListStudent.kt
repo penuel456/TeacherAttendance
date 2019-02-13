@@ -26,21 +26,40 @@ class Menu_fragment_schedListStudent : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         updateScheduleUI()
+        getCurrentTime()
     }
 
     private fun scheduleList() = object {
         val courseCode: String = "IT 5001"
         val teacher: String = "Mr. Dummy"
         val room: String = "LBB 305TC"
-        val startSchedule: String = "7:30"
-        val endSchedule: String = "9:30"
-        val status: String = "Present"
+        val startTime: String = "7:30"
+        val endTime: String = "9:30"
+        val status: String = "Absent"
     }
 
     fun updateScheduleUI(){
         courseCode.text = todaySched[0].courseCode
         teacher.text = todaySched[0].teacher
         building.text = todaySched[0].room
+        startTime.text = todaySched[0].startTime
+        endTime.text = todaySched[0].endTime
+        status.text = todaySched[0].status
+
+        upNextCourseCode.text = todaySched[0].courseCode
+        upNextTeacher.text = todaySched[0].teacher
+        upNextBuilding.text = todaySched[0].room
+        //upNextStartTime.text = todaySched[0].startTime
+        //upNextEndTime.text = todaySched[0].endTime
+
+    }
+
+    fun getOnGoingAndUpNextSchedules(){
+        // Get the ongoing schedule.
+        // If it's equal to more than current time, then it's ongoing
+
+        // Get the up next schedule.
+        // Find all the today's schedules with the closest time to current time. It becomes "up next."
     }
 
     private fun getCurrentTime(): String {
