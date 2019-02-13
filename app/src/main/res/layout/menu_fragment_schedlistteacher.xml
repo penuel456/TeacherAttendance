@@ -66,8 +66,9 @@
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.075"
-            android:textColor="@android:color/background_dark" tools:layout_editor_absoluteY="426dp"/>
+            app:layout_constraintHorizontal_bias="0.101"
+            android:textColor="@android:color/background_dark" android:layout_marginTop="87dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"/>
     <TextView
             android:text="Tue 10:30AM - 12:00PM"
             android:layout_width="wrap_content"
@@ -85,7 +86,7 @@
             android:id="@+id/onGoingText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="92dp"
+            app:layout_constraintHorizontal_bias="0.028" android:layout_marginTop="92dp"
             app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
             tools:textColor="@android:color/background_dark"/>
     <TextView
@@ -166,8 +167,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/scheduleText" android:textSize="20sp"
-            tools:layout_editor_absoluteY="266dp" tools:layout_editor_absoluteX="52dp" android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/buildingText" android:layout_marginStart="52dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="52dp"/>
     <TextView
             android:text="Status"
             android:layout_width="wrap_content"
@@ -178,8 +181,11 @@
             tools:textColor="@android:color/background_dark"/>
     <Spinner
             android:layout_width="164dp"
-            android:layout_height="32dp" tools:layout_editor_absoluteY="309dp"
-            tools:layout_editor_absoluteX="191dp" android:id="@+id/spinner"
+            android:layout_height="32dp"
+            android:id="@+id/spinner"
             android:entries="@array/status_arrays"
-            android:prompt="@string/status_prompt"/>
+            android:prompt="@string/status_prompt" app:layout_constraintStart_toEndOf="@+id/statusText"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/schedule" app:layout_constraintHorizontal_bias="0.6"/>
 </android.support.constraint.ConstraintLayout>
