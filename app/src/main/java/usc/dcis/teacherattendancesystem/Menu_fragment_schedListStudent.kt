@@ -7,12 +7,16 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.widget.TextView
+import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.text.SimpleDateFormat
 
 class Menu_fragment_schedListStudent : Fragment() {
+
+    private val todaySched = MutableList(5) { scheduleList() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.menu_fragment_schedliststudent, null)
@@ -21,17 +25,22 @@ class Menu_fragment_schedListStudent : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val todaySched = MutableList(5) { scheduleList() }
-
+        updateScheduleUI()
     }
 
     private fun scheduleList() = object {
-        val courseCode: String = ""
-        val teacher: String = ""
-        val room: String = ""
-        val startSchedule: String = ""
-        val endSchedule: String = ""
-        val status: String = ""
+        val courseCode: String = "IT 5001"
+        val teacher: String = "Mr. Dummy"
+        val room: String = "LBB 305TC"
+        val startSchedule: String = "7:30"
+        val endSchedule: String = "10:30"
+        val status: String = "Present"
+    }
+
+    fun updateScheduleUI(){
+        courseCode.text = todaySched[0].courseCode
+        teacher.text = todaySched[0].teacher
+        building.text = todaySched[0].room
     }
 
     private fun getCurrentTime(): String {
