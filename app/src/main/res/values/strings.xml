@@ -11,4 +11,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="log_out">Log Out</string>
     <string name="_1st_floor">1st Floor</string>
+    <string name="status_prompt">Choose a status</string>
+    <string-array name="status_arrays">
+        <item>Present</item>
+        <item>Absent</item>
+    </string-array>
+
 </resources>
