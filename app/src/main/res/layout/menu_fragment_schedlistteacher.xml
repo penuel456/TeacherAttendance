@@ -184,5 +184,21 @@
             android:entries="@array/status_arrays"
             android:prompt="@string/status_prompt" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/schedule" app:layout_constraintStart_toEndOf="@+id/statusText"
-            android:layout_marginStart="80dp" android:layout_marginLeft="80dp"/>
+            android:layout_marginStart="80dp" android:layout_marginLeft="80dp" android:spinnerMode="dropdown"/>
+    <Button
+            android:text="Click"
+            android:layout_width="91dp"
+            android:layout_height="35dp"
+            android:id="@+id/Click" android:onClick="check"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/spinner"
+            android:layout_marginEnd="132dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="132dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stat_1" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
 </android.support.constraint.ConstraintLayout>

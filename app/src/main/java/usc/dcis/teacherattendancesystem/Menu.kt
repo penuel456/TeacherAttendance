@@ -80,6 +80,9 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             R.id.nav_schedule -> {
                 Menu_fragment_schedListStudent()
             }
+            R.id.nav_schedule_teacher -> {
+                Menu_fragment_schedListTeacher()
+            }
             else -> {
                 Menu_fragment_lbb()
             }

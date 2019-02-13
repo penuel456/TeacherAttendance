@@ -137,7 +137,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/status" android:textSize="20sp"
+            android:id="@+id/stat_1" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/statusText" android:layout_marginLeft="88dp"
             android:layout_marginStart="88dp"
             tools:textColor="@android:color/background_dark" android:layout_marginTop="16dp"
