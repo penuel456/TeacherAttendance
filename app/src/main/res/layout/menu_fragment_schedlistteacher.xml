@@ -11,7 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextScheduleText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextBuildingText" android:textStyle="bold"
             android:textColor="@android:color/background_dark"/>
     <TextView
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/upNextBuildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextTeacherText" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextTeacherText" android:layout_marginTop="12dp"
             android:textStyle="bold" android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="LBB 485TC"
@@ -29,15 +29,15 @@
             android:id="@+id/upNextBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher" app:layout_constraintHorizontal_bias="0.345"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher" app:layout_constraintHorizontal_bias="0.336"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upNextTeacherText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="28dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextCourseCodeText" android:textStyle="bold"
             android:textColor="@android:color/background_dark"/>
     <TextView
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/upNextCourseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextText" android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextText" android:layout_marginTop="12dp"
             android:textStyle="bold" android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Stephanie Polinar"
@@ -55,8 +55,8 @@
             android:id="@+id/upNextTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode" app:layout_constraintHorizontal_bias="0.386"
+            android:layout_marginStart="8dp" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode" app:layout_constraintHorizontal_bias="0.372"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="IT 5005"
@@ -65,7 +65,7 @@
             android:id="@+id/upNextCourseCode" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:textColor="@android:color/background_dark" android:layout_marginTop="84dp"
+            android:textColor="@android:color/background_dark" android:layout_marginTop="172dp"
 
             app:layout_constraintTop_toBottomOf="@+id/spinner"/>
     <TextView
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/upNextSchedule" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="52dp"
-            android:layout_marginStart="52dp" android:layout_marginTop="16dp"
+            android:layout_marginStart="52dp"
             app:layout_constraintTop_toBottomOf="@+id/upNextBuilding"
             android:textColor="@android:color/background_dark"/>
     <TextView
@@ -84,7 +84,7 @@
             android:id="@+id/onGoingText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.028" android:layout_marginTop="92dp"
+            app:layout_constraintHorizontal_bias="0.028" android:layout_marginTop="32dp"
             app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
             tools:textColor="@android:color/background_dark"/>
     <TextView
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/upNextText" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="44dp"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="124dp"
             app:layout_constraintTop_toBottomOf="@+id/statusText" app:layout_constraintHorizontal_bias="0.027"
             android:textStyle="bold" tools:textColor="@android:color/background_dark"/>
     <TextView
@@ -111,7 +111,7 @@
             android:id="@+id/courseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="148dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="88dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.072" android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Godwin Monserate"
@@ -184,21 +184,30 @@
             android:entries="@array/status_arrays"
             android:prompt="@string/status_prompt" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/schedule" app:layout_constraintStart_toEndOf="@+id/statusText"
-            android:layout_marginStart="80dp" android:layout_marginLeft="80dp" android:spinnerMode="dropdown"/>
+            android:layout_marginStart="84dp" android:layout_marginLeft="84dp" android:spinnerMode="dropdown"
+            android:visibility="visible"/>
     <Button
-            android:text="Click"
+            android:text="Submit"
             android:layout_width="91dp"
             android:layout_height="35dp"
-            android:id="@+id/Click" android:onClick="check"
-            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/spinner"
-            android:layout_marginEnd="132dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="132dp"/>
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/stat_1" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/Submit" android:onClick="check"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/reason"/>
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="393dp"
+            android:layout_height="66dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:id="@+id/reason"
+            android:visibility="invisible"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner">
+
+        <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="State your Reason" tools:textSize="24sp"/>
+    </android.support.design.widget.TextInputLayout>
 </android.support.constraint.ConstraintLayout>
