@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import android.widget.TextView
 import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -44,7 +43,7 @@ class Menu_fragment_schedListStudent : Fragment() {
         building.text = todaySched[0].room
         startTime.text = todaySched[0].startTime
         endTime.text = todaySched[0].endTime
-        status.text = todaySched[0].status
+        stat_1.text = todaySched[0].status
 
         upNextCourseCode.text = todaySched[0].courseCode
         upNextTeacher.text = todaySched[0].teacher
