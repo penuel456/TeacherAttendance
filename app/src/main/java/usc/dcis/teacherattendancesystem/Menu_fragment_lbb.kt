@@ -38,6 +38,39 @@ class Menu_fragment_lbb : Fragment() {
           val id = lbb_floors.checkedRadioButtonId
           val radioButton = myView.findViewById<RadioButton>(id)
 
+          if(radioButton.text.toString().equals("1st Floor")){
+              lbb_wings.visibility = View.VISIBLE
+              lbb_wing1.text = "Wing 1"
+              lbb_wing2.text = "Wing 2"
+              lbb_wing3.text = "Wing 3"
+              lbb_wing4.text = "Wing 4"
+              lbb_wing5.visibility = View.GONE
+          }else if(radioButton.text.toString().equals("2nd Floor")){
+              lbb_wings.visibility = View.VISIBLE
+              lbb_wing1.text = "Wing 256"
+              lbb_wing2.text = "Wing 261"
+              lbb_wing3.text = "Wing 273"
+              lbb_wing4.text = "Wing 283"
+              lbb_wing5.visibility = View.GONE
+          }else if(radioButton.text.toString().equals("3rd Floor")){
+              lbb_wings.visibility = View.VISIBLE
+              lbb_wing5.visibility = View.VISIBLE
+              lbb_wing1.text = "Wing 320"
+              lbb_wing2.text = "Wing 330"
+              lbb_wing3.text = "Wing 340"
+              lbb_wing4.text = "Wing 350"
+              lbb_wing5.text = "Main Hallway"
+          }else if(radioButton.text.toString().equals("4th Floor")){
+              lbb_wings.visibility = View.VISIBLE
+              lbb_wing5.visibility = View.VISIBLE
+              lbb_wing1.text = "Wing 442"
+              lbb_wing2.text = "Wing 445"
+              lbb_wing3.text = "Wing 480"
+              lbb_wing4.text = "Wing 460"
+              lbb_wing5.text = "Main Hallway"
+          }
+
         }
     }
+
 }
