@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import android.widget.TextView
 import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.time.LocalDateTime
@@ -65,5 +64,6 @@ class Menu_fragment_schedListTeacher : Fragment() {
         Log.d("Click", "Senpai clicked me")
         val Text = view?.spinner!!.selectedItem.toString()
         stat_1.text = Text
+
     }
 }
