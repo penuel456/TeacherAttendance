@@ -66,7 +66,7 @@ class Menu_fragment_schedListStudent : Fragment() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss")
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm")
             answer = current.format(formatter)
             Log.d("answer",answer)
         } else {
