@@ -4,13 +4,15 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
+
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import android.arch.persistence.room.Room
+import android.util.Log
+
+
 
 class MainActivity : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-
+        testDatabase()
 
     }
 
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         //val password = findViewById<EditText>(R.id.password)
 
         // check username and password first
+
+
         val userLists = MutableList(5) { userList() }
 
         val status = if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber)
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         val text = Toast.makeText(this, status, Toast.LENGTH_SHORT)
         text.show()
+
+        //testDatabase()
 
         // Create an Intent to start the second activity
         if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber) && password.text.toString().equals(userLists[0].password)) {
@@ -49,5 +55,32 @@ class MainActivity : AppCompatActivity() {
     private fun userList() = object {
         val idnumber: Int = 15102593
         val password: String = "test123"
+    }
+
+    // For testing database. Subject to change.
+    fun testDatabase(){
+        Log.d("DEBUG: ", "Inside testDatabase function")
+
+        val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries().build()
+
+        val rooms = arrayListOf("LB446TC", "LB468TC")
+
+        val startTimes = arrayListOf("9:30", "10:30")
+        val endTimes = arrayListOf("12:00", "12:00")
+        val days = arrayListOf("M", "W", "F")
+        Log.d("DEBUG: ", "Declared schedule variables")
+        val scheduleDAO = db.scheduleDAO
+
+        //Inserting a schedule
+        val scheduleList = scheduleDB()
+        scheduleList.setCoursecode("IT 2201")
+        scheduleList.setroom(rooms)
+        scheduleList.setStarttime(startTimes)
+        scheduleList.setEndtime(endTimes)
+        scheduleList.setdays(days)
+        Log.d("DEBUG: ", "Set schedule list variable")
+        scheduleDAO.insert()
+        Log.d("DEBUG: ", "Inserted to database")
+
     }
 }

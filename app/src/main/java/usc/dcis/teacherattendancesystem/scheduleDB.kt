@@ -7,11 +7,11 @@ import android.support.annotation.NonNull
 @Entity(tableName = "Schedule")
 class scheduleDB {
     var teacher: String = ""
-    var room: String = ""
-    var startTime: MutableList<String>? = null
-    var endTime: MutableList<String>? = null
-    var days: MutableList<String>? = null
-    var status: MutableList<String>? = null
+    var room: ArrayList<String>? = null
+    var startTime: ArrayList<String>? = null
+    var endTime: ArrayList<String>? = null
+    var days: ArrayList<String>? = null
+    var status: ArrayList<String>? = null
 
     @PrimaryKey
     @NonNull
@@ -26,35 +26,43 @@ class scheduleDB {
         this.courseCode = courseCode
     }
 
-    fun getroom(): String {
+    fun getroom(): ArrayList<String>? {
         return room
     }
 
-    fun setroom(courseCode : String) {
+    fun setroom(room: ArrayList<String>?){
         this.room = room
+    }
+
+    fun getSingleRoom(selectedRoom: Int): String? {
+        return room?.get(selectedRoom)
+    }
+
+    fun setSingleRoom(selectedRoom: Int, newRoom: String){
+        this.room?.set(selectedRoom, newRoom)
     }
 
     fun getStarttime(): MutableList<String>? {
         return startTime
     }
 
-    fun setStarttime(startTime: MutableList<String>?) {
+    fun setStarttime(startTime: ArrayList<String>?) {
         this.startTime = startTime
     }
 
-    fun getEndtime(): MutableList<String>? {
+    fun getEndtime(): ArrayList<String>? {
         return endTime
     }
 
-    fun setEndtime(endTime: MutableList<String>?){
+    fun setEndtime(endTime: ArrayList<String>?){
         this.endTime = endTime
     }
 
-    fun getdays(): MutableList<String>? {
+    fun getdays(): ArrayList<String>? {
         return days
     }
 
-    fun setdays(days: MutableList<String>?){
+    fun setdays(days: ArrayList<String>?){
         this.days = days
     }
 
@@ -62,15 +70,23 @@ class scheduleDB {
         return this!!.days!![selectedDay]
     }
 
-    fun getstatus(): MutableList<String>? {
+    fun setSingleDay(selectedDay: Int, newDay: String){
+        this.days?.set(selectedDay, newDay)
+    }
+
+    fun getstatus(): ArrayList<String>? {
         return status
     }
 
-    fun setstatus(days: MutableList<String>?){
+    fun setstatus(days: ArrayList<String>?){
         this.status = status
     }
 
     fun getSingleStatus(selectedStatus: Int): String {
         return this!!.status!![selectedStatus]
+    }
+
+    fun setSingleStatus(selectedStatus: Int, newStatus: String){
+        this.status?.set(selectedStatus, newStatus)
     }
 }
