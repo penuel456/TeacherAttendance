@@ -44,8 +44,8 @@ import java.text.SimpleDateFormat
         building.text = todaySched[0].room
         startTime.text = todaySched[0].startTime
         endTime.text = todaySched[0].endTime
-        //status.text = todaySched[0].status
-        status.text = stat
+        status.text = todaySched[0].status
+        //status.text = stat
         upNextCourseCode.text = todaySched[0].courseCode
         upNextTeacher.text = todaySched[0].teacher
         upNextBuilding.text = todaySched[0].room

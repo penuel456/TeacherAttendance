@@ -16,5 +16,6 @@
         <item>Present</item>
         <item>Absent</item>
     </string-array>
+    <string name="title_activity_editschedule">activity_editschedule</string>
 
 </resources>
