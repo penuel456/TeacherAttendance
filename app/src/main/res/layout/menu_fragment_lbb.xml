@@ -60,6 +60,11 @@
         <RadioButton
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/lbb_hiddenwing" android:layout_weight="1"
+                android:visibility="gone"/>
+        <RadioButton
+                android:text="RadioButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" tools:layout_editor_absoluteY="50dp"
                 tools:layout_editor_absoluteX="174dp" android:id="@+id/lbb_wing1"/>
         <RadioButton
@@ -80,48 +85,50 @@
                 android:layout_height="wrap_content" tools:layout_editor_absoluteY="116dp"
                 tools:layout_editor_absoluteX="358dp" android:id="@+id/lbb_wing5" android:visibility="visible"/>
     </RadioGroup>
+
     <ScrollView
-            android:layout_width="395dp"
-            android:layout_height="116dp"
+            android:layout_width="320dp"
+            android:layout_height="239dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginBottom="352dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="8dp" android:layout_marginBottom="180dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.4"
             android:id="@+id/lbbScrollView" android:scrollbarStyle="outsideInset" android:visibility="gone"
-            android:background="@drawable/side_nav_bar">
+            android:background="@android:color/darker_gray">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:gravity="center"
                       android:orientation="vertical">
             <Button
                     android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button8"/>
+                    android:layout_width="165dp"
+                    android:layout_height="58dp" tools:layout_editor_absoluteY="304dp"
+                    tools:layout_editor_absoluteX="16dp" android:id="@+id/lbbRoomOne"/>
             <Button
                     android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="509dp"
-                    tools:layout_editor_absoluteX="8dp" android:id="@+id/button4"/>
+                    android:layout_width="165dp"
+                    android:layout_height="60dp" tools:layout_editor_absoluteY="391dp"
+                    tools:layout_editor_absoluteX="39dp" android:id="@+id/lbbRoomTwo"/>
             <Button
                     android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp" android:id="@+id/button7"/>
+                    android:layout_width="166dp"
+                    android:layout_height="60dp" tools:layout_editor_absoluteY="439dp"
+                    tools:layout_editor_absoluteX="16dp" android:id="@+id/lbbRoomThree"/>
             <Button
                     android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="391dp"
-                    tools:layout_editor_absoluteX="39dp" android:id="@+id/button2"/>
+                    android:layout_width="167dp"
+                    android:layout_height="59dp" tools:layout_editor_absoluteY="509dp"
+                    tools:layout_editor_absoluteX="8dp" android:id="@+id/lbbRoomFour"/>
             <Button
                     android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="304dp"
-                    tools:layout_editor_absoluteX="16dp" android:id="@+id/button"/>
-            <Button
-                    android:text="Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="439dp"
-                    tools:layout_editor_absoluteX="16dp" android:id="@+id/button3"/>
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content" android:id="@+id/lbbRoomFive"/>
+
         </LinearLayout>
     </ScrollView>
+
+
 
 
 </android.support.constraint.ConstraintLayout>
