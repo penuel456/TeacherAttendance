@@ -16,6 +16,10 @@
         <item>Present</item>
         <item>Absent</item>
     </string-array>
-    <string name="title_activity_editschedule">activity_editschedule</string>
+    <string name="room_prompt">Choose a room</string>
+    <string-array name="fourthflr_wing1_rooms">
+        <item>LB442</item>
+        <item>LB443</item>
+    </string-array>
 
 </resources>
