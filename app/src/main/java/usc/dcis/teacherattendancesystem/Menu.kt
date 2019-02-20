@@ -60,30 +60,39 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     fun displayFragment(id: Int){
         val fragment = when(id){
             R.id.nav_lbb -> {
+                setTitle("Lawrence Bunzel Building")
                 Menu_fragment_lbb()
             }
             R.id.nav_smed -> {
+                setTitle("SMED Building")
                 Menu_fragment_smed()
             }
             R.id.nav_safad -> {
+                setTitle("SAFAD Building")
                 Menu_fragment_safad()
             }
             R.id.nav_bct -> {
+                setTitle("Basketball Court")
                 Menu_fragment_bct()
             }
             R.id.nav_pe -> {
+                setTitle("Philip van Engelen Building")
                 Menu_fragment_pe()
             }
             R.id.nav_lrc -> {
+                setTitle("Josef Baumgartner Building")
                 Menu_fragment_lrc()
             }
             R.id.nav_schedule -> {
+                setTitle("Schedule")
                 Menu_fragment_schedListStudent()
             }
             R.id.nav_schedule_teacher -> {
+                setTitle("Schedule")
                 Menu_fragment_schedListTeacher()
             }
             else -> {
+                setTitle("Lawrence Bunzel Building")
                 Menu_fragment_lbb()
             }
         }
