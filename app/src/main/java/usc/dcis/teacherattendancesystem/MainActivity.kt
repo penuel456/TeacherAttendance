@@ -61,26 +61,23 @@ class MainActivity : AppCompatActivity() {
     fun testDatabase(){
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries().build()
-
+        val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
+        var scheduleListTest = db.scheduleDAO
+        /*
         val rooms = arrayListOf("LB446TC", "LB468TC")
-
         val startTimes = arrayListOf("9:30", "10:30")
         val endTimes = arrayListOf("12:00", "12:00")
         val days = arrayListOf("M", "W", "F")
         Log.d("DEBUG: ", "Declared schedule variables")
-        val scheduleDAO = db.scheduleDAO
 
-        //Inserting a schedule
-        val scheduleList = scheduleDB()
-        scheduleList.setCoursecode("IT 2201")
-        scheduleList.setroom(rooms)
-        scheduleList.setStarttime(startTimes)
-        scheduleList.setEndtime(endTimes)
-        scheduleList.setdays(days)
-        Log.d("DEBUG: ", "Set schedule list variable")
-        scheduleDAO.insert()
-        Log.d("DEBUG: ", "Inserted to database")
 
+
+        scheduleListTest.insert(scheduleDB(1, "IT 2201", "Mr. Dummy"))
+        */
+        Log.d("DEBUG::", "CourseCode: " + scheduleListTest.getSchedule(1).courseCode)
+        Log.d("DEBUG::", "Teacher: " + scheduleListTest.getSchedule(1).teacher)
+        Log.d("DEBUG::", "CourseID: " + scheduleListTest.getSchedule(1).courseID)
     }
 }

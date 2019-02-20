@@ -4,38 +4,29 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.TypeConverter
 import android.arch.persistence.room.TypeConverters
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import java.sql.Date
 
 
-@Database(entities = [scheduleDB::class], version = 1)
+
+
+@Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val scheduleDAO: ScheduleDAO
 }
 
-class Converters {
-
+object Converters {
     @TypeConverter
-    fun fromString(value: String): ArrayList<String> {
-
-        val listType = object : TypeToken<ArrayList<String>>() {
-
-        }.getType()
-
-        return Gson().fromJson(value, listType)
-
+    @JvmStatic
+    fun fromTimestamp(value: Long?): Date? {
+        return if (value == null) null else Date(value)
     }
 
     @TypeConverter
-    fun fromArrayList(list: ArrayList<String>): String {
-
-        val gson = Gson()
-
-        return gson.toJson(list)
-
+    @JvmStatic
+    fun dateToTimestamp(date: Date?): Long? {
+        return (if (date == null) null else date!!.getTime())?.toLong()
     }
-
 }
 
 /*******************************************************************************************
