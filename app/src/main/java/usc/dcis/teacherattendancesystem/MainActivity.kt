@@ -8,8 +8,11 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.arch.persistence.room.Room
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.util.Log
-
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
+import java.sql.Date
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,19 +68,40 @@ class MainActivity : AppCompatActivity() {
             .fallbackToDestructiveMigration()
             .build()
         var scheduleListTest = db.scheduleDAO
+
+        //var scheduleDb = scheduleDB(0, "ENGL3", "Ms. Charity Tecson")
+
         /*
         val rooms = arrayListOf("LB446TC", "LB468TC")
         val startTimes = arrayListOf("9:30", "10:30")
         val endTimes = arrayListOf("12:00", "12:00")
         val days = arrayListOf("M", "W", "F")
         Log.d("DEBUG: ", "Declared schedule variables")
-
-
-
-        scheduleListTest.insert(scheduleDB(1, "IT 2201", "Mr. Dummy"))
         */
-        Log.d("DEBUG::", "CourseCode: " + scheduleListTest.getSchedule(1).courseCode)
-        Log.d("DEBUG::", "Teacher: " + scheduleListTest.getSchedule(1).teacher)
-        Log.d("DEBUG::", "CourseID: " + scheduleListTest.getSchedule(1).courseID)
+        /*
+        var sdf = java.text.SimpleDateFormat("m:s")
+
+        var dateString = "10:30"
+        var mDate  = sdf.parse(dateString)
+
+        scheduleListTest.insertRoomAssignment(RoomAssignment(1, 1, "LBB305TC", mDate, mDate, "M"))
+        Log.d("DEBUG: ", "Inserted room assignment")
+
+        sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+        dateString = "2019-03-28"
+        mDate = sdf.parse(dateString)
+
+        scheduleListTest.insertStatus(Status(0, 1, mDate, "Present"))
+        Log.d("DEBUG: ", "Insert status")
+
+
+        Log.d("DEBUG: ", sdf.format(mDate))
+        */
+
+        val statusPrintTest = scheduleListTest.getAllStatusByRoomId(1)
+
+        Log.d("DEBUG: ", "StatusID: ${statusPrintTest[0].statusId}")
+        Log.d("DEBUG: ", "Date: ${statusPrintTest[0].date}")
+        Log.d("DEBUG: ", "Status: ${statusPrintTest[0].status}")
     }
 }
