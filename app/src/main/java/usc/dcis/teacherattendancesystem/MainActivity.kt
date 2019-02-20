@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity() {
         Log.d("DEBUG: ", "Declared schedule variables")
 
 
+           */
+        //scheduleListTest.insert(scheduleDB(0, "IT 2201", "Mr. Dummy"))
 
-        scheduleListTest.insert(scheduleDB(1, "IT 2201", "Mr. Dummy"))
-        */
         Log.d("DEBUG::", "CourseCode: " + scheduleListTest.getSchedule(1).courseCode)
         Log.d("DEBUG::", "Teacher: " + scheduleListTest.getSchedule(1).teacher)
         Log.d("DEBUG::", "CourseID: " + scheduleListTest.getSchedule(1).courseID)
