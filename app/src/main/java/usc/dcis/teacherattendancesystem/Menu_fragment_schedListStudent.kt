@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,8 +14,9 @@ import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.text.SimpleDateFormat
 
-class Menu_fragment_schedListStudent : Fragment() {
+ class Menu_fragment_schedListStudent : Fragment() {
 
+     val stat: String = ""
     private val todaySched = MutableList(5) { scheduleList() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,8 +45,8 @@ class Menu_fragment_schedListStudent : Fragment() {
         building.text = todaySched[0].room
         startTime.text = todaySched[0].startTime
         endTime.text = todaySched[0].endTime
-        stat_1.text = todaySched[0].status
-
+        status.text = todaySched[0].status
+        //status.text = stat
         upNextCourseCode.text = todaySched[0].courseCode
         upNextTeacher.text = todaySched[0].teacher
         upNextBuilding.text = todaySched[0].room
@@ -78,4 +80,6 @@ class Menu_fragment_schedListStudent : Fragment() {
 
         return answer
     }
+
+
 }

@@ -1,27 +1,40 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.text.SimpleDateFormat
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+
 
 class Menu_fragment_schedListTeacher : Fragment() {
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.menu_fragment_schedlistteacher, null)
 
-        view.Click.setOnClickListener { view ->
+        view.Submit.setOnClickListener { view ->
             check_stat()
+           // editSched()
         }
+
+
 
         return view
     }
@@ -63,7 +76,19 @@ class Menu_fragment_schedListTeacher : Fragment() {
     fun check_stat(){
         Log.d("Click", "Senpai clicked me")
         val Text = view?.spinner!!.selectedItem.toString()
-        stat_1.text = Text
-
+        //status.text = Text
+        Log.d("Click", Text)
+        if(Text.equals("Absent")) {
+            Log.d("Click", "I'm here")
+            reason.visibility = View.VISIBLE
+        }else{
+            reason.visibility = View.INVISIBLE
+        }
     }
+
+    fun editSched(){
+        val edit_Sched = Intent(activity, activity_editschedule::class.java)
+        startActivity(edit_Sched)
+    }
+
 }
