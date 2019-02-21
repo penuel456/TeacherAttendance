@@ -34,10 +34,6 @@
                     android:id="@+id/nav_schedule_teacher"
                     android:icon="@android:drawable/ic_menu_my_calendar"
                     android:title=" Teacher Schedule List"/>
-            <item
-                    android:id="@+id/nav_schedule_edit"
-                    android:icon="@android:drawable/ic_menu_my_calendar"
-                    android:title=" Teacher Schedule Edit"/>
         </menu>
     </item>
 

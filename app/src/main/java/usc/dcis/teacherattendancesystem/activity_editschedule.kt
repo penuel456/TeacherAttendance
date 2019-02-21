@@ -14,9 +14,11 @@ import android.icu.util.Calendar
 
 import kotlinx.android.synthetic.main.activity_editschedule.*
 import android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
+import android.app.DatePickerDialog
 import android.app.PendingIntent.getActivity
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.Calendar.DAY_OF_MONTH
 
 
 class activity_editschedule : AppCompatActivity() {
@@ -58,11 +60,29 @@ class activity_editschedule : AppCompatActivity() {
 
             Toast.makeText(this, h.toString() + " : " + m +" : " , Toast.LENGTH_LONG).show()
             val End_time = findViewById<TextView>(R.id.end_time)
-            End_time.text = h.toString() + " : " + m
+            End_time.text = h.toString() + " : " + m.toString()
 
         }),hour,minute,false)
 
         tpd.show()
+
+    }
+    @TargetApi(Build.VERSION_CODES.P)
+    fun clickDatePicker(view: View) {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener(function = { view, year, monthOfYear, dayOfMonth  ->
+
+            Toast.makeText(this, monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString() , Toast.LENGTH_LONG).show()
+            val date = findViewById<TextView>(R.id.date)
+            date.text = monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString()
+
+        }),year, month, day)
+
+        dpd.show()
 
     }
 }
