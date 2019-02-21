@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -50,8 +52,13 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_logout -> logout()
+            R.id.action_logout -> { logout()
             //else -> return super.onOptionsItemSelected(item)
+            }
+            R.id.Edit_Schedule -> {
+
+                Edit_Sched()
+            }
         }
 
         return true
@@ -101,9 +108,14 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             .replace(R.id.frameLayout, fragment)
             .commit()
     }
-
+    fun displayEditSched(item: Int){
+        when (item){
+            R.id.nav_schedule_edit -> Edit_Sched()
+        }
+    }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
+        displayEditSched(item.itemId)
         displayFragment(item.itemId)
 
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -116,5 +128,10 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         // Start the new activity.
         startActivity(mainActivity)
+    }
+    fun Edit_Sched(){
+        val edit_Sched = Intent(this, activity_editschedule::class.java)
+        Log.d("Click", "Ngano di man ko mu abli")
+        startActivity(edit_Sched)
     }
 }
