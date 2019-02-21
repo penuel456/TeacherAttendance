@@ -6,11 +6,11 @@ import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.ForeignKey.CASCADE
 import android.arch.persistence.room.PrimaryKey
 import android.support.annotation.NonNull
-import java.sql.Date
+import java.util.*
 
 @Entity(tableName = "Schedules")
 data class scheduleDB(
-    @PrimaryKey(autoGenerate = true) val courseID: Int,
+    @PrimaryKey(autoGenerate = true) val courseID: Int = 0,
     @ColumnInfo(name = "course_code")var courseCode: String,
     @ColumnInfo(name = "teacher") var teacher: String
 )
@@ -23,7 +23,7 @@ data class scheduleDB(
     onDelete = ForeignKey.CASCADE,
     onUpdate = ForeignKey.CASCADE)))
 data class RoomAssignment(
-    @PrimaryKey(autoGenerate = true) val roomID: Int,
+    @PrimaryKey(autoGenerate = true) val roomID: Int = 0,
     // FOREIGN KEY
     val courseID: Int,
 
