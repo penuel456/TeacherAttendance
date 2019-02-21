@@ -11,8 +11,9 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".activity_editschedule"
-                android:label="@string/title_activity_editschedule"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:label="EditSchedule"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".Menu"
