@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        testDatabase()
+        //testDatabase()
 
     }
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // For testing database. Subject to change.
-    fun testDatabase(){
+     fun testDatabase(){
         Log.d("DEBUG: ", "Inside testDatabase function")
 
         val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
