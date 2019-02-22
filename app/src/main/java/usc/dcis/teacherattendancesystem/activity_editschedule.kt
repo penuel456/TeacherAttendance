@@ -9,15 +9,18 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import android.icu.util.Calendar
 
 import kotlinx.android.synthetic.main.activity_editschedule.*
 import android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
 import android.app.DatePickerDialog
 import android.app.PendingIntent.getActivity
-import android.widget.TextView
+import android.app.ProgressDialog.show
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_activity_editschedule.*
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.util.Calendar.DAY_OF_MONTH
 
 
@@ -27,11 +30,94 @@ class activity_editschedule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editschedule)
         setSupportActionBar(toolbar)
+        val room = findViewById<Spinner>(R.id.room)
+        val buildings = findViewById<Spinner>(R.id.buildings)
+        val buildingList = arrayOf("Lawrence Bunzel Building", "SMED Building", "SAFAD Building", "Basketball Court",
+            "Philip van Engelen Building", "Josef Baumgartner Building")
+        val bunzelBuilding = arrayOf("LB466", "LB467","LB468","LB469")
+        val peBuilding = arrayOf("PE13", "PE12","PE11","PE10")
+        val SMEDBuilding = arrayOf("FO10", "FO12","FO11","FO13")
+        val BCT_building = arrayOf("none")
+        val SAFADBuilding = arrayOf("SAFAD1", "SAFAD2","SAFAD3","SAFAD4")
+        val josefBuilding = arrayOf("LRC1", "LRC2","LRC3","LRC4")
+        val adapter = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            buildingList // Array
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
-      /*  fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
+        buildings.adapter = adapter;
+        val bunzel  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            bunzelBuilding // Array
+        )
+        val PE  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            peBuilding // Array
+        )
+        val SMED  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDBuilding // Array
+        )
+        val BCT  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            BCT_building // Array
+        )
+        val SAFAD  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SAFADBuilding // Array
+        )
+        val LRC  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            josefBuilding // Array
+        )
+        bunzel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        PE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        BCT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SAFAD.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        LRC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        buildings.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
+                // Display the selected item text on text view
+                val buildingName ="${parent.getItemAtPosition(position).toString()}"
+               // date.text = buildingName
+
+                if(buildingName.equals("Philip van Engelen Building")){
+                    room!!.setAdapter(PE)
+                }else if(buildingName.equals("Lawrence Bunzel Building")){
+                    room!!.setAdapter(bunzel)
+                }else if(buildingName.equals("SAFAD Building")){
+                    room!!.setAdapter(SAFAD)
+                }else if(buildingName.equals("Basketball Court")){
+                    room!!.setAdapter(BCT)
+                }else if(buildingName.equals("Josef Baumgartner Building")){
+                    room!!.setAdapter(LRC)
+                }else{
+                    room!!.setAdapter(SMED)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>){
+                // Another interface callback
+            }
+        }
+
+
+
+
+        /*  fab.setOnClickListener { view ->
+              Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                  .setAction("Action", null).show()
+          }*/
     }
     @TargetApi(Build.VERSION_CODES.P)
     fun clickTimePicker(view: View) {
