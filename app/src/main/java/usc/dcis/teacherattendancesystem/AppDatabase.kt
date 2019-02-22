@@ -25,7 +25,7 @@ object Converters {
     @TypeConverter
     @JvmStatic
     fun dateToTimestamp(date: Date?): Long? {
-        return (if (date == null) null else date!!.getTime())?.toLong()
+        return (if (date == null) null else date!!.time)?.toLong()
     }
 }
 
@@ -33,23 +33,50 @@ object Converters {
 
 When using the scheduleDB database, copy paste this:
 
-AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db-scheduleList")
-                .allowMainThreadQueries()   //Allows room to do operation on main thread
-                .build()
+val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
+.fallbackToDestructiveMigration()
+.build()
 
-Then use it like this:
+-----------------------------ADD A SCHEDULE LIKE THIS:
 
-ScheduleDAO scheduleDAO = database.getContactDAO();
+var scheduleListTest = db.scheduleDAO
 
-ScheduleDB schedule = new ScheduleDB();
-schedule.setFirstName("Gurleen");
-schedule.setLastName("Sethi");
-schedule.setPhoneNumber("1234567890");
+var schedule = ScheduleDB
+schedule.courseCode = "IT 5001"
+schedule.teacher = "Mr. Teacher"
 
-scheduleDAO.insert(contact);
+scheduleListTest.insert(schedule)
 
-contactDAO.update(contact);
+OR LIKE THIS:
+
+var sched = scheduleListTest.insert(scheduleDB(0, "IT 5001", "Mr. Teacher"))
+
+------------------------------FOR ROOM ASSIGNMENTS, IT CONTAINS TIME:
+
+var sdf = java.text.SimpleDateFormat("m:s")
+
+var dateString = "10:30"
+var mDate  = sdf.parse(dateString)
+
+scheduleListTest.insertRoomAssignment(RoomAssignment(1, 1, "LBB305TC", mDate, mDate, "M"))
+
+------------------------------SAME FOR STATUS, BUT THIS TIME, DATE:
+
+sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+dateString = "2019-03-28"
+mDate = sdf.parse(dateString)
+
+scheduleListTest.insertStatus(Status(0, 1, mDate, "Present"))
+
+------------------------------SYNTAX:
+
+ scheduleDB(courseID: Int, courseCode: String, teacher: String)
+
+ RoomAssignment(roomID: Int, courseID: Int, roomNumber: String, startTime: Date, endTime: Date, dayAssigned: String)
+ **** Room assignment accounts for ONE DAY. In case of multiple class days,
+  create a new RoomAssignment that refers to the same courseID ****
+
+Status(statusID: Int, roomID: Int, statusDate: Date, status: String)
 
 
- All in Java. Convert to Kotlin
  ******************************************************************************************/
