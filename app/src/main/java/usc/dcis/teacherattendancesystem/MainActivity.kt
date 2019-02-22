@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        testDatabase()
+        //testDatabase()
 
     }
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // For testing database. Subject to change.
-    fun testDatabase(){
+     fun testDatabase(){
         Log.d("DEBUG: ", "Inside testDatabase function")
 
         val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
@@ -98,10 +98,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("DEBUG: ", sdf.format(mDate))
         */
 
-        val statusPrintTest = scheduleListTest.getAllStatusByRoomId(1)
+        //val statusPrintTest = scheduleListTest.getAllStatusByRoomId(1)
 
-        Log.d("DEBUG: ", "StatusID: ${statusPrintTest[0].statusId}")
-        Log.d("DEBUG: ", "Date: ${statusPrintTest[0].date}")
-        Log.d("DEBUG: ", "Status: ${statusPrintTest[0].status}")
+        //Log.d("DEBUG: ", "StatusID: ${statusPrintTest[0].statusId}")
+        //Log.d("DEBUG: ", "Date: ${statusPrintTest[0].date}")
+        //Log.d("DEBUG: ", "Status: ${statusPrintTest[0].status}")
     }
 }
