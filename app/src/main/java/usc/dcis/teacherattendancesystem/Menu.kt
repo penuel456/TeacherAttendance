@@ -108,14 +108,10 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             .replace(R.id.frameLayout, fragment)
             .commit()
     }
-    fun displayEditSched(item: Int){
-        when (item){
-            R.id.nav_schedule_edit -> Edit_Sched()
-        }
-    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        displayEditSched(item.itemId)
+
         displayFragment(item.itemId)
 
         drawer_layout.closeDrawer(GravityCompat.START)
