@@ -1,8 +1,10 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +31,10 @@ class Menu_fragment_schedListTeacher : Fragment() {
 
         view.Submit.setOnClickListener { view ->
             check_stat()
+           // editSched()
         }
+
+
 
         return view
     }
@@ -81,6 +86,9 @@ class Menu_fragment_schedListTeacher : Fragment() {
         }
     }
 
-
+    fun editSched(){
+        val edit_Sched = Intent(activity, activity_editschedule::class.java)
+        startActivity(edit_Sched)
+    }
 
 }

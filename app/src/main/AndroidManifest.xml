@@ -10,16 +10,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".activity_editschedule"
-                android:label="EditSchedule"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme">
-        </activity>
-        <activity
                 android:name=".Menu"
                 android:label="@string/title_activity_menu"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".activity_editschedule"
+                android:label="EditSchedule"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".MainActivity"

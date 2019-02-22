@@ -21,5 +21,17 @@
         <item>LB442</item>
         <item>LB443</item>
     </string-array>
+    <string-array name="time_am_pm_arrays">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
+    <string-array name="Building_arrays">
+        <item>Lawrence Bunzel Building</item>
+        <item>SMED Building</item>
+        <item>SAFAD Building</item>
+        <item>Basketball Court</item>
+        <item>Philip van Engelen Building</item>
+        <item>Josef Baumgartner Building</item>
+    </string-array>
 
 </resources>

@@ -4,7 +4,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.TypeConverter
 import android.arch.persistence.room.TypeConverters
-import java.sql.Date
+import java.util.Date
 
 
 
