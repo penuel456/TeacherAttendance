@@ -13,7 +13,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.102" android:id="@+id/pe_floors"
+            android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.102" android:id="@+id/smed_floors"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
         <RadioButton
                 android:text="1st Floor"
@@ -33,12 +33,6 @@
                 android:layout_height="46dp" android:id="@+id/radioButton6" android:layout_weight="1"
                 android:buttonTint="#0ba156"
                 tools:text="3rd Floor"/>
-        <RadioButton
-                android:text="4th Floor"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp" android:id="@+id/radioButton8" android:layout_weight="1"
-                android:buttonTint="#0ba156"
-                tools:text="4th Floor"/>
     </RadioGroup>
     <TextView
             android:text="Choose a Floor"
