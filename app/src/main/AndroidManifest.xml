@@ -10,10 +10,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".Menu"
-                android:label="@string/title_activity_menu"
+            android:name=".Menu"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".SchedListStudent"
+                android:label="Student Schedule List"
                 android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".activity_editschedule"
