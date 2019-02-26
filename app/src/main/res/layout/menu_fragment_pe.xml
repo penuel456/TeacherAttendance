@@ -120,6 +120,6 @@
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/pe_wing1" android:layout_weight="1"
-                tools:text="Main Hallway"/>
+                tools:text="Main Hallway" android:visibility="gone"/>
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
