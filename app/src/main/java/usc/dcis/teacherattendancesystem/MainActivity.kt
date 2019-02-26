@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.arch.persistence.room.PrimaryKey
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -31,34 +32,38 @@ class MainActivity : AppCompatActivity() {
         //val username = findViewById<EditText>(R.id.username)
         //val password = findViewById<EditText>(R.id.password)
 
-        // check username and password first
+
+        var userLists = userList(1, "1", "student")
+
+        if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists.idnumber)
+            && password.text.toString().equals(userLists.password)) {
+            "Logged in Successfully"
+            val text = Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
 
-        val userLists = MutableList(5) { userList() }
-
-        val status = if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber)
-            && password.text.toString().equals(userLists[0].password)) "Logged in Successfully"
-        else if (username.text.toString().isBlank() || password.text.toString().isBlank()) "Please enter an input in the empty fields."
-        else "Incorrect username/password."
-
-        val text = Toast.makeText(this, status, Toast.LENGTH_SHORT)
-        text.show()
-
-        //testDatabase()
-
-        // Create an Intent to start the second activity
-        if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists[0].idnumber) && password.text.toString().equals(userLists[0].password)) {
-            val menuActivity = Intent(this, Menu::class.java)
-
-            // Start the new activity.
-            startActivity(menuActivity)
+            if(userLists.type.equals("student")){
+                val activity = Intent(this, SchedListStudent::class.java)
+                startActivity(activity)
+            }else if(userLists.type.equals("teacher")){
+                // Activity for teachers
+            }else if(userLists.type.equals("dean")){
+                val activity = Intent(this, Menu::class.java)
+                startActivity(activity)
+            }
+        }
+        else if (username.text.toString().isBlank() || password.text.toString().isBlank()){
+            val text = Toast.makeText(this, "Please enter an input in the empty fields.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            val text = Toast.makeText(this, "Incorrect username/password", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun userList() = object {
-        val idnumber: Int = 15102593
-        val password: String = "test123"
-    }
+    data class userList (
+        val idnumber: Int,
+        val password: String,
+        val type: String
+    )
 
     // For testing database. Subject to change.
      fun testDatabase(){

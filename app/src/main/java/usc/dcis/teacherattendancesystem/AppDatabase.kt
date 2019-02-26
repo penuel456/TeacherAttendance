@@ -5,14 +5,38 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.TypeConverter
 import android.arch.persistence.room.TypeConverters
 import java.util.Date
-
-
+import android.arch.persistence.room.Room
+import android.content.Context
 
 
 @Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val scheduleDAO: ScheduleDAO
+
+
+    companion object {
+        private var INSTANCE: AppDatabase? = null
+
+        fun getInstance(context: Context): AppDatabase {
+            if (INSTANCE == null) {
+                INSTANCE = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "db-scheduleList"
+                ).allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .build()
+            }
+
+            return INSTANCE as AppDatabase
+        }
+
+        fun destroyInstance() {
+            INSTANCE = null
+        }
+    }
+
 }
 
 object Converters {
