@@ -62,23 +62,45 @@ class MainActivity : AppCompatActivity() {
 
     // For testing database. Subject to change.
      fun testDatabase(){
+        /*
         Log.d("DEBUG: ", "Inside testDatabase function")
 
         val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()
         var scheduleListTest = db.scheduleDAO
+        var sdf = java.text.SimpleDateFormat("h:m a")
+
+        for(schedules in scheduleListTest.getAllSchedules()){
+            Log.d("DB:", "CourseID: ${schedules.courseID}")
+            Log.d("DB:", "CourseCode: ${schedules.courseCode}")
+            Log.d("DB:", "Teacher: ${schedules.teacher}")
+        }
 
         //var scheduleDb = scheduleDB(0, "ENGL3", "Ms. Charity Tecson")
+        //scheduleListTest.insert(scheduleDb)
 
-        /*
-        val rooms = arrayListOf("LB446TC", "LB468TC")
-        val startTimes = arrayListOf("9:30", "10:30")
-        val endTimes = arrayListOf("12:00", "12:00")
-        val days = arrayListOf("M", "W", "F")
+        //scheduleListTest.deleteAllRoomAssignments()
+        val rooms = arrayListOf("LB483TC", "LB485TC")
+        val startTimes = arrayListOf("6:30 PM", "5:30 PM")
+        val endTimes = arrayListOf("8:30 PM", "8:30 PM")
+        val days = arrayListOf("M", "W")
         Log.d("DEBUG: ", "Declared schedule variables")
-        */
-        /*
+
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms[0], sdf.parse(startTimes[0]),
+            sdf.parse(endTimes[0]), days[0]))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms[1], sdf.parse(startTimes[1]),
+            sdf.parse(endTimes[1]), days[1]))
+
+        for(roomAssignment in scheduleListTest.getAllRoomAssignments()){
+            Log.d("DB:", "CourseID: ${roomAssignment.courseID}")
+            Log.d("DB:", "Room ID: ${roomAssignment.roomID}")
+            Log.d("DB:", "Room Number: ${roomAssignment.roomNumber}")
+            Log.d("DB:", "Start Time: ${sdf.format(roomAssignment.startTime)}")
+            Log.d("DB:", "End Time: ${sdf.format(roomAssignment.endTime)}")
+            Log.d("DB:", "Day: ${roomAssignment.dayAssigned}")
+        }
+
         var sdf = java.text.SimpleDateFormat("m:s")
 
         var dateString = "10:30"
