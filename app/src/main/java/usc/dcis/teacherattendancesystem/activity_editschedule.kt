@@ -19,6 +19,7 @@ import android.app.ProgressDialog.show
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
+import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -47,7 +48,7 @@ class activity_editschedule : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
-        buildings.adapter = adapter;
+        buildings.adapter = adapter
         val bunzel  = ArrayAdapter(
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
@@ -90,20 +91,15 @@ class activity_editschedule : AppCompatActivity() {
                 // Display the selected item text on text view
                 val buildingName ="${parent.getItemAtPosition(position).toString()}"
                // date.text = buildingName
-
-                if(buildingName.equals("Philip van Engelen Building")){
-                    room!!.setAdapter(PE)
-                }else if(buildingName.equals("Lawrence Bunzel Building")){
-                    room!!.setAdapter(bunzel)
-                }else if(buildingName.equals("SAFAD Building")){
-                    room!!.setAdapter(SAFAD)
-                }else if(buildingName.equals("Basketball Court")){
-                    room!!.setAdapter(BCT)
-                }else if(buildingName.equals("Josef Baumgartner Building")){
-                    room!!.setAdapter(LRC)
-                }else{
-                    room!!.setAdapter(SMED)
+                when (buildingName){
+                    "Philip van Engelen Building" -> room!!.setAdapter(PE)
+                    "Lawrence Bunzel Building" -> room!!.setAdapter(bunzel)
+                    "SAFAD Building" -> room!!.setAdapter(SAFAD)
+                    "Basketball Court" -> room!!.setAdapter(BCT)
+                    "Josef Baumgartner Building" -> room!!.setAdapter(LRC)
+                    "SMED Building" -> room!!.setAdapter(SMED)
                 }
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>){
@@ -126,10 +122,22 @@ class activity_editschedule : AppCompatActivity() {
         val minute = c.get(Calendar.MINUTE)
 
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
-
-            Toast.makeText(this, h.toString() + " : " + m +" : " , Toast.LENGTH_LONG).show()
+            val status : String
+            val hourFormat : Int
+            if(h > 11) {
+                status = "PM"
+                hourFormat = h - 12
+            }else if (h == 0) {
+                hourFormat = 12
+                status = "AM"
+            }else{
+                status = "AM"
+                hourFormat  = h
+            }
+            Toast.makeText(this, hourFormat.toString() + ":" + String.format("%02d", m) +" " +status , Toast.LENGTH_LONG).show()
             val Start_time = findViewById<TextView>(R.id.start_time)
-            Start_time.text = h.toString() + " : " + m
+            Start_time.text = hourFormat.toString() + ":" + String.format("%02d", m) +" " +status
+
 
         }),hour,minute,false)
 
@@ -143,10 +151,21 @@ class activity_editschedule : AppCompatActivity() {
         val minute = c.get(Calendar.MINUTE)
 
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
-
-            Toast.makeText(this, h.toString() + " : " + m +" : " , Toast.LENGTH_LONG).show()
+            val status : String
+            val hourFormat : Int
+            if(h > 11) {
+                status = "PM"
+                hourFormat = h - 12
+            }else if (h == 0) {
+                hourFormat = 12
+                status = "AM"
+            }else{
+                status = "AM"
+                hourFormat  = h
+            }
+            Toast.makeText(this, hourFormat.toString() + ":" + String.format("%02d", m) +" " +status , Toast.LENGTH_LONG).show()
             val End_time = findViewById<TextView>(R.id.end_time)
-            End_time.text = h.toString() + " : " + m.toString()
+            End_time.text = hourFormat.toString() + ":" + String.format("%02d", m) +" " +status
 
         }),hour,minute,false)
 
