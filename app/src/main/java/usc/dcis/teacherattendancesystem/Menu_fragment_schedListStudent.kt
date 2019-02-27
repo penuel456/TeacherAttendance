@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -40,6 +41,11 @@ import java.text.SimpleDateFormat
     }
 
     fun updateScheduleUI(){
+        //val db = AppDatabase.getInstance()
+        //var schedule = db.scheduleDAO
+
+
+
         courseCode.text = todaySched[0].courseCode
         teacher.text = todaySched[0].teacher
         building.text = todaySched[0].room
