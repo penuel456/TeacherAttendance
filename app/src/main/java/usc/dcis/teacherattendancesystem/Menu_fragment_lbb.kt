@@ -41,6 +41,7 @@ class Menu_fragment_lbb : Fragment() {
 
             if(radioButton.text.toString().equals("1st Floor")){
                 lbb_wings.visibility = View.VISIBLE
+                chooseAWing.visibility = View.VISIBLE
                 lbb_wing1.text = "Wing 1"
                 lbb_wing2.text = "Wing 2"
                 lbb_wing3.text = "Wing 3"
@@ -54,6 +55,7 @@ class Menu_fragment_lbb : Fragment() {
 
             }else if(radioButton.text.toString().equals("2nd Floor")){
                 lbb_wings.visibility = View.VISIBLE
+                chooseAWing.visibility = View.VISIBLE
                 lbb_wing1.text = "Wing 256"
                 lbb_wing2.text = "Wing 261"
                 lbb_wing3.text = "Wing 273"
@@ -67,6 +69,7 @@ class Menu_fragment_lbb : Fragment() {
 
 
             }else if(radioButton.text.toString().equals("3rd Floor")){
+                chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 lbb_wing5.visibility = View.VISIBLE
                 lbb_wing1.text = "Wing 320"
@@ -80,6 +83,7 @@ class Menu_fragment_lbb : Fragment() {
 
 
             }else if(radioButton.text.toString().equals("4th Floor")){
+                chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 lbb_wing5.visibility = View.VISIBLE
                 lbb_wing1.text = "Wing 442"

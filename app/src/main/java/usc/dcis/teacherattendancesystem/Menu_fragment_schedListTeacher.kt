@@ -1,25 +1,22 @@
 package usc.dcis.teacherattendancesystem
 
 import android.content.Intent
+import android.icu.lang.UCharacter.JoiningGroup.PE
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.widget.*
+import kotlinx.android.synthetic.main.content_activity_editschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.text.SimpleDateFormat
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
 
 
 class Menu_fragment_schedListTeacher : Fragment() {
@@ -30,10 +27,37 @@ class Menu_fragment_schedListTeacher : Fragment() {
         val view =  inflater.inflate(R.layout.menu_fragment_schedlistteacher, null)
 
         view.Submit.setOnClickListener { view ->
-            check_stat()
+            //check_stat()
            // editSched()
         }
+        val statusSpinner = view.findViewById<Spinner>(R.id.status)
+        val teacherStatus = arrayOf("Present", "Absent")
+        val statusSpinner_adapter = ArrayAdapter(
+            this.activity, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            teacherStatus // Array
+        )
 
+        statusSpinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        statusSpinner.adapter = statusSpinner_adapter
+        statusSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
+                // Display the selected item text on text view
+                val statusValue ="${parent.getItemAtPosition(position).toString()}"
+                // date.text = buildingName
+                when (statusValue){
+                    "Present" -> {
+                        reason.visibility = View.GONE
+                    }
+                    "Absent" -> reason.visibility = View.VISIBLE
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>){
+                // Another interface callback
+            }
+        }
 
 
         return view
@@ -73,9 +97,9 @@ class Menu_fragment_schedListTeacher : Fragment() {
         return answer
     }
 
-    fun check_stat(){
+    /*fun check_stat(){
         Log.d("Click", "Senpai clicked me")
-        val Text = view?.spinner!!.selectedItem.toString()
+        val Text = view?.status!!.selectedItem.toString()
         //status.text = Text
         Log.d("Click", Text)
         if(Text.equals("Absent")) {
@@ -84,7 +108,7 @@ class Menu_fragment_schedListTeacher : Fragment() {
         }else{
             reason.visibility = View.INVISIBLE
         }
-    }
+    }*/
 
     fun editSched(){
         val edit_Sched = Intent(activity, activity_editschedule::class.java)

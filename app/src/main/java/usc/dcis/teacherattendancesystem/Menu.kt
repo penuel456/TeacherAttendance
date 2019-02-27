@@ -56,7 +56,7 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             //else -> return super.onOptionsItemSelected(item)
             }
             R.id.Edit_Schedule -> {
-
+                //setTitle("Edit Schedule")
                 Edit_Sched()
             }
         }
@@ -99,8 +99,8 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 Menu_fragment_schedListTeacher()
             }
             else -> {
-                setTitle("Lawrence Bunzel Building")
-                Menu_fragment_lbb()
+               setTitle("Schedule")
+                Menu_fragment_schedListStudent()
             }
         }
 
