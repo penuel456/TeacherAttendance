@@ -26,9 +26,10 @@ class Menu_fragment_schedListTeacher : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.menu_fragment_schedlistteacher, null)
 
-        view.Submit.setOnClickListener { view ->
+        view.editBtn.setOnClickListener { view ->
             //check_stat()
            // editSched()
+            goToEditSchedule(view)
         }
         val statusSpinner = view.findViewById<Spinner>(R.id.status)
         val teacherStatus = arrayOf("Present", "Absent")
@@ -59,7 +60,6 @@ class Menu_fragment_schedListTeacher : Fragment() {
             }
         }
 
-
         return view
     }
 
@@ -69,7 +69,11 @@ class Menu_fragment_schedListTeacher : Fragment() {
         val todaySched = MutableList(5) { scheduleList() }
 
     }
-
+    fun goToEditSchedule(view: View){
+        Log.d("test", "YAY NAA KO DIRI")
+        val edit_Sched = Intent(getActivity(), activity_editschedule::class.java)
+        getActivity()!!.startActivity(edit_Sched)
+    }
     private fun scheduleList() = object {
         val courseCode: String = "IT 5001"
         val teacher: String = "Mr. Dummy"
