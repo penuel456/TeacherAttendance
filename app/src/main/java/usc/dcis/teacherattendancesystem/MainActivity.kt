@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         //val password = findViewById<EditText>(R.id.password)
 
 
-        var userLists = userList(1, "1", "student")
+        var userLists = userList(1, "1", "dean")
 
         if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists.idnumber)
             && password.text.toString().equals(userLists.password)) {
