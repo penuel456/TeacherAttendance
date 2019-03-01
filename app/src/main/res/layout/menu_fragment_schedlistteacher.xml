@@ -26,11 +26,11 @@
             android:text="LBB 485TC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/studUpNextBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher" app:layout_constraintHorizontal_bias="0.336"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextTeacher" app:layout_constraintHorizontal_bias="0.336"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Teacher"
@@ -52,17 +52,17 @@
             android:text="Stephanie Polinar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/studUpNextTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode" app:layout_constraintHorizontal_bias="0.365"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextCourseCode" app:layout_constraintHorizontal_bias="0.365"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="IT 5005"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextCourseCode" android:textSize="20sp"
+            android:id="@+id/studUpNextCourseCode" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:textColor="@android:color/background_dark" android:layout_marginTop="168dp"
@@ -75,7 +75,7 @@
             android:id="@+id/upNextSchedule" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="52dp"
             android:layout_marginStart="52dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextBuilding"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextBuilding"
             android:textColor="@android:color/background_dark" android:layout_marginTop="8dp"/>
     <TextView
             android:text="OnGoing"
@@ -109,7 +109,7 @@
             android:text="IT 5001"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/courseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/studCourseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="88dp" app:layout_constraintTop_toTopOf="parent"
@@ -118,21 +118,21 @@
             android:text="Godwin Monserate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/teacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/studTeacher" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/courseCode" app:layout_constraintHorizontal_bias="0.417"
+            app:layout_constraintTop_toBottomOf="@+id/studCourseCode" app:layout_constraintHorizontal_bias="0.417"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="LBB 466TC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/building" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/studBuilding" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/teacher" app:layout_constraintHorizontal_bias="0.345"
+            app:layout_constraintTop_toBottomOf="@+id/studTeacher" app:layout_constraintHorizontal_bias="0.345"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Mon 1:30PM - 4:30PM"
@@ -142,7 +142,7 @@
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/building" app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintTop_toBottomOf="@+id/studBuilding" app:layout_constraintHorizontal_bias="0.484"
             android:textColor="@android:color/background_dark"/>
     <TextView
             android:text="Teacher"

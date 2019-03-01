@@ -1,6 +1,7 @@
 package usc.dcis.teacherattendancesystem
 
 import android.arch.persistence.room.*
+import java.util.*
 
 
 @Dao
@@ -34,6 +35,7 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments WHERE dayAssigned = :dayAssigned")
     fun getAllRoomAssignmentsByDay(dayAssigned: String): List<RoomAssignment>
 
+
     @Query("SELECT * FROM Room_Assignments WHERE roomID = :roomId")
     fun getRoomAssignmentByRoomId(roomId: Int): RoomAssignment
 
@@ -52,6 +54,9 @@ interface ScheduleDAO {
 
     @Query("SELECT * FROM Statuses WHERE status = :status")
     fun getAllStatusByStatus(status: String): List<Status>
+
+    @Query("SELECT * FROM Statuses WHERE date = :date")
+    fun getStatusByDate(date: Date): Status
 
     @Query("DELETE FROM Schedules")
     fun deleteAllSchedules()

@@ -1,7 +1,5 @@
 package usc.dcis.teacherattendancesystem
 
-import android.arch.persistence.room.Room
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -44,18 +42,16 @@ import java.text.SimpleDateFormat
         //val db = AppDatabase.getInstance()
         //var schedule = db.scheduleDAO
 
-
-
-        courseCode.text = todaySched[0].courseCode
-        teacher.text = todaySched[0].teacher
-        building.text = todaySched[0].room
-        startTime.text = todaySched[0].startTime
-        endTime.text = todaySched[0].endTime
-        status.text = todaySched[0].status
+        studCourseCode.text = todaySched[0].courseCode
+        studTeacher.text = todaySched[0].teacher
+        studBuilding.text = todaySched[0].room
+        studStartTime.text = todaySched[0].startTime
+        studEndTime.text = todaySched[0].endTime
+        studStatus.text = todaySched[0].status
         //status.text = stat
-        upNextCourseCode.text = todaySched[0].courseCode
-        upNextTeacher.text = todaySched[0].teacher
-        upNextBuilding.text = todaySched[0].room
+        studUpNextCourseCode.text = todaySched[0].courseCode
+        studUpNextTeacher.text = todaySched[0].teacher
+        studUpNextBuilding.text = todaySched[0].room
         //upNextStartTime.text = todaySched[0].startTime
         //upNextEndTime.text = todaySched[0].endTime
 

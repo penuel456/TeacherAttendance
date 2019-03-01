@@ -34,10 +34,10 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextBuilding" android:textSize="20sp"
+            android:id="@+id/studUpNextBuilding" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextBuildingText" android:layout_marginLeft="100dp"
             android:layout_marginStart="100dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextTeacher"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextTeacher"
             android:textColor="@android:color/background_dark" tools:text="LBB 485TC" android:text="LBB 485TC"/>
     <TextView
             android:layout_width="wrap_content"
@@ -57,29 +57,20 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextTeacher" android:textSize="20sp"
+            android:id="@+id/studUpNextTeacher" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextTeacherText" android:layout_marginLeft="76dp"
             android:layout_marginStart="76dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextCourseCode"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextCourseCode"
             android:textColor="@android:color/background_dark" tools:text="Stephanie Polinar"
             android:text="Stephanie Polinar"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/upNextCourseCode" android:textSize="20sp"
+            android:id="@+id/studUpNextCourseCode" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="36dp"
             android:layout_marginStart="36dp" android:layout_marginTop="103dp"
-            app:layout_constraintTop_toBottomOf="@+id/status"
+            app:layout_constraintTop_toBottomOf="@+id/studStatus"
             android:textColor="@android:color/background_dark" tools:text="IT 5005" android:text="IT 5005"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/upNextSchedule" android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginLeft="68dp"
-            android:layout_marginStart="68dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/upNextBuilding"
-            android:textColor="@android:color/background_dark" tools:text="Tue 10:30AM - 12:00PM"
-            android:text="Tue 10:30AM - 12:00PM"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,48 +100,66 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/courseCode" android:textSize="20sp"
+            android:id="@+id/studCourseCode" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="28dp"
             android:layout_marginStart="28dp" android:layout_marginTop="72dp" app:layout_constraintTop_toTopOf="parent"
             android:textColor="@android:color/background_dark" tools:text="IT 5001"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/teacher" android:textSize="20sp"
+            android:id="@+id/studTeacher" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/teacherText" android:layout_marginLeft="72dp"
             android:layout_marginStart="72dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/courseCode"
+            app:layout_constraintTop_toBottomOf="@+id/studCourseCode"
             android:textColor="@android:color/background_dark" tools:text="Godwin Monserate"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/building" android:textSize="20sp"
+            android:id="@+id/studBuilding" android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="96dp"
             android:layout_marginStart="96dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/teacher"
+            app:layout_constraintTop_toBottomOf="@+id/studTeacher"
             android:textColor="@android:color/background_dark" tools:text="LBB 466TC"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/startTime" android:textSize="20sp"
+            android:id="@+id/studStartTime" android:textSize="20sp"
             android:textColor="@android:color/background_dark"
             app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/building" tools:text="LBB 466TC"/>
+            app:layout_constraintTop_toBottomOf="@+id/studBuilding" tools:text="LBB 466TC"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/endTime" android:textSize="20sp"
+            android:id="@+id/studUpNextStartTime" android:textSize="20sp"
             android:textColor="@android:color/background_dark"
-            app:layout_constraintStart_toEndOf="@+id/startTime" android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/building" tools:text="LBB 466TC"/>
+            tools:text="LBB 466TC"
+            app:layout_constraintStart_toEndOf="@+id/upNextScheduleText" android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextBuilding"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/status" android:textSize="20sp"
+            android:id="@+id/studEndTime" android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintStart_toEndOf="@+id/studStartTime" android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/studBuilding" tools:text="LBB 466TC"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/studUpNextEndTime" android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            tools:text="LBB 466TC"
+            app:layout_constraintStart_toEndOf="@+id/studUpNextStartTime" android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/studUpNextBuilding"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/studStatus" android:textSize="20sp"
             tools:textColor="@android:color/background_dark" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/startTime" tools:text="Present"
+            app:layout_constraintTop_toBottomOf="@+id/studStartTime" tools:text="Present"
             app:layout_constraintStart_toEndOf="@+id/scheduleText3" android:layout_marginStart="88dp"
             android:layout_marginLeft="88dp"/>
     <TextView
