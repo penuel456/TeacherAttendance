@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     // For testing database. Subject to change.
      fun testDatabase(){
-        /*
+
         Log.d("DEBUG: ", "Inside testDatabase function")
 
         val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
@@ -76,54 +76,53 @@ class MainActivity : AppCompatActivity() {
         var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
 
-        for(schedules in scheduleListTest.getAllSchedules()){
-            Log.d("DB:", "CourseID: ${schedules.courseID}")
-            Log.d("DB:", "CourseCode: ${schedules.courseCode}")
-            Log.d("DB:", "Teacher: ${schedules.teacher}")
-        }
-
-        //var scheduleDb = scheduleDB(0, "ENGL3", "Ms. Charity Tecson")
+        //var scheduleDb = scheduleDB(0, "MATH25", "Ms. Punzalan")
         //scheduleListTest.insert(scheduleDb)
 
+        for(schedules in scheduleListTest.getAllSchedules()){
+            Log.d("SCHED:", "CourseID: ${schedules.courseID}")
+            Log.d("SCHED:", "CourseCode: ${schedules.courseCode}")
+            Log.d("SCHED:", "Teacher: ${schedules.teacher}")
+        }
+
         //scheduleListTest.deleteAllRoomAssignments()
-        val rooms = arrayListOf("LB483TC", "LB485TC")
-        val startTimes = arrayListOf("6:30 PM", "5:30 PM")
-        val endTimes = arrayListOf("8:30 PM", "8:30 PM")
-        val days = arrayListOf("M", "W")
+        val rooms = arrayListOf("LB306TC", "LB305TC")
+        val startTimes = arrayListOf("3:30 PM", "2:30 PM")
+        val endTimes = arrayListOf("5:30 PM", "5:30 PM")
+        val days = arrayListOf("T", "TH")
         Log.d("DEBUG: ", "Declared schedule variables")
 
+        /*
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms[0], sdf.parse(startTimes[0]),
             sdf.parse(endTimes[0]), days[0]))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms[1], sdf.parse(startTimes[1]),
             sdf.parse(endTimes[1]), days[1]))
+        Log.d("DEBUG: ", "Inserted room assignment")
+        */
 
         for(roomAssignment in scheduleListTest.getAllRoomAssignments()){
-            Log.d("DB:", "CourseID: ${roomAssignment.courseID}")
-            Log.d("DB:", "Room ID: ${roomAssignment.roomID}")
-            Log.d("DB:", "Room Number: ${roomAssignment.roomNumber}")
-            Log.d("DB:", "Start Time: ${sdf.format(roomAssignment.startTime)}")
-            Log.d("DB:", "End Time: ${sdf.format(roomAssignment.endTime)}")
-            Log.d("DB:", "Day: ${roomAssignment.dayAssigned}")
+            Log.d("ROOMASSN:", "CourseID: ${roomAssignment.courseID}")
+            Log.d("ROOMASSN:", "Room ID: ${roomAssignment.roomID}")
+            Log.d("ROOMASSN:", "Room Number: ${roomAssignment.roomNumber}")
+            Log.d("ROOMASSN:", "Start Time: ${sdf.format(roomAssignment.startTime)}")
+            Log.d("ROOMASSN:", "End Time: ${sdf.format(roomAssignment.endTime)}")
+            Log.d("ROOMASSN:", "Day: ${roomAssignment.dayAssigned}")
         }
 
-        var sdf = java.text.SimpleDateFormat("m:s")
-
         var dateString = "10:30"
-        var mDate  = sdf.parse(dateString)
-
-        scheduleListTest.insertRoomAssignment(RoomAssignment(1, 1, "LBB305TC", mDate, mDate, "M"))
-        Log.d("DEBUG: ", "Inserted room assignment")
 
         sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
-        dateString = "2019-03-28"
-        mDate = sdf.parse(dateString)
+        dateString = "2019-02-28"
+        var mDate = sdf.parse(dateString)
 
-        scheduleListTest.insertStatus(Status(0, 1, mDate, "Present"))
+        /*
+        scheduleListTest.insertStatus(Status(0, 5, sdf.parse("2019-02-28"), "Present"))
+        scheduleListTest.insertStatus(Status(0, 6, sdf.parse("2019-03-05"), "Present"))
         Log.d("DEBUG: ", "Insert status")
-
-
-        Log.d("DEBUG: ", sdf.format(mDate))
         */
+
+        //Log.d("DEBUG: ", sdf.format(mDate))
+
 
         //val statusPrintTest = scheduleListTest.getAllStatusByRoomId(1)
 
