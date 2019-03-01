@@ -33,6 +33,7 @@ class Menu_fragment_lrc : Fragment() {
 
 
             if (radioButton.text.toString().equals("1st Floor")) {
+
                 lrcScrollView.visibility = View.VISIBLE
                 lrcRoomThree.visibility = View.GONE
                 lrcRoomOne.text = "LRC 1ST FLR R1"
