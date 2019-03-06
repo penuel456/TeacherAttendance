@@ -5,7 +5,6 @@ import android.os.Bundle
 
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
 import java.util.*
@@ -19,7 +18,7 @@ class SchedListStudent : AppCompatActivity() {
         setContentView(R.layout.sched_list_student)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        debugPrintAllRoomAssignments()
+        //debugPrintAllRoomAssignments()
         getSchedule()
 
     }
@@ -48,10 +47,12 @@ class SchedListStudent : AppCompatActivity() {
         noSchedNotif.visibility = View.VISIBLE
     }
 
-    fun getOnGoingAndUpNext(scheduleDao: ScheduleDAO, roomAssignmentList: List<RoomAssignment>){
+    fun getCurrentTime(): Date{
         val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
         var hour = indiaTime.get(Calendar.HOUR_OF_DAY)
         val minute = indiaTime.get(Calendar.MINUTE)
+        var sdf = java.text.SimpleDateFormat("hh:mm a")
+
         var am_pm: String
         if(indiaTime.get(Calendar.HOUR_OF_DAY) < 12){
             am_pm = "AM"
@@ -62,35 +63,50 @@ class SchedListStudent : AppCompatActivity() {
             }
         }
 
-        Log.d("TIME:", "$hour:$minute $am_pm")
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
-        val sdfDate = sdf.parse("$hour:$minute $am_pm")
+        return sdf.parse("$hour:$minute $am_pm")
+    }
 
-        Log.d("CURRENT TIME: ", "${sdf.format(sdfDate)}")
+    fun getCurrentDate(): Date{
+        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+        val year = indiaTime.get(Calendar.YEAR)
+        val month = indiaTime.get(Calendar.MONTH) + 1
+        val day = indiaTime.get(Calendar.DAY_OF_MONTH)
+
+        return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
+    }
+
+    fun getOnGoingAndUpNext(scheduleDao: ScheduleDAO, roomAssignmentList: List<RoomAssignment>){
+        var sdf = java.text.SimpleDateFormat("hh:mm a")
+        var isThereOnGoing = false
+        var isThereUpNext = false
+
+        val sdfTime = getCurrentTime()
+        val sdfDate = getCurrentDate()
 
         for((ndx, rooms) in roomAssignmentList.withIndex()){
             val currentSched = scheduleDao.getSchedule(rooms.courseID)
-            Log.d("STARTTIME", "${sdf.format(rooms.startTime)}")
-            Log.d("ENDTIME", "${sdf.format(rooms.endTime)}")
-            if(sdfDate.after(rooms.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.courseID} is FINISHED in ${rooms.roomNumber}")
-            }else if(sdfDate.before(rooms.startTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.courseID} is ABOUT TO GO in ${rooms.roomNumber}")
+            if(sdfTime.after(rooms.endTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is FINISHED in ${rooms.roomNumber}")
+            }else if(sdfTime.before(rooms.startTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is ABOUT TO GO in ${rooms.roomNumber}")
                 scheduleLayout.studUpNextCourseCode.text = currentSched.courseCode
                 scheduleLayout.studUpNextTeacher.text = currentSched.teacher
                 scheduleLayout.studUpNextBuilding.text = rooms.roomNumber
-                studUpNextStartTime.text = sdf.format(rooms.startTime)
-                studUpNextEndTime.text = sdf.format(rooms.endTime)
-                //studStatus.text =
-            }else if(sdfDate.before(rooms.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.courseID} is CURRENTLY in ${rooms.roomNumber}")
+                scheduleLayout.studUpNextStartTime.text = sdf.format(rooms.startTime)
+                scheduleLayout.studUpNextEndTime.text = sdf.format(rooms.endTime)
+                isThereUpNext = true
+            }else if(sdfTime.after(rooms.startTime) && sdfTime.before(rooms.endTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is CURRENTLY in ${rooms.roomNumber}")
                 scheduleLayout.studCourseCode.text = currentSched.courseCode
                 scheduleLayout.studTeacher.text = currentSched.teacher
                 scheduleLayout.studBuilding.text = rooms.roomNumber
                 scheduleLayout.studStartTime.text = sdf.format(rooms.startTime)
                 scheduleLayout.studEndTime.text = sdf.format(rooms.endTime)
-
+                scheduleLayout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
+                isThereOnGoing = true
             }
+
+            if(isThereOnGoing && isThereUpNext) break
         }
     }
 
@@ -108,12 +124,13 @@ class SchedListStudent : AppCompatActivity() {
         val db = AppDatabase.getInstance(this)
         var scheduleDao = db.scheduleDAO
 
-        var roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay("TH")
+        var roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay("W")
         var sdf = java.text.SimpleDateFormat("h:m a")
 
         for(rooms in roomAssignmentList){
             Log.d("ROOMASSN", "RoomID: ${rooms.roomID}")
             Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
+            Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
             Log.d("ROOMASSN", "StartTime: ${sdf.format(rooms.startTime)}")
             Log.d("ROOMASSN", "EndTime: ${sdf.format(rooms.endTime)}")
             Log.d("ROOMASSN", "DayAssigned: ${rooms.dayAssigned}")

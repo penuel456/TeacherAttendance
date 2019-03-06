@@ -90,17 +90,9 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 setTitle("Josef Baumgartner Building")
                 Menu_fragment_lrc()
             }
-            R.id.nav_schedule -> {
-                setTitle("Schedule")
-                Menu_fragment_schedListStudent()
-            }
-            R.id.nav_schedule_teacher -> {
-                setTitle("Schedule")
-                Menu_fragment_schedListTeacher()
-            }
             else -> {
-               setTitle("Schedule")
-                Menu_fragment_schedListStudent()
+                setTitle("Lawrence Bunzel Building")
+                Menu_fragment_lbb()
             }
         }
 

@@ -19,7 +19,6 @@ import android.app.ProgressDialog.show
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
-import kotlinx.android.synthetic.main.menu_fragment_schedliststudent.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import java.util.Calendar.DAY_OF_MONTH
