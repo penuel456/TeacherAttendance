@@ -10,10 +10,25 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-            android:name=".Menu"
-            android:label="@string/title_activity_menu"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+                android:name=".room_assignment_info"
+                android:label="@string/title_activity_room_assignment_info"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".subject_info"
+                android:label="@string/title_activity_subject_info"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".chooseschedule"
+                android:label=""
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".Menu"
+                android:label="@string/title_activity_menu"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
                 android:name=".SchedListStudent"

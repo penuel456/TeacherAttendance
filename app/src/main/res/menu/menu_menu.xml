@@ -2,10 +2,6 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="usc.dcis.teacherattendancesystem.Menu">
-    <item android:id="@+id/Edit_Schedule"
-          android:title="Edit Schedule"
-          android:orderInCategory="100"
-          app:showAsAction="never" android:icon="@android:drawable/ic_menu_revert"/>
     <item android:id="@+id/action_logout"
           android:title="Log Out"
           android:orderInCategory="100"
