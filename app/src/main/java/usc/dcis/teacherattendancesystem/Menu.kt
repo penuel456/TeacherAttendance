@@ -52,12 +52,9 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_logout -> { logout()
-            //else -> return super.onOptionsItemSelected(item)
-            }
-            R.id.Edit_Schedule -> {
-                //setTitle("Edit Schedule")
-                Edit_Sched()
+            R.id.action_logout -> {
+                logout()
+                //else -> return super.onOptionsItemSelected(item)
             }
         }
 

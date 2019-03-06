@@ -33,5 +33,8 @@
         <item>Philip van Engelen Building</item>
         <item>Josef Baumgartner Building</item>
     </string-array>
+    <string name="title_activity_choooseschedule">choooseschedule</string>
+    <string name="title_activity_subject_info">subject_info</string>
+    <string name="title_activity_room_assignment_info">room_assignment_info</string>
 
 </resources>

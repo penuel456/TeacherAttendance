@@ -70,9 +70,9 @@ class Menu_fragment_schedListTeacher : Fragment() {
 
     }
     fun goToEditSchedule(view: View){
-        Log.d("test", "YAY NAA KO DIRI")
-        val edit_Sched = Intent(getActivity(), activity_editschedule::class.java)
-        getActivity()!!.startActivity(edit_Sched)
+        //Log.d("test", "YAY NAA KO DIRI")
+        val chooseSched = Intent(getActivity(), chooseschedule::class.java)
+        getActivity()!!.startActivity(chooseSched)
     }
     private fun scheduleList() = object {
         val courseCode: String = "IT 5001"
@@ -115,8 +115,8 @@ class Menu_fragment_schedListTeacher : Fragment() {
     }*/
 
     fun editSched(){
-        val edit_Sched = Intent(activity, activity_editschedule::class.java)
-        startActivity(edit_Sched)
+        val chooseSched = Intent(activity, chooseschedule::class.java)
+        startActivity(chooseSched)
     }
 
 }
