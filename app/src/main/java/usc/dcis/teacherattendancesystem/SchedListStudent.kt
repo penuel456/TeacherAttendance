@@ -102,7 +102,9 @@ class SchedListStudent : AppCompatActivity() {
                 scheduleLayout.studBuilding.text = rooms.roomNumber
                 scheduleLayout.studStartTime.text = sdf.format(rooms.startTime)
                 scheduleLayout.studEndTime.text = sdf.format(rooms.endTime)
-                scheduleLayout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
+
+                /* For status, it's supposed to get from the database that the teacher inputted. */
+                //scheduleLayout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
                 isThereOnGoing = true
             }
 
