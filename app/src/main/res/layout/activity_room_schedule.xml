@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".roomSchedule">
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_room_schedule" android:id="@+id/include2"/>
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_dialog_email"/>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="309dp" android:id="@+id/schedTable" android:background="@drawable/green_bg_2"
+            app:layout_anchorGravity="left|center" app:layout_anchor="@+id/include2">
+
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/a"
+                  android:background="@color/colorAccent" android:padding="@dimen/nav_header_vertical_spacing">
+            <TextView
+                    android:text="Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView23"/>
+            <TextView
+                    android:text="Mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView14"
+                    android:padding="@dimen/text_margin"/>
+            <TextView
+                    android:text="Tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView18"
+                    android:padding="@dimen/text_margin"/>
+            <TextView
+                    android:text="Wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView19"
+                    android:padding="@dimen/text_margin"/>
+            <TextView
+                    android:text="Thu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView20"
+                    android:padding="@dimen/text_margin"/>
+            <TextView
+                    android:text="Fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView21"
+                    android:padding="@dimen/text_margin"/>
+            <TextView
+                    android:text="Sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView22"
+                    android:padding="@dimen/text_margin"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/b"/>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/c"/>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/d"/>
+    </TableLayout>
+
+</android.support.design.widget.CoordinatorLayout>
