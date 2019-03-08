@@ -100,32 +100,35 @@ class MainActivity : AppCompatActivity() {
         val db = AppDatabase.getInstance(this)
         var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
-        /*
-        var scheduleDb = scheduleDB(0, "NIPPONGO1", "Ms. Climaco Watanabe")
-        scheduleListTest.insert(scheduleDb)
-        */
-        /*
+
+       /* var scheduleDb = scheduleDB(0, "NIPPONGO1", "Ms. Climaco Watanabe")
+        scheduleListTest.insert(scheduleDb)*/
+
+        //scheduleListTest.deleteAllSchedules()
+        //scheduleListTest.deleteAllRoomAssignments()
+        //scheduleListTest.deleteAllStatus()
         for(schedules in scheduleListTest.getAllSchedules()){
             Log.d("SCHED:", "CourseID: ${schedules.courseID}")
             Log.d("SCHED:", "CourseCode: ${schedules.courseCode}")
             Log.d("SCHED:", "Teacher: ${schedules.teacher}")
         }
-        */
-        /*
-        //scheduleListTest.deleteAllRoomAssignments()
+
+
+
         val rooms = arrayListOf("LB304TC", "LB304TC")
         val startTimes = arrayListOf("10:30 AM", "10:30 AM")
         val endTimes = arrayListOf("12:00 PM", "12:00 PM")
         val days = arrayListOf("T", "TH")
         Log.d("DEBUG: ", "Declared schedule variables")
 
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 4, rooms[0], sdf.parse(startTimes[0]),
-            sdf.parse(endTimes[0]), days[0]))
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 4, rooms[1], sdf.parse(startTimes[1]),
-            sdf.parse(endTimes[1]), days[1]))
+
+       /* scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms[0], sdf.parse(startTimes[0]),
+            sdf.parse(endTimes[0]), days[0]))*/
+        /*scheduleListTest.insertRoomAssignment(RoomAssignment(0, 5, rooms[1], sdf.parse(startTimes[1]),
+            sdf.parse(endTimes[1]), days[1]))*/
         Log.d("DEBUG: ", "Inserted room assignment")
-        */
-        /*
+
+
         for(roomAssignment in scheduleListTest.getAllRoomAssignments()){
             Log.d("ROOMASSN:", "CourseID: ${roomAssignment.courseID}")
             Log.d("ROOMASSN:", "Room ID: ${roomAssignment.roomID}")
@@ -134,22 +137,21 @@ class MainActivity : AppCompatActivity() {
             Log.d("ROOMASSN:", "End Time: ${sdf.format(roomAssignment.endTime)}")
             Log.d("ROOMASSN:", "Day: ${roomAssignment.dayAssigned}")
         }
-        */
+
         var dateString = "2019-02-28"
 
         sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
         var mDate = sdf.parse(dateString)
 
 
-        //scheduleListTest.insertStatus(Status(0, 7, sdf.parse("2019-03-06"), "Present"))
+    scheduleListTest.insertStatus(Status(0, 5, sdf.parse("2019-03-06"), "Present"))
         //scheduleListTest.insertStatus(Status(0, 7, sdf.parse("2019-03-08"), "Present"))
         //Log.d("DEBUG: ", "Insert status")
 
 
         //Log.d("DEBUG: ", sdf.format(mDate))
 
-
-        val statusPrintTest = scheduleListTest.getAllStatusByRoomId(7)
+        val statusPrintTest = scheduleListTest.getAllStatusByRoomId(5)
 
         Log.d("STATUS", "RoomID: ${scheduleListTest.getRoomAssignmentByRoomId(statusPrintTest[0].roomID).roomID}")
         Log.d("STATUS: ", "StatusID: ${statusPrintTest[0].statusId}")

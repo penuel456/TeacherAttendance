@@ -1,17 +1,13 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
-import org.jetbrains.annotations.Nullable
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.menu_fragment_lbb.view.*
-import android.widget.Toast
 import kotlinx.android.synthetic.main.menu_fragment_lbb.*
 
 class Menu_fragment_lbb : Fragment() {
@@ -36,7 +32,6 @@ class Menu_fragment_lbb : Fragment() {
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
-
             lbb_hiddenwing.setChecked(true)
 
             if(radioButton.text.toString().equals("1st Floor")){
@@ -115,32 +110,43 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB110"
-                    lbbRoomTwo.text = "LB111"
+                    lbbRoomTwo.text = "LB110"
+                    lbbRoomOne.text = "LB111"
                     lbbRoomThree.text = "LB112"
                     lbbRoomFour.text = "LB113"
                     lbbRoomFive.text = "LB114"
+
+                    lbbRoomTwo.setOnClickListener {
+                        val activity = Intent(getActivity(), roomSchedule::class.java)
+                        startActivity(activity)
+                    }
+
+                    lbbRoomOne.setOnClickListener {
+                        val activity = Intent(getActivity(), roomSchedule::class.java)
+                        startActivity(activity)
+                    }
+
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB210"
-                    lbbRoomTwo.text = "LB211"
+                    lbbRoomTwo.text = "LB210"
+                    lbbRoomOne.text = "LB211"
                     lbbRoomThree.text = "LB212"
                     lbbRoomFour.text = "LB213"
                     lbbRoomFive.text = "LB214"
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB321"
-                    lbbRoomTwo.text = "LB322"
+                    lbbRoomTwo.text = "LB321"
+                    lbbRoomOne.text = "LB322"
                     lbbRoomThree.text = "LB323"
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB442"
-                    lbbRoomTwo.text = "LB443"
+                    lbbRoomTwo.text = "LB442"
+                    lbbRoomOne.text = "LB443"
                     lbbRoomThree.visibility = View.GONE
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
@@ -151,32 +157,36 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB120"
-                    lbbRoomTwo.text = "LB121"
+                    lbbRoomTwo.text = "LB120"
+                    lbbRoomOne.text = "LB121"
                     lbbRoomThree.text = "LB122"
                     lbbRoomFour.text = "LB123"
                     lbbRoomFive.text = "LB124"
+
+
+
+
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB220"
-                    lbbRoomTwo.text = "LB221"
+                    lbbRoomTwo.text = "LB220"
+                    lbbRoomOne.text = "LB221"
                     lbbRoomThree.text = "LB222"
                     lbbRoomFour.text = "LB223"
                     lbbRoomFive.text = "LB224"
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB331"
-                    lbbRoomTwo.text = "LB332"
+                    lbbRoomTwo.text = "LB331"
+                    lbbRoomOne.text = "LB332"
                     lbbRoomThree.text = "LB333"
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB445"
-                    lbbRoomTwo.text = "LB446"
+                    lbbRoomTwo.text = "LB445"
+                    lbbRoomOne.text = "LB446"
                     lbbRoomThree.text = "LB447"
                     lbbRoomFour.text = "LB448"
                     lbbRoomFive.text = "LB449"
@@ -190,8 +200,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB130"
-                    lbbRoomTwo.text = "LB131"
+                    lbbRoomTwo.text = "LB130"
+                    lbbRoomOne.text = "LB131"
                     lbbRoomThree.text = "LB132"
                     lbbRoomFour.text = "LB133"
                     lbbRoomFive.text = "LB134"
@@ -199,23 +209,23 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB230"
-                    lbbRoomTwo.text = "LB231"
+                    lbbRoomTwo.text = "LB230"
+                    lbbRoomOne.text = "LB231"
                     lbbRoomThree.text = "LB232"
                     lbbRoomFour.text = "LB233"
                     lbbRoomFive.text = "LB234"
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB341"
-                    lbbRoomTwo.text = "LB342"
+                    lbbRoomTwo.text = "LB341"
+                    lbbRoomOne.text = "LB342"
                     lbbRoomThree.text = "LB343"
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB470"
-                    lbbRoomTwo.text = "LB469"
+                    lbbRoomTwo.text = "LB470"
+                    lbbRoomOne.text = "LB469"
                     lbbRoomThree.text = "LB468"
                     lbbRoomFour.text = "LB467"
                     lbbRoomFive.text = "LB466"
@@ -229,8 +239,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB140"
-                    lbbRoomTwo.text = "LB141"
+                    lbbRoomTwo.text = "LB140"
+                    lbbRoomOne.text = "LB141"
                     lbbRoomThree.text = "LB142"
                     lbbRoomFour.text = "LB143"
                     lbbRoomFive.text = "LB144"
@@ -238,23 +248,23 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB240"
-                    lbbRoomTwo.text = "LB241"
+                    lbbRoomTwo.text = "LB240"
+                    lbbRoomOne.text = "LB241"
                     lbbRoomThree.text = "LB242"
                     lbbRoomFour.text = "LB243"
                     lbbRoomFive.text = "LB244"
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB341"
-                    lbbRoomTwo.text = "LB342"
+                    lbbRoomTwo.text = "LB341"
+                    lbbRoomOne.text = "LB342"
                     lbbRoomThree.text = "LB343"
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB485"
-                    lbbRoomTwo.text = "LB486"
+                    lbbRoomTwo.text = "LB485"
+                    lbbRoomOne.text = "LB486"
                     lbbRoomThree.text = "LB467"
                     lbbRoomFour.text = "LB488"
                     lbbRoomFive.text = "LB489"
@@ -268,15 +278,15 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB306"
-                    lbbRoomTwo.text = "LB305"
+                    lbbRoomTwo.text = "LB306"
+                    lbbRoomOne.text = "LB305"
                     lbbRoomThree.text = "LB304"
 
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")) {
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB401"
-                    lbbRoomTwo.text = "LB402"
+                    lbbRoomTwo.text = "LB401"
+                    lbbRoomOne.text = "LB402"
                     lbbRoomThree.text = "LB403"
                     lbbRoomFour.text = "LB405"
                     lbbRoomFive.text = "LB404"
@@ -286,6 +296,9 @@ class Menu_fragment_lbb : Fragment() {
                 }
             }
 
+
         }
     }
+
+
 }

@@ -10,6 +10,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
+                android:name=".roomSchedule"
+                android:label="@string/title_activity_room_schedule"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name=".room_assignment_info"
                 android:label="@string/title_activity_room_assignment_info"
                 android:theme="@style/AppTheme.NoActionBar">

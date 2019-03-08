@@ -8,6 +8,35 @@
                                              android:id="@+id/relativeLayout">
 
     <RadioGroup
+            android:layout_width="119dp"
+            android:layout_height="168dp"
+            android:id="@+id/smed_wings"
+            app:layout_constraintHorizontal_bias="0.716" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/safad_floors"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/chooseAWing" android:visibility="gone">
+        <RadioButton
+                android:text="RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/smed_hiddenwing" android:layout_weight="1"
+                android:visibility="gone" android:buttonTint="#0ba156"/>
+        <RadioButton
+                android:text="RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="51dp" tools:layout_editor_absoluteY="50dp"
+                tools:layout_editor_absoluteX="174dp" android:id="@+id/smed_wing1" android:buttonTint="#0ba156"/>
+        <RadioButton
+                android:text="RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/smed_wing2" android:layout_weight="1"
+                android:buttonTint="#0ba156"/>
+        <RadioButton
+                android:text="RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp" android:id="@+id/smed_wing3" android:layout_weight="1"
+                android:buttonTint="#0ba156"/>
+    </RadioGroup>
+    <RadioGroup
             android:layout_width="113dp"
             android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -18,19 +47,19 @@
         <RadioButton
                 android:text="1st Floor"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp" android:id="@+id/radioButton9" android:layout_weight="1"
+                android:layout_height="45dp" android:id="@+id/firstFloorBtn" android:layout_weight="1"
                 android:buttonTint="#0ba156"
                 tools:text="1st Floor"/>
         <RadioButton
                 android:text="2nd Floor"
                 android:layout_width="wrap_content"
-                android:layout_height="43dp" android:id="@+id/radioButton7" android:layout_weight="1"
+                android:layout_height="43dp" android:id="@+id/secondFloorBtn" android:layout_weight="1"
                 android:buttonTint="#0ba156"
                 tools:text="2nd Floor"/>
         <RadioButton
                 android:text="3rd Floor"
                 android:layout_width="wrap_content"
-                android:layout_height="46dp" android:id="@+id/radioButton6" android:layout_weight="1"
+                android:layout_height="46dp" android:id="@+id/thirdFloorBtn" android:layout_weight="1"
                 android:buttonTint="#0ba156"
                 tools:text="3rd Floor"/>
     </RadioGroup>
