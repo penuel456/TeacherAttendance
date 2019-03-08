@@ -1,4 +1,4 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.arch.persistence.room.*
 import java.util.*

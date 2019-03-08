@@ -1,11 +1,9 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
-import android.arch.persistence.room.ForeignKey.CASCADE
 import android.arch.persistence.room.PrimaryKey
-import android.support.annotation.NonNull
 import java.util.*
 
 @Entity(tableName = "Schedules")
