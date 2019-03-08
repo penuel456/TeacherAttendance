@@ -47,7 +47,6 @@ class Menu_fragment_lbb : Fragment() {
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), "", radioButton)
 
 
-
             }else if(radioButton.text.toString().equals("2nd Floor")){
                 lbb_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
@@ -115,16 +114,6 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomThree.text = "LB112"
                     lbbRoomFour.text = "LB113"
                     lbbRoomFive.text = "LB114"
-
-                    lbbRoomTwo.setOnClickListener {
-                        val activity = Intent(getActivity(), roomSchedule::class.java)
-                        startActivity(activity)
-                    }
-
-                    lbbRoomOne.setOnClickListener {
-                        val activity = Intent(getActivity(), roomSchedule::class.java)
-                        startActivity(activity)
-                    }
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -296,7 +285,49 @@ class Menu_fragment_lbb : Fragment() {
                 }
             }
 
+            roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(), lbbRoomFour.text.toString(), lbbRoomFive.text.toString())
+        }
 
+    }
+
+    fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String)
+    {
+        lbbRoomOne.setOnClickListener {
+            if(roomOne.equals("LB111")){
+                val activity = Intent(getActivity(), roomSchedule::class.java)
+                activity.putExtra("RoomTxt", roomOne)
+                startActivity(activity)
+            }
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomOne)
+            startActivity(activity)
+        }
+
+        lbbRoomTwo.setOnClickListener {
+            if(roomTwo.equals("LB110")) {
+                val activity = Intent(getActivity(), roomSchedule::class.java)
+                activity.putExtra("RoomTxt", roomTwo)
+                startActivity(activity)
+            }
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomTwo)
+            startActivity(activity)
+        }
+
+        lbbRoomThree.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt",roomThree )
+            startActivity(activity)
+        }
+        lbbRoomFour.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt",roomFour )
+            startActivity(activity)
+        }
+        lbbRoomFive.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt",roomFive )
+            startActivity(activity)
         }
     }
 

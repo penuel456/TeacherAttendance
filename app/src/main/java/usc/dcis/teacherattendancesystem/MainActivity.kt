@@ -76,11 +76,11 @@ class MainActivity : AppCompatActivity() {
         val db = UserDatabase.getInstance(this)
         var userList = db.userDAO
 
-        /*
+
         userList.insertUser(userDB(0, 3, "3", "student"))
         userList.insertUser(userDB(0, 2, "2", "teacher"))
         userList.insertUser(userDB(0, 1, "1", "dean"))
-        */
+
 
         for(users in userList.getAllUsers()){
             Log.d("USER", "userID: ${users.userID}")
