@@ -1,4 +1,4 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.Database
@@ -11,25 +11,25 @@ import android.content.Context
 
 @Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 2)
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class ScheduleDatabase : RoomDatabase() {
     abstract val scheduleDAO: ScheduleDAO
 
 
     companion object {
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: ScheduleDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context): ScheduleDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java,
+                    ScheduleDatabase::class.java,
                     "db-scheduleList"
                 ).allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()
             }
 
-            return INSTANCE as AppDatabase
+            return INSTANCE as ScheduleDatabase
         }
 
         fun destroyInstance() {
@@ -57,7 +57,7 @@ object Converters {
 
 When using the scheduleDB database, copy paste this:
 
-val db = Room.databaseBuilder(this, AppDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
+val db = Room.databaseBuilder(this, ScheduleDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
 .fallbackToDestructiveMigration()
 .build()
 

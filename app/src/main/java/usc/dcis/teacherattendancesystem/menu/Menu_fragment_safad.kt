@@ -1,4 +1,4 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.menu
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.menu_fragment_safad.*
+import usc.dcis.teacherattendancesystem.R
 
 class Menu_fragment_safad : Fragment() {
 

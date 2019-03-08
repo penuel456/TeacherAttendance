@@ -1,7 +1,6 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.menu
 
 import android.content.Intent
-import android.icu.lang.UCharacter.JoiningGroup.PE
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,9 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.*
-import kotlinx.android.synthetic.main.content_activity_editschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
+import usc.dcis.teacherattendancesystem.R
+import usc.dcis.teacherattendancesystem.chooseschedule
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date

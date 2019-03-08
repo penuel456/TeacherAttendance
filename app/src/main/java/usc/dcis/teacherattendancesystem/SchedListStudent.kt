@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
+import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
 import java.util.*
 
 
@@ -24,7 +27,7 @@ class SchedListStudent : AppCompatActivity() {
     }
 
     fun getSchedule(){
-        val db = AppDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
         var scheduleDao = db.scheduleDAO
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
@@ -39,7 +42,7 @@ class SchedListStudent : AppCompatActivity() {
             Log.d("NOTICE", "RoomAssignmentList is empty. Do something here (should say 'no schedule for today')")
             displayNoSchedule()
         }
-        AppDatabase.destroyInstance()
+        ScheduleDatabase.destroyInstance()
     }
 
     fun displayNoSchedule(){
@@ -123,7 +126,7 @@ class SchedListStudent : AppCompatActivity() {
     }
 
     fun debugPrintAllRoomAssignments(){
-        val db = AppDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
         var scheduleDao = db.scheduleDAO
 
         var roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay("W")
@@ -138,6 +141,6 @@ class SchedListStudent : AppCompatActivity() {
             Log.d("ROOMASSN", "DayAssigned: ${rooms.dayAssigned}")
         }
 
-        AppDatabase.destroyInstance()
+        ScheduleDatabase.destroyInstance()
     }
 }
