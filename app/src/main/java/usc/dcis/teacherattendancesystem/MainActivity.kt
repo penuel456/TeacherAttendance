@@ -13,6 +13,8 @@ import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.util.Log
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
+import usc.dcis.teacherattendancesystem.userDatabase.UserDatabase
+import usc.dcis.teacherattendancesystem.userDatabase.userDB
 import java.sql.Date
 
 
@@ -24,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        testDatabase()
+        //testDatabase()
+        testUserDatabase()
 
     }
 
@@ -32,14 +35,17 @@ class MainActivity : AppCompatActivity() {
         //val username = findViewById<EditText>(R.id.username)
         //val password = findViewById<EditText>(R.id.password)
 
+        val db = UserDatabase.getInstance(this)
+        var user = db.userDAO
 
-        var userLists = userList(1, "1", "student")
+        val userCtr = user.getUserCountOnLogin(username.text.toString().toInt(), password.text.toString())
 
-        if (!username.text.toString().isBlank() && username.text.toString().toInt().equals(userLists.idnumber)
-            && password.text.toString().equals(userLists.password)) {
-            "Logged in Successfully"
-            val text = Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
+        if(userCtr != 0){
+            var userLists = user.getUserOnLogin(username.text.toString().toInt(), password.text.toString())
 
+            Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
+
+            UserDatabase.destroyInstance()
 
             if(userLists.type.equals("student")){
                 val activity = Intent(this, SchedListStudent::class.java)
@@ -50,12 +56,13 @@ class MainActivity : AppCompatActivity() {
                 val activity = Intent(this, Menu::class.java)
                 startActivity(activity)
             }
-        }
-        else if (username.text.toString().isBlank() || password.text.toString().isBlank()){
-            val text = Toast.makeText(this, "Please enter an input in the empty fields.", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            val text = Toast.makeText(this, "Incorrect username/password", Toast.LENGTH_SHORT).show()
+        }else {
+            if(username.text.toString().isBlank() || password.text.toString().isBlank()){
+                Toast.makeText(this, "Please enter an input in the empty fields.", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(this, "Incorrect username/password", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
@@ -64,6 +71,26 @@ class MainActivity : AppCompatActivity() {
         val password: String,
         val type: String
     )
+
+    fun testUserDatabase(){
+        val db = UserDatabase.getInstance(this)
+        var userList = db.userDAO
+
+        /*
+        userList.insertUser(userDB(0, 3, "3", "student"))
+        userList.insertUser(userDB(0, 2, "2", "teacher"))
+        userList.insertUser(userDB(0, 1, "1", "dean"))
+        */
+
+        for(users in userList.getAllUsers()){
+            Log.d("USER", "userID: ${users.userID}")
+            Log.d("USER", "idNUmber: ${users.idNumber}")
+            Log.d("USER", "Password: ${users.password}")
+            Log.d("USER", "Type: ${users.type}")
+        }
+
+        UserDatabase.destroyInstance()
+    }
 
     // For testing database. Subject to change.
      fun testDatabase(){
