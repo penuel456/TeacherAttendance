@@ -9,8 +9,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Log
 import usc.dcis.teacherattendancesystem.menu.Menu
-import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
-import usc.dcis.teacherattendancesystem.userDatabase.UserDatabase
+import usc.dcis.teacherattendancesystem.scheduleDatabase.*
+import usc.dcis.teacherattendancesystem.userDatabase.*
 
 
 class MainActivity : AppCompatActivity() {
