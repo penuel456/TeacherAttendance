@@ -30,7 +30,7 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".Menu"
+                android:name=".menu.Menu"
                 android:label="@string/title_activity_menu"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">

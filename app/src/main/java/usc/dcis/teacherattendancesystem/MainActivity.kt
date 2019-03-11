@@ -1,6 +1,5 @@
 package usc.dcis.teacherattendancesystem
 
-import android.arch.persistence.room.PrimaryKey
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,14 +7,10 @@ import android.view.View
 
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import android.arch.persistence.room.Room
-import android.icu.text.SimpleDateFormat
-import android.os.Build
 import android.util.Log
-import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
-import usc.dcis.teacherattendancesystem.userDatabase.UserDatabase
-import usc.dcis.teacherattendancesystem.userDatabase.userDB
-import java.sql.Date
+import usc.dcis.teacherattendancesystem.menu.Menu
+import usc.dcis.teacherattendancesystem.scheduleDatabase.*
+import usc.dcis.teacherattendancesystem.userDatabase.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         //testDatabase()
-        testUserDatabase()
+        //testUserDatabase()
 
     }
 
@@ -66,12 +61,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    data class userList (
-        val idnumber: Int,
-        val password: String,
-        val type: String
-    )
-
     fun testUserDatabase(){
         val db = UserDatabase.getInstance(this)
         var userList = db.userDAO
@@ -97,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        val db = AppDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
         var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
 

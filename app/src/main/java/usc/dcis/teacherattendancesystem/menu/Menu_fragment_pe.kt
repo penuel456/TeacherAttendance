@@ -1,7 +1,6 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.menu
 
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.menu_fragment_pe.*
+import usc.dcis.teacherattendancesystem.R
 
 class Menu_fragment_pe : Fragment() {
 

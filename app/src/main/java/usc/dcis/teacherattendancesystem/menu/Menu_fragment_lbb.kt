@@ -1,4 +1,4 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.menu
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.menu_fragment_lbb.*
+import usc.dcis.teacherattendancesystem.R
 
 class Menu_fragment_lbb : Fragment() {
 

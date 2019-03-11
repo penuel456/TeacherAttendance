@@ -1,4 +1,4 @@
-package usc.dcis.teacherattendancesystem
+package usc.dcis.teacherattendancesystem.menu
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.Button
-import kotlinx.android.synthetic.main.menu_fragment_bct.*
-import kotlinx.android.synthetic.main.menu_fragment_bct.view.*
+import usc.dcis.teacherattendancesystem.R
 
 class Menu_fragment_bct : Fragment() {
 
