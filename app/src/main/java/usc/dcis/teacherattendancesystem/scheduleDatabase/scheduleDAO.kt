@@ -32,7 +32,7 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments WHERE courseID = :courseId")
     fun getAllRoomAssignmentsByCourseId(courseId: Int): List<RoomAssignment>
 
-    @Query("SELECT * FROM Room_Assignments WHERE dayAssigned = :dayAssigned ORDER BY startTime ASC")
+    @Query("SELECT * FROM Room_Assignments WHERE dayAssigned = :dayAssigned ORDER BY startTime DESC")
     fun getAllRoomAssignmentsByDay(dayAssigned: String): List<RoomAssignment>
 
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber")
