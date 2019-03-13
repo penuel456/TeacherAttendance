@@ -21,7 +21,7 @@ class SchedListStudent : AppCompatActivity() {
         setContentView(R.layout.sched_list_student)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        //debugPrintAllRoomAssignments()
+        debugPrintAllRoomAssignments()
         getSchedule()
 
     }
@@ -66,6 +66,7 @@ class SchedListStudent : AppCompatActivity() {
             }
         }
 
+        Log.d("CURRENT TIME: ", sdf.parse("$hour:$minute $am_pm").toString())
         return sdf.parse("$hour:$minute $am_pm")
     }
 
@@ -75,6 +76,7 @@ class SchedListStudent : AppCompatActivity() {
         val month = indiaTime.get(Calendar.MONTH) + 1
         val day = indiaTime.get(Calendar.DAY_OF_MONTH)
 
+        Log.d("CURRENT DATE: ", java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day").toString())
         return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
     }
 
@@ -86,7 +88,8 @@ class SchedListStudent : AppCompatActivity() {
         val sdfTime = getCurrentTime()
         val sdfDate = getCurrentDate()
 
-        for((ndx, rooms) in roomAssignmentList.withIndex()){
+        for(rooms in roomAssignmentList){
+            Log.d("TODAYROOM: ", rooms.toString())
             val currentSched = scheduleDao.getSchedule(rooms.courseID)
             if(sdfTime.after(rooms.endTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is FINISHED in ${rooms.roomNumber}")

@@ -20,7 +20,7 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".subject_info"
+                android:name=".subjectInfo"
                 android:label="@string/title_activity_subject_info"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_subject_info.*
 
-class subject_info : AppCompatActivity() {
+class subjectInfo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
