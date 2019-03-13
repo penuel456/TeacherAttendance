@@ -32,9 +32,7 @@ class Menu_fragment_lbb : Fragment() {
 
         radioGroup = myView.findViewById(R.id.lbb_floors)
 
-        val db = ScheduleDatabase.getInstance(context!!)
-        var scheduleListTest = db.scheduleDAO
-        var sdf = java.text.SimpleDateFormat("h:m a")
+        insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId
@@ -49,9 +47,6 @@ class Menu_fragment_lbb : Fragment() {
                 lbb_wing3.text = "Wing 3"
                 lbb_wing4.text = "Wing 4"
                 lbb_wing5.visibility = View.GONE
-
-                scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, lbb_wing1.text.toString(), sdf.parse("10:30"),
-                    sdf.parse("12:00"), "T"))
 
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), "", radioButton)
 
@@ -107,6 +102,9 @@ class Menu_fragment_lbb : Fragment() {
 
     fun wingSelect(firstWing: String, secondWing: String, thirdWing: String, fourthWing: String, fifthWing:String, radio: RadioButton){
         wingGroup = myView.findViewById(R.id.lbb_wings)
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
 
         wingGroup.setOnCheckedChangeListener { wingGroup, checkedId ->
             val wingID = lbb_wings.checkedRadioButtonId
@@ -118,8 +116,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB110TC"
-                    lbbRoomTwo.text = "LB111TC"
+                    lbbRoomOne.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")[0].roomNumber
+                    lbbRoomTwo.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB111TC")[0].roomNumber
                     lbbRoomThree.text = "LB112TC"
                     lbbRoomFour.text = "LB113TC"
                     lbbRoomFive.text = "LB114TC"
@@ -133,6 +131,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomThree.text = "LB212TC"
                     lbbRoomFour.text = "LB213TC"
                     lbbRoomFive.text = "LB214TC"
+
+
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
@@ -294,27 +294,31 @@ class Menu_fragment_lbb : Fragment() {
                 }
             }
 
-            roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(), lbbRoomFour.text.toString(), lbbRoomFive.text.toString())
+            roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(),
+                lbbRoomFour.text.toString(), lbbRoomFive.text.toString())
         }
 
     }
 
+
+
     fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String)
     {
+
+
         lbbRoomOne.setOnClickListener {
-            if(roomOne.equals("LB110")){
+            if(roomOne.equals("LB110TC")){
+
                 val activity = Intent(getActivity(), roomSchedule::class.java)
 
                 activity.putExtra("RoomTxt", roomOne)
                 startActivity(activity)
             }
-            val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt", roomOne)
-            startActivity(activity)
+
         }
 
         lbbRoomTwo.setOnClickListener {
-            if(roomTwo.equals("LB111")) {
+            if(roomTwo.equals("LB111TC")) {
                 val activity = Intent(getActivity(), roomSchedule::class.java)
                 activity.putExtra("RoomTxt", roomTwo)
                 startActivity(activity)
@@ -339,6 +343,28 @@ class Menu_fragment_lbb : Fragment() {
             activity.putExtra("RoomTxt",roomFive )
             startActivity(activity)
         }
+    }
+
+    fun insertRooms(){
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
+
+        val rooms1stFloor = arrayListOf("LB110TC", "LB111TC", "LB112TC", "LB113TC", "LB114TC", "LB120TC", "LB121TC", "LB122TC")
+
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("1:30 PM"),
+            sdf.parse("3:30 PM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("1:30 PM"),
+            sdf.parse("4:30 PM"), "TH"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 PM"), "W"))
+
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[1], sdf.parse("8:30 AM"),
+            sdf.parse("10:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[1], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 PM"), "F"))
+
+
     }
 
 
