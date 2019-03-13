@@ -74,6 +74,7 @@ class chooseschedule : AppCompatActivity() {
                 val Schedule ="${parent.getItemAtPosition(position).toString()}"
                 // date.text = buildingName
                 roomIdToPass = RoomID[position]
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>){
@@ -85,6 +86,7 @@ class chooseschedule : AppCompatActivity() {
 
     fun goToEditSchedActivity(view : View){
         val activity = Intent(this, activity_editschedule::class.java)
+        Log.d("Room ID","$roomIdToPass")
         activity.putExtra("RoomID", roomIdToPass)
         startActivity(activity)
     }

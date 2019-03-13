@@ -85,4 +85,7 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Room_Assignments WHERE courseID = :courseId")
     fun getRoomAssignmentCountBycourseId(courseId: Int): Int
 
+    @Query("UPDATE Room_Assignments SET roomNumber = :roomNumber, startTime =:startTime, endTime =:endTime, dayAssigned =:day WHERE roomID =:roomId")
+    fun updateRoomAssignmentsByRoomId(roomId: Int, roomNumber: String, startTime: Date, endTime :Date, day: String )
+
 }

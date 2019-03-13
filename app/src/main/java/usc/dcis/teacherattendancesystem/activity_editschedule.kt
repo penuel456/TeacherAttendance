@@ -25,21 +25,27 @@ import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.util.Calendar.DAY_OF_MONTH
+import java.util.*
+import java.util.Calendar.AM
 
 
 class activity_editschedule : AppCompatActivity() {
-    val roomId: Int = intent.getIntExtra("RoomID", 0)
+        var roomId : Int = 0
+        lateinit var startTime: Date
+        lateinit var endTime: Date
+        var roomNumber :String = "none"
+        var day : String = "M"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editschedule)
         setSupportActionBar(toolbar)
-
-        Log.d("Room ID:","$roomId")
+        roomId = intent.getIntExtra("RoomID", 0)
+        Log.d("EDIT Room ID:","$roomId")
         val room = findViewById<Spinner>(R.id.room)
         val buildings = findViewById<Spinner>(R.id.buildings)
         val buildingList = arrayOf("Lawrence Bunzel Building", "SMED Building", "SAFAD Building", "Basketball Court",
             "Philip van Engelen Building", "Josef Baumgartner Building")
-        val bunzelBuilding = arrayOf("LB466", "LB467","LB468","LB469")
+        val bunzelBuilding = arrayOf("LB466TC", "LB467TC","LB468TC","LB469TC")
         val peBuilding = arrayOf("PE13", "PE12","PE11","PE10")
         val SMEDBuilding = arrayOf("FO10", "FO12","FO11","FO13")
         val BCT_building = arrayOf("none")
@@ -110,8 +116,18 @@ class activity_editschedule : AppCompatActivity() {
                 // Another interface callback
             }
         }
+        room.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                // Display the selected item text on text view
+                roomNumber = "${parent.getItemAtPosition(position).toString()}"
 
 
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Another interface callback
+            }
+        }
 
 
         /*  fab.setOnClickListener { view ->
@@ -124,24 +140,23 @@ class activity_editschedule : AppCompatActivity() {
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
-
+        var sdf = java.text.SimpleDateFormat("hh:mm a")
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
-            val status : String
-            val hourFormat : Int
-            if(h > 11) {
+            var hourformat:Int
+            var status = "AM"
+            if(h > 12) {
                 status = "PM"
-                hourFormat = h - 12
+                hourformat = h - 12
             }else if (h == 0) {
-                hourFormat = 12
                 status = "AM"
+                hourformat = 12
             }else{
-                status = "AM"
-                hourFormat  = h
+                hourformat = h
             }
-            Toast.makeText(this, hourFormat.toString() + ":" + String.format("%02d", m) +" " +status , Toast.LENGTH_LONG).show()
-            val Start_time = findViewById<TextView>(R.id.start_time)
-            Start_time.text = hourFormat.toString() + ":" + String.format("%02d", m) +" " +status
-
+            startTime = java.text.SimpleDateFormat("h:m a").parse("$hourformat:$m $status")
+            Toast.makeText(this, hourformat.toString() + ":" + String.format("%02d", m)+" "+status , Toast.LENGTH_LONG).show()
+            val Start_time_textview = findViewById<TextView>(R.id.start_time)
+            Start_time_textview.text = sdf.format(startTime)
 
         }),hour,minute,false)
 
@@ -153,23 +168,24 @@ class activity_editschedule : AppCompatActivity() {
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
+        var sdf = java.text.SimpleDateFormat("hh:mm a")
 
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
-            val status : String
-            val hourFormat : Int
-            if(h > 11) {
+            var hourformat:Int
+            var status = "AM"
+            if(h > 12) {
                 status = "PM"
-                hourFormat = h - 12
+                hourformat = h - 12
             }else if (h == 0) {
-                hourFormat = 12
                 status = "AM"
+                hourformat = 12
             }else{
-                status = "AM"
-                hourFormat  = h
+                hourformat = h
             }
-            Toast.makeText(this, hourFormat.toString() + ":" + String.format("%02d", m) +" " +status , Toast.LENGTH_LONG).show()
-            val End_time = findViewById<TextView>(R.id.end_time)
-            End_time.text = hourFormat.toString() + ":" + String.format("%02d", m) +" " +status
+            Toast.makeText(this, hourformat.toString() + ":" + String.format("%02d", m)+" "+status , Toast.LENGTH_LONG).show()
+            endTime = java.text.SimpleDateFormat("hh:mm a").parse("$hourformat:$m $status")
+            val End_time_textview = findViewById<TextView>(R.id.end_time)
+            End_time_textview.text = sdf.format(endTime)
 
         }),hour,minute,false)
 
@@ -194,17 +210,9 @@ class activity_editschedule : AppCompatActivity() {
         dpd.show()
 
     }
-    fun getAllValues(view: View){
+    fun updateAllValues(view: View){
         val db = ScheduleDatabase.getInstance(this)
         val dbDAO = db.scheduleDAO
-        var roomAssignment: RoomAssignment
-
-        //roomAssignment.roomID = roomId
-        //roomAssignment.dayAssigned =
-        //roomAssignment.roomNumber =
-        //roomAssignment.startTime =
-        //roomAssignment.endTime =
-
-        //dbDAO.updateRoomAssignment(roomAssignment)
+        dbDAO.updateRoomAssignmentsByRoomId(roomId,roomNumber,startTime,endTime,day)
     }
 }
