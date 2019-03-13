@@ -21,7 +21,7 @@ data class scheduleDB(
     onDelete = ForeignKey.CASCADE,
     onUpdate = ForeignKey.CASCADE)))
 data class RoomAssignment(
-    @PrimaryKey(autoGenerate = true) val roomID: Int = 0,
+    @PrimaryKey(autoGenerate = true) var roomID: Int = 0,
     // FOREIGN KEY
     val courseID: Int,
 

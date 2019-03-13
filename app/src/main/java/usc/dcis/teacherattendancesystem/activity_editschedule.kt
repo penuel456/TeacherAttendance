@@ -16,20 +16,25 @@ import android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
 import android.app.DatePickerDialog
 import android.app.PendingIntent.getActivity
 import android.app.ProgressDialog.show
+import android.content.Intent
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
+import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.util.Calendar.DAY_OF_MONTH
 
 
 class activity_editschedule : AppCompatActivity() {
-
+    val roomId: Int = intent.getIntExtra("RoomID", 0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editschedule)
         setSupportActionBar(toolbar)
+
+        Log.d("Room ID:","$roomId")
         val room = findViewById<Spinner>(R.id.room)
         val buildings = findViewById<Spinner>(R.id.buildings)
         val buildingList = arrayOf("Lawrence Bunzel Building", "SMED Building", "SAFAD Building", "Basketball Court",
@@ -188,5 +193,18 @@ class activity_editschedule : AppCompatActivity() {
 
         dpd.show()
 
+    }
+    fun getAllValues(view: View){
+        val db = ScheduleDatabase.getInstance(this)
+        val dbDAO = db.scheduleDAO
+        var roomAssignment: RoomAssignment
+
+        //roomAssignment.roomID = roomId
+        //roomAssignment.dayAssigned =
+        //roomAssignment.roomNumber =
+        //roomAssignment.startTime =
+        //roomAssignment.endTime =
+
+        //dbDAO.updateRoomAssignment(roomAssignment)
     }
 }

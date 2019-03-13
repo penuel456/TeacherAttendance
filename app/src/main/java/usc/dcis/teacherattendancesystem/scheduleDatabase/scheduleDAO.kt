@@ -23,7 +23,7 @@ interface ScheduleDAO {
     @Insert
     fun insertRoomAssignment(vararg roomAssignment: RoomAssignment)
 
-    @Update
+    @Update (onConflict = OnConflictStrategy.REPLACE)
     fun updateRoomAssignment(vararg roomAssignment: RoomAssignment)
 
     @Query("SELECT * FROM Room_Assignments")
@@ -75,5 +75,14 @@ interface ScheduleDAO {
 
     @Query("DELETE FROM Statuses")
     fun deleteAllStatus()
+
+    @Query("SELECT COUNT(*) FROM Schedules")
+    fun getScheduleCount(): Int
+
+    @Query("SELECT COUNT(*) FROM Room_Assignments")
+    fun getRoomAssignmentsCount(): Int
+
+    @Query("SELECT COUNT(*) FROM Room_Assignments WHERE courseID = :courseId")
+    fun getRoomAssignmentCountBycourseId(courseId: Int): Int
 
 }
