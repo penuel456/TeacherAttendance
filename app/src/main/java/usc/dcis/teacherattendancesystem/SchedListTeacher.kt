@@ -1,31 +1,35 @@
 package usc.dcis.teacherattendancesystem
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_sched_list_teacher.*
+import kotlinx.android.synthetic.main.activity_sched_list_teacher.view.*
+
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
-import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
+
+
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.util.*
 
-
-class SchedListStudent : AppCompatActivity() {
+class SchedListTeacher : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sched_list_student)
-
-        //val loginBtn = findViewById<Button>(R.id.loginBtn)
+        setContentView(R.layout.activity_sched_list_teacher)
         debugPrintAllRoomAssignments()
         getSchedule()
-
     }
-
+    /*fun goToEditSchedule(view: View){
+        //Log.d("test", "YAY NAA KO DIRI")
+        val chooseSched = Intent(activity, chooseschedule::class.java)
+        activity!!.startActivity(chooseSched)
+    }*/
     fun getSchedule(){
         val db = ScheduleDatabase.getInstance(this)
         var scheduleDao = db.scheduleDAO
@@ -95,22 +99,22 @@ class SchedListStudent : AppCompatActivity() {
                 Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is FINISHED in ${rooms.roomNumber}")
             }else if(sdfTime.before(rooms.startTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is ABOUT TO GO in ${rooms.roomNumber}")
-                Schedule_teacher_layout.studUpNextCourseCode.text = currentSched.courseCode
-                Schedule_teacher_layout.studUpNextTeacher.text = currentSched.teacher
-                Schedule_teacher_layout.studUpNextBuilding.text = rooms.roomNumber
-                Schedule_teacher_layout.studUpNextStartTime.text = sdf.format(rooms.startTime)
-                Schedule_teacher_layout.studUpNextStartTime.text = sdf.format(rooms.endTime)
+                Schedule_teacher_layout.studNextCourseCode.text = currentSched.courseCode
+                Schedule_teacher_layout.studNextTeacher.text = currentSched.teacher
+                Schedule_teacher_layout.studNextBuilding.text = rooms.roomNumber
+                Schedule_teacher_layout.studNextStartTime.text = sdf.format(rooms.startTime)
+                Schedule_teacher_layout.studNextEndTime.text = sdf.format(rooms.endTime)
                 isThereUpNext = true
             }else if(sdfTime.after(rooms.startTime) && sdfTime.before(rooms.endTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is CURRENTLY in ${rooms.roomNumber}")
-                Schedule_teacher_layout.studCourseCode.text = currentSched.courseCode
-                Schedule_teacher_layout.studTeacher.text = currentSched.teacher
-                Schedule_teacher_layout.studBuilding.text = rooms.roomNumber
-                Schedule_teacher_layout.studStartTime.text = sdf.format(rooms.startTime)
-                Schedule_teacher_layout.studStartTime.text = sdf.format(rooms.endTime)
+                Schedule_teacher_layout.teachCourseCode.text = currentSched.courseCode
+                Schedule_teacher_layout.teachTeacher.text = currentSched.teacher
+                Schedule_teacher_layout.teachBuilding.text = rooms.roomNumber
+                Schedule_teacher_layout.teachStartTime.text = sdf.format(rooms.startTime)
+                Schedule_teacher_layout.teachEndTime.text = sdf.format(rooms.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-                Schedule_teacher_layout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
+               // Schedule_teacher_layout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
                 isThereOnGoing = true
             }
 
@@ -150,5 +154,31 @@ class SchedListStudent : AppCompatActivity() {
 
         ScheduleDatabase.destroyInstance()
     }
-}
+    private fun scheduleList() = object {
+        val courseCode: String = "IT 5001"
+        val teacher: String = "Mr. Dummy"
+        val room: String = "LBB 305TC"
+        val startSchedule: String = "7:30"
+        val endSchedule: String = "9:30"
+        val status: String = ""
+    }
 
+
+    /*fun check_stat(){
+        Log.d("Click", "Senpai clicked me")
+        val Text = view?.status!!.selectedItem.toString()
+        //status.text = Text
+        Log.d("Click", Text)
+        if(Text.equals("Absent")) {
+            Log.d("Click", "I'm here")
+            reason.visibility = View.VISIBLE
+        }else{
+            reason.visibility = View.INVISIBLE
+        }
+    }*/
+
+    fun editSched(view: View){
+        val chooseSched = Intent(this, chooseschedule::class.java)
+        startActivity(chooseSched)
+    }
+}

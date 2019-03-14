@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
+import usc.dcis.teacherattendancesystem.menu.Menu_fragment_schedListTeacher
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.util.Calendar.DAY_OF_MONTH
@@ -33,12 +34,22 @@ class activity_editschedule : AppCompatActivity() {
         var roomId : Int = 0
         lateinit var startTime: Date
         lateinit var endTime: Date
-        var roomNumber :String = "none"
-        var day : String = "M"
+        var roomNumber :String = "empty"
+        var day : String = "empty"
+        var startTimeText:String = "empty"
+        var endTimeText:String = "empty"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editschedule)
         setSupportActionBar(toolbar)
+        // Get radio group selected item using on checked change listener
+        chooseDay.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                val radio: RadioButton = findViewById(checkedId)
+                Toast.makeText(applicationContext," On checked change : ${radio.text}",
+                    Toast.LENGTH_SHORT).show()
+                day = radio.text.toString()
+            })
         roomId = intent.getIntExtra("RoomID", 0)
         Log.d("EDIT Room ID:","$roomId")
         val room = findViewById<Spinner>(R.id.room)
@@ -157,7 +168,7 @@ class activity_editschedule : AppCompatActivity() {
             Toast.makeText(this, hourformat.toString() + ":" + String.format("%02d", m)+" "+status , Toast.LENGTH_LONG).show()
             val Start_time_textview = findViewById<TextView>(R.id.start_time)
             Start_time_textview.text = sdf.format(startTime)
-
+            startTimeText = sdf.format(startTime)
         }),hour,minute,false)
 
         tpd.show()
@@ -186,6 +197,7 @@ class activity_editschedule : AppCompatActivity() {
             endTime = java.text.SimpleDateFormat("hh:mm a").parse("$hourformat:$m $status")
             val End_time_textview = findViewById<TextView>(R.id.end_time)
             End_time_textview.text = sdf.format(endTime)
+            endTimeText = sdf.format(endTime)
 
         }),hour,minute,false)
 
@@ -213,6 +225,12 @@ class activity_editschedule : AppCompatActivity() {
     fun updateAllValues(view: View){
         val db = ScheduleDatabase.getInstance(this)
         val dbDAO = db.scheduleDAO
-        dbDAO.updateRoomAssignmentsByRoomId(roomId,roomNumber,startTime,endTime,day)
+        if(startTimeText.equals("empty") || endTimeText.equals("empty") || day.equals("empty") || roomNumber.equals("empty")) {
+            Toast.makeText(this, "Please fill out all required fields." , Toast.LENGTH_LONG).show()
+        }else{
+            dbDAO.updateRoomAssignmentsByRoomId(roomId, roomNumber, startTime, endTime, day)
+            val activity = Intent(this, SchedListTeacher::class.java)
+            startActivity(activity)
+        }
     }
 }

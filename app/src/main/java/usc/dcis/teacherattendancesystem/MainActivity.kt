@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
                 val activity = Intent(this, SchedListStudent::class.java)
                 startActivity(activity)
             }else if(userLists.type.equals("teacher")){
-                // Activity for teachers
+                val activity = Intent(this, SchedListTeacher::class.java)
+                startActivity(activity)
             }else if(userLists.type.equals("dean")){
                 val activity = Intent(this, Menu::class.java)
                 startActivity(activity)
