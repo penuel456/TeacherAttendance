@@ -1,9 +1,6 @@
 package usc.dcis.teacherattendancesystem.scheduleDatabase
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.ForeignKey
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import java.util.*
 
 @Entity(tableName = "Schedules")
@@ -41,9 +38,9 @@ data class RoomAssignment(
 data class Status(
     // FOREIGN KEY
     @PrimaryKey(autoGenerate = true) val statusId: Int,
-    val roomID: Int,
+    @ColumnInfo(name = "roomID") val roomID: Int,
 
     // FOR KNOWING WHICH DAY IS PRESENT OR ABSENT
-    var date: Date,
-    var status: String
+    @ColumnInfo(name = "date") var date: Date,
+    var status: String = "Absent"
 )

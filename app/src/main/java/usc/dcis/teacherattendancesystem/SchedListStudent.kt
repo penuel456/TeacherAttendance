@@ -2,6 +2,7 @@ package usc.dcis.teacherattendancesystem
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 
 import android.util.Log
 import android.view.View
@@ -14,7 +15,6 @@ import java.util.*
 
 
 class SchedListStudent : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,12 +110,16 @@ class SchedListStudent : AppCompatActivity() {
                 scheduleLayout.studEndTime.text = sdf.format(rooms.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-                //scheduleLayout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
+                scheduleLayout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
                 isThereOnGoing = true
             }
 
             if(isThereOnGoing && isThereUpNext) break
         }
+    }
+
+    public fun refreshSchedule(view: View){
+        getSchedule()
     }
 
     fun getDayString(today: Int): String{
@@ -147,3 +151,4 @@ class SchedListStudent : AppCompatActivity() {
         ScheduleDatabase.destroyInstance()
     }
 }
+

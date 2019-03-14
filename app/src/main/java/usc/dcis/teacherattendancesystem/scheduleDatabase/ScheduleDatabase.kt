@@ -9,7 +9,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 
 
-@Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 2)
+@Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 5)
 @TypeConverters(Converters::class)
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract val scheduleDAO: ScheduleDAO

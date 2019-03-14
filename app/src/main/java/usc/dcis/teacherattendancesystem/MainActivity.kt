@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,17 +12,17 @@ import android.util.Log
 import usc.dcis.teacherattendancesystem.menu.Menu
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
 import usc.dcis.teacherattendancesystem.userDatabase.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        //testDatabase()
+        testDatabase()
         //testUserDatabase()
 
     }
@@ -89,63 +90,114 @@ class MainActivity : AppCompatActivity() {
         val db = ScheduleDatabase.getInstance(this)
         var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
+        var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-       /* var scheduleDb = scheduleDB(0, "NIPPONGO1", "Ms. Climaco Watanabe")
-        scheduleListTest.insert(scheduleDb)*/
+        /*
+        scheduleListTest.insert(scheduleDB(0, "IT5001", "Ms. Polinar"))
+        scheduleListTest.insert(scheduleDB(0, "IT1101", "Ms. Cantara"))
+        scheduleListTest.insert(scheduleDB(0, "MATH25", "Ms. Punzalan"))
+        scheduleListTest.insert(scheduleDB(0, "NIPPONGO1", "Ms. Watanabe"))
+        */
 
-        //scheduleListTest.deleteAllSchedules()
-        //scheduleListTest.deleteAllRoomAssignments()
-        //scheduleListTest.deleteAllStatus()
-        for(schedules in scheduleListTest.getAllSchedules()){
-            Log.d("SCHED:", "CourseID: ${schedules.courseID}")
-            Log.d("SCHED:", "CourseCode: ${schedules.courseCode}")
-            Log.d("SCHED:", "Teacher: ${schedules.teacher}")
+        //printAllSchedules(scheduleListTest)
+
+        /*
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
+            sdf.parse("12:00 PM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB448TC", sdf.parse("10:30 AM"),
+            sdf.parse("12:00 PM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
+            sdf.parse("12:00 PM"), "F"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, "LB484TC", sdf.parse("1:30 PM"),
+            sdf.parse("5:00 PM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, "LB483TC", sdf.parse("1:30 PM"),
+            sdf.parse("5:00 PM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, "LB484TC", sdf.parse("1:30 PM"),
+            sdf.parse("5:00 PM"), "F"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, "LB306TC", sdf.parse("5:30 PM"),
+            sdf.parse("6:30 PM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, "LB306TC", sdf.parse("5:30 PM"),
+            sdf.parse("6:30 PM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, "LB306TC", sdf.parse("5:30 PM"),
+            sdf.parse("6:30 PM"), "F"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 4, "LB404TC", sdf.parse("1:30 PM"),
+            sdf.parse("5:00 PM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 4, "LB404TC", sdf.parse("1:30 PM"),
+            sdf.parse("5:00 PM"), "TH"))
+        */
+
+
+        //printAllRoomAssignments(scheduleListTest)
+
+        // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
+        var today = scheduleListTest.getAllRoomAssignmentsByDay(getCurrentDay())
+
+        for(sched in today) {
+            val statusCheck = scheduleListTest.getStatusCountByRoomIdAndDate(getCurrentDate(), sched.roomID)
+
+            if(statusCheck == 0){
+                scheduleListTest.insertStatus(Status(0, sched.roomID, getCurrentDate(), "Absent"))
+            }
         }
 
 
+        printAllStatus(scheduleListTest)
+        printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
+    }
 
-        val rooms = arrayListOf("LB304TC", "LB304TC")
-        val startTimes = arrayListOf("10:30 AM", "10:30 AM")
-        val endTimes = arrayListOf("12:00 PM", "12:00 PM")
-        val days = arrayListOf("T", "TH")
-        Log.d("DEBUG: ", "Declared schedule variables")
-
-
-       /* scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms[0], sdf.parse(startTimes[0]),
-            sdf.parse(endTimes[0]), days[0]))*/
-        /*scheduleListTest.insertRoomAssignment(RoomAssignment(0, 5, rooms[1], sdf.parse(startTimes[1]),
-            sdf.parse(endTimes[1]), days[1]))*/
-        Log.d("DEBUG: ", "Inserted room assignment")
-
-
-        for(roomAssignment in scheduleListTest.getAllRoomAssignments()){
-            Log.d("ROOMASSN:", "CourseID: ${roomAssignment.courseID}")
-            Log.d("ROOMASSN:", "Room ID: ${roomAssignment.roomID}")
-            Log.d("ROOMASSN:", "Room Number: ${roomAssignment.roomNumber}")
-            Log.d("ROOMASSN:", "Start Time: ${sdf.format(roomAssignment.startTime)}")
-            Log.d("ROOMASSN:", "End Time: ${sdf.format(roomAssignment.endTime)}")
-            Log.d("ROOMASSN:", "Day: ${roomAssignment.dayAssigned}")
+    companion object DebugSchedule {
+        // PRINTING EVERYTHING
+        fun printAllStatus(dao: ScheduleDAO){
+            for(status in dao.getAllStatus()){
+                Log.d("DEBUG STATUS: ", status.toString())
+            }
         }
 
-        var dateString = "2019-02-28"
+        fun printAllRoomAssignments(dao: ScheduleDAO){
+            for(rooms in dao.getAllRoomAssignments()){
+                Log.d("DEBUG ROOM: ", rooms.toString())
+            }
+        }
 
-        sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
-        var mDate = sdf.parse(dateString)
+        fun printAllSchedules(dao: ScheduleDAO){
+            for(sched in dao.getAllSchedules()){
+                Log.d("DEBUG SCHED: ", sched.toString())
+            }
+        }
 
+        // PRINTING ROOM ASSIGNMENT BY DAY
+        fun printAllRoomAssignmentsByDay(dao: ScheduleDAO, currentDay: String){
+            for(rooms in dao.getAllRoomAssignmentsByDay(currentDay)){
+                Log.d("DEBUG ROOMDAY: ", rooms.toString())
+            }
+        }
+    }
 
-    scheduleListTest.insertStatus(Status(0, 5, sdf.parse("2019-03-06"), "Present"))
-        //scheduleListTest.insertStatus(Status(0, 7, sdf.parse("2019-03-08"), "Present"))
-        //Log.d("DEBUG: ", "Insert status")
+    fun getCurrentDate(): Date {
+        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+        val year = indiaTime.get(Calendar.YEAR)
+        val month = indiaTime.get(Calendar.MONTH) + 1
+        val day = indiaTime.get(Calendar.DAY_OF_MONTH)
 
+        return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
+    }
 
-        //Log.d("DEBUG: ", sdf.format(mDate))
+    fun getCurrentDay(): String {
+        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+        val day = indiaTime.get(Calendar.DAY_OF_WEEK)
 
-        val statusPrintTest = scheduleListTest.getAllStatusByRoomId(5)
+        Log.d("TODAY: ", getDayString(day))
 
-        Log.d("STATUS", "RoomID: ${scheduleListTest.getRoomAssignmentByRoomId(statusPrintTest[0].roomID).roomID}")
-        Log.d("STATUS: ", "StatusID: ${statusPrintTest[0].statusId}")
-        Log.d("STATUS: ", "Date: ${sdf.format(statusPrintTest[0].date)}")
-        Log.d("STATUS: ", "Status: ${statusPrintTest[0].status}")
+        return getDayString(day)
+    }
 
+    fun getDayString(today: Int): String{
+        val day = arrayListOf("SUN", "M", "T", "W", "TH", "F", "SAT")
+
+        for((ndx, day) in day.withIndex()){
+            if(ndx == (today - 1)) return day
+        }
+
+        return "NONE"
     }
 }
