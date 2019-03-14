@@ -92,14 +92,14 @@ class MainActivity : AppCompatActivity() {
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-        /*
-        scheduleListTest.insert(scheduleDB(0, "IT5001", "Ms. Polinar"))
+
+        /*scheduleListTest.insert(scheduleDB(0, "IT5001", "Ms. Polinar"))
         scheduleListTest.insert(scheduleDB(0, "IT1101", "Ms. Cantara"))
         scheduleListTest.insert(scheduleDB(0, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(scheduleDB(0, "NIPPONGO1", "Ms. Watanabe"))
         */
 
-        //printAllSchedules(scheduleListTest)
+        printAllSchedules(scheduleListTest)
 
         /*
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
