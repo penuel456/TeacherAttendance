@@ -9,7 +9,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 
 
-@Database(entities = [scheduleDB::class, RoomAssignment::class, Status::class], version = 5)
+@Database(entities = [ScheduleDB::class, UserDB::class, RoomAssignment::class, Status::class], version = 8)
 @TypeConverters(Converters::class)
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract val scheduleDAO: ScheduleDAO
@@ -55,7 +55,7 @@ object Converters {
 
 /*******************************************************************************************
 
-When using the scheduleDB database, copy paste this:
+When using the ScheduleDB database, copy paste this:
 
 val db = Room.databaseBuilder(this, ScheduleDatabase::class.java, "db-scheduleList").allowMainThreadQueries()
 .fallbackToDestructiveMigration()
@@ -73,7 +73,7 @@ scheduleListTest.insert(schedule)
 
 OR LIKE THIS:
 
-var sched = scheduleListTest.insert(scheduleDB(0, "IT 5001", "Mr. Teacher"))
+var sched = scheduleListTest.insert(ScheduleDB(0, "IT 5001", "Mr. Teacher"))
 
 ------------------------------FOR ROOM ASSIGNMENTS, IT CONTAINS TIME:
 
@@ -94,7 +94,7 @@ scheduleListTest.insertStatus(Status(0, 1, mDate, "Present"))
 
 ------------------------------SYNTAX:
 
- scheduleDB(courseID: Int, courseCode: String, teacher: String)
+ ScheduleDB(courseID: Int, courseCode: String, teacher: String)
 
  RoomAssignment(roomID: Int, courseID: Int, roomNumber: String, startTime: Date, endTime: Date, dayAssigned: String)
  **** Room assignment accounts for ONE DAY. In case of multiple class days,

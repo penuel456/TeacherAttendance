@@ -8,6 +8,9 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDate
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentTime
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
@@ -33,7 +36,7 @@ class SchedListStudent : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
         val scheduleList = scheduleDao.getAllSchedules()
-        val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay(getDayString(day))
+        val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay(DateManager.getDayString(day))
         Log.d("TODAY:", getDayString(day))
 
         if(roomAssignmentList.isNotEmpty()){
@@ -48,36 +51,6 @@ class SchedListStudent : AppCompatActivity() {
     fun displayNoSchedule(){
         scheduleLayout.visibility = View.INVISIBLE
         noSchedNotif.visibility = View.VISIBLE
-    }
-
-    fun getCurrentTime(): Date{
-        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-        var hour = indiaTime.get(Calendar.HOUR_OF_DAY)
-        val minute = indiaTime.get(Calendar.MINUTE)
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
-
-        var am_pm: String
-        if(indiaTime.get(Calendar.HOUR_OF_DAY) < 12){
-            am_pm = "AM"
-        }else {
-            am_pm = "PM"
-            if(hour > 12){
-                hour -= 12
-            }
-        }
-
-        Log.d("CURRENT TIME: ", sdf.parse("$hour:$minute $am_pm").toString())
-        return sdf.parse("$hour:$minute $am_pm")
-    }
-
-    fun getCurrentDate(): Date{
-        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-        val year = indiaTime.get(Calendar.YEAR)
-        val month = indiaTime.get(Calendar.MONTH) + 1
-        val day = indiaTime.get(Calendar.DAY_OF_MONTH)
-
-        Log.d("CURRENT DATE: ", java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day").toString())
-        return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
     }
 
     fun getOnGoingAndUpNext(scheduleDao: ScheduleDAO, roomAssignmentList: List<RoomAssignment>){
@@ -118,18 +91,8 @@ class SchedListStudent : AppCompatActivity() {
         }
     }
 
-    public fun refreshSchedule(view: View){
+    fun refreshSchedule(view: View){
         getSchedule()
-    }
-
-    fun getDayString(today: Int): String{
-        val day = arrayListOf("SUN", "M", "T", "W", "TH", "F", "SAT")
-
-        for((ndx, day) in day.withIndex()){
-            if(ndx == (today - 1)) return day
-        }
-
-        return "NONE"
     }
 
     fun debugPrintAllRoomAssignments(){
