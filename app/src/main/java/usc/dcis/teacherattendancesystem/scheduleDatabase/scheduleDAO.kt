@@ -52,6 +52,12 @@ interface ScheduleDAO {
     @Update
     fun updateStatus(vararg status: Status)
 
+    @Query("UPDATE Statuses SET status = :status WHERE roomID = :roomID AND date = :date")
+    fun updateStatusState(roomID: Int, date: Date, status: String)
+
+    @Query("SELECT * FROM Statuses")
+    fun getAllStatus(): List<Status>
+
     @Query("SELECT * FROM Statuses WHERE roomID = :statusId")
     fun getAllStatusByStatusId(statusId: Int): List<Status>
 
@@ -63,6 +69,9 @@ interface ScheduleDAO {
 
     @Query("SELECT * FROM Statuses WHERE date = :date")
     fun getStatusByDate(date: Date): List<Status>
+
+    @Query("SELECT COUNT(*) FROM Statuses WHERE date = :date AND roomID = :roomID")
+    fun getStatusCountByRoomIdAndDate(date: Date, roomID: Int): Int
 
     @Query("SELECT * FROM Statuses WHERE date = :date AND roomID = :roomID LIMIT 1")
     fun getStatusByRoomIdAndDate(date: Date, roomID: Int): Status
