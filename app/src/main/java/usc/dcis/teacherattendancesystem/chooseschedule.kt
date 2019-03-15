@@ -31,29 +31,15 @@ class chooseschedule : AppCompatActivity() {
         val chooseSched = findViewById<Spinner>(R.id.choosesched)
 
         val schedule = scheduleDao.getAllSchedules()
-        val allRoomAssign = scheduleDao.getAllRoomAssignments()
         val schedList: MutableList<String> = mutableListOf()
         val RoomID: MutableList<Int> = mutableListOf()
-        val sb = StringBuilder()
+        //val sb = StringBuilder()
         var sdf = java.text.SimpleDateFormat("hh:mm a")
 
         for(i in 0 until roomAssignmentCount) {
-            //roomAssList[i] = allRoomAss[i]
-            val daysList = scheduleDao.getAllRoomAssignmentsByCourseId(allRoomAssign[i].courseID)
-           // var daysCount = scheduleDao.getRoomAssignmentCountBycourseId(allRoomAssign[i].courseID)
-            /*for(x in 0 until daysCount){
-                if(x < daysCount) {
-                    sb.append(daysList[x].dayAssigned)
-                }
-            }*/
-
-
-            //var combinedDays = sb.toString()
-            //Log.d("COMBINEDDAYS", combinedDays)
-            //schedList = "${sdf.format(daysList[i].startTime)} - ${sdf.format(daysList[i].endTime)} $combinedDays ${daysList[i].roomNumber}"
+            val daysList = scheduleDao.getAllRoomAssignments()
             schedList.add("${sdf.format(daysList[i].startTime)} - ${sdf.format(daysList[i].endTime)} ${daysList[i].dayAssigned} ${daysList[i].roomNumber}")
             RoomID.add(daysList[i].roomID)
-            sb.clear()
 
         }
 

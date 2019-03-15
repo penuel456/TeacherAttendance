@@ -32,7 +32,7 @@ class Menu_fragment_lbb : Fragment() {
 
         radioGroup = myView.findViewById(R.id.lbb_floors)
 
-        insertRooms()
+        //insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId

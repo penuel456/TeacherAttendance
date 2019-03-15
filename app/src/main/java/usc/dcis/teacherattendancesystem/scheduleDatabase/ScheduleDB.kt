@@ -1,18 +1,35 @@
 package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.arch.persistence.room.*
+import java.lang.reflect.Constructor
 import java.util.*
 
-@Entity(tableName = "Schedules")
-data class scheduleDB(
-    @PrimaryKey(autoGenerate = true) val courseID: Int = 0,
-    @ColumnInfo(name = "course_code")var courseCode: String,
-    @ColumnInfo(name = "teacher") var teacher: String
+@Entity(tableName = "Users")
+data class UserDB(
+    @PrimaryKey(autoGenerate = true) var userID: Int,
+    @ColumnInfo(name = "id_number") var idNumber: Int = 0,
+    @ColumnInfo(name = "password") var password: String? = null,
+    @ColumnInfo(name = "type") var type: String? = null
 )
 
+class UsersWithSchedules {
+    @Embedded
+    var user: UserDB? = null
+    @Relation(parentColumn = "userID", entityColumn = "user_id")
+    var schedules: List<ScheduleDB>? = emptyList()
+}
+
+
+@Entity(tableName = "Schedules")
+data class ScheduleDB(
+    @PrimaryKey(autoGenerate = true) var courseID: Int = 0,
+    @ColumnInfo(name = "user_id") var userID: Int = 0,
+    @ColumnInfo(name = "course_code")var courseCode: String? = null,
+    @ColumnInfo(name = "teacher") var teacher: String? = null
+)
 
 // ROOM ASSIGNMENTS
-@Entity(tableName = "Room_Assignments", foreignKeys = arrayOf(ForeignKey(entity = scheduleDB::class,
+@Entity(tableName = "Room_Assignments", foreignKeys = arrayOf(ForeignKey(entity = ScheduleDB::class,
     parentColumns = arrayOf("courseID"),
     childColumns = arrayOf("courseID"),
     onDelete = ForeignKey.CASCADE,
@@ -42,5 +59,6 @@ data class Status(
 
     // FOR KNOWING WHICH DAY IS PRESENT OR ABSENT
     @ColumnInfo(name = "date") var date: Date,
-    var status: String = "Absent"
+    var status: String = "Absent",
+    var remarks: String = "None"
 )

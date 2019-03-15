@@ -1,18 +1,18 @@
 package usc.dcis.teacherattendancesystem
 
-import android.content.Context
 import android.content.Intent
+import kotlinx.android.synthetic.main.activity_main.*
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Log
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDay
 import usc.dcis.teacherattendancesystem.menu.Menu
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
-import usc.dcis.teacherattendancesystem.userDatabase.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         //val username = findViewById<EditText>(R.id.username)
         //val password = findViewById<EditText>(R.id.password)
 
-        val db = UserDatabase.getInstance(this)
-        var user = db.userDAO
+        val db = ScheduleDatabase.getInstance(this)
+        var user = db.scheduleDAO
 
         val userCtr = user.getUserCountOnLogin(username.text.toString().toInt(), password.text.toString())
 
@@ -41,13 +41,14 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
-            UserDatabase.destroyInstance()
+            ScheduleDatabase.destroyInstance()
 
             if(userLists.type.equals("student")){
                 val activity = Intent(this, SchedListStudent::class.java)
                 startActivity(activity)
             }else if(userLists.type.equals("teacher")){
-                // Activity for teachers
+                val activity = Intent(this, SchedListTeacher::class.java)
+                startActivity(activity)
             }else if(userLists.type.equals("dean")){
                 val activity = Intent(this, Menu::class.java)
                 startActivity(activity)
@@ -63,13 +64,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testUserDatabase(){
-        val db = UserDatabase.getInstance(this)
-        var userList = db.userDAO
+        val db = ScheduleDatabase.getInstance(this)
+        var userList = db.scheduleDAO
 
 
-        userList.insertUser(userDB(0, 3, "3", "student"))
-        userList.insertUser(userDB(0, 2, "2", "teacher"))
-        userList.insertUser(userDB(0, 1, "1", "dean"))
+        //userList.insertUser(UserDB(0, 3, "3", "student"))
+        //userList.insertUser(UserDB(0, 2, "2", "teacher"))
+        //userList.insertUser(UserDB(0, 1, "1", "dean"))
 
 
         for(users in userList.getAllUsers()){
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("USER", "Type: ${users.type}")
         }
 
-        UserDatabase.destroyInstance()
+        ScheduleDatabase.destroyInstance()
     }
 
     // For testing database. Subject to change.
@@ -87,19 +88,21 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        val db = ScheduleDatabase.getInstance(this)
-        var scheduleListTest = db.scheduleDAO
+        //val db = ScheduleDatabase.getInstance(this)
+
+        //var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-
-        /*scheduleListTest.insert(scheduleDB(0, "IT5001", "Ms. Polinar"))
-        scheduleListTest.insert(scheduleDB(0, "IT1101", "Ms. Cantara"))
-        scheduleListTest.insert(scheduleDB(0, "MATH25", "Ms. Punzalan"))
-        scheduleListTest.insert(scheduleDB(0, "NIPPONGO1", "Ms. Watanabe"))
+        /*
+        scheduleListTest.insert(ScheduleDB(0, 3, "IT5001", "Ms. Polinar"))
+        scheduleListTest.insert(ScheduleDB(0, 3, "IT1101", "Ms. Cantara"))
+        scheduleListTest.insert(ScheduleDB(0, 3, "MATH25", "Ms. Punzalan"))
+        scheduleListTest.insert(ScheduleDB(0, 2, "NIPPONGO1", "Ms. Watanabe"))
+        scheduleListTest.insert(ScheduleDB(0, 3, "NIPPONGO1", "Ms. Watanabe"))
         */
 
-        printAllSchedules(scheduleListTest)
+        //ScheduleDebug.printAllSchedules(scheduleListTest)
 
         /*
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
@@ -126,78 +129,28 @@ class MainActivity : AppCompatActivity() {
             sdf.parse("5:00 PM"), "TH"))
         */
 
+        //ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
-        //printAllRoomAssignments(scheduleListTest)
+        /*
+        ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
+
 
         // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
-        var today = scheduleListTest.getAllRoomAssignmentsByDay(getCurrentDay())
+        var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
 
         for(sched in today) {
-            val statusCheck = scheduleListTest.getStatusCountByRoomIdAndDate(getCurrentDate(), sched.roomID)
+            val statusCheck = scheduleListTest.getStatusCountByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID)
 
             if(statusCheck == 0){
-                scheduleListTest.insertStatus(Status(0, sched.roomID, getCurrentDate(), "Absent"))
+                scheduleListTest.insertStatus(Status(0, sched.roomID, DateManager.getCurrentDate(), "Absent"))
             }
         }
 
 
-        printAllStatus(scheduleListTest)
-        printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
+        ScheduleDebug.printAllStatus(scheduleListTest)
+        ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
+        */
     }
 
-    companion object DebugSchedule {
-        // PRINTING EVERYTHING
-        fun printAllStatus(dao: ScheduleDAO){
-            for(status in dao.getAllStatus()){
-                Log.d("DEBUG STATUS: ", status.toString())
-            }
-        }
 
-        fun printAllRoomAssignments(dao: ScheduleDAO){
-            for(rooms in dao.getAllRoomAssignments()){
-                Log.d("DEBUG ROOM: ", rooms.toString())
-            }
-        }
-
-        fun printAllSchedules(dao: ScheduleDAO){
-            for(sched in dao.getAllSchedules()){
-                Log.d("DEBUG SCHED: ", sched.toString())
-            }
-        }
-
-        // PRINTING ROOM ASSIGNMENT BY DAY
-        fun printAllRoomAssignmentsByDay(dao: ScheduleDAO, currentDay: String){
-            for(rooms in dao.getAllRoomAssignmentsByDay(currentDay)){
-                Log.d("DEBUG ROOMDAY: ", rooms.toString())
-            }
-        }
-    }
-
-    fun getCurrentDate(): Date {
-        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-        val year = indiaTime.get(Calendar.YEAR)
-        val month = indiaTime.get(Calendar.MONTH) + 1
-        val day = indiaTime.get(Calendar.DAY_OF_MONTH)
-
-        return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
-    }
-
-    fun getCurrentDay(): String {
-        val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-        val day = indiaTime.get(Calendar.DAY_OF_WEEK)
-
-        Log.d("TODAY: ", getDayString(day))
-
-        return getDayString(day)
-    }
-
-    fun getDayString(today: Int): String{
-        val day = arrayListOf("SUN", "M", "T", "W", "TH", "F", "SAT")
-
-        for((ndx, day) in day.withIndex()){
-            if(ndx == (today - 1)) return day
-        }
-
-        return "NONE"
-    }
 }

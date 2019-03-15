@@ -6,20 +6,49 @@ import java.util.*
 
 @Dao
 interface ScheduleDAO {
-    // ALL SCHEDULEDB QUERIES
+    /******************************* ALL USER QUERIES **********************************************/
     @Insert
-    fun insert(vararg schedules: scheduleDB)
+    fun insertUser(vararg UserDB: UserDB)
 
     @Update
-    fun update(vararg schedules: scheduleDB)
+    fun updateUser(vararg UserDB: UserDB)
+
+    @Query("SELECT * FROM Users WHERE id_number = :idNumber AND password = :password")
+    fun getUserOnLogin(idNumber: Int, password: String): UserDB
+
+    @Query("SELECT COUNT(*) FROM Users WHERE id_number = :idNumber AND password = :password")
+    fun getUserCountOnLogin(idNumber: Int, password: String): Int
+
+    @Query("SELECT * FROM Users")
+    fun getAllUsers(): List<UserDB>
+
+    /******************************* ALL USER QUERIES **********************************************/
+
+    /******************************* ALL SCHEDULEDB QUERIES ****************************************/
+    @Insert
+    fun insert(vararg schedules: ScheduleDB)
+
+    @Update
+    fun update(vararg schedules: ScheduleDB)
 
     @Query("SELECT * FROM Schedules")
-    fun getAllSchedules(): List<scheduleDB>
+    fun getAllSchedules(): List<ScheduleDB>
 
     @Query("SELECT * FROM Schedules WHERE courseID = :courseId")
-    fun getSchedule(courseId: Int): scheduleDB
+    fun getSchedule(courseId: Int): ScheduleDB
 
-    // ALL ROOM ASSIGNMENT QUERIES
+    /******************************* ALL SCHEDULEDB QUERIES ****************************************/
+
+    /******************************* ALL USERSWITHSCHEDULES QUERIES ********************************/
+
+    @Transaction
+    @Query("SELECT * FROM users WHERE userID = :userID")
+    fun getAllUserSchedules(userID: Int): UsersWithSchedules
+
+    /******************************* ALL USERSWITHSCHEDULES QUERIES ********************************/
+
+    /******************************* ALL ROOM ASSIGNMENT QUERIES ***********************************/
+
     @Insert
     fun insertRoomAssignment(vararg roomAssignment: RoomAssignment)
 
@@ -41,11 +70,16 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber AND dayAssigned = :dayAssigned")
     fun getAllRoomAssignmentsByRoomNumberAndDay(roomNumber: String, dayAssigned: String) : List<RoomAssignment>
 
-
     @Query("SELECT * FROM Room_Assignments WHERE roomID = :roomId")
     fun getRoomAssignmentByRoomId(roomId: Int): RoomAssignment
 
-    // ALL STATUS QUERIES
+    @Query("UPDATE Room_Assignments SET roomNumber = :roomNumber, startTime =:startTime, endTime =:endTime, dayAssigned =:day WHERE roomID =:roomId")
+    fun updateRoomAssignmentsByRoomId(roomId: Int, roomNumber: String, startTime: Date, endTime :Date, day: String )
+
+    /******************************* ALL ROOM ASSIGNMENT QUERIES ***********************************/
+
+    /******************************* ALL STATUS QUERIES ********************************************/
+
     @Insert
     fun insertStatus(vararg status: Status)
 
@@ -76,6 +110,10 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Statuses WHERE date = :date AND roomID = :roomID LIMIT 1")
     fun getStatusByRoomIdAndDate(date: Date, roomID: Int): Status
 
+    /******************************* ALL STATUS QUERIES ********************************************/
+
+    /******************************* ALL DELETION QUERIES ******************************************/
+
     @Query("DELETE FROM Schedules")
     fun deleteAllSchedules()
 
@@ -84,6 +122,10 @@ interface ScheduleDAO {
 
     @Query("DELETE FROM Statuses")
     fun deleteAllStatus()
+
+    /******************************* ALL DELETION QUERIES ******************************************/
+
+    /******************************* ALL COUNT QUERIES *********************************************/
 
     @Query("SELECT COUNT(*) FROM Schedules")
     fun getScheduleCount(): Int
@@ -94,7 +136,8 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Room_Assignments WHERE courseID = :courseId")
     fun getRoomAssignmentCountBycourseId(courseId: Int): Int
 
-    @Query("UPDATE Room_Assignments SET roomNumber = :roomNumber, startTime =:startTime, endTime =:endTime, dayAssigned =:day WHERE roomID =:roomId")
-    fun updateRoomAssignmentsByRoomId(roomId: Int, roomNumber: String, startTime: Date, endTime :Date, day: String )
+    /******************************* ALL COUNT QUERIES *********************************************/
+
+
 
 }
