@@ -30,56 +30,110 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@android:drawable/ic_dialog_email"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/roomNumTxt"
+            android:textSize="30sp" app:layout_anchorGravity="top|center" app:layout_anchor="@+id/include2"/>
     <TableLayout
             android:layout_width="match_parent"
             android:layout_height="309dp" android:id="@+id/schedTable" android:background="@drawable/green_bg_2"
             app:layout_anchorGravity="left|center" app:layout_anchor="@+id/include2">
 
-        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/a"
-                  android:background="@color/colorAccent" android:padding="@dimen/nav_header_vertical_spacing">
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/monday"
+                  android:background="@color/lightGreen" android:padding="@dimen/nav_header_vertical_spacing"
+                  android:visibility="visible">
             <TextView
-                    android:text="Time"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView23"/>
+                    android:layout_height="wrap_content" android:id="@+id/monDAY"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
             <TextView
-                    android:text="Mon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView14"
-                    android:padding="@dimen/text_margin"/>
+                    android:layout_height="wrap_content" android:id="@+id/monSubject"
+                    android:padding="@dimen/nav_header_vertical_spacing"
+            />
             <TextView
-                    android:text="Tue"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView18"
-                    android:padding="@dimen/text_margin"/>
+                    android:layout_height="wrap_content" android:id="@+id/monSched"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
             <TextView
-                    android:text="Wed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView19"
-                    android:padding="@dimen/text_margin"/>
-            <TextView
-                    android:text="Thu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView20"
-                    android:padding="@dimen/text_margin"/>
-            <TextView
-                    android:text="Fri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView21"
-                    android:padding="@dimen/text_margin"/>
-            <TextView
-                    android:text="Sat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView22"
-                    android:padding="@dimen/text_margin"/>
+                    android:layout_height="wrap_content" android:id="@+id/monTeacher"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
         </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/b"/>
-        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/c"/>
-        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/d"/>
+        <TableRow android:layout_width="match_parent" android:layout_height="80dp" android:id="@+id/tuesday"
+                  android:padding="@dimen/nav_header_vertical_spacing">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tueDAY"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tueSubject"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tueSched"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tueTeacher"
+            />
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="81dp" android:id="@+id/wednesday"
+                  android:padding="@dimen/nav_header_vertical_spacing">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/wedDAY"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/wedSubject"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/wedSched"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/wedTeacher"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/thursday"
+                android:padding="@dimen/nav_header_vertical_spacing">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/thuDAY"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/thuSubject"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/thuSched"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/thuTeacher"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/friday"
+                  android:padding="@dimen/nav_header_vertical_spacing">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/friDAY"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/friSubject"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/friSched"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/friTeacher"
+                    android:padding="@dimen/nav_header_vertical_spacing"/>
+        </TableRow>
     </TableLayout>
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="39dp" android:id="@+id/roomNumTxt" app:layout_anchorGravity="top|center"
-            app:layout_anchor="@+id/include2" android:textSize="30sp"/>
 
 </android.support.design.widget.CoordinatorLayout>
