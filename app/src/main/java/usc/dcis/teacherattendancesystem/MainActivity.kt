@@ -88,23 +88,23 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        //val db = ScheduleDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
 
-        //var scheduleListTest = db.scheduleDAO
+        var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-        /*
+/*
         scheduleListTest.insert(ScheduleDB(0, 3, "IT5001", "Ms. Polinar"))
         scheduleListTest.insert(ScheduleDB(0, 3, "IT1101", "Ms. Cantara"))
         scheduleListTest.insert(ScheduleDB(0, 3, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(ScheduleDB(0, 2, "NIPPONGO1", "Ms. Watanabe"))
         scheduleListTest.insert(ScheduleDB(0, 3, "NIPPONGO1", "Ms. Watanabe"))
-        */
 
-        //ScheduleDebug.printAllSchedules(scheduleListTest)
 
-        /*
+        ScheduleDebug.printAllSchedules(scheduleListTest)
+
+
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
             sdf.parse("12:00 PM"), "M"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB448TC", sdf.parse("10:30 AM"),
@@ -127,14 +127,14 @@ class MainActivity : AppCompatActivity() {
             sdf.parse("5:00 PM"), "T"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 4, "LB404TC", sdf.parse("1:30 PM"),
             sdf.parse("5:00 PM"), "TH"))
-        */
+*/
 
         //ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
-        /*
+
         ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
 
-
+      /*
         // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
         var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
 

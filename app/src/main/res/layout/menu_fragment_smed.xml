@@ -94,7 +94,7 @@
             android:visibility="gone"/>
     <ImageView
             android:layout_width="412dp"
-            android:layout_height="206dp" app:srcCompat="@drawable/smed"
+            android:layout_height="206dp" app:srcCompat="@drawable/smednew"
             android:id="@+id/imageView8" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
