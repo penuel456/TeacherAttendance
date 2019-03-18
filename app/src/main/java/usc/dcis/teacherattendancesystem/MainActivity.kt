@@ -2,7 +2,6 @@ package usc.dcis.teacherattendancesystem
 
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_main.*
-import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +9,21 @@ import android.view.View
 
 import android.widget.Toast
 import android.util.Log
-import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDay
 import usc.dcis.teacherattendancesystem.menu.Menu
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.OnCompleteListener
+import usc.dcis.tea.ScheduleFirebase
+import usc.dcis.tea.ScheduleFirebaseDebug
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        FirebaseApp.initializeApp(this)
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         testDatabase()
         //testUserDatabase()
@@ -83,10 +95,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     // For testing database. Subject to change.
-     fun testDatabase(){
+    private fun testDatabase(){
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
+        var db = FirebaseFirestore.getInstance()
+        val settings = FirebaseFirestoreSettings.Builder()
+            .setTimestampsInSnapshotsEnabled(true)
+            .build()
+        db.firestoreSettings = settings
+
+        var user = HashMap<String, Any>()
+        user.put("id_number", 4)
+        user.put("password", 4)
+        user.put("type", "student")
+        user.put("userID", 4)
+
+        /*
+        db.collection("userDB")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d(
+                    "FIREBASE",
+                    "DocumentSnapshot added with ID: " + documentReference.id
+                )
+            }
+            .addOnFailureListener { e -> Log.w("FIREBASE", "Error adding document", e) }
+        */
+
+        //ScheduleFirebase.GetIDAndPassword(db, 1, "1")
+        var testUser = ScheduleFirebase.GetIDAndPassword(db, 1, "1")
+
+        //Log.d("ID", testUser?.userID.toString())
+        //ScheduleFirebaseDebug.printUserDB(db)
         //val db = ScheduleDatabase.getInstance(this)
 
         //var scheduleListTest = db.scheduleDAO
