@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import kotlinx.android.synthetic.main.content_chooseschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_pe.*
 import usc.dcis.teacherattendancesystem.R
 
@@ -36,6 +37,7 @@ class Menu_fragment_pe : Fragment() {
             pe_hiddenwing.setChecked(true)
 
             if(radioButton.text.toString().equals("1st Floor")){
+                chooseAWing.visibility = View.VISIBLE
                 pe_wings.visibility = View.VISIBLE
                 pe_wing1.text = "Main Hallway"
 
@@ -46,6 +48,7 @@ class Menu_fragment_pe : Fragment() {
 
             }else if(radioButton.text.toString().equals("2nd Floor")){
                 pe_wings.visibility = View.VISIBLE
+                chooseAWing.visibility = View.VISIBLE
                 pe_wing1.text = "Main Hallway"
 
 
@@ -56,6 +59,7 @@ class Menu_fragment_pe : Fragment() {
 
             }else if(radioButton.text.toString().equals("3rd Floor")){
                 pe_wings.visibility = View.VISIBLE
+                chooseAWing.visibility = View.VISIBLE
                 pe_wing1.text = "Main Hallway"
 
 
@@ -65,6 +69,7 @@ class Menu_fragment_pe : Fragment() {
 
             }else if(radioButton.text.toString().equals("4th Floor")){
                 pe_wings.visibility = View.VISIBLE
+                chooseAWing.visibility = View.VISIBLE
                 pe_wing1.text = "Main Hallway"
 
 

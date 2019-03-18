@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         testDatabase()
-        //testUserDatabase()
+        testUserDatabase()
 
     }
 
@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 
 
         //userList.insertUser(UserDB(0, 3, "3", "student"))
-        //userList.insertUser(UserDB(0, 2, "2", "teacher"))
-        //userList.insertUser(UserDB(0, 1, "1", "dean"))
+       //userList.insertUser(UserDB(0, 2, "2", "teacher"))
+       //userList.insertUser(UserDB(0, 1, "1", "dean"))
 
 
         for(users in userList.getAllUsers()){

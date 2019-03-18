@@ -9,42 +9,53 @@
 
     <ScrollView
             android:layout_width="320dp"
-            android:layout_height="239dp"
+            android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginBottom="180dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.4"
+            android:layout_marginStart="8dp" android:layout_marginBottom="56dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.373"
             android:id="@+id/peScrollView" android:scrollbarStyle="outsideInset" android:visibility="gone"
-            android:background="@android:color/background_light">
+            android:background="@android:color/background_light" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/pe_floors" app:layout_constraintVertical_bias="0.097">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:layout_gravity="center"
                       android:gravity="center"
-                      android:orientation="vertical">
+                      android:orientation="vertical" android:layout_marginBottom="12dp" android:visibility="visible">
             <Button
                     android:text="Button"
                     android:layout_width="165dp"
                     android:layout_height="58dp" tools:layout_editor_absoluteY="304dp"
-                    tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomOne"/>
+                    tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomOne"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="100dp"
+                    android:layout_marginTop="100dp"/>
             <Button
                     android:text="Button"
                     android:layout_width="165dp"
                     android:layout_height="60dp" tools:layout_editor_absoluteY="391dp"
-                    tools:layout_editor_absoluteX="39dp" android:id="@+id/peRoomTwo"/>
+                    tools:layout_editor_absoluteX="39dp" android:id="@+id/peRoomTwo"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
                     android:layout_width="166dp"
                     android:layout_height="60dp" tools:layout_editor_absoluteY="439dp"
-                    tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomThree"/>
+                    tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomThree"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
                     android:layout_width="167dp"
-                    android:layout_height="59dp" tools:layout_editor_absoluteY="509dp"
-                    tools:layout_editor_absoluteX="8dp" android:id="@+id/peRoomFour"/>
+                    android:layout_height="60dp" tools:layout_editor_absoluteY="509dp"
+                    tools:layout_editor_absoluteX="8dp" android:id="@+id/peRoomFour"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
                     android:layout_width="168dp"
-                    android:layout_height="wrap_content" android:id="@+id/peRoomFive"/>
+                    android:layout_height="60dp" android:id="@+id/peRoomFive"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
         </LinearLayout>
     </ScrollView>
@@ -54,7 +65,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.098" android:id="@+id/pe_floors"
+            app:layout_constraintHorizontal_bias="0.099" android:id="@+id/pe_floors"
             android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/textView2">
         <RadioButton
                 android:text="1st Floor"
@@ -81,46 +92,52 @@
             android:text="Choose a Floor"
             android:layout_width="167dp"
             android:layout_height="27dp" android:id="@+id/textView2"
-            android:layout_marginLeft="36dp" android:layout_marginStart="36dp"
-            android:layout_marginTop="71dp"
-            android:layout_marginBottom="633dp"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            android:layout_marginBottom="596dp"
             android:textColor="@android:color/background_dark"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintVertical_bias="0.0" android:layout_marginEnd="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.005" android:textSize="24sp" android:textStyle="bold"/>
+            app:layout_constraintHorizontal_bias="0.035" android:textSize="24sp" android:textStyle="bold"
+            android:layout_marginTop="216dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
     <TextView
             android:text="Choose a Wing"
             android:layout_width="167dp"
-            android:layout_height="27dp" android:id="@+id/textView12"
+            android:layout_height="27dp" android:id="@+id/chooseAWing"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            android:layout_marginTop="71dp"
+            android:layout_marginTop="216dp"
             android:layout_marginBottom="633dp"
             android:textColor="@android:color/background_dark"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintVertical_bias="0.0" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.666" android:textSize="24sp" android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textView2"/>
+            app:layout_constraintHorizontal_bias="0.822" android:textSize="24sp" android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView2" android:visibility="gone"/>
     <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
+            android:layout_width="161dp"
+            android:layout_height="77dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/pe_floors" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintTop_toBottomOf="@+id/textView12"
-            android:layout_marginTop="8dp" app:layout_constraintHorizontal_bias="0.615" android:id="@+id/pe_wings"
-    >
+            android:layout_marginStart="8dp" app:layout_constraintTop_toBottomOf="@+id/chooseAWing"
+            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.847" android:id="@+id/pe_wings"
+            android:visibility="gone">
         <RadioButton
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/pe_hiddenwing" android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
         <RadioButton
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/pe_wing1" android:layout_weight="1"
-                tools:text="Main Hallway" android:visibility="gone"/>
+                tools:text="Main Hallway" android:visibility="visible"/>
     </RadioGroup>
+    <ImageView
+            android:layout_width="424dp"
+            android:layout_height="215dp" app:srcCompat="@drawable/pe"
+            android:id="@+id/imageView5" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
