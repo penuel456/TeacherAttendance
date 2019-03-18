@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
-            ScheduleDatabase.destroyInstance()
+            //ScheduleDatabase.destroyInstance()
 
             if(userLists.type.equals("student")){
                 val activity = Intent(this, SchedListStudent::class.java)
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         //userList.insertUser(UserDB(0, 3, "3", "student"))
         //userList.insertUser(UserDB(0, 2, "2", "teacher"))
-        //userList.insertUser(UserDB(0, 1, "1", "dean"))
+        userList.insertUser(UserDB(0, 1, "1", "dean"))
 
 
         for(users in userList.getAllUsers()){
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("USER", "Type: ${users.type}")
         }
 
-        ScheduleDatabase.destroyInstance()
+        //ScheduleDatabase.destroyInstance()
     }
 
     // For testing database. Subject to change.
@@ -88,19 +88,19 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        //val db = ScheduleDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
 
-        //var scheduleListTest = db.scheduleDAO
+        var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-        /*
+
         scheduleListTest.insert(ScheduleDB(0, 3, "IT5001", "Ms. Polinar"))
         scheduleListTest.insert(ScheduleDB(0, 3, "IT1101", "Ms. Cantara"))
         scheduleListTest.insert(ScheduleDB(0, 3, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(ScheduleDB(0, 2, "NIPPONGO1", "Ms. Watanabe"))
         scheduleListTest.insert(ScheduleDB(0, 3, "NIPPONGO1", "Ms. Watanabe"))
-        */
+
 
         //ScheduleDebug.printAllSchedules(scheduleListTest)
 
