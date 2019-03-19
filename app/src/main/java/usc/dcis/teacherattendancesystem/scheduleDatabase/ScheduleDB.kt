@@ -24,6 +24,7 @@ class UsersWithSchedules {
 data class ScheduleDB(
     @PrimaryKey(autoGenerate = true) var courseID: Int = 0,
     @ColumnInfo(name = "user_id") var userID: Int = 0,
+    @ColumnInfo(name = "group_number") var groupNumber: Int = 0,
     @ColumnInfo(name = "course_code")var courseCode: String? = null,
     @ColumnInfo(name = "teacher") var teacher: String? = null
 )
@@ -37,7 +38,7 @@ data class ScheduleDB(
 data class RoomAssignment(
     @PrimaryKey(autoGenerate = true) var roomID: Int = 0,
     // FOREIGN KEY
-    val courseID: Int,
+    var courseID: Int,
 
     var roomNumber: String,
     var startTime: Date,
@@ -54,8 +55,8 @@ data class RoomAssignment(
     onUpdate = ForeignKey.CASCADE)))
 data class Status(
     // FOREIGN KEY
-    @PrimaryKey(autoGenerate = true) val statusId: Int,
-    @ColumnInfo(name = "roomID") val roomID: Int,
+    @PrimaryKey(autoGenerate = true) var statusId: Int,
+    @ColumnInfo(name = "roomID") var roomID: Int,
 
     // FOR KNOWING WHICH DAY IS PRESENT OR ABSENT
     @ColumnInfo(name = "date") var date: Date,

@@ -1,6 +1,7 @@
 package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ScheduleDebug {
     companion object DebugSchedule {
@@ -60,5 +61,10 @@ class ScheduleDebug {
                 Log.d("DEBUG ROOMDAY: ", "NO SCHEDULES FOR TODAY")
             }
         }
+
+
+
+
     }
 }
+
