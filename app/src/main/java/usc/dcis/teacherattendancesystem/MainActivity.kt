@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
-            ScheduleDatabase.destroyInstance()
+            //ScheduleDatabase.destroyInstance()
 
             if(userLists.type.equals("student")){
                 val activity = Intent(this, SchedListStudent::class.java)
@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
        //userList.insertUser(UserDB(0, 1, "1", "dean"))
 
 
+
         for(users in userList.getAllUsers()){
             Log.d("USER", "userID: ${users.userID}")
             Log.d("USER", "idNUmber: ${users.idNumber}")
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("USER", "Type: ${users.type}")
         }
 
-        ScheduleDatabase.destroyInstance()
+        //ScheduleDatabase.destroyInstance()
     }
 
     // For testing database. Subject to change.

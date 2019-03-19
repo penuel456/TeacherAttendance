@@ -32,7 +32,7 @@ class Menu_fragment_lbb : Fragment() {
 
         radioGroup = myView.findViewById(R.id.lbb_floors)
 
-        //insertRooms()
+        insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId
@@ -397,6 +397,46 @@ class Menu_fragment_lbb : Fragment() {
             sdf.parse("11:30 AM"), "T"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[5], sdf.parse("10:30 AM"),
             sdf.parse("10:30 AM"), "W"))
+
+
+
+        val rooms2ndFloor = arrayListOf("LB210TC", "LB211TC", "LB212TC", "LB213TC", "LB214TC", "LB220TC", "LB221TC", "LB222TC")
+
+        //210
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms2ndFloor[0], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[0], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[0], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "TH"))
+
+        //211
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[1], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[1], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "TH"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[1], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //212
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //213
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+
+
+
 
     }
 
