@@ -51,7 +51,7 @@ class SchedListTeacher : AppCompatActivity() {
 
     fun displayNoSchedule(){
         Schedule_teacher_layout.visibility = View.INVISIBLE
-        noSchedNotif.visibility = View.VISIBLE
+        noSchedNotif2.visibility = View.VISIBLE
     }
 
     fun getCurrentTime(): Date{

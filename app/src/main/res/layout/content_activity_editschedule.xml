@@ -24,9 +24,28 @@
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:id="@+id/textView6" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp" android:layout_marginTop="44dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" android:textSize="18sp"
-            tools:textColor="@android:color/background_dark" android:textStyle="bold"/>
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"
+            tools:textColor="@android:color/background_dark" android:textStyle="bold"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/textView12"/>
+    <TextView
+            android:text="Wing"
+            android:layout_width="41dp"
+            android:layout_height="25dp"
+            android:id="@+id/textView12" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"
+            tools:textColor="@android:color/background_dark" android:textStyle="bold"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/textView18"/>
+    <TextView
+            android:text="Floor"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:id="@+id/textView18" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"
+            tools:textColor="@android:color/background_dark" android:textStyle="bold"
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/textView5"/>
     <TextView
             android:text="Day"
             android:layout_width="wrap_content"
@@ -38,8 +57,8 @@
             android:layout_marginTop="116dp" app:layout_constraintTop_toBottomOf="@+id/textView6"
             android:layout_marginLeft="24dp"/>
     <Spinner
-            android:layout_width="258dp"
-            android:layout_height="30dp"
+            android:layout_width="252dp"
+            android:layout_height="31dp"
             android:id="@+id/buildings"
             android:entries="@array/Building_arrays"
             android:layout_marginTop="48dp"
@@ -114,11 +133,26 @@
             android:layout_marginLeft="148dp"
             android:layout_marginStart="148dp" app:layout_constrainedHeight="false"/>
     <Spinner
-            android:layout_width="244dp"
-            android:layout_height="24dp"
-            android:id="@+id/room" android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/buildings" app:layout_constraintStart_toEndOf="@+id/textView6"
-            android:layout_marginLeft="24dp" android:layout_marginStart="24dp"/>
+            android:layout_width="252dp"
+            android:layout_height="30dp"
+            android:id="@+id/room"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/wing"/>
+    <Spinner
+            android:layout_width="252dp"
+            android:layout_height="30dp"
+            android:id="@+id/wing"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/floor"/>
+    <Spinner
+            android:layout_width="252dp"
+            android:layout_height="30dp"
+            android:id="@+id/floor"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/buildings" app:layout_constraintStart_toEndOf="@+id/textView18"
+            android:layout_marginLeft="15dp" android:layout_marginStart="15dp"/>
     <RadioGroup
             android:layout_width="324dp"
             android:layout_height="49dp"
