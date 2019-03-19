@@ -118,9 +118,9 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomFive.visibility = View.VISIBLE
                     lbbRoomOne.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")[0].roomNumber
                     lbbRoomTwo.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB111TC")[0].roomNumber
-                    lbbRoomThree.text = "LB112TC"
-                    lbbRoomFour.text = "LB113TC"
-                    lbbRoomFive.text = "LB114TC"
+                    lbbRoomThree.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB112TC")[0].roomNumber
+                    lbbRoomFour.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB113TC")[0].roomNumber
+                    lbbRoomFive.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB114TC")[0].roomNumber
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -155,7 +155,7 @@ class Menu_fragment_lbb : Fragment() {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB120TC"
+                    lbbRoomOne.text = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB120TC")[0].roomNumber
                     lbbRoomTwo.text = "LB121TC"
                     lbbRoomThree.text = "LB122TC"
                     lbbRoomFour.text = "LB123TC"
@@ -304,14 +304,16 @@ class Menu_fragment_lbb : Fragment() {
 
     fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String)
     {
-
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
 
         lbbRoomOne.setOnClickListener {
-            if(roomOne.equals("LB110TC")){
+            if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")[0].roomNumber)){
 
                 val activity = Intent(getActivity(), roomSchedule::class.java)
-
-                activity.putExtra("RoomTxt", roomOne)
+                val lb110list = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")
+                activity.putExtra("RoomTxt", lb110list[0].roomNumber.toString())
                 startActivity(activity)
             }
 
@@ -352,17 +354,88 @@ class Menu_fragment_lbb : Fragment() {
 
         val rooms1stFloor = arrayListOf("LB110TC", "LB111TC", "LB112TC", "LB113TC", "LB114TC", "LB120TC", "LB121TC", "LB122TC")
 
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("1:30 PM"),
+        //110
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[0], sdf.parse("1:30 PM"),
             sdf.parse("3:30 PM"), "T"))
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("1:30 PM"),
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[0], sdf.parse("1:30 PM"),
             sdf.parse("4:30 PM"), "TH"))
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[0], sdf.parse("7:30 AM"),
-            sdf.parse("10:30 PM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[0], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 AM"), "W"))
 
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[1], sdf.parse("8:30 AM"),
+        //111
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[1], sdf.parse("8:30 AM"),
             sdf.parse("10:30 AM"), "M"))
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 8, rooms1stFloor[1], sdf.parse("7:30 AM"),
-            sdf.parse("10:30 PM"), "F"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[1], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //112
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms1stFloor[2], sdf.parse("8:30 AM"),
+            sdf.parse("10:30 AM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms1stFloor[2], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 AM"), "TH"))
+
+        //113
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms1stFloor[3], sdf.parse("3:30 PM"),
+            sdf.parse("6:00 PM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms1stFloor[3], sdf.parse("4:30 PM"),
+            sdf.parse("6:00 PM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms1stFloor[3], sdf.parse("1:30 PM"),
+            sdf.parse("4:30 PM"), "F"))
+
+        //114
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[4], sdf.parse("6:30 AM"),
+            sdf.parse("11:30 AM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[4], sdf.parse("8:00 AM"),
+            sdf.parse("11:30 AM"), "TH"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[4], sdf.parse("7:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //120
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[5], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[5], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms1stFloor[5], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "W"))
+
+
+
+        val rooms2ndFloor = arrayListOf("LB210TC", "LB211TC", "LB212TC", "LB213TC", "LB214TC", "LB220TC", "LB221TC", "LB222TC")
+
+        //210
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 3, rooms2ndFloor[0], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[0], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "T"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[0], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "TH"))
+
+        //211
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[1], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[1], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "TH"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms2ndFloor[1], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //212
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+        //213
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("11:30 AM"), "M"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("11:00 AM"),
+            sdf.parse("11:30 AM"), "W"))
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
+            sdf.parse("10:30 AM"), "F"))
+
+
+
 
 
     }

@@ -37,5 +37,6 @@
     <string name="title_activity_subject_info">subject_info</string>
     <string name="title_activity_room_assignment_info">room_assignment_info</string>
     <string name="title_activity_room_schedule">roomSchedule</string>
+    <string name="title_activity_sched_list_teacher">SchedListTeacher</string>
 
 </resources>
