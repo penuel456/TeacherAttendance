@@ -5,8 +5,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
 
 import android.arch.persistence.room.Room
+import android.support.annotation.NonNull
 import com.google.firebase.firestore.Source
 import java.util.*
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import java.util.concurrent.CountDownLatch
+
 
 class ScheduleFirebase {
 
@@ -190,30 +196,32 @@ class ScheduleFirebase {
 
         //region GET SPECIFIC DATA
         fun GetIDAndPassword(db: FirebaseFirestore, idNumber: Number, password: String): UserDB? {
-            var userData: UserDB? = null
-            Log.i("FIREBASE", "ACCESSING GetIDAndPassword METHOD")
+            try {
+                var done = CountDownLatch(2)
+                var userData = UserDB(0, 0, "None", "None")
 
-            db.collection("userDB")
-                .whereEqualTo("id_number", "$idNumber")
-                .whereEqualTo("password", "$password")
-                .get(Source.CACHE)
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        for(document in task.result){
-                            Log.d(TAG, "${document.id} => ${document.data}")
-                            /*
-                            userData?.idNumber = document.data.getValue("id_number") as Int
-                            userData?.userID = document.data.getValue("userID") as Int
-                            userData?.password = document.data.getValue("password").toString()
-                            userData?.type = document.data.getValue("type").toString()
-                            */
+                db.collection("userDB").document(idNumber.toString())
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if(task.isSuccessful) {
+                            val document = task.result
+                            Log.d(TAG, document.data.toString())
+                            if(document["password"].toString().equals(password)){
+                                userData.userID = document["userID"].toString().toInt()
+                                userData.idNumber = document["idNumber"].toString().toInt()
+                                userData.password = document["password"].toString()
+                                userData.type = document["type"].toString()
+                                Log.d(TAG, userData.toString())
+                                done.countDown()
+                            }
                         }
-                    }else {
-                        Log.e("FIREBASE", "Error getting documents.", task.exception)
                     }
-                }
 
-            return userData
+                return userData
+            } catch (e: Throwable) {
+                //Manage error
+                return null
+            }
         }
 
         //fun GetScheduleBy
