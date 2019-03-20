@@ -22,8 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.tea.ScheduleFirebaseDebug
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-
-
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDay
 
 
 class MainActivity : AppCompatActivity() {
@@ -78,12 +77,11 @@ class MainActivity : AppCompatActivity() {
     fun testUserDatabase(){
         val db = ScheduleDatabase.getInstance(this)
         var userList = db.scheduleDAO
-
-
-        //userList.insertUser(UserDB(0, 3, "3", "student"))
-       //userList.insertUser(UserDB(0, 2, "2", "teacher"))
-       //userList.insertUser(UserDB(0, 1, "1", "dean"))
-
+        /*
+        userList.insertUser(UserDB(0, 3, "3", "student"))
+        userList.insertUser(UserDB(0, 2, "2", "teacher"))
+        userList.insertUser(UserDB(0, 1, "1", "dean"))
+        */
 
 
         for(users in userList.getAllUsers()){
@@ -101,17 +99,17 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DEBUG: ", "Inside testDatabase function")
 
-        var db = FirebaseFirestore.getInstance()
-        val settings = FirebaseFirestoreSettings.Builder()
+        //var db = FirebaseFirestore.getInstance()
+        /*val settings = FirebaseFirestoreSettings.Builder()
             .setTimestampsInSnapshotsEnabled(true)
-            .build()
-        db.firestoreSettings = settings
+            .build()*/
+        //db.firestoreSettings = settings
 
-        var user = HashMap<String, Any>()
+       /* var user = HashMap<String, Any>()
         user.put("id_number", 4)
         user.put("password", 4)
         user.put("type", "student")
-        user.put("userID", 4)
+        user.put("userID", 4)*/
 
         /*
         db.collection("userDB")
@@ -126,27 +124,27 @@ class MainActivity : AppCompatActivity() {
         */
 
         //ScheduleFirebase.GetIDAndPassword(db, 1, "1")
-        var testUser = ScheduleFirebase.GetIDAndPassword(db, 1, "1")
+        //var testUser = ScheduleFirebase.GetIDAndPassword(db, 1, "1")
 
         //Log.d("ID", testUser?.userID.toString())
         //ScheduleFirebaseDebug.printUserDB(db)
-        //val db = ScheduleDatabase.getInstance(this)
+        val db = ScheduleDatabase.getInstance(this)
 
         var scheduleListTest = db.scheduleDAO
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
 /*
-        scheduleListTest.insert(ScheduleDB(0, 3, "IT5001", "Ms. Polinar"))
-        scheduleListTest.insert(ScheduleDB(0, 3, "IT1101", "Ms. Cantara"))
-        scheduleListTest.insert(ScheduleDB(0, 3, "MATH25", "Ms. Punzalan"))
-        scheduleListTest.insert(ScheduleDB(0, 2, "NIPPONGO1", "Ms. Watanabe"))
-        scheduleListTest.insert(ScheduleDB(0, 3, "NIPPONGO1", "Ms. Watanabe"))
+        scheduleListTest.insert(ScheduleDB(0, 3,1,"IT5001", "Ms. Polinar"))
+        scheduleListTest.insert(ScheduleDB(0, 3,1,"IT1101", "Ms. Cantara"))
+        scheduleListTest.insert(ScheduleDB(0, 3,1,"MATH25", "Ms. Punzalan"))
+        scheduleListTest.insert(ScheduleDB(0, 2,1,"NIPPONGO1", "Ms. Watanabe"))
+        scheduleListTest.insert(ScheduleDB(0, 3,1,"NIPPONGO1", "Ms. Watanabe"))
 
-
+*/
         ScheduleDebug.printAllSchedules(scheduleListTest)
 
-
+/*
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB485TC", sdf.parse("10:30 AM"),
             sdf.parse("12:00 PM"), "M"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, "LB448TC", sdf.parse("10:30 AM"),
@@ -171,12 +169,12 @@ class MainActivity : AppCompatActivity() {
             sdf.parse("5:00 PM"), "TH"))
 */
 
-        //ScheduleDebug.printAllRoomAssignments(scheduleListTest)
+        ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
 
         ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
 
-      /*
+
         // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
         var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
 
@@ -191,7 +189,7 @@ class MainActivity : AppCompatActivity() {
 
         ScheduleDebug.printAllStatus(scheduleListTest)
         ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
-        */
+
     }
 
 

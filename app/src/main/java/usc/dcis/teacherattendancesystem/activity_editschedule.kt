@@ -17,6 +17,7 @@ import android.app.DatePickerDialog
 import android.app.PendingIntent.getActivity
 import android.app.ProgressDialog.show
 import android.content.Intent
+import android.icu.lang.UCharacter.JoiningGroup.PE
 import android.support.v4.content.ContextCompat.startActivity
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,54 +63,76 @@ class activity_editschedule : AppCompatActivity() {
         val floor = findViewById<Spinner>(R.id.floor)
         val buildings = findViewById<Spinner>(R.id.buildings)
         val wingList = arrayOf(
-            arrayOf("First Wing", "Second Wing", "Third Wing", "Fourth Wing", "Chicken Wings"),
-            arrayOf ("Main hallway","Chicken Wings")
+            arrayOf("Main Wing","First Wing", "Second Wing", "Third Wing", "Fourth Wing"),
+            arrayOf("First Wing", "Second Wing", "Third Wing", "Fourth Wing"),
+            arrayOf("Physics Department", "Chemistry Department", "Biology Department", "Mathematics Department"),
+            arrayOf("Main hallway"),
+            arrayOf("Main Wing")
         )
         val floorList = arrayOf (
             arrayOf("1st Floor","2nd Floor", "3rd Floor", "4th Floor"),
             arrayOf("1st Floor", "2nd Floor", "3rd Floor"),
-            arrayOf("Basement","1st Floor", "2nd Floor", "3rd Floor")
+            arrayOf("Basement 1","1st Floor", "2nd Floor", "3rd Floor"),
+            arrayOf("Basement 3","Basement 2","Basement 3","1st Floor", "2nd Floor", "3rd Floor"),
+            arrayOf("Basement","1st Floor","2nd Floor", "3rd Floor", "4th Floor", "5th Floor"),
+            arrayOf("1st Floor", "2nd Floor")
         )
+        val norooms = arrayOf("none")
         val buildingList = arrayOf("Lawrence Bunzel Building", "SMED Building", "SAFAD Building", "Basketball Court",
             "Philip van Engelen Building", "Josef Baumgartner Building")
-
+        val bunzelBuiding_fifth = arrayOf("LB561", "LB562", "LB563")
         val bunzelBuilding_fourth = arrayOf(
-            arrayOf("LBB482", "LBB483", "LBB484", "LB485", "LB486"),
-            arrayOf("LB466", "LBB467","LBB468", "LBB469"),
+            arrayOf("LB401","LB402","LB404"),
+            arrayOf("LB482", "LB483", "LB484", "LB485", "LB486"),
+            arrayOf("LB466", "LB467","LB468", "LB469"),
             arrayOf("LB444","LB445","LB446", "LB447", "LB448"),
-            arrayOf("LBB441","LB442")
+            arrayOf("LB441","LB442")
         )
         val bunzelBuilding_third =arrayOf(
-            arrayOf("LBB382", "LBB383", "LBB384", "LB385", "LB386"),
-            arrayOf("LB366", "LBB367","LBB368", "LBB369"),
-            arrayOf("LB344","LB345","LB346", "LB347", "LB348"),
-            arrayOf("LBB341","LB342")
+            arrayOf("LB306","LB305","LB304"),
+            arrayOf("LB380","LB381", "LB382", "LB383", "LB384", "LB386"),
+            arrayOf("LB363","LB364","LB366")
         )
         val bunzelBuilding_second =arrayOf(
-            arrayOf("LBB282", "LBB283", "LBB284", "LB285", "LB286"),
-            arrayOf("LB266", "LBB267","LBB268", "LBB269"),
-            arrayOf("LB244","LB245","LB246", "LB247", "LB248"),
-            arrayOf("LBB241","LB242")
+            arrayOf("LB280", "LBCEA1", "LB285", "LB286"),
+            arrayOf("LB264", "LB265","LB266", "LB267","LB268"),
+            arrayOf("LB245","LB246","LB247", "LB248"),
+            arrayOf("LB220")
         )
-        val bunzelBuilding_first =arrayOf(
-            arrayOf("LBB182", "LBB183", "LBB184", "LB185", "LB186"),
-            arrayOf("LB166", "LBB167","LBB168", "LBB169"),
-            arrayOf("LB144","LB145","LB146", "LB147", "LB148"),
-            arrayOf("LBB141","LB142")
+        val bunzelBuilding_first = arrayOf(
+            arrayOf("LB167", "LB168", "LB172"),
+            arrayOf("LB143", "LB144"),
+            arrayOf("LBCH1","LBCH2")
         )
-        val peBuilding_first = arrayOf(
-            arrayOf("LBB182", "LBB183", "LBB184", "LB185", "LB186"),
-            arrayOf("LB166", "LBB167","LBB168", "LBB169"),
-            arrayOf("LB144","LB145","LB146", "LB147", "LB148"),
-            arrayOf("LBB141","LB142")
+        val bunzelBuilding_basement = arrayOf("Cisco Laboratory")
+        val peBuilding = arrayOf(
+            arrayOf("PE11", "PE12", "PE13", "PE14", "PE15", "PE16"),
+            arrayOf("PE21","PE22", "PE23", "PE24", "PE25", "PE26"),
+            arrayOf("PE31","PE32", "PE34", "PE34B"),
+            arrayOf("PE40","PE41", "PE44B", "PE45")
         )
-
-
-        val peBuilding = arrayOf("PE13", "PE12","PE11","PE10")
-        val SMEDBuilding = arrayOf("FO10", "FO12","FO11","FO13")
-        val BCT_building = arrayOf("none")
-        val SAFADBuilding = arrayOf("SAFAD1", "SAFAD2","SAFAD3","SAFAD4")
-        val josefBuilding = arrayOf("LRC1", "LRC2","LRC3","LRC4")
+        val SMEDBuilding_third = arrayOf(
+            arrayOf("D314","D316", "D318"),
+            arrayOf("EO323","EO325", "EO328", "EO329", "EO331","EO333", "EO336", "EO337","EO338")
+        )
+        val SMEDBuilding_second = arrayOf(
+            arrayOf("D211","D212", "D214", "D215", "D216", "D218"),
+            arrayOf("ES228","ES229", "ES231", "ES232","ES233", "ES234", "ES235")
+        )
+        val SMEDbuilding_first = arrayOf("FO115", "FO117", "FO118", "FO120", "ES122")
+        val SMEDbuilding_basement = arrayOf("SMB1", "SMB2", "SMB3")
+        val BCT_building = arrayOf("BCT1", "BCT2")
+        val SAFADBuilding = arrayOf(
+            arrayOf("AFCB4", "AFCB3","AF3B02","AF3B01"),
+            arrayOf("AF2B11", "AF2B09", "Painting Studio","2B07A","2B07B","2B07C","2B07D","2B07F","2B07G"),
+            arrayOf("AF1B102","AF1B04","AF1B03","1B10A","1B10B","1B10C","1B12A","1B12B","1B12C","1B12D","1B12E","1B12F","AF109A","AF109B","AF109A", "AF110", "AF111","AF104","AF104","AF103","AF102","AF101"),
+            arrayOf("AF207", "AF208","AF209","AF210","AF211","AF212","AF213","AF214","AF215")
+        )
+        val chapelBuilding = arrayOf("AJB06")
+        val josefBuilding = arrayOf(
+            arrayOf("JBB101", "JBB102", "JBB103", "JBB104", "JBB105"),
+            arrayOf("BL101","BL102")
+        )
         val adapter = ArrayAdapter(
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
@@ -118,6 +141,7 @@ class activity_editschedule : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         buildings.adapter = adapter
+        //LBB
         val bunzel_wing_fourth_a  = ArrayAdapter(
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
@@ -198,16 +222,57 @@ class activity_editschedule : AppCompatActivity() {
             android.R.layout.simple_spinner_item, // Layout
             bunzelBuilding_first[3] // Array
         )
-
-        val PE  = ArrayAdapter(
+        //PE Building
+        val PE_first  = ArrayAdapter(
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
-            peBuilding // Array
+            peBuilding[0]// Array
         )
-        val SMED  = ArrayAdapter(
+        val PE_second  = ArrayAdapter(
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
-            SMEDBuilding // Array
+            peBuilding[1]// Array
+        )
+        val PE_third  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            peBuilding[2]// Array
+        )
+        val PE_fourth  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            peBuilding[3]// Array
+        )
+        //SMED
+        val SMED_third_a  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDBuilding_third[0] // Array
+        )
+        val SMED_third_b  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDBuilding_third[1] // Array
+        )
+        val SMED_second_a =ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDBuilding_second[0] // Array
+        )
+        val SMED_second_b = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDBuilding_second[1] // Array
+        )
+        val SMED_first = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDbuilding_first // Array
+        )
+        val SMED_basement = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            SMEDbuilding_basement // Array
         )
         val BCT  = ArrayAdapter(
             this, // Context
@@ -265,8 +330,16 @@ class activity_editschedule : AppCompatActivity() {
         bunzel_wing_first_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_first_c.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_first_d.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        PE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        SMED.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        PE_first.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        PE_second.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        PE_third.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        PE_fourth.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_third_a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_third_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_second_a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_second_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_first.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SMED_basement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         BCT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         SAFAD.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         LRC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -347,6 +420,17 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(bunzel_wing_second_d)
                 }
                 //endregion
+                //region PE
+                else if(wingName.equals("Main hallway") && floorName.equals("4th Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_fourth)
+                }else if(wingName.equals("Main hallway") && floorName.equals("3rd Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_third)
+                }else if(wingName.equals("Main hallway") && floorName.equals("2nd Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_second)
+                }else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_first)
+                }
+                //endregion
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
@@ -388,6 +472,47 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(bunzel_wing_first_c)
                 }else if(wingName.equals("Fourth Wing") && floorName.equals("1st Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_first_d)
+                }
+                //endregion
+                //region PE
+                else if(wingName.equals("Main hallway") && floorName.equals("4th Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_fourth)
+                }else if(wingName.equals("Main hallway") && floorName.equals("3rd Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_third)
+                }else if(wingName.equals("Main hallway") && floorName.equals("2nd Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_second)
+                }else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Philip van Engelen Building")) {
+                    room!!.setAdapter(PE_first)
+                }
+                //endregion
+                //region SMED
+                else if(wingName.equals("First Wing") && floorName.equals("3rd Floor") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_third_a)
+                }else if(wingName.equals("Second Wing") && floorName.equals("3rd Floor") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_third_b)
+                }else if(wingName.equals("First Wing") && floorName.equals("2nd Floor") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_second_a)
+                }else if(wingName.equals("Second Wing") && floorName.equals("2nd Floor") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_second_b)
+                }else if(wingName.equals("First Wing") && floorName.equals("1st Floor") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_first)
+                }else if(wingName.equals("First Wing") && floorName.equals("Basement") && buildingName.equals("SMED Building")) {
+                    room!!.setAdapter(SMED_basement)
+                }
+                //endregion
+                //region BCT
+                else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Basketball Court")) {
+                    room!!.setAdapter(BCT)
+                }
+                //endregion
+                //region LRC
+                else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Josef Baumgartner Building")) {
+                    room!!.setAdapter(LRC)
+                }
+                //endregion
+                //region SAFAD
+                else if(wingName.equals("First Wing") && floorName.equals("1st Floor") && buildingName.equals("SAFAD Building")) {
+                    room!!.setAdapter(SAFAD)
                 }
                 //endregion
             }
