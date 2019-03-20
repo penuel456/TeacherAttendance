@@ -48,182 +48,6 @@ class ScheduleFirebase {
         }
         //endregion
 
-        //region UPDATE DATA
-        fun UpdateSchedule(db: FirebaseFirestore, sched: ScheduleDB){
-            db.collection("cities").document(sched.courseID.toString())
-                .set(sched)
-                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated/written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-        }
-
-        fun UpdateRoomAssignment(db: FirebaseFirestore, room: RoomAssignment){
-            db.collection("cities").document(room.roomID.toString())
-                .set(room)
-                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated/written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-        }
-
-        fun UpdateStatus(db: FirebaseFirestore, status: Status){
-            db.collection("cities").document(status.statusId.toString())
-                .set(status)
-                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated/written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-        }
-
-        fun UpdateUser(db: FirebaseFirestore, user: UserDB){
-            db.collection("cities").document(user.userID.toString())
-                .set(user)
-                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated/written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-        }
-        //endregion
-
-        //region GET ALL DATA
-        fun GetAllSchedule(db: FirebaseFirestore): List<ScheduleDB>? {
-            var scheduleData: List<ScheduleDB>? = null
-            var ctr = 0
-
-            db.collection("scheduleDB")
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        scheduleData!![ctr].courseCode = document.data.getValue("courseCode").toString()
-                        scheduleData!![ctr].courseID = document.data.getValue("courseID") as Int
-                        scheduleData!![ctr].teacher = document.data.getValue("teacher").toString()
-                        scheduleData!![ctr].userID = document.data.getValue("userID") as Int
-                        scheduleData!![ctr].groupNumber = document.data.getValue("groupNumber") as Int
-                        ctr++
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting schedule documents: ", exception)
-                }
-
-            if(scheduleData!!.count() > 0){
-                return scheduleData
-            }else {
-                return null
-            }
-        }
-
-        fun GetAllRoomAssignment(db: FirebaseFirestore): List<RoomAssignment>? {
-            var roomAssignmentData: List<RoomAssignment>? = null
-            var ctr = 0
-
-            db.collection("roomAssignment")
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        roomAssignmentData!![ctr].courseID = document.data.getValue("courseID") as Int
-                        roomAssignmentData!![ctr].roomID = document.data.getValue("courseID") as Int
-                        roomAssignmentData!![ctr].roomNumber = document.data.getValue("roomNumber").toString()
-                        roomAssignmentData!![ctr].startTime = document.data.getValue("startTime") as Date
-                        roomAssignmentData!![ctr].endTime = document.data.getValue("endTime") as Date
-                        roomAssignmentData!![ctr].dayAssigned = document.data.getValue("dayAssigned").toString()
-                        ctr++
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting schedule documents: ", exception)
-                }
-
-            if(roomAssignmentData!!.count() > 0){
-                return roomAssignmentData
-            }else {
-                return null
-            }
-        }
-
-        fun GetAllStatus(db: FirebaseFirestore): List<Status>? {
-            var statusData: List<Status>? = null
-            var ctr = 0
-
-            db.collection("status")
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        statusData!![ctr].statusId = document.data.getValue("statusID") as Int
-                        statusData!![ctr].roomID = document.data.getValue("roomID") as Int
-                        statusData!![ctr].date = document.data.getValue("date") as Date
-                        statusData!![ctr].status = document.data.getValue("status").toString()
-                        statusData!![ctr].remarks = document.data.getValue("remarks").toString()
-                        ctr++
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting schedule documents: ", exception)
-                }
-
-            if(statusData!!.count() > 0){
-                return statusData
-            }else {
-                return null
-            }
-        }
-
-        fun GetAllUser(db: FirebaseFirestore): List<UserDB>? {
-            var userData: List<UserDB>? = null
-            var ctr = 0
-
-            db.collection("userDB")
-                .get()
-                .addOnCompleteListener { task ->
-
-                    for (document in task.result) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        userData!![ctr].userID = document.data.getValue("userID") as Int
-                        userData!![ctr].idNumber = document.data.getValue("id_number") as Int
-                        userData!![ctr].password = document.data.getValue("password").toString()
-                        userData!![ctr].password = document.data.getValue("type").toString()
-                        ctr++
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting schedule documents: ", exception)
-                }
-
-            if(userData!!.count() > 0){
-                return userData
-            }else {
-                return null
-            }
-
-        }
-        //endregion
-
-        //region GET SPECIFIC DATA
-        fun GetIDAndPassword(db: FirebaseFirestore, idNumber: Number, password: String): UserDB? {
-            try {
-                var done = CountDownLatch(2)
-                var userData = UserDB(0, 0, "None", "None")
-
-                db.collection("userDB").document(idNumber.toString())
-                    .get()
-                    .addOnCompleteListener { task ->
-                        if(task.isSuccessful) {
-                            val document = task.result
-                            Log.d(TAG, document.data.toString())
-                            if(document["password"].toString().equals(password)){
-                                userData.userID = document["userID"].toString().toInt()
-                                userData.idNumber = document["idNumber"].toString().toInt()
-                                userData.password = document["password"].toString()
-                                userData.type = document["type"].toString()
-                                Log.d(TAG, userData.toString())
-                                done.countDown()
-                            }
-                        }
-                    }
-
-                return userData
-            } catch (e: Throwable) {
-                //Manage error
-                return null
-            }
-        }
-
         //fun GetScheduleBy
         //endregion
     }
@@ -237,7 +61,7 @@ class ScheduleFirebaseDebug {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
-                            Log.d("FIREBASE", document.id + " => " + document.data)
+                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
                         }
                     } else {
                         Log.w("FIREBASE", "Error getting documents.", task.exception)
@@ -251,7 +75,7 @@ class ScheduleFirebaseDebug {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
-                            Log.d("FIREBASE", document.id + " => " + document.data)
+                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
                         }
                     } else {
                         Log.w("FIREBASE", "Error getting documents.", task.exception)
@@ -265,7 +89,7 @@ class ScheduleFirebaseDebug {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
-                            Log.d("FIREBASE", document.id + " => " + document.data)
+                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
                         }
                     } else {
                         Log.w("FIREBASE", "Error getting documents.", task.exception)
@@ -279,7 +103,7 @@ class ScheduleFirebaseDebug {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
-                            Log.d("FIREBASE", document.id + " => " + document.data)
+                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
                         }
                     } else {
                         Log.w("FIREBASE", "Error getting documents.", task.exception)
