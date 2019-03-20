@@ -3,12 +3,15 @@ package usc.dcis.teacherattendancesystem.menu
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.menu_fragment_lbb.*
+import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.teacherattendancesystem.R
 import usc.dcis.teacherattendancesystem.roomSchedule
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
@@ -353,9 +356,34 @@ class Menu_fragment_lbb : Fragment() {
         val sdf = java.text.SimpleDateFormat("h:m a")
 
         val rooms1stFloor = arrayListOf("LB110TC", "LB111TC", "LB112TC", "LB113TC", "LB114TC", "LB120TC", "LB121TC", "LB122TC")
+        val bunzelBuilding_first = arrayOf(
+            arrayOf("LB167", "LB168", "LB172"),
+            arrayOf("LB143", "LB144"),
+            arrayOf("LBCH1","LBCH2")
+        )
 
-        //110
-        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[0], sdf.parse("1:30 PM"),
+
+        //region 167
+        ScheduleFirebase.AddRoomAssignment(FirebaseFirestore.getInstance(), RoomAssignment(0, 1, bunzelBuilding_first[0][0], sdf.parse("1:30 PM"),
+            sdf.parse("3:30 PM"), "T"))
+        var firestore = FirebaseFirestore.getInstance()
+        //adding the stuff in firebase to all rooms
+
+        firestore.collection("roomAssignment")
+            .get()
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    var documents = task.result
+                    var rooms = documents.toObjects(RoomAssignment::class.java)
+
+                    for(room in rooms){
+                        if(scheduleListTest.getRoomAssignmentCountBycourseId(room.roomID) == 0){
+                            scheduleListTest.insertRoomAssignment(room)
+                        }
+                    }
+                }
+            }
+        scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, bunzelBuilding_first[0][0], sdf.parse("1:30 PM"),
             sdf.parse("3:30 PM"), "T"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 1, rooms1stFloor[0], sdf.parse("1:30 PM"),
             sdf.parse("4:30 PM"), "TH"))
@@ -433,7 +461,7 @@ class Menu_fragment_lbb : Fragment() {
             sdf.parse("11:30 AM"), "W"))
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
             sdf.parse("10:30 AM"), "F"))
-
+        //endregion
 
 
 
