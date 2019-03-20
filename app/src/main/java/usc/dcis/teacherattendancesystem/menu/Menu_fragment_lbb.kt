@@ -377,6 +377,7 @@ class Menu_fragment_lbb : Fragment() {
                     var rooms = documents.toObjects(RoomAssignment::class.java)
 
                     for(room in rooms){
+                        //make sure to change this to scheduleListTest.getRoomAssignmentCountByroomId
                         if(scheduleListTest.getRoomAssignmentCountBycourseId(room.roomID) == 0){
                             scheduleListTest.insertRoomAssignment(room)
                         }
