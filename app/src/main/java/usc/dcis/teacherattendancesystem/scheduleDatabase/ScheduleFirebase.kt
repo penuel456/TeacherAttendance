@@ -48,7 +48,70 @@ class ScheduleFirebase {
         }
         //endregion
 
-        //fun GetScheduleBy
+        //region ADD MULTIPLE DATA
+        fun AddMultipleSchedules(db: FirebaseFirestore, sched: List<ScheduleDB>) {
+            val batch = db.batch()
+
+            for(scheds in sched){
+                batch.set(db.collection("scheduleDB").document(scheds.courseID.toString()), scheds)
+            }
+
+            batch.commit().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "Multiple schedules successfully added")
+                }else {
+                    Log.d(TAG, "Error: ${task.exception}")
+                }
+            }
+        }
+
+        fun AddMultipleRoomAssignments(db: FirebaseFirestore, rooms: List<RoomAssignment>) {
+            val batch = db.batch()
+
+            for(room in rooms){
+                batch.set(db.collection("scheduleDB").document(room.roomID.toString()), rooms)
+            }
+
+            batch.commit().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "Multiple rooms successfully added")
+                }else {
+                    Log.d(TAG, "Error: ${task.exception}")
+                }
+            }
+        }
+
+        fun AddMultipleStatuses(db: FirebaseFirestore, statuses: List<Status>) {
+            val batch = db.batch()
+
+            for(status in statuses){
+                batch.set(db.collection("scheduleDB").document(status.statusId.toString()), status)
+            }
+
+            batch.commit().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "Multiple statuses successfully added")
+                }else {
+                    Log.d(TAG, "Error: ${task.exception}")
+                }
+            }
+        }
+
+        fun AddMultipleUsers(db: FirebaseFirestore, users: List<UserDB>) {
+            val batch = db.batch()
+
+            for(user in users){
+                batch.set(db.collection("scheduleDB").document(user.userID.toString()), users)
+            }
+
+            batch.commit().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "Multiple users successfully added")
+                }else {
+                    Log.d(TAG, "Error: ${task.exception}")
+                }
+            }
+        }
         //endregion
     }
 }

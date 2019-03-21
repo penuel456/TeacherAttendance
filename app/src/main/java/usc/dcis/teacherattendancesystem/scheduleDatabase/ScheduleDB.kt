@@ -30,21 +30,30 @@ data class ScheduleDB(
 )
 
 // ROOM ASSIGNMENTS
+// ScheduleDB.courseID = RoomAssignment.courseID
+// AND
+// ScheduleDB.courseCode = RoomAssignment.courseCode
 @Entity(tableName = "Room_Assignments", foreignKeys = arrayOf(ForeignKey(entity = ScheduleDB::class,
-    parentColumns = arrayOf("courseID"),
-    childColumns = arrayOf("courseID"),
+    parentColumns = arrayOf("courseCode"),
+    childColumns = arrayOf("courseCode"),
+    onDelete = ForeignKey.CASCADE,
+    onUpdate = ForeignKey.CASCADE),
+    ForeignKey(entity = ScheduleDB::class,
+    parentColumns = arrayOf("groupNumber"),
+    childColumns = arrayOf("groupNumber"),
     onDelete = ForeignKey.CASCADE,
     onUpdate = ForeignKey.CASCADE)))
 data class RoomAssignment(
     @PrimaryKey(autoGenerate = true) var roomID: Int = 0,
-    // FOREIGN KEY
-    var courseID: Int,
+    // FOREIGN KEYS
+    var courseCode: String,
+    var groupNumber: Int,
 
     var roomNumber: String,
     var startTime: Date,
     var endTime: Date,
 
-    // MWF, TTH, etc
+    // M, T, W, TH, F, SAT, SUN
     var dayAssigned: String
 )
 
