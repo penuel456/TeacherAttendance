@@ -362,7 +362,7 @@ class Menu_fragment_lbb : Fragment() {
             arrayOf("LBCH1","LBCH2")
         )
 
-
+        /*
         //region 167
         ScheduleFirebase.AddRoomAssignment(FirebaseFirestore.getInstance(), RoomAssignment(0, 1, bunzelBuilding_first[0][0], sdf.parse("1:30 PM"),
             sdf.parse("3:30 PM"), "T"))
@@ -463,7 +463,7 @@ class Menu_fragment_lbb : Fragment() {
         scheduleListTest.insertRoomAssignment(RoomAssignment(0, 2, rooms2ndFloor[2], sdf.parse("10:30 AM"),
             sdf.parse("10:30 AM"), "F"))
         //endregion
-
+        */
 
 
 

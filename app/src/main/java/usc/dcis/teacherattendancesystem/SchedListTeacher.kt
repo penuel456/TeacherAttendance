@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_sched_list_teacher.view.*
 
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
+import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
 
 
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
@@ -92,6 +93,7 @@ class SchedListTeacher : AppCompatActivity() {
         val sdfTime = getCurrentTime()
         val sdfDate = getCurrentDate()
 
+        /*
         for(rooms in roomAssignmentList){
             Log.d("TODAYROOM: ", rooms.toString())
             val currentSched = scheduleDao.getSchedule(rooms.courseID)
@@ -120,6 +122,7 @@ class SchedListTeacher : AppCompatActivity() {
 
             if(isThereOnGoing && isThereUpNext) break
         }
+        */
     }
 
     public fun refreshSchedule(view: View){
@@ -145,8 +148,8 @@ class SchedListTeacher : AppCompatActivity() {
 
         for(rooms in roomAssignmentList){
             Log.d("ROOMASSN", "RoomID: ${rooms.roomID}")
-            Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
-            Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
+            //Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
+            //Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
             Log.d("ROOMASSN", "StartTime: ${sdf.format(rooms.startTime)}")
             Log.d("ROOMASSN", "EndTime: ${sdf.format(rooms.endTime)}")
             Log.d("ROOMASSN", "DayAssigned: ${rooms.dayAssigned}")
