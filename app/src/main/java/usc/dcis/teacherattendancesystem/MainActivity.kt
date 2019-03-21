@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         firestore.firestoreSettings = settings
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        //testDatabase()
+        testDatabase()
         //testUserDatabase()
 
     }
@@ -65,15 +65,19 @@ class MainActivity : AppCompatActivity() {
 
                                 Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
-                                if(userDB.type.equals("student")){
-                                    val activity = Intent(this, SchedListStudent::class.java)
-                                    startActivity(activity)
-                                }else if(userDB.type.equals("teacher")){
-                                    val activity = Intent(this, SchedListTeacher::class.java)
-                                    startActivity(activity)
-                                }else if(userDB.type.equals("dean")){
-                                    val activity = Intent(this, Menu::class.java)
-                                    startActivity(activity)
+                                when {
+                                    userDB.type.equals("student") -> {
+                                        val activity = Intent(this, SchedListStudent::class.java)
+                                        startActivity(activity)
+                                    }
+                                    userDB.type.equals("teacher") -> {
+                                        val activity = Intent(this, SchedListTeacher::class.java)
+                                        startActivity(activity)
+                                    }
+                                    userDB.type.equals("dean") -> {
+                                        val activity = Intent(this, Menu::class.java)
+                                        startActivity(activity)
+                                    }
                                 }
                             }else {
                                 Toast.makeText(this, "Incorrect password.", Toast.LENGTH_SHORT).show()
@@ -281,12 +285,16 @@ class MainActivity : AppCompatActivity() {
 
             if (statusCheck == 0) {
                 scheduleListTest.insertStatus(Status(0, sched.roomID, DateManager.getCurrentDate(), "Absent"))
+                ScheduleFirebase.AddStatus(FirebaseFirestore.getInstance(),
+                    scheduleListTest.getStatusByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID))
             }
         }
 
 
         ScheduleDebug.printAllStatus(scheduleListTest)
         ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
+
+        ScheduleDatabase.destroyInstance()
 
     }
 

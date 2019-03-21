@@ -58,9 +58,6 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments")
     fun getAllRoomAssignments(): List<RoomAssignment>
 
-    @Query("SELECT * FROM Room_Assignments WHERE courseID = :courseId")
-    fun getAllRoomAssignmentsByCourseId(courseId: Int): List<RoomAssignment>
-
     @Query("SELECT * FROM Room_Assignments WHERE dayAssigned = :dayAssigned ORDER BY startTime DESC")
     fun getAllRoomAssignmentsByDay(dayAssigned: String): List<RoomAssignment>
 
@@ -92,8 +89,8 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Statuses")
     fun getAllStatus(): List<Status>
 
-    @Query("SELECT * FROM Statuses WHERE roomID = :statusId")
-    fun getAllStatusByStatusId(statusId: Int): List<Status>
+    @Query("SELECT * FROM Statuses WHERE statusId = :statusId")
+    fun getStatusByStatusId(statusId: Int): Status
 
     @Query("SELECT * FROM Statuses WHERE roomID = :roomId")
     fun getAllStatusByRoomId(roomId: Int): List<Status>
