@@ -118,6 +118,7 @@ class ScheduleFirebase {
 
 class ScheduleFirebaseDebug {
     companion object {
+        /*
         fun printRoomAssignment(db: FirebaseFirestore){
             db.collection("roomAssignment")
                 .get()
@@ -173,6 +174,7 @@ class ScheduleFirebaseDebug {
                     }
                 }
         }
+        */
     }
 }
 

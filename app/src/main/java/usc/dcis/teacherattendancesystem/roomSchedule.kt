@@ -29,7 +29,7 @@ class roomSchedule : AppCompatActivity() {
 
         val roomNumber = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomTitle)
 
-
+        /*
         var firestore = FirebaseFirestore.getInstance()
         firestore.collection("roomAssignment").whereEqualTo("roomNumber", roomTitle)
             .get()
@@ -80,6 +80,7 @@ class roomSchedule : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+        */
     }
 
 }

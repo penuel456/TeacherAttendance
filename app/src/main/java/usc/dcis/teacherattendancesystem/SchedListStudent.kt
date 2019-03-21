@@ -60,7 +60,7 @@ class SchedListStudent : AppCompatActivity() {
 
         val sdfTime = getCurrentTime()
         val sdfDate = getCurrentDate()
-
+        /*
         for(rooms in roomAssignmentList){
             Log.d("TODAYROOM: ", rooms?.toString())
             val currentSched = scheduleDao.getSchedule(rooms?.courseID)
@@ -89,6 +89,7 @@ class SchedListStudent : AppCompatActivity() {
 
             if(isThereOnGoing && isThereUpNext) break
         }
+        */
     }
 
     fun refreshSchedule(view: View){
@@ -104,8 +105,8 @@ class SchedListStudent : AppCompatActivity() {
 
         for(rooms in roomAssignmentList){
             Log.d("ROOMASSN", "RoomID: ${rooms.roomID}")
-            Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
-            Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
+            //Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
+            //Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
             Log.d("ROOMASSN", "StartTime: ${sdf.format(rooms.startTime)}")
             Log.d("ROOMASSN", "EndTime: ${sdf.format(rooms.endTime)}")
             Log.d("ROOMASSN", "DayAssigned: ${rooms.dayAssigned}")

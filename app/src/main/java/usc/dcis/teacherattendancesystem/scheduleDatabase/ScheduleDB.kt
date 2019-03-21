@@ -1,6 +1,7 @@
 package usc.dcis.teacherattendancesystem.scheduleDatabase
 
 import android.arch.persistence.room.*
+import android.support.annotation.NonNull
 import java.lang.reflect.Constructor
 import java.util.*
 
@@ -25,7 +26,7 @@ data class ScheduleDB(
     @PrimaryKey(autoGenerate = true) var courseID: Int = 0,
     @ColumnInfo(name = "user_id") var userID: Int = 0,
     @ColumnInfo(name = "group_number") var groupNumber: Int = 0,
-    @ColumnInfo(name = "course_code")var courseCode: String? = null,
+    @ColumnInfo(name = "course_code") var courseCode: String = "",
     @ColumnInfo(name = "teacher") var teacher: String? = null
 )
 
@@ -33,21 +34,12 @@ data class ScheduleDB(
 // ScheduleDB.courseID = RoomAssignment.courseID
 // AND
 // ScheduleDB.courseCode = RoomAssignment.courseCode
-@Entity(tableName = "Room_Assignments", foreignKeys = arrayOf(ForeignKey(entity = ScheduleDB::class,
-    parentColumns = arrayOf("courseCode"),
-    childColumns = arrayOf("courseCode"),
-    onDelete = ForeignKey.CASCADE,
-    onUpdate = ForeignKey.CASCADE),
-    ForeignKey(entity = ScheduleDB::class,
-    parentColumns = arrayOf("groupNumber"),
-    childColumns = arrayOf("groupNumber"),
-    onDelete = ForeignKey.CASCADE,
-    onUpdate = ForeignKey.CASCADE)))
+@Entity(tableName = "Room_Assignments")
 data class RoomAssignment(
     @PrimaryKey(autoGenerate = true) var roomID: Int = 0,
     // FOREIGN KEYS
-    var courseCode: String,
-    var groupNumber: Int,
+    @ColumnInfo(name = "course_code") var courseCode: String,
+    @ColumnInfo(name = "group_number") var groupNumber: Int,
 
     var roomNumber: String,
     var startTime: Date,

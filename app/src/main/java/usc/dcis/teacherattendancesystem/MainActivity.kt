@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     if(task.isComplete){
                         var userSnapshot = task.result
 
-                        if(userSnapshot.exists() && userSnapshot != null){
+                        if(userSnapshot?.exists()!! && userSnapshot != null){
                             if(password.text.isNotBlank() && userSnapshot["password"].toString() == password.text.toString()){
                                 var userDB = UserDB(userSnapshot["userID"].toString().toInt(),
                                     userSnapshot["idNumber"].toString().toInt(), userSnapshot["password"].toString(),
@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity() {
         val db = ScheduleDatabase.getInstance(this)
         var scheduleListTest = db.scheduleDAO
 
-        /*
+
 
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
@@ -200,76 +200,75 @@ class MainActivity : AppCompatActivity() {
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(ScheduleDB(0, 2, 1, "NIPPONGO1", "Ms. Watanabe"))
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "NIPPONGO1", "Ms. Watanabe"))
-       */
 
-       /* ScheduleDebug.printAllSchedules(scheduleListTest)
+
+        ScheduleDebug.printAllSchedules(scheduleListTest)
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 1, "LB485TC", sdf.parse("10:30 AM"),
+                0, "IT5001", 1, "LB485TC", sdf.parse("10:30 AM"),
                 sdf.parse("12:00 PM"), "M"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 1, "LB448TC", sdf.parse("10:30 AM"),
+                0, "IT5001", 1, "LB448TC", sdf.parse("10:30 AM"),
                 sdf.parse("12:00 PM"), "W"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 1, "LB485TC", sdf.parse("10:30 AM"),
+                0, "IT5001", 1, "LB485TC", sdf.parse("10:30 AM"),
                 sdf.parse("12:00 PM"), "F"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 2, "LB484TC", sdf.parse("1:30 PM"),
+                0, "IT1101", 1, "LB484TC", sdf.parse("1:30 PM"),
                 sdf.parse("5:00 PM"), "M"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 2, "LB483TC", sdf.parse("1:30 PM"),
+                0, "IT1101", 1, "LB483TC", sdf.parse("1:30 PM"),
                 sdf.parse("5:00 PM"), "W"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 2, "LB484TC", sdf.parse("1:30 PM"),
+                0, "IT1101", 1, "LB484TC", sdf.parse("1:30 PM"),
                 sdf.parse("5:00 PM"), "F"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 3, "LB306TC", sdf.parse("5:30 PM"),
+                0, "MATH25", 1, "LB306TC", sdf.parse("5:30 PM"),
                 sdf.parse("6:30 PM"), "M"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 3, "LB306TC", sdf.parse("5:30 PM"),
+                0, "MATH25", 1, "LB306TC", sdf.parse("5:30 PM"),
                 sdf.parse("6:30 PM"), "W"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 3, "LB306TC", sdf.parse("5:30 PM"),
+                0, "MATH25", 1, "LB306TC", sdf.parse("5:30 PM"),
                 sdf.parse("6:30 PM"), "F"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 4, "LB404TC", sdf.parse("1:30 PM"),
+                0, "NIPPONGO1", 1, "LB404TC", sdf.parse("1:30 PM"),
                 sdf.parse("5:00 PM"), "T"
             )
         )
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
-                0, 4, "LB404TC", sdf.parse("1:30 PM"),
+                0, "NIPPONGO1", 1, "LB404TC", sdf.parse("1:30 PM"),
                 sdf.parse("5:00 PM"), "TH"
             )
         )
-        */
         ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
 

@@ -64,6 +64,9 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber")
     fun getAllRoomAssignmentsByRoomNumber(roomNumber: String) : List<RoomAssignment>
 
+    @Query("SELECT * FROM Room_Assignments WHERE course_code = :courseCode AND group_number = :groupNumber")
+    fun getRoomAssignmentByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): RoomAssignment
+
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber AND dayAssigned = :dayAssigned")
     fun getAllRoomAssignmentsByRoomNumberAndDay(roomNumber: String, dayAssigned: String) : List<RoomAssignment>
 
