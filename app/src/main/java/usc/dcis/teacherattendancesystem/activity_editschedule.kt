@@ -81,7 +81,7 @@ class activity_editschedule : AppCompatActivity() {
         )
         val norooms = arrayOf("none")
         val buildingList = arrayOf("Lawrence Bunzel Building", "SMED Building", "SAFAD Building", "Basketball Court",
-            "Philip van Engelen Building", "Josef Baumgartner Building")
+            "Philip van Engelen Building", "Josef Baumgartner Building", "Chapel")
         val bunzelBuilding_fifth = arrayOf("LB561", "LB562", "LB563")
         val bunzelBuilding_fourth = arrayOf(
             arrayOf("LB401","LB402","LB404"),
@@ -322,6 +322,11 @@ class activity_editschedule : AppCompatActivity() {
             android.R.layout.simple_spinner_item, // Layout
             josefBuilding[1] // Array
         )
+        val chapel = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            chapelBuilding // Array
+        )
         //region wing Arrayadapter
         val wing_a =ArrayAdapter(
             this, // Context
@@ -453,6 +458,9 @@ class activity_editschedule : AppCompatActivity() {
         floor_f.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         floor_g.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         //endregion
+        //region chapel setDropDown
+        chapel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        //endregion
         no_rooms.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
 
@@ -483,6 +491,10 @@ class activity_editschedule : AppCompatActivity() {
                     "SMED Building" ->{
                         floor!!.setAdapter(floor_c)
                         wing!!.setAdapter(wing_c)
+                    }
+                    "Chapel" ->{
+                        floor!!.setAdapter(floor_g)
+                        wing!!.setAdapter(wing_d)
                     }
                 }
 
@@ -576,6 +588,11 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(SAFAD_basement_b)
                 }else if(wingName.equals("Main hallway") && floorName.equals("Basement 3") && buildingName.equals("SAFAD Building")) {
                     room!!.setAdapter(SAFAD_basement_c)
+                }
+                //chapel
+                else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Chapel")) {
+                    room!!.setAdapter(chapel)
+
                 }else{
                     room!!.setAdapter(no_rooms)
                 }
@@ -666,7 +683,11 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(SAFAD_basement_b)
                 }else if(wingName.equals("Main hallway") && floorName.equals("Basement 3") && buildingName.equals("SAFAD Building")) {
                     room!!.setAdapter(SAFAD_basement_c)
-                }else{
+                    //chapel
+                }else if(wingName.equals("Main hallway") && floorName.equals("1st Floor") && buildingName.equals("Chapel")) {
+                        room!!.setAdapter(chapel)
+
+                    }else{
                     room!!.setAdapter(no_rooms)
                 }
             }
