@@ -62,28 +62,28 @@ class SchedListStudent : AppCompatActivity() {
         val sdfDate = getCurrentDate()
 
         for(rooms in roomAssignmentList){
-            Log.d("TODAYROOM: ", rooms.toString())
-            val currentSched = scheduleDao.getSchedule(rooms.courseID)
-            if(sdfTime.after(rooms.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is FINISHED in ${rooms.roomNumber}")
-            }else if(sdfTime.before(rooms.startTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is ABOUT TO GO in ${rooms.roomNumber}")
-                Schedule_teacher_layout.studUpNextCourseCode.text = currentSched.courseCode
-                Schedule_teacher_layout.studUpNextTeacher.text = currentSched.teacher
-                Schedule_teacher_layout.studUpNextBuilding.text = rooms.roomNumber
-                Schedule_teacher_layout.studUpNextStartTime.text = sdf.format(rooms.startTime)
-                Schedule_teacher_layout.studUpNextStartTime.text = sdf.format(rooms.endTime)
+            Log.d("TODAYROOM: ", rooms?.toString())
+            val currentSched = scheduleDao.getSchedule(rooms?.courseID)
+            if(sdfTime.after(rooms?.endTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is FINISHED in ${rooms?.roomNumber}")
+            }else if(sdfTime.before(rooms?.startTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is ABOUT TO GO in ${rooms?.roomNumber}")
+                Schedule_layout.studUpNextCourseCode.text = currentSched?.courseCode
+                Schedule_layout.studUpNextTeacher.text = currentSched?.teacher
+                Schedule_layout.studUpNextBuilding.text = rooms?.roomNumber
+                Schedule_layout.studUpNextStartTime.text = sdf.format(rooms?.startTime)
+                Schedule_layout.studUpNextEndTime.text = sdf.format(rooms?.endTime)
                 isThereUpNext = true
             }else if(sdfTime.after(rooms.startTime) && sdfTime.before(rooms.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is CURRENTLY in ${rooms.roomNumber}")
-                Schedule_teacher_layout.studCourseCode.text = currentSched.courseCode
-                Schedule_teacher_layout.studTeacher.text = currentSched.teacher
-                Schedule_teacher_layout.studBuilding.text = rooms.roomNumber
-                Schedule_teacher_layout.studStartTime.text = sdf.format(rooms.startTime)
-                Schedule_teacher_layout.studStartTime.text = sdf.format(rooms.endTime)
+                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is CURRENTLY in ${rooms?.roomNumber}")
+                Schedule_layout.studCourseCode.text = currentSched?.courseCode
+                Schedule_layout.studTeacher.text = currentSched?.teacher
+                Schedule_layout.studBuilding.text = rooms?.roomNumber
+                Schedule_layout.studStartTime.text = sdf.format(rooms?.startTime)
+                Schedule_layout.studEndTime.text = sdf.format(rooms?.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-                Schedule_teacher_layout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
+                Schedule_layout.studStatus.text = scheduleDao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
                 isThereOnGoing = true
             }
 

@@ -25,18 +25,18 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class MainActivity : AppCompatActivity() {
 
-    //var firestore = FirebaseFirestore.getInstance()
-    //val settings = FirebaseFirestoreSettings.Builder()
-    //    .setTimestampsInSnapshotsEnabled(true)
-    //    .build()
+    var firestore = FirebaseFirestore.getInstance()
+    val settings = FirebaseFirestoreSettings.Builder()
+        .setTimestampsInSnapshotsEnabled(true)
+        .build()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //FirebaseApp.initializeApp(this)
-        //firestore.firestoreSettings = settings
+        FirebaseApp.initializeApp(this)
+        firestore.firestoreSettings = settings
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         //testDatabase()
@@ -47,45 +47,50 @@ class MainActivity : AppCompatActivity() {
     fun check(view : View){
         Toast.makeText(this, "Attempting to login", Toast.LENGTH_SHORT).show()
 
-        /*
-        firestore.collection("userDB").document(username.text.toString())
-            .get()
-            .addOnCompleteListener { task ->
-                if(task.isComplete){
-                    var userSnapshot = task.result
+        try{
+            firestore.collection("userDB").document(username.text.toString())
+                .get()
+                .addOnCompleteListener { task ->
+                    if(task.isComplete){
+                        var userSnapshot = task.result
 
-                    if(userSnapshot.exists() && userSnapshot != null){
-                        if(userSnapshot["password"].toString() == password.text.toString()){
-                            var userDB = UserDB(userSnapshot["userID"].toString().toInt(),
-                                userSnapshot["idNumber"].toString().toInt(), userSnapshot["password"].toString(),
-                                userSnapshot["type"].toString())
+                        if(userSnapshot.exists() && userSnapshot != null){
+                            if(password.text.isNotBlank() && userSnapshot["password"].toString() == password.text.toString()){
+                                var userDB = UserDB(userSnapshot["userID"].toString().toInt(),
+                                    userSnapshot["idNumber"].toString().toInt(), userSnapshot["password"].toString(),
+                                    userSnapshot["type"].toString())
 
-                            Log.d("FIREBASE", "ID Number => ${userSnapshot["idNumber"]}")
-                            Log.d("FIREBASE", "ID Number: ${userDB?.idNumber}")
+                                Log.d("FIREBASE", "ID Number => ${userSnapshot["idNumber"]}")
+                                Log.d("FIREBASE", "ID Number: ${userDB?.idNumber}")
 
-                            Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
-                            if(userDB.type.equals("student")){
-                                val activity = Intent(this, SchedListStudent::class.java)
-                                startActivity(activity)
-                            }else if(userDB.type.equals("teacher")){
-                                val activity = Intent(this, SchedListTeacher::class.java)
-                                startActivity(activity)
-                            }else if(userDB.type.equals("dean")){
-                                val activity = Intent(this, Menu::class.java)
-                                startActivity(activity)
+                                if(userDB.type.equals("student")){
+                                    val activity = Intent(this, SchedListStudent::class.java)
+                                    startActivity(activity)
+                                }else if(userDB.type.equals("teacher")){
+                                    val activity = Intent(this, SchedListTeacher::class.java)
+                                    startActivity(activity)
+                                }else if(userDB.type.equals("dean")){
+                                    val activity = Intent(this, Menu::class.java)
+                                    startActivity(activity)
+                                }
+                            }else {
+                                Toast.makeText(this, "Incorrect password.", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }else {
-                        Toast.makeText(this, "Incorrect username/password", Toast.LENGTH_SHORT).show()
+                        Log.e("FIREBASE", "Error: ${task.exception?.message}")
+                        Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
-                }else {
-                    Log.e("FIREBASE", "Error: ${task.exception?.message}")
-                    Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
-            }
-        */
+        }catch(e: Exception){
+            Toast.makeText(this, "Fill up empty fields.", Toast.LENGTH_SHORT).show()
+            Log.w("FIREBASE", "Error: ${e.message}")
+        }
 
+
+        /*
         val db = ScheduleDatabase.getInstance(this)
         var user = db.scheduleDAO
 
@@ -116,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
+        */
     }
 
     fun testUserDatabase(){
@@ -191,10 +196,9 @@ class MainActivity : AppCompatActivity() {
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(ScheduleDB(0, 2, 1, "NIPPONGO1", "Ms. Watanabe"))
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "NIPPONGO1", "Ms. Watanabe"))
+       */
 
-*/
        /* ScheduleDebug.printAllSchedules(scheduleListTest)
-
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, 1, "LB485TC", sdf.parse("10:30 AM"),
@@ -261,10 +265,10 @@ class MainActivity : AppCompatActivity() {
                 sdf.parse("5:00 PM"), "TH"
             )
         )
-
+        */
         ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
-*/
+
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
 
 
