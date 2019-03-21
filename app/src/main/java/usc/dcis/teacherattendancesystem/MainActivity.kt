@@ -193,7 +193,7 @@ class MainActivity : AppCompatActivity() {
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "NIPPONGO1", "Ms. Watanabe"))
 
 */
-        ScheduleDebug.printAllSchedules(scheduleListTest)
+       /* ScheduleDebug.printAllSchedules(scheduleListTest)
 
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
@@ -264,10 +264,10 @@ class MainActivity : AppCompatActivity() {
 
         ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
-
+*/
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
 
-        */
+
 
         // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
         var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
