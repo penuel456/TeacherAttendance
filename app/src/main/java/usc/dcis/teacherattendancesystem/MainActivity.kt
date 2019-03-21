@@ -196,10 +196,9 @@ class MainActivity : AppCompatActivity() {
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "MATH25", "Ms. Punzalan"))
         scheduleListTest.insert(ScheduleDB(0, 2, 1, "NIPPONGO1", "Ms. Watanabe"))
         scheduleListTest.insert(ScheduleDB(0, 3, 1, "NIPPONGO1", "Ms. Watanabe"))
+       */
 
-*/
-        ScheduleDebug.printAllSchedules(scheduleListTest)
-        /*
+       /* ScheduleDebug.printAllSchedules(scheduleListTest)
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, 1, "LB485TC", sdf.parse("10:30 AM"),
