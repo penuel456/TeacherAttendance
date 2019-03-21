@@ -136,6 +136,8 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Room_Assignments WHERE courseID = :courseId")
     fun getRoomAssignmentCountBycourseId(courseId: Int): Int
 
+    @Query("SELECT COUNT(*) FROM Room_Assignments WHERE roomID = :roomID")
+    fun getRoomAssignmentCountByroomID(roomID: Int): Int
     /******************************* ALL COUNT QUERIES *********************************************/
 
 
