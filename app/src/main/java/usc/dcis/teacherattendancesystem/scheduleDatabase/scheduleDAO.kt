@@ -37,6 +37,9 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Schedules WHERE courseID = :courseId")
     fun getSchedule(courseId: Int): ScheduleDB
 
+    @Query("SELECT * FROM users WHERE userID = :teacherID")
+    fun getTeacherFromSchedule(teacherID: Int): UserDB
+
     /******************************* ALL SCHEDULEDB QUERIES ****************************************/
 
     /******************************* ALL USERSWITHSCHEDULES QUERIES ********************************/
@@ -58,18 +61,27 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Room_Assignments")
     fun getAllRoomAssignments(): List<RoomAssignment>
 
+    // Getting all Room Assignments by DAY
     @Query("SELECT * FROM Room_Assignments WHERE dayAssigned = :dayAssigned ORDER BY startTime DESC")
     fun getAllRoomAssignmentsByDay(dayAssigned: String): List<RoomAssignment>
 
+    // Getting all Room Assignments by ROOM NUMBER
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber")
     fun getAllRoomAssignmentsByRoomNumber(roomNumber: String) : List<RoomAssignment>
 
+    // Getting all Room Assignments by COURSE CODE and GROUP NUMBER
     @Query("SELECT * FROM Room_Assignments WHERE course_code = :courseCode AND group_number = :groupNumber")
     fun getRoomAssignmentByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): RoomAssignment
 
+    // Getting all Room Assignments by COURSE CODE
+    @Query("SELECT * FROM Room_Assignments WHERE course_code = :courseCode")
+    fun getAllRoomAssignmentsByCourseCode(courseCode: String): List<RoomAssignment>
+
+    // Getting all Room Assignments by ROOM NUMBER and DAY
     @Query("SELECT * FROM Room_Assignments WHERE roomNumber = :roomNumber AND dayAssigned = :dayAssigned")
     fun getAllRoomAssignmentsByRoomNumberAndDay(roomNumber: String, dayAssigned: String) : List<RoomAssignment>
 
+    // Getting all Room Assignments by BY ROOM ID
     @Query("SELECT * FROM Room_Assignments WHERE roomID = :roomId")
     fun getRoomAssignmentByRoomId(roomId: Int): RoomAssignment
 

@@ -25,28 +25,32 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class MainActivity : AppCompatActivity() {
 
+    /*
     var firestore = FirebaseFirestore.getInstance()
     val settings = FirebaseFirestoreSettings.Builder()
         .setTimestampsInSnapshotsEnabled(true)
         .build()
-
+    */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
         FirebaseApp.initializeApp(this)
         firestore.firestoreSettings = settings
+        */
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        testDatabase()
-        //testUserDatabase()
+        //testDatabase()
+        testUserDatabase()
 
     }
 
     fun check(view : View){
         Toast.makeText(this, "Attempting to login", Toast.LENGTH_SHORT).show()
 
+        /*
         try{
             firestore.collection("userDB").document(username.text.toString())
                 .get()
@@ -92,9 +96,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Fill up empty fields.", Toast.LENGTH_SHORT).show()
             Log.w("FIREBASE", "Error: ${e.message}")
         }
+        */
 
 
-        /*
         val db = ScheduleDatabase.getInstance(this)
         var user = db.scheduleDAO
 
@@ -125,24 +129,22 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        */
+
     }
 
     fun testUserDatabase(){
+        val TAG = "USER"
         val db = ScheduleDatabase.getInstance(this)
         var userList = db.scheduleDAO
 
-        /*
-        userList.insertUser(UserDB(0, 3, "3", "student"))
-        userList.insertUser(UserDB(0, 2, "2", "teacher"))
-        userList.insertUser(UserDB(0, 1, "1", "dean"))
-        */
+
+        userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
+        userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
+        userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
+
 
         for(users in userList.getAllUsers()){
-            Log.d("USER", "userID: ${users.userID}")
-            Log.d("USER", "idNUmber: ${users.idNumber}")
-            Log.d("USER", "Password: ${users.password}")
-            Log.d("USER", "Type: ${users.type}")
+            Log.d(TAG, "${users.userID} => $users")
         }
 
         ScheduleDatabase.destroyInstance()
@@ -195,11 +197,11 @@ class MainActivity : AppCompatActivity() {
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
-        scheduleListTest.insert(ScheduleDB(0, 3, 1, "IT5001", "Ms. Polinar"))
-        scheduleListTest.insert(ScheduleDB(0, 3, 1, "IT1101", "Ms. Cantara"))
-        scheduleListTest.insert(ScheduleDB(0, 3, 1, "MATH25", "Ms. Punzalan"))
-        scheduleListTest.insert(ScheduleDB(0, 2, 1, "NIPPONGO1", "Ms. Watanabe"))
-        scheduleListTest.insert(ScheduleDB(0, 3, 1, "NIPPONGO1", "Ms. Watanabe"))
+        scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
+        scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT1101"))
+        scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "MATH25"))
+        scheduleListTest.insert(ScheduleDB(0, 2, null, 1, "NIPPONGO1"))
+        scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "NIPPONGO1"))
 
 
         ScheduleDebug.printAllSchedules(scheduleListTest)
