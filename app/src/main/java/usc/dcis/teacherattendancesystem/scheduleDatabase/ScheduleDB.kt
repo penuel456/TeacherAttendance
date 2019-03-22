@@ -9,6 +9,7 @@ import java.util.*
 data class UserDB(
     @PrimaryKey(autoGenerate = true) var userID: Int,
     @ColumnInfo(name = "id_number") var idNumber: Int = 0,
+    @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "password") var password: String? = null,
     @ColumnInfo(name = "type") var type: String? = null
 )
@@ -25,9 +26,9 @@ class UsersWithSchedules {
 data class ScheduleDB(
     @PrimaryKey(autoGenerate = true) var courseID: Int = 0,
     @ColumnInfo(name = "user_id") var userID: Int = 0,
+    @ColumnInfo(name = "teacher_id") var teacherId: Int? = null,
     @ColumnInfo(name = "group_number") var groupNumber: Int = 0,
-    @ColumnInfo(name = "course_code") var courseCode: String = "",
-    @ColumnInfo(name = "teacher") var teacher: String? = null
+    @ColumnInfo(name = "course_code") var courseCode: String = ""
 )
 
 // ROOM ASSIGNMENTS
