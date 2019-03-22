@@ -14,6 +14,7 @@ import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
+import usc.dcis.teacherattendancesystem.scheduleDatabase.UserDB
 import java.util.*
 
 
@@ -60,16 +61,16 @@ class SchedListStudent : AppCompatActivity() {
 
         val sdfTime = getCurrentTime()
         val sdfDate = getCurrentDate()
-        /*
+
         for(rooms in roomAssignmentList){
             Log.d("TODAYROOM: ", rooms?.toString())
-            val currentSched = scheduleDao.getSchedule(rooms?.courseID)
+            val currentSched = scheduleDao.getScheduleByCourseCodeAndGroupNumber(rooms.courseCode, rooms.groupNumber)
             if(sdfTime.after(rooms?.endTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is FINISHED in ${rooms?.roomNumber}")
             }else if(sdfTime.before(rooms?.startTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is ABOUT TO GO in ${rooms?.roomNumber}")
                 Schedule_layout.studUpNextCourseCode.text = currentSched?.courseCode
-                Schedule_layout.studUpNextTeacher.text = currentSched?.teacher
+                Schedule_layout.studUpNextTeacher.text = scheduleDao.getTeacherFromSchedule(currentSched?.teacherId)?.name
                 Schedule_layout.studUpNextBuilding.text = rooms?.roomNumber
                 Schedule_layout.studUpNextStartTime.text = sdf.format(rooms?.startTime)
                 Schedule_layout.studUpNextEndTime.text = sdf.format(rooms?.endTime)
@@ -77,7 +78,7 @@ class SchedListStudent : AppCompatActivity() {
             }else if(sdfTime.after(rooms.startTime) && sdfTime.before(rooms.endTime)){
                 Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is CURRENTLY in ${rooms?.roomNumber}")
                 Schedule_layout.studCourseCode.text = currentSched?.courseCode
-                Schedule_layout.studTeacher.text = currentSched?.teacher
+                Schedule_layout.studTeacher.text = scheduleDao.getTeacherFromSchedule(currentSched?.teacherId)?.name
                 Schedule_layout.studBuilding.text = rooms?.roomNumber
                 Schedule_layout.studStartTime.text = sdf.format(rooms?.startTime)
                 Schedule_layout.studEndTime.text = sdf.format(rooms?.endTime)
@@ -89,7 +90,7 @@ class SchedListStudent : AppCompatActivity() {
 
             if(isThereOnGoing && isThereUpNext) break
         }
-        */
+
     }
 
     fun refreshSchedule(view: View){
@@ -104,9 +105,13 @@ class SchedListStudent : AppCompatActivity() {
         var sdf = java.text.SimpleDateFormat("h:m a")
 
         for(rooms in roomAssignmentList){
+            var schedDB = scheduleDao.getScheduleByCourseCodeAndGroupNumber(rooms.courseCode, rooms.groupNumber)
+            var teacher: UserDB? = scheduleDao.getTeacherFromSchedule(schedDB?.teacherId)
+
             Log.d("ROOMASSN", "RoomID: ${rooms.roomID}")
-            //Log.d("ROOMASSN", "CourseID: ${rooms.courseID}")
-            //Log.d("ROOMASSN", "CourseCode: ${scheduleDao.getSchedule(rooms.courseID).courseCode}")
+            Log.d("ROOMASSN", "Teacher: ${teacher?.name}")
+            Log.d("ROOMASSN", "GroupNumber: ${rooms.groupNumber}")
+            Log.d("ROOMASSN", "CourseCode: ${rooms.courseCode}")
             Log.d("ROOMASSN", "StartTime: ${sdf.format(rooms.startTime)}")
             Log.d("ROOMASSN", "EndTime: ${sdf.format(rooms.endTime)}")
             Log.d("ROOMASSN", "DayAssigned: ${rooms.dayAssigned}")

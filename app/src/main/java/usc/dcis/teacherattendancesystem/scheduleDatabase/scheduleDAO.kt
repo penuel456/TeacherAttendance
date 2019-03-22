@@ -37,8 +37,11 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Schedules WHERE courseID = :courseId")
     fun getSchedule(courseId: Int): ScheduleDB
 
+    @Query("SELECT * FROM Schedules WHERE course_code = :courseCode AND group_number = :groupNumber")
+    fun getScheduleByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): ScheduleDB?
+
     @Query("SELECT * FROM users WHERE userID = :teacherID")
-    fun getTeacherFromSchedule(teacherID: Int): UserDB
+    fun getTeacherFromSchedule(teacherID: Int?): UserDB
 
     /******************************* ALL SCHEDULEDB QUERIES ****************************************/
 
