@@ -39,7 +39,7 @@ class roomSchedule : AppCompatActivity() {
 
                     for(document in documents){
                         var day = document["dayAssigned"]
-
+                        document["startTime"]
                         Log.d("FIREBASE", "Day: ${day}")
                     }
                 }
