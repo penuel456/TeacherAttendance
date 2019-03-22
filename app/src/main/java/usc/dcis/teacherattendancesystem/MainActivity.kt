@@ -25,21 +25,21 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class MainActivity : AppCompatActivity() {
 
-    /*
+
     var firestore = FirebaseFirestore.getInstance()
     val settings = FirebaseFirestoreSettings.Builder()
         .setTimestampsInSnapshotsEnabled(true)
         .build()
-    */
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
+
         FirebaseApp.initializeApp(this)
         firestore.firestoreSettings = settings
-        */
+
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         //testDatabase()
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     fun check(view : View){
         Toast.makeText(this, "Attempting to login", Toast.LENGTH_SHORT).show()
 
-        /*
+
         try{
             firestore.collection("userDB").document(username.text.toString())
                 .get()
@@ -61,11 +61,11 @@ class MainActivity : AppCompatActivity() {
                         if(userSnapshot?.exists()!! && userSnapshot != null){
                             if(password.text.isNotBlank() && userSnapshot["password"].toString() == password.text.toString()){
                                 var userDB = UserDB(userSnapshot["userID"].toString().toInt(),
-                                    userSnapshot["idNumber"].toString().toInt(), userSnapshot["password"].toString(),
+                                    userSnapshot["idNumber"].toString().toInt(), userSnapshot["name"].toString(), userSnapshot["password"].toString(),
                                     userSnapshot["type"].toString())
 
-                                Log.d("FIREBASE", "ID Number => ${userSnapshot["idNumber"]}")
-                                Log.d("FIREBASE", "ID Number: ${userDB?.idNumber}")
+                                Log.d("FIREBASE", "ID Number => ${userSnapshot["idNumber"]} Type => ${userSnapshot["type"]}")
+                                Log.d("FIREBASE", "ID Number: ${userDB?.idNumber} Type: ${userDB?.type}")
 
                                 Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
 
@@ -96,9 +96,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Fill up empty fields.", Toast.LENGTH_SHORT).show()
             Log.w("FIREBASE", "Error: ${e.message}")
         }
-        */
 
 
+        /*
         val db = ScheduleDatabase.getInstance(this)
         var user = db.scheduleDAO
 
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
+        */
     }
 
     fun testUserDatabase(){
@@ -137,11 +137,13 @@ class MainActivity : AppCompatActivity() {
         val db = ScheduleDatabase.getInstance(this)
         var userList = db.scheduleDAO
 
-
+        /*
         userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
         userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
         userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
+        */
 
+        //ScheduleFirebase.AddMultipleUsers(firestore, userList.getAllUsers())
 
         for(users in userList.getAllUsers()){
             Log.d(TAG, "${users.userID} => $users")
@@ -196,7 +198,7 @@ class MainActivity : AppCompatActivity() {
 
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
-
+        /*
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT1101"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "MATH25"))
@@ -271,7 +273,8 @@ class MainActivity : AppCompatActivity() {
                 sdf.parse("5:00 PM"), "TH"
             )
         )
-        ScheduleDebug.printAllRoomAssignments(scheduleListTest)
+        */
+        //ScheduleDebug.printAllRoomAssignments(scheduleListTest)
 
 
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
@@ -292,8 +295,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        ScheduleDebug.printAllStatus(scheduleListTest)
-        ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
+        //ScheduleDebug.printAllStatus(scheduleListTest)
+        //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
 
         ScheduleDatabase.destroyInstance()
 

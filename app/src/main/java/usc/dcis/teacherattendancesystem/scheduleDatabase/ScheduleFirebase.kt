@@ -69,7 +69,7 @@ class ScheduleFirebase {
             val batch = db.batch()
 
             for(room in rooms){
-                batch.set(db.collection("scheduleDB").document(room.roomID.toString()), rooms)
+                batch.set(db.collection("roomAssignment").document(room.roomID.toString()), rooms)
             }
 
             batch.commit().addOnCompleteListener { task ->
@@ -85,7 +85,7 @@ class ScheduleFirebase {
             val batch = db.batch()
 
             for(status in statuses){
-                batch.set(db.collection("scheduleDB").document(status.statusId.toString()), status)
+                batch.set(db.collection("status").document(status.statusId.toString()), status)
             }
 
             batch.commit().addOnCompleteListener { task ->
@@ -101,7 +101,7 @@ class ScheduleFirebase {
             val batch = db.batch()
 
             for(user in users){
-                batch.set(db.collection("scheduleDB").document(user.userID.toString()), users)
+                batch.set(db.collection("userDB").document(user.userID.toString()), user)
             }
 
             batch.commit().addOnCompleteListener { task ->
