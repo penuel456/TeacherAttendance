@@ -69,7 +69,7 @@ class ScheduleFirebase {
             val batch = db.batch()
 
             for(room in rooms){
-                batch.set(db.collection("roomAssignment").document(room.roomID.toString()), rooms)
+                batch.set(db.collection("roomAssignment").document(room.roomID.toString()), room)
             }
 
             batch.commit().addOnCompleteListener { task ->
