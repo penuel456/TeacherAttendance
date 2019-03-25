@@ -89,6 +89,10 @@ class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 setTitle("Josef Baumgartner Building")
                 Menu_fragment_lrc()
             }
+            /*R.id.nav_chapel -> {
+                setTitle("Chapel<Not Final>")
+                Menu_fragment_lrc()
+            }*/
             else -> {
                 setTitle("Lawrence Bunzel Building")
                 Menu_fragment_lbb()

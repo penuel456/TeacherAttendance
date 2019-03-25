@@ -144,7 +144,7 @@
             android:textSize="24sp"/>
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="207dp" app:srcCompat="@drawable/cafa"
+            android:layout_height="207dp" app:srcCompat="@drawable/cafanew"
             android:id="@+id/imageView4" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
