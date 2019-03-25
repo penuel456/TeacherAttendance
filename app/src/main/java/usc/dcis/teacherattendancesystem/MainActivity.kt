@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        /*
+/*
         val db = ScheduleDatabase.getInstance(this)
         var user = db.scheduleDAO
 
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        */
+*/
     }
 
     fun testUserDatabase(){

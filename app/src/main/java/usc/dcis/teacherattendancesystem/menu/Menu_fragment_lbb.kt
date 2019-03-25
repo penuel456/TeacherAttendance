@@ -78,8 +78,8 @@ class Menu_fragment_lbb : Fragment() {
                 lbb_wing1.text = "Wing 1"
                 lbb_wing2.text = "Wing 2"
                 lbb_wing3.text = "Wing 3"
-                lbb_wing4.visibility = View.GONE
-                lbb_wing5.visibility = View.GONE
+                lbb_wing4.visibility = View.INVISIBLE
+                lbb_wing5.visibility = View.INVISIBLE
 
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), "", "", radioButton)
 
@@ -93,7 +93,7 @@ class Menu_fragment_lbb : Fragment() {
                 lbb_wing2.text = "Wing 2"
                 lbb_wing3.text = "Wing 3"
                 lbb_wing4.text = "Wing 4"
-                lbb_wing5.visibility = View.GONE
+                lbb_wing5.visibility = View.INVISIBLE
 
 
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), "", radioButton )

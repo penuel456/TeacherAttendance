@@ -8,8 +8,8 @@
                                              android:id="@+id/relativeLayout">
 
     <ScrollView
-            android:layout_width="320dp"
-            android:layout_height="100dp"
+            android:layout_width="400dp"
+            android:layout_height="168dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
@@ -25,35 +25,41 @@
             <Button
                     android:text="Button"
                     android:layout_width="165dp"
-                    android:layout_height="58dp" tools:layout_editor_absoluteY="304dp"
+                    android:layout_height="59dp" tools:layout_editor_absoluteY="304dp"
                     tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomOne"
                     android:background="@drawable/rounded_green_btn" android:layout_marginBottom="100dp"
                     android:layout_marginTop="100dp"/>
             <Button
                     android:text="Button"
                     android:layout_width="165dp"
-                    android:layout_height="60dp" tools:layout_editor_absoluteY="391dp"
+                    android:layout_height="59dp" tools:layout_editor_absoluteY="391dp"
                     tools:layout_editor_absoluteX="39dp" android:id="@+id/peRoomTwo"
                     android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
                     android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
-                    android:layout_width="166dp"
-                    android:layout_height="60dp" tools:layout_editor_absoluteY="439dp"
+                    android:layout_width="165dp"
+                    android:layout_height="59dp" tools:layout_editor_absoluteY="439dp"
                     tools:layout_editor_absoluteX="16dp" android:id="@+id/peRoomThree"
                     android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
                     android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
-                    android:layout_width="167dp"
-                    android:layout_height="60dp" tools:layout_editor_absoluteY="509dp"
+                    android:layout_width="165dp"
+                    android:layout_height="59dp" tools:layout_editor_absoluteY="509dp"
                     tools:layout_editor_absoluteX="8dp" android:id="@+id/peRoomFour"
                     android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
                     android:textColor="@color/colorPrimaryDark"/>
             <Button
                     android:text="Button"
-                    android:layout_width="168dp"
-                    android:layout_height="60dp" android:id="@+id/peRoomFive"
+                    android:layout_width="165dp"
+                    android:layout_height="59dp" android:id="@+id/peRoomFive"
+                    android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+            <Button
+                    android:text="Button"
+                    android:layout_width="165dp"
+                    android:layout_height="60dp" android:id="@+id/peRoomSix"
                     android:background="@drawable/rounded_green_btn" android:layout_marginBottom="12dp"
                     android:textColor="@color/colorPrimaryDark"/>
 
@@ -128,7 +134,7 @@
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/pe_hiddenwing" android:layout_weight="1"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
         <RadioButton
                 android:text="RadioButton"
                 android:layout_width="wrap_content"
