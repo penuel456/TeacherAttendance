@@ -49,11 +49,11 @@ class ScheduleFirebase {
         //endregion
 
         //region ADD MULTIPLE DATA
-        fun AddMultipleSchedules(db: FirebaseFirestore, sched: List<ScheduleDB>) {
+        fun AddMultipleSchedules(db: FirebaseFirestore, scheds: List<ScheduleDB>) {
             val batch = db.batch()
 
-            for(scheds in sched){
-                batch.set(db.collection("scheduleDB").document(scheds.courseID.toString()), scheds)
+            for(sched in scheds){
+                batch.set(db.collection("scheduleDB").document(sched.courseID.toString()), sched)
             }
 
             batch.commit().addOnCompleteListener { task ->
@@ -69,7 +69,7 @@ class ScheduleFirebase {
             val batch = db.batch()
 
             for(room in rooms){
-                batch.set(db.collection("roomAssignment").document(room.roomID.toString()), rooms)
+                batch.set(db.collection("roomAssignment").document(room.roomID.toString()), room)
             }
 
             batch.commit().addOnCompleteListener { task ->

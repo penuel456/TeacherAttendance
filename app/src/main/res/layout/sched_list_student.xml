@@ -12,7 +12,10 @@
             android:layout_height="wrap_content" android:id="@+id/noSchedNotif"
             android:textSize="24sp" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="84dp"
             android:layout_marginStart="84dp" android:layout_marginTop="264dp"
-            app:layout_constraintTop_toTopOf="@+id/Schedule_teacher_layout" android:visibility="invisible"/>
+            app:layout_constraintTop_toTopOf="@+id/Schedule_teacher_layout" android:visibility="invisible"
+            android:layout_marginBottom="348dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="689dp"
