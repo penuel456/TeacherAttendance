@@ -23,6 +23,33 @@ class Menu_fragment_lbb : Fragment() {
     lateinit var wingGroup: RadioGroup
    lateinit var myView: View
 
+    //initializing rooms
+    private val bunzelBuilding_basement = arrayOf("Cisco Laboratory")
+    private val bunzelBuilding_fifth = arrayOf("LB561", "LB562", "LB563")
+    private val bunzelBuilding_first = arrayOf(
+        arrayOf("LB167", "LB168", "LB172"),
+        arrayOf("LB143", "LB144"),
+        arrayOf("LBCH1","LBCH2")
+    )
+    private val bunzelBuilding_second =arrayOf(
+        arrayOf("LB280", "LBCEA1", "LB285", "LB286"),
+        arrayOf("LB264", "LB265","LB266", "LB267","LB268"),
+        arrayOf("LB245","LB246","LB247", "LB248"),
+        arrayOf("LB220")
+    )
+    private  val bunzelBuilding_third =arrayOf(
+        arrayOf("LB306","LB305","LB304"),
+        arrayOf("LB380","LB381", "LB382", "LB383", "LB384", "LB386"),
+        arrayOf("LB363","LB364","LB366")
+    )
+    private val bunzelBuilding_fourth = arrayOf(
+        arrayOf("LB401","LB402","LB404"),
+        arrayOf("LB482", "LB483", "LB484", "LB485", "LB486"),
+        arrayOf("LB466", "LB467","LB468", "LB469"),
+        arrayOf("LB444","LB445","LB446", "LB447", "LB448"),
+        arrayOf("LB441","LB442")
+    )
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.menu_fragment_lbb, null)
         return myView
@@ -35,32 +62,37 @@ class Menu_fragment_lbb : Fragment() {
 
         radioGroup = myView.findViewById(R.id.lbb_floors)
 
-        insertRooms()
+       // insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
+
+
             lbb_hiddenwing.setChecked(true)
 
             if(radioButton.text.toString().equals("1st Floor")){
                 lbb_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
+                lbb_wing3.visibility = View.VISIBLE
                 lbb_wing1.text = "Wing 1"
                 lbb_wing2.text = "Wing 2"
                 lbb_wing3.text = "Wing 3"
-                lbb_wing4.text = "Wing 4"
+                lbb_wing4.visibility = View.GONE
                 lbb_wing5.visibility = View.GONE
 
-                wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), "", radioButton)
+                wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), "", "", radioButton)
 
 
             }else if(radioButton.text.toString().equals("2nd Floor")){
                 lbb_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
-                lbb_wing1.text = "Wing 256"
-                lbb_wing2.text = "Wing 261"
-                lbb_wing3.text = "Wing 273"
-                lbb_wing4.text = "Wing 283"
+                lbb_wing3.visibility = View.VISIBLE
+                lbb_wing4.visibility = View.VISIBLE
+                lbb_wing1.text = "Wing 1"
+                lbb_wing2.text = "Wing 2"
+                lbb_wing3.text = "Wing 3"
+                lbb_wing4.text = "Wing 4"
                 lbb_wing5.visibility = View.GONE
 
 
@@ -73,30 +105,51 @@ class Menu_fragment_lbb : Fragment() {
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 lbb_wing5.visibility = View.VISIBLE
-                lbb_wing1.text = "Wing 320"
-                lbb_wing2.text = "Wing 330"
-                lbb_wing3.text = "Wing 340"
-                lbb_wing4.text = "Wing 350"
-                lbb_wing5.text = "Main Hallway 3"
+                lbb_wing1.text = "Wing 1"
+                lbb_wing2.text = "Wing 2"
+                lbb_wing5.text = "Main Wing"
 
-                wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), lbb_wing5.text.toString(), radioButton)
+                lbb_wing3.visibility = View.GONE
+                lbb_wing4.visibility = View.GONE
+
+                wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), "", "", lbb_wing5.text.toString(), radioButton)
 
 
 
             }else if(radioButton.text.toString().equals("4th Floor")){
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
+                lbb_wing3.visibility = View.VISIBLE
+                lbb_wing4.visibility = View.VISIBLE
                 lbb_wing5.visibility = View.VISIBLE
-                lbb_wing1.text = "Wing 442"
-                lbb_wing2.text = "Wing 445"
-                lbb_wing3.text = "Wing 480"
-                lbb_wing4.text = "Wing 460"
-                lbb_wing5.text = "Main Hallway 4"
+                lbb_wing1.text = "Wing 1"
+                lbb_wing2.text = "Wing 2"
+                lbb_wing3.text = "Wing 3"
+                lbb_wing4.text = "Wing 4"
+                lbb_wing5.text = "Main Wing"
 
 
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), lbb_wing5.text.toString(), radioButton)
-
-
+            }else if(radioButton.text.toString().equals("5th Floor")){
+                chooseAWing.visibility = View.GONE
+                lbb_wings.visibility = View.GONE
+                lbbScrollView.visibility = View.VISIBLE
+                lbbRoomTwo.visibility = View.VISIBLE
+                lbbRoomThree.visibility = View.VISIBLE
+                lbbRoomOne.text = bunzelBuilding_fifth[0]
+                lbbRoomTwo.text = bunzelBuilding_fifth[1]
+                lbbRoomThree.text = bunzelBuilding_fifth[2]
+                lbbRoomFour.visibility = View.GONE
+                lbbRoomFive.visibility = View.GONE
+            }else if(radioButton.text.toString().equals("Basement")){
+                chooseAWing.visibility = View.GONE
+                lbb_wings.visibility = View.GONE
+                lbbScrollView.visibility = View.VISIBLE
+                lbbRoomOne.text = bunzelBuilding_basement[0]
+                lbbRoomTwo.visibility = View.GONE
+                lbbRoomThree.visibility = View.GONE
+                lbbRoomFour.visibility = View.GONE
+                lbbRoomFive.visibility = View.GONE
 
             }
         }
@@ -117,183 +170,165 @@ class Menu_fragment_lbb : Fragment() {
 
                 if(radio.text.toString().equals("1st Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "a"
-                    lbbRoomTwo.text = "a"
-                    lbbRoomThree.text = "a"
-                    lbbRoomFour.text = "a"
-                    lbbRoomFive.text = "a"
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomThree.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_first[0][0]
+                    lbbRoomTwo.text = bunzelBuilding_first[0][1]
+                    lbbRoomThree.text = bunzelBuilding_first[0][2]
+                    lbbRoomFour.visibility = View.GONE
+                    lbbRoomFive.visibility = View.GONE
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomThree.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB210TC"
-                    lbbRoomTwo.text = "LB211TC"
-                    lbbRoomThree.text = "LB212TC"
-                    lbbRoomFour.text = "LB213TC"
-                    lbbRoomFive.text = "LB214TC"
-
+                    lbbRoomOne.text = bunzelBuilding_second[0][0]
+                    lbbRoomTwo.text = bunzelBuilding_second[0][1]
+                    lbbRoomThree.text = bunzelBuilding_second[0][2]
+                    lbbRoomFour.text = bunzelBuilding_second[0][3]
+                    lbbRoomFive.visibility = View.GONE
 
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB321TC"
-                    lbbRoomTwo.text = "LB322TC"
-                    lbbRoomThree.text = "LB323TC"
+                    lbbRoomOne.text = bunzelBuilding_third[1][0]
+                    lbbRoomTwo.text = bunzelBuilding_third[1][1]
+                    lbbRoomThree.text = bunzelBuilding_third[1][2]
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB442TC"
-                    lbbRoomTwo.text = "LB443TC"
-                    lbbRoomThree.visibility = View.GONE
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomThree.visibility = View.VISIBLE
+                    lbbRoomFour.visibility = View.VISIBLE
+                    lbbRoomFive.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_fourth[1][0]
+                    lbbRoomTwo.text = bunzelBuilding_fourth[1][1]
+                    lbbRoomThree.text = bunzelBuilding_fourth[1][2]
+                    lbbRoomFour.text = bunzelBuilding_fourth[1][3]
+                    lbbRoomFive.text = bunzelBuilding_fourth[1][4]
+
                 }
             }else if(wingBtn.text.equals(secondWing)){
 
                 if(radio.text.toString().equals("1st Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "a"
-                    lbbRoomTwo.text = "LB121TC"
-                    lbbRoomThree.text = "LB122TC"
-                    lbbRoomFour.text = "LB123TC"
-                    lbbRoomFive.text = "LB124TC"
-
-
-
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_first[1][0]
+                    lbbRoomTwo.text = bunzelBuilding_first[1][1]
+                    lbbRoomThree.visibility = View.GONE
+                    lbbRoomFour.visibility = View.GONE
+                    lbbRoomFive.visibility = View.GONE
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomThree.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB220TC"
-                    lbbRoomTwo.text = "LB221TC"
-                    lbbRoomThree.text = "LB222TC"
-                    lbbRoomFour.text = "LB223TC"
-                    lbbRoomFive.text = "LB224TC"
+                    lbbRoomOne.text = bunzelBuilding_second[1][0]
+                    lbbRoomTwo.text = bunzelBuilding_second[1][1]
+                    lbbRoomThree.text = bunzelBuilding_second[1][2]
+                    lbbRoomFour.text = bunzelBuilding_second[1][3]
+                    lbbRoomFive.text = bunzelBuilding_second[1][4]
+
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB331TC"
-                    lbbRoomTwo.text = "LB332TC"
-                    lbbRoomThree.text = "LB333TC"
+                    lbbRoomOne.text = bunzelBuilding_third[2][0]
+                    lbbRoomTwo.text = bunzelBuilding_third[2][1]
+                    lbbRoomThree.text = bunzelBuilding_third[2][1]
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB445TC"
-                    lbbRoomTwo.text = "LB446TC"
-                    lbbRoomThree.text = "LB447TC"
-                    lbbRoomFour.text = "LB448TC"
-                    lbbRoomFive.text = "LB449TC"
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
+                    lbbRoomOne.text =  bunzelBuilding_fourth[2][0]
+                    lbbRoomTwo.text =  bunzelBuilding_fourth[2][1]
+                    lbbRoomThree.text =  bunzelBuilding_fourth[2][2]
+                    lbbRoomFour.text =  bunzelBuilding_fourth[2][3]
+
+                    lbbRoomFive.visibility = View.GONE
                 }
             }else if(wingBtn.text.equals(thirdWing)){
 
                 if(radio.text.toString().equals("1st Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB130TC"
-                    lbbRoomTwo.text = "LB131TC"
-                    lbbRoomThree.text = "LB132TC"
-                    lbbRoomFour.text = "LB133TC"
-                    lbbRoomFive.text = "LB134TC"
-                }else if(radio.text.toString().equals("2nd Floor")){
-                    lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB230TC"
-                    lbbRoomTwo.text = "LB231TC"
-                    lbbRoomThree.text = "LB232TC"
-                    lbbRoomFour.text = "LB233TC"
-                    lbbRoomFive.text = "LB234TC"
-                }else if(radio.text.toString().equals("3rd Floor")){
-                    lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB341TC"
-                    lbbRoomTwo.text = "LB342TC"
-                    lbbRoomThree.text = "LB343TC"
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_first[2][0]
+                    lbbRoomTwo.text = bunzelBuilding_first[2][1]
+                    lbbRoomThree.visibility = View.GONE
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
+                }else if(radio.text.toString().equals("2nd Floor")){
+                    lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomThree.visibility = View.VISIBLE
+                    lbbRoomFour.visibility = View.VISIBLE
+                    lbbRoomOne.text =  bunzelBuilding_second[2][0]
+                    lbbRoomTwo.text =  bunzelBuilding_second[2][1]
+                    lbbRoomThree.text =  bunzelBuilding_second[2][2]
+                    lbbRoomFour.text =  bunzelBuilding_second[2][3]
+
+                    lbbRoomFive.visibility = View.GONE
+
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB470TC"
-                    lbbRoomTwo.text = "LB469TC"
-                    lbbRoomThree.text = "LB468TC"
-                    lbbRoomFour.text = "LB467TC"
-                    lbbRoomFive.text = "LB466TC"
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
                     lbbRoomFour.visibility = View.VISIBLE
                     lbbRoomFive.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_fourth[3][0]
+                    lbbRoomTwo.text = bunzelBuilding_fourth[3][1]
+                    lbbRoomThree.text = bunzelBuilding_fourth[3][2]
+                    lbbRoomFour.text = bunzelBuilding_fourth[3][3]
+                    lbbRoomFive.text = bunzelBuilding_fourth[3][4]
                 }
             }else if(wingBtn.text.equals(fourthWing)){
 
-                if(radio.text.toString().equals("1st Floor")){
+                if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB140TC"
-                    lbbRoomTwo.text = "LB141TC"
-                    lbbRoomThree.text = "LB142TC"
-                    lbbRoomFour.text = "LB143TC"
-                    lbbRoomFive.text = "LB144TC"
-                }else if(radio.text.toString().equals("2nd Floor")){
-                    lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB240TC"
-                    lbbRoomTwo.text = "LB241TC"
-                    lbbRoomThree.text = "LB242TC"
-                    lbbRoomFour.text = "LB243TC"
-                    lbbRoomFive.text = "LB244TC"
-                }else if(radio.text.toString().equals("3rd Floor")){
-                    lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB341TC"
-                    lbbRoomTwo.text = "LB342TC"
-                    lbbRoomThree.text = "LB343TC"
+                    lbbRoomOne.text = bunzelBuilding_second[3][0]
+                    lbbRoomTwo.visibility = View.GONE
+                    lbbRoomThree.visibility = View.GONE
                     lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB485TC"
-                    lbbRoomTwo.text = "LB486TC"
-                    lbbRoomThree.text = "LB467TC"
-                    lbbRoomFour.text = "LB488TC"
-                    lbbRoomFive.text = "LB489TC"
-                    lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
+                    lbbRoomOne.text = bunzelBuilding_fourth[4][0]
+                    lbbRoomTwo.text = bunzelBuilding_fourth[4][1]
+                    lbbRoomThree.visibility = View.GONE
+                    lbbRoomFour.visibility = View.GONE
+                    lbbRoomFive.visibility = View.GONE
                 }
             }else if(wingBtn.text.equals(fifthWing)){
 
                 if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB306TC"
-                    lbbRoomTwo.text = "LB305TC"
-                    lbbRoomThree.text = "LB304TC"
 
+                    lbbRoomOne.text = bunzelBuilding_third[0][0]
+                    lbbRoomTwo.text = bunzelBuilding_third[0][1]
+                    lbbRoomThree.text = bunzelBuilding_third[0][2]
+                    lbbRoomFour.visibility = View.GONE
                     lbbRoomFive.visibility = View.GONE
                 }else if(radio.text.toString().equals("4th Floor")) {
                     lbbScrollView.visibility = View.VISIBLE
-                    lbbRoomOne.text = "LB401TC"
-                    lbbRoomTwo.text = "LB402TC"
-                    lbbRoomThree.text = "LB403TC"
-                    lbbRoomFour.text = "LB405TC"
-                    lbbRoomFive.text = "LB404TC"
+                    lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomThree.visibility = View.VISIBLE
-                    lbbRoomFour.visibility = View.VISIBLE
-                    lbbRoomFive.visibility = View.VISIBLE
+
+                    lbbRoomOne.text = bunzelBuilding_fourth[0][0]
+                    lbbRoomTwo.text = bunzelBuilding_fourth[0][1]
+                    lbbRoomThree.text = bunzelBuilding_fourth[0][2]
+                    lbbRoomFour.visibility = View.GONE
+                    lbbRoomFive.visibility = View.GONE
                 }
             }
 
