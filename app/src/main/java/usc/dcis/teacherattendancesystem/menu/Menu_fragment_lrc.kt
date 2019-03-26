@@ -14,6 +14,10 @@ class Menu_fragment_lrc : Fragment() {
 
     lateinit var radioGroup: RadioGroup
     lateinit var myView: View
+    val josefBuilding = arrayOf(
+        arrayOf("JBB101", "JBB102", "JBB103", "JBB104", "JBB105"),
+        arrayOf("BL101","BL102")
+    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.menu_fragment_lrc, null)
@@ -33,25 +37,26 @@ class Menu_fragment_lrc : Fragment() {
             val radioButton = myView.findViewById<RadioButton>(id)
 
 
-            if (radioButton.text.toString().equals("1st Floor")) {
+            if (radioButton.text.toString().equals("Basement")) {
 
-                lrcScrollView.visibility = View.VISIBLE
-                lrcRoomThree.visibility = View.GONE
-                lrcRoomOne.text = "LRC 1ST FLR R1"
-                lrcRoomTwo.text = "LRC 1ST FLR R2"
-
-            } else if (radioButton.text.toString().equals("2nd Floor")) {
-                lrcScrollView.visibility = View.VISIBLE
-                lrcRoomThree.visibility = View.GONE
-                lrcRoomOne.text = "LRC 2ND FLR R1"
-                lrcRoomTwo.text = "LRC 2ND FLR R2"
-
-            }else if (radioButton.text.toString().equals("Basement")){
                 lrcScrollView.visibility = View.VISIBLE
                 lrcRoomThree.visibility = View.VISIBLE
-                lrcRoomOne.text = "LRC BASEMENT R1"
-                lrcRoomTwo.text = "LRC BASEMENT R2"
-                lrcRoomThree.text = "LRC BASEMENT R3"
+                lrcRoomFour.visibility = View.VISIBLE
+                lrcRoomFive.visibility = View.VISIBLE
+                lrcRoomOne.text = josefBuilding[0][0]
+                lrcRoomTwo.text = josefBuilding[0][1]
+                lrcRoomThree.text = josefBuilding[0][2]
+                lrcRoomFour.text = josefBuilding[0][3]
+                lrcRoomFive.text = josefBuilding[0][4]
+
+            } else if (radioButton.text.toString().equals("1st Floor")) {
+                lrcScrollView.visibility = View.VISIBLE
+                lrcRoomThree.visibility = View.INVISIBLE
+                lrcRoomFour.visibility = View.INVISIBLE
+                lrcRoomFive.visibility = View.INVISIBLE
+                lrcRoomOne.text = josefBuilding[1][0]
+                lrcRoomTwo.text = josefBuilding[1][1]
+
             }
         }
     }

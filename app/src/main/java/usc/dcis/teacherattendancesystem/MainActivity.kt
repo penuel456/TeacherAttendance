@@ -146,11 +146,11 @@ class MainActivity : AppCompatActivity() {
         val db = ScheduleDatabase.getInstance(this)
         var userList = db.scheduleDAO
 
-        /*
+
         userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
         userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
         userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
-        */
+
 
         //ScheduleFirebase.AddMultipleUsers(firestore, userList.getAllUsers())
 
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "${users.userID} => $users")
         }
 
-        ScheduleDatabase.destroyInstance()
+        //ScheduleDatabase.destroyInstance()
     }
 
     // For testing database. Subject to change.
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
         scheduleListTest.insert(ScheduleDB(0, 2, null, 1, "NIPPONGO1"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "NIPPONGO1"))
 
-
+        /*
         ScheduleDebug.printAllSchedules(scheduleListTest)
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
@@ -310,7 +310,7 @@ class MainActivity : AppCompatActivity() {
         //ScheduleDebug.printAllStatus(scheduleListTest)
         //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
 
-        ScheduleDatabase.destroyInstance()
+        //ScheduleDatabase.destroyInstance()
 
     }
 

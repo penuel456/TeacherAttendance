@@ -22,19 +22,9 @@
         <item
                 android:id="@+id/nav_lrc"
                 android:title="LRC"/>
+        <item
+                android:id="@+id/nav_chapel"
+                android:title="AJB"/>
     </group>
-
-    <item android:title="Schedule">
-        <menu>
-            <item
-                    android:id="@+id/nav_schedule"
-                    android:icon="@android:drawable/ic_menu_my_calendar"
-                    android:title="Schedule List"/>
-            <item
-                    android:id="@+id/nav_schedule_teacher"
-                    android:icon="@android:drawable/ic_menu_my_calendar"
-                    android:title=" Teacher Schedule List"/>
-        </menu>
-    </item>
 
 </menu>
