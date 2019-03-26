@@ -287,7 +287,7 @@ class MainActivity : AppCompatActivity() {
         */
         //endregion
 
-        //ScheduleDebug.printAllSchedules(scheduleListTest)
+        ScheduleDebug.printAllSchedules(scheduleListTest)
 
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 3)
 

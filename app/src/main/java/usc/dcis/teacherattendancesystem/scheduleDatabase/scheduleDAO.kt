@@ -145,11 +145,14 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Schedules")
     fun getScheduleCount(): Int
 
+    @Query("SELECT COUNT(*) FROM Schedules WHERE groupNumber = :groupNumber AND courseCode = :courseCode")
+    fun getScheduleCountByCourseCodeAndGroupNumber(groupNumber: Int, courseCode: String): Int
+
     @Query("SELECT COUNT(*) FROM Room_Assignments")
     fun getRoomAssignmentsCount(): Int
 
     @Query("SELECT COUNT(*) FROM Room_Assignments WHERE roomID = :roomID")
-    fun getRoomAssignmentCountByroomID(roomID: Int): Int
+    fun getRoomAssignmentCountByRoomID(roomID: Int): Int
     /******************************* ALL COUNT QUERIES *********************************************/
 
 }
