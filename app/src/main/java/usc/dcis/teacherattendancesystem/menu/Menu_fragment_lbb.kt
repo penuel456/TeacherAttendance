@@ -62,7 +62,7 @@ class Menu_fragment_lbb : Fragment() {
 
         radioGroup = myView.findViewById(R.id.lbb_floors)
 
-       // insertRooms()
+        insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = lbb_floors.checkedRadioButtonId
@@ -141,6 +141,8 @@ class Menu_fragment_lbb : Fragment() {
                 lbbRoomThree.text = bunzelBuilding_fifth[2]
                 lbbRoomFour.visibility = View.GONE
                 lbbRoomFive.visibility = View.GONE
+                roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(),
+                    "", "")
             }else if(radioButton.text.toString().equals("Basement")){
                 chooseAWing.visibility = View.GONE
                 lbb_wings.visibility = View.GONE
@@ -150,6 +152,7 @@ class Menu_fragment_lbb : Fragment() {
                 lbbRoomThree.visibility = View.GONE
                 lbbRoomFour.visibility = View.GONE
                 lbbRoomFive.visibility = View.GONE
+                roomSelect(lbbRoomOne.text.toString(), "", "", "", "")
 
             }
         }
@@ -347,11 +350,17 @@ class Menu_fragment_lbb : Fragment() {
         val sdf = java.text.SimpleDateFormat("h:m a")
 
         lbbRoomOne.setOnClickListener {
-            if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")[0].roomNumber)){
+            if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])[0].roomNumber)){
 
                 val activity = Intent(getActivity(), roomSchedule::class.java)
-                val lb110list = scheduleListTest.getAllRoomAssignmentsByRoomNumber("LB110TC")
-                activity.putExtra("RoomTxt", lb110list[0].roomNumber.toString())
+                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])
+                activity.putExtra("RoomTxt", lista[0].roomNumber.toString())
+                startActivity(activity)
+            }else if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])[0].roomNumber)){
+
+                val activity = Intent(getActivity(), roomSchedule::class.java)
+                val listo = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])
+                activity.putExtra("RoomTxt", listo[0].roomNumber.toString())
                 startActivity(activity)
             }
 
@@ -390,15 +399,72 @@ class Menu_fragment_lbb : Fragment() {
         val scheduleListTest = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("h:m a")
 
-        val rooms1stFloor = arrayListOf("LB110TC", "LB111TC", "LB112TC", "LB113TC", "LB114TC", "LB120TC", "LB121TC", "LB122TC")
-        val bunzelBuilding_first = arrayOf(
-            arrayOf("LB167", "LB168", "LB172"),
-            arrayOf("LB143", "LB144"),
-            arrayOf("LBCH1","LBCH2")
+
+        //basement
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("9:30 AM"),
+                sdf.parse("12:00 PM"), "W"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
         )
 
+        //1st floor
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_first[0][0], sdf.parse("1:00 PM"),
+                sdf.parse("3:00 PM"), "T"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT1101", 1, bunzelBuilding_first[0][0], sdf.parse("10:30 AM"),
+                sdf.parse("11:30 AM"), "TH"
+            )
+        )
+
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT1101", 1, bunzelBuilding_first[0][1], sdf.parse("9:30 AM"),
+                sdf.parse("12:00 PM"), "W"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT1101", 1, bunzelBuilding_first[0][1], sdf.parse("9:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[0][2], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[0][2], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+
+
+
+       // ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
+
         /*
-        //region 167
+        //region
 
         ScheduleFirebase.AddRoomAssignment(FirebaseFirestore.getInstance(), RoomAssignment(0, 1, bunzelBuilding_first[0][0], sdf.parse("1:30 PM"),
             sdf.parse("3:30 PM"), "T"))
