@@ -7,16 +7,16 @@ import java.util.*
 @Dao
 interface ScheduleDAO {
     /******************************* ALL USER QUERIES **********************************************/
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(vararg UserDB: UserDB)
 
-    @Update
+    @Update (onConflict = OnConflictStrategy.REPLACE)
     fun updateUser(vararg UserDB: UserDB)
 
-    @Query("SELECT * FROM Users WHERE id_number = :idNumber AND password = :password")
+    @Query("SELECT * FROM Users WHERE idNumber = :idNumber AND password = :password")
     fun getUserOnLogin(idNumber: Int, password: String): UserDB
 
-    @Query("SELECT COUNT(*) FROM Users WHERE id_number = :idNumber AND password = :password")
+    @Query("SELECT COUNT(*) FROM Users WHERE idNumber = :idNumber AND password = :password")
     fun getUserCountOnLogin(idNumber: Int, password: String): Int
 
     @Query("SELECT * FROM Users")
@@ -25,10 +25,10 @@ interface ScheduleDAO {
     /******************************* ALL USER QUERIES **********************************************/
 
     /******************************* ALL SCHEDULEDB QUERIES ****************************************/
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg schedules: ScheduleDB)
 
-    @Update
+    @Update (onConflict = OnConflictStrategy.REPLACE)
     fun update(vararg schedules: ScheduleDB)
 
     @Query("SELECT * FROM Schedules")
@@ -37,7 +37,7 @@ interface ScheduleDAO {
     @Query("SELECT * FROM Schedules WHERE courseID = :courseId")
     fun getSchedule(courseId: Int): ScheduleDB
 
-    @Query("SELECT * FROM Schedules WHERE course_code = :courseCode AND group_number = :groupNumber")
+    @Query("SELECT * FROM Schedules WHERE courseCode = :courseCode AND groupNumber = :groupNumber")
     fun getScheduleByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): ScheduleDB?
 
     @Query("SELECT * FROM users WHERE userID = :teacherID")
@@ -55,7 +55,7 @@ interface ScheduleDAO {
 
     /******************************* ALL ROOM ASSIGNMENT QUERIES ***********************************/
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertRoomAssignment(vararg roomAssignment: RoomAssignment)
 
     @Update (onConflict = OnConflictStrategy.REPLACE)
@@ -73,11 +73,11 @@ interface ScheduleDAO {
     fun getAllRoomAssignmentsByRoomNumber(roomNumber: String) : List<RoomAssignment>
 
     // Getting all Room Assignments by COURSE CODE and GROUP NUMBER
-    @Query("SELECT * FROM Room_Assignments WHERE course_code = :courseCode AND group_number = :groupNumber")
+    @Query("SELECT * FROM Room_Assignments WHERE courseCode = :courseCode AND groupNumber = :groupNumber")
     fun getRoomAssignmentByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): RoomAssignment
 
     // Getting all Room Assignments by COURSE CODE
-    @Query("SELECT * FROM Room_Assignments WHERE course_code = :courseCode")
+    @Query("SELECT * FROM Room_Assignments WHERE courseCode = :courseCode")
     fun getAllRoomAssignmentsByCourseCode(courseCode: String): List<RoomAssignment>
 
     // Getting all Room Assignments by ROOM NUMBER and DAY
@@ -95,10 +95,10 @@ interface ScheduleDAO {
 
     /******************************* ALL STATUS QUERIES ********************************************/
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertStatus(vararg status: Status)
 
-    @Update
+    @Update (onConflict = OnConflictStrategy.REPLACE)
     fun updateStatus(vararg status: Status)
 
     @Query("UPDATE Statuses SET status = :status WHERE roomID = :roomID AND date = :date")
@@ -151,7 +151,5 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Room_Assignments WHERE roomID = :roomID")
     fun getRoomAssignmentCountByroomID(roomID: Int): Int
     /******************************* ALL COUNT QUERIES *********************************************/
-
-
 
 }

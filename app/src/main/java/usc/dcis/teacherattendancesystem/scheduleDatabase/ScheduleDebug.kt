@@ -10,6 +10,9 @@ class ScheduleDebug {
             if(dao.getAllUserSchedules(userID).schedules?.count() != 0){
                 for(schedules in dao.getAllUserSchedules(userID).schedules!!){
                     Log.d("DEBUG USER SCHED: ", schedules.toString())
+                    Log.d("DEBUG  USER ROOMASSN",
+                        "${dao.getRoomAssignmentByCourseCodeAndGroupNumber(schedules.courseCode,
+                            schedules.groupNumber)}")
                 }
             }else {
                 Log.d("DEBUG USER SCHED",

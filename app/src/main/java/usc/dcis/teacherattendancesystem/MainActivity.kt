@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         testDatabase()
-        testUserDatabase()
+        //testUserDatabase()
 
     }
 
@@ -52,19 +52,25 @@ class MainActivity : AppCompatActivity() {
 
 
         try{
-            firestore.collection("userDB").document(username.text.toString())
+            firestore.collection("userDB").whereEqualTo("idNumber", username.text.toString().toInt())
+                .whereEqualTo("password", password.text.toString())
+                .limit(1)
                 .get()
                 .addOnCompleteListener { task ->
-                    if(task.isComplete){
+                    if (task.isComplete) {
                         var userSnapshot = task.result
 
-                        if(userSnapshot?.exists()!! && userSnapshot != null){
-                            if(password.text.isNotBlank() && userSnapshot["password"].toString() == password.text.toString()){
-                                var userDB = UserDB(userSnapshot["userID"].toString().toInt(),
-                                    userSnapshot["idNumber"].toString().toInt(), userSnapshot["name"].toString(), userSnapshot["password"].toString(),
-                                    userSnapshot["type"].toString())
+                        if (!userSnapshot?.isEmpty!!) {
+                            for (user in userSnapshot) {
+                                var userDB = UserDB(
+                                    user["userID"].toString().toInt(),
+                                    user["idNumber"].toString().toInt(),
+                                    user["name"].toString(),
+                                    user["password"].toString(),
+                                    user["type"].toString()
+                                )
 
-                                Log.d("FIREBASE", "ID Number => ${userSnapshot["idNumber"]} Type => ${userSnapshot["type"]}")
+                                Log.d("FIREBASE", "ID Number => ${user["idNumber"]} Type => ${user["type"]}")
                                 Log.d("FIREBASE", "ID Number: ${userDB?.idNumber} Type: ${userDB?.type}")
 
                                 Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
@@ -83,11 +89,12 @@ class MainActivity : AppCompatActivity() {
                                         startActivity(activity)
                                     }
                                 }
-                            }else {
-                                Toast.makeText(this, "Incorrect password.", Toast.LENGTH_SHORT).show()
                             }
+
+                        }else {
+                            Toast.makeText(this, "Username does not exist", Toast.LENGTH_SHORT).show()
                         }
-                    }else {
+                    } else {
                         Log.e("FIREBASE", "Error: ${task.exception?.message}")
                         Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
@@ -98,7 +105,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-/*
+        //region OLD LOGIN
+        /*
         val db = ScheduleDatabase.getInstance(this)
         var user = db.scheduleDAO
 
@@ -129,7 +137,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-*/
+        */
+        //endregion
     }
 
     fun testUserDatabase(){
@@ -199,6 +208,8 @@ class MainActivity : AppCompatActivity() {
         var sdf = java.text.SimpleDateFormat("h:m a")
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
+        //region ALL INSERTION
+        /*
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT1101"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "MATH25"))
@@ -274,13 +285,14 @@ class MainActivity : AppCompatActivity() {
             )
         )
         */
-        //ScheduleDebug.printAllRoomAssignments(scheduleListTest)
+        //endregion
+
+        //ScheduleDebug.printAllSchedules(scheduleListTest)
+
+        //ScheduleDebug.printAllUserSchedules(scheduleListTest, 3)
 
 
-        //ScheduleDebug.printAllUserSchedules(scheduleListTest, 2)
-
-
-
+        /*
         // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
         var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
 
@@ -293,7 +305,7 @@ class MainActivity : AppCompatActivity() {
                     scheduleListTest.getStatusByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID))
             }
         }
-
+        */
 
         //ScheduleDebug.printAllStatus(scheduleListTest)
         //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
@@ -301,6 +313,5 @@ class MainActivity : AppCompatActivity() {
         //ScheduleDatabase.destroyInstance()
 
     }
-
 
 }

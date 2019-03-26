@@ -2,6 +2,7 @@ package usc.dcis.teacherattendancesystem
 
 import android.annotation.TargetApi
 import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-
 import kotlinx.android.synthetic.main.activity_room_assignment_info.*
 
 class room_assignment_info : AppCompatActivity() {
@@ -29,11 +29,11 @@ class room_assignment_info : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         val dpd = DatePickerDialog(this,
-            DatePickerDialog.OnDateSetListener(function = { view, year, monthOfYear, dayOfMonth  ->
+            OnDateSetListener(function = { view, year, monthOfYear, dayOfMonth  ->
 
-                Toast.makeText(this, monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString() , Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "$monthOfYear / $dayOfMonth/$year", Toast.LENGTH_LONG).show()
                 val date = findViewById<TextView>(R.id.date_2)
-                date.text = monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString()
+                date.text = "$monthOfYear / $dayOfMonth/$year"
 
             }),year, month, day)
 
