@@ -16,6 +16,12 @@ class Menu_fragment_pe : Fragment() {
     lateinit var radioGroup: RadioGroup
     lateinit var wingGroup: RadioGroup
     lateinit var myView: View
+    val peBuilding = arrayOf(
+        arrayOf("PE11", "PE12", "PE13", "PE14", "PE15", "PE16"),
+        arrayOf("PE21","PE22", "PE23", "PE24", "PE25", "PE26"),
+        arrayOf("PE31","PE32", "PE34", "PE34B"),
+        arrayOf("PE40","PE41", "PE44B", "PE45")
+    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.menu_fragment_pe, null)
@@ -36,47 +42,13 @@ class Menu_fragment_pe : Fragment() {
 
             pe_hiddenwing.setChecked(true)
 
-            if(radioButton.text.toString().equals("1st Floor")){
+            if(radioButton.text.toString().equals("1st Floor") || radioButton.text.toString().equals("2nd Floor")
+                || radioButton.text.toString().equals("3rd Floor")|| radioButton.text.toString().equals("4th Floor")){
                 chooseAWing.visibility = View.VISIBLE
                 pe_wings.visibility = View.VISIBLE
                 pe_wing1.text = "Main Hallway"
 
-
                 wingSelect(pe_wing1.text.toString(), radioButton)
-
-
-
-            }else if(radioButton.text.toString().equals("2nd Floor")){
-                pe_wings.visibility = View.VISIBLE
-                chooseAWing.visibility = View.VISIBLE
-                pe_wing1.text = "Main Hallway"
-
-
-                wingSelect(pe_wing1.text.toString(), radioButton)
-
-
-
-
-            }else if(radioButton.text.toString().equals("3rd Floor")){
-                pe_wings.visibility = View.VISIBLE
-                chooseAWing.visibility = View.VISIBLE
-                pe_wing1.text = "Main Hallway"
-
-
-                wingSelect(pe_wing1.text.toString(), radioButton)
-
-
-
-            }else if(radioButton.text.toString().equals("4th Floor")){
-                pe_wings.visibility = View.VISIBLE
-                chooseAWing.visibility = View.VISIBLE
-                pe_wing1.text = "Main Hallway"
-
-
-                wingSelect(pe_wing1.text.toString(), radioButton)
-
-
-
             }
         }
 
@@ -93,37 +65,41 @@ class Menu_fragment_pe : Fragment() {
 
                 if(radio.text.toString().equals("1st Floor")){
                     peScrollView.visibility = View.VISIBLE
-                    peRoomFour.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
-                    peRoomOne.text = "PE11"
-                    peRoomTwo.text = "PE12"
-                    peRoomThree.text = "PE13"
-                    peRoomFour.text = "PE14"
-                    peRoomFive.text = "PE15"
+                    peRoomSix.visibility = View.VISIBLE
+                    peRoomOne.text = peBuilding[0][0]
+                    peRoomTwo.text = peBuilding[0][1]
+                    peRoomThree.text = peBuilding[0][2]
+                    peRoomFour.text = peBuilding[0][3]
+                    peRoomFive.text = peBuilding[0][4]
+                    peRoomSix.text = peBuilding[0][5]
                 }else if(radio.text.toString().equals("2nd Floor")){
                     peScrollView.visibility = View.VISIBLE
-                    peRoomFour.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
-                    peRoomOne.text = "PE21"
-                    peRoomTwo.text = "PE22"
-                    peRoomThree.text = "PE23"
-                    peRoomFour.text = "PE24"
-                    peRoomFive.text = "PE25"
+                    peRoomSix.visibility = View.VISIBLE
+                    peRoomOne.text = peBuilding[1][0]
+                    peRoomTwo.text = peBuilding[1][1]
+                    peRoomThree.text = peBuilding[1][2]
+                    peRoomFour.text = peBuilding[1][3]
+                    peRoomFive.text = peBuilding[1][4]
+                    peRoomSix.text = peBuilding[1][5]
                 }else if(radio.text.toString().equals("3rd Floor")){
                     peScrollView.visibility = View.VISIBLE
                     peRoomThree.visibility = View.VISIBLE
-                    peRoomOne.text = "PE31"
-                    peRoomTwo.text = "PE32"
-                    peRoomThree.text = "PE33"
-                    peRoomFour.visibility = View.GONE
-                    peRoomFive.visibility = View.GONE
+                    peRoomOne.text = peBuilding[2][0]
+                    peRoomTwo.text = peBuilding[2][1]
+                    peRoomThree.text = peBuilding[2][2]
+                    peRoomFour.text = peBuilding[2][3]
+                    peRoomFive.visibility = View.INVISIBLE
+                    peRoomSix.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("4th Floor")){
                     peScrollView.visibility = View.VISIBLE
-                    peRoomOne.text = "PE41"
-                    peRoomTwo.text = "PE42"
-                    peRoomThree.visibility = View.GONE
-                    peRoomFour.visibility = View.GONE
-                    peRoomFive.visibility = View.GONE
+                    peRoomOne.text =  peBuilding[3][0]
+                    peRoomTwo.text = peBuilding[3][1]
+                    peRoomThree.text = peBuilding[3][2]
+                    peRoomFour.text = peBuilding[3][3]
+                    peRoomFive.visibility = View.INVISIBLE
+                    peRoomSix.visibility = View.INVISIBLE
                 }
             }
 

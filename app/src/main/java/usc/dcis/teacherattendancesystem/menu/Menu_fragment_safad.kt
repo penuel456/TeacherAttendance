@@ -15,7 +15,13 @@ class Menu_fragment_safad : Fragment() {
     lateinit var radioGroup: RadioGroup
     lateinit var wingGroup: RadioGroup
     lateinit var myView: View
-
+    val SAFADBuilding = arrayOf(
+        arrayOf("AFCB4", "AFCB3","AF3B02","AF3B01"),
+        arrayOf("AF2B11", "AF2B09", "Painting Studio","2B07A","2B07B","2B07C","2B07D","2B07F","2B07G"),
+        arrayOf("AF1B102","AF1B04","AF1B03","1B10A","1B10B","1B10C","1B12A","1B12B","1B12C","1B12D","1B12E","1B12F"),
+        arrayOf("AF109A","AF109B","AF109A", "AF110", "AF111","AF104","AF104","AF103","AF102","AF101"),
+        arrayOf("AF207", "AF208","AF209","AF210","AF211","AF212","AF213","AF214","AF215")
+    )
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.menu_fragment_safad, null)
         return myView
@@ -33,47 +39,22 @@ class Menu_fragment_safad : Fragment() {
 
             safad_hiddenwing.setChecked(true)
 
-            if(radioButton.text.toString().equals("1st Floor")){
+            if(radioButton.text.toString().equals("3rd Basement") || radioButton.text.toString().equals("2nd Basement")
+                || radioButton.text.toString().equals("1st Basement") || radioButton.text.toString().equals("1st Floor")
+                || radioButton.text.toString().equals("2nd Floor")){
                 safad_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
-                safad_wing1.text = "Wing 1-1"
-                safad_wing2.text = "Wing 1-2"
-                safad_wing3.text = "Wing 1-3"
+                safad_wing1.text = "Main Wing"
 
+                wingSelect(safad_wing1.text.toString(), radioButton)
 
-
-                wingSelect(safad_wing1.text.toString(), safad_wing2.text.toString(), safad_wing3.text.toString(), radioButton)
-
-
-
-            }else if(radioButton.text.toString().equals("2nd Floor")){
-                safad_wings.visibility = View.VISIBLE
-                chooseAWing.visibility = View.VISIBLE
-                safad_wing1.text = "Wing 2-1"
-                safad_wing2.text = "Wing 2-2"
-                safad_wing3.text = "Wing 2-3"
-
-
-                wingSelect(safad_wing1.text.toString(), safad_wing2.text.toString(), safad_wing3.text.toString(), radioButton )
-
-
-
-
-            }else if(radioButton.text.toString().equals("3rd Floor")){
-                chooseAWing.visibility = View.VISIBLE
-                safad_wings.visibility = View.VISIBLE
-                safad_wing1.text = "Wing 3-1"
-                safad_wing2.text = "Wing 3-2"
-                safad_wing3.text = "Wing 3-3"
-
-                wingSelect(safad_wing1.text.toString(), safad_wing2.text.toString(), safad_wing3.text.toString(), radioButton)
             }
         }
 
     }
 
 
-    fun wingSelect(firstWing: String, secondWing: String, thirdWing: String, radio: RadioButton){
+    fun wingSelect(firstWing: String, radio: RadioButton){
         wingGroup = myView.findViewById(R.id.safad_wings)
 
         wingGroup.setOnCheckedChangeListener { wingGroup, checkedId ->
@@ -82,87 +63,105 @@ class Menu_fragment_safad : Fragment() {
 
             if(wingBtn.text.equals(firstWing)){
 
-                if(radio.text.toString().equals("1st Floor")){
+                if(radio.text.toString().equals("3rd Basement")){
                     safadScrollView.visibility = View.VISIBLE
+                    safadRoomOne.visibility = View.VISIBLE
+                    safadRoomTwo.visibility = View.VISIBLE
+                    safadRoomThree.visibility = View.VISIBLE
                     safadRoomFour.visibility = View.VISIBLE
-                    safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "1-1-1"
-                    safadRoomTwo.text = "1-1-2"
-                    safadRoomThree.text = "1-1-3"
-                    safadRoomFour.text = "1-1-4"
-                    safadRoomFive.text = "1-1-5"
-                }else if(radio.text.toString().equals("2nd Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomFour.visibility = View.VISIBLE
-                    safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "2-1-1"
-                    safadRoomTwo.text = "2-1-2"
-                    safadRoomThree.text = "2-1-3"
-                    safadRoomFour.text = "2-1-4"
-                    safadRoomFive.text = "2-1-5"
-                }else if(radio.text.toString().equals("3rd Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomOne.text = "3-1-1"
-                    safadRoomTwo.text = "3-1-2"
-                    safadRoomThree.text = "3-1-3"
-                    safadRoomFour.visibility = View.GONE
-                    safadRoomFive.visibility = View.GONE
-                }
-            }else if(wingBtn.text.equals(secondWing)){
+                    safadRoomOne.text = SAFADBuilding[0][0]
+                    safadRoomTwo.text = SAFADBuilding[0][1]
+                    safadRoomThree.text = SAFADBuilding[0][2]
+                    safadRoomFour.text = SAFADBuilding[0][3]
+                    safadRoomFive.visibility = View.INVISIBLE
+                    safadRoomSix.visibility = View.INVISIBLE
+                    safadRoomSeven.visibility = View.INVISIBLE
+                    safadRoomEight.visibility = View.INVISIBLE
+                    safadRoomNine.visibility = View.INVISIBLE
+                    safadRoomTen.visibility = View.INVISIBLE
+                    safadRoomEleven.visibility = View.INVISIBLE
+                    safadRoomTwelve.visibility = View.INVISIBLE
 
-                if(radio.text.toString().equals("1st Floor")){
+                }else if(radio.text.toString().equals("2nd Basement")){
                     safadScrollView.visibility = View.VISIBLE
-                    safadRoomFour.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "1-2-1"
-                    safadRoomTwo.text = "1-2-2"
-                    safadRoomThree.text = "1-2-3"
-                    safadRoomFour.text = "1-2-4"
-                    safadRoomFive.text = "1-2-5"
+                    safadRoomSix.visibility = View.VISIBLE
+                    safadRoomSeven.visibility = View.VISIBLE
+                    safadRoomEight.visibility = View.VISIBLE
+                    safadRoomNine.visibility = View.VISIBLE
+                    safadRoomOne.text = SAFADBuilding[1][0]
+                    safadRoomTwo.text = SAFADBuilding[1][1]
+                    safadRoomThree.text = SAFADBuilding[1][2]
+                    safadRoomFour.text = SAFADBuilding[1][3]
+                    safadRoomFive.text = SAFADBuilding[1][4]
+                    safadRoomSix.text = SAFADBuilding[1][5]
+                    safadRoomSeven.text = SAFADBuilding[1][6]
+                    safadRoomEight.text = SAFADBuilding[1][7]
+                    safadRoomNine.text = SAFADBuilding[1][8]
+                    safadRoomTen.visibility = View.INVISIBLE
+                    safadRoomEleven.visibility = View.INVISIBLE
+                    safadRoomTwelve.visibility = View.INVISIBLE
+                }else if(radio.text.toString().equals("1st Basement")){
+                    safadScrollView.visibility = View.VISIBLE
+                    safadRoomFive.visibility = View.VISIBLE
+                    safadRoomSix.visibility = View.VISIBLE
+                    safadRoomSeven.visibility = View.VISIBLE
+                    safadRoomEight.visibility = View.VISIBLE
+                    safadRoomNine.visibility = View.VISIBLE
+                    safadRoomTen.visibility = View.VISIBLE
+                    safadRoomEleven.visibility = View.VISIBLE
+                    safadRoomTwelve.visibility = View.VISIBLE
+                    safadRoomOne.text = SAFADBuilding[2][0]
+                    safadRoomTwo.text = SAFADBuilding[2][1]
+                    safadRoomThree.text = SAFADBuilding[2][2]
+                    safadRoomFour.text = SAFADBuilding[2][3]
+                    safadRoomFive.text = SAFADBuilding[2][4]
+                    safadRoomSix.text = SAFADBuilding[2][5]
+                    safadRoomSeven.text = SAFADBuilding[2][6]
+                    safadRoomEight.text = SAFADBuilding[2][7]
+                    safadRoomNine.text = SAFADBuilding[2][8]
+                    safadRoomTen.text = SAFADBuilding[2][9]
+                    safadRoomEleven.text = SAFADBuilding[2][10]
+                    safadRoomTwelve.text = SAFADBuilding[2][11]
+                } else if(radio.text.toString().equals("1st Floor")){
+                    safadScrollView.visibility = View.VISIBLE
+                    safadRoomFive.visibility = View.VISIBLE
+                    safadRoomSix.visibility = View.VISIBLE
+                    safadRoomSeven.visibility = View.VISIBLE
+                    safadRoomEight.visibility = View.VISIBLE
+                    safadRoomNine.visibility = View.VISIBLE
+                    safadRoomTen.visibility = View.VISIBLE
+                    safadRoomOne.text = SAFADBuilding[3][0]
+                    safadRoomTwo.text = SAFADBuilding[3][1]
+                    safadRoomThree.text = SAFADBuilding[3][2]
+                    safadRoomFour.text = SAFADBuilding[3][3]
+                    safadRoomFive.text = SAFADBuilding[3][4]
+                    safadRoomSix.text = SAFADBuilding[3][5]
+                    safadRoomSeven.text = SAFADBuilding[3][6]
+                    safadRoomEight.text = SAFADBuilding[3][7]
+                    safadRoomNine.text = SAFADBuilding[3][8]
+                    safadRoomTen.text = SAFADBuilding[3][9]
+                    safadRoomEleven.visibility = View.INVISIBLE
+                    safadRoomTwelve.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("2nd Floor")){
                     safadScrollView.visibility = View.VISIBLE
-                    safadRoomFour.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "2-2-1"
-                    safadRoomTwo.text = "2-2-2"
-                    safadRoomThree.text = "2-2-3"
-                    safadRoomFour.text = "2-2-4"
-                    safadRoomFive.text = "2-2-5"
-                }else if(radio.text.toString().equals("3rd Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomOne.text = "3-2-1"
-                    safadRoomTwo.text = "3-2-2"
-                    safadRoomThree.text = "3-2-3"
-                    safadRoomFour.visibility = View.GONE
-                    safadRoomFive.visibility = View.GONE
-                }
-            }else if(wingBtn.text.equals(thirdWing)){
-
-                if(radio.text.toString().equals("1st Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomFour.visibility = View.VISIBLE
-                    safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "1-3-1"
-                    safadRoomTwo.text = "1-3-2"
-                    safadRoomThree.text = "1-3-3"
-                    safadRoomFour.text = "1-3-4"
-                    safadRoomFive.text = "1-3-5"
-                }else if(radio.text.toString().equals("2nd Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomFour.visibility = View.VISIBLE
-                    safadRoomFive.visibility = View.VISIBLE
-                    safadRoomOne.text = "2-3-1"
-                    safadRoomTwo.text = "2-3-2"
-                    safadRoomThree.text = "2-3-3"
-                    safadRoomFour.text = "2-3-4"
-                    safadRoomFive.text = "2-3-5"
-                }else if(radio.text.toString().equals("3rd Floor")){
-                    safadScrollView.visibility = View.VISIBLE
-                    safadRoomOne.text = "3-3-1"
-                    safadRoomTwo.text = "3-3-2"
-                    safadRoomThree.text = "3-3-3"
-                    safadRoomFour.visibility = View.GONE
-                    safadRoomFive.visibility = View.GONE
+                    safadRoomSix.visibility = View.VISIBLE
+                    safadRoomSeven.visibility = View.VISIBLE
+                    safadRoomEight.visibility = View.VISIBLE
+                    safadRoomNine.visibility = View.VISIBLE
+                    safadRoomOne.text = SAFADBuilding[4][0]
+                    safadRoomTwo.text = SAFADBuilding[4][1]
+                    safadRoomThree.text = SAFADBuilding[4][2]
+                    safadRoomFour.text = SAFADBuilding[4][3]
+                    safadRoomFive.text = SAFADBuilding[4][4]
+                    safadRoomSix.text = SAFADBuilding[4][5]
+                    safadRoomSeven.text = SAFADBuilding[4][6]
+                    safadRoomEight.text = SAFADBuilding[4][7]
+                    safadRoomNine.text = SAFADBuilding[4][8]
+                    safadRoomTen.visibility = View.INVISIBLE
+                    safadRoomEleven.visibility = View.INVISIBLE
+                    safadRoomTwelve.visibility = View.INVISIBLE
                 }
             }
 
