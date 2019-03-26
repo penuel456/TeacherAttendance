@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
@@ -7,14 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_sched_list_teacher.*
 import kotlinx.android.synthetic.main.sched_list_student.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
 import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDate
 import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentTime
 import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
-import java.sql.Timestamp
 import java.util.*
 
 
@@ -31,10 +30,11 @@ class SchedListStudent : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun createSchedules(){
         val db = ScheduleDatabase.getInstance(this)
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
-        var scheduleDao = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("hh:mm a")
+        val scheduleDao = db.scheduleDAO
         val cal = Calendar.getInstance()
 
         Toast.makeText(this, "Please wait while we're getting your schedules.", Toast.LENGTH_SHORT).show()
@@ -46,11 +46,12 @@ class SchedListStudent : AppCompatActivity() {
                 val scheduleSnapshot = task.result
 
                 if(!scheduleSnapshot?.isEmpty!!){
-                    for(sched in scheduleSnapshot!!){
+                    for(sched in scheduleSnapshot){
                         scheduleDao.insert(sched.toObject(ScheduleDB::class.java))
                         //Log.d("FIREBASE", "$sched added")
                     }
 
+                    //region INSERTING ROOM ASSIGNMENT TO LOCAL DATABASE
                     FirebaseFirestore.getInstance().collection("roomAssignment")
                         .get()
                         .addOnCompleteListener { task ->
@@ -59,40 +60,79 @@ class SchedListStudent : AppCompatActivity() {
 
                             if(!roomSnapshot?.isEmpty!!){
                                 for(room in roomSnapshot){
-                                    //var startTimestamp =
-                                    /*
-                                    scheduleDao.insertRoomAssignment(
-                                        RoomAssignment(roomID = room["roomID"].toString().toInt(),
-                                        courseCode = room["courseCode"].toString(),
-                                            groupNumber = room["groupNumber"].toString().toInt(),
-                                        startTime = sdf.parse(sdf.format(Date(startTimestamp))),
-                                        endTime = sdf.parse(sdf.format(room["endTime"])),
-                                        dayAssigned = room["dayAssigned"].toString(),
-                                        roomNumber = room["roomNumber"].toString()))
-                                    //Log.d("FIREBASE", "$room added")
-                                    */
+                                    val groupNumber = room["groupNumber"] as Number
+                                    if(scheduleDao.
+                                            getScheduleCountByCourseCodeAndGroupNumber
+                                                (groupNumber.toInt(), room["courseCode"].toString()) != 0){
+                                        val startTimestamp = room.getTimestamp("startTime")
+                                        val endTimestamp = room.getTimestamp("endTime")
+                                        val startTime = startTimestamp?.toDate()
+                                        val endTime = endTimestamp?.toDate()
+                                        val roomIDToCheck = room["roomID"] as Number
+
+
+                                        if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck.toInt()) == 0){
+                                            scheduleDao.insertRoomAssignment(
+                                                RoomAssignment(roomID = room["roomID"].toString().toInt(),
+                                                    courseCode = room["courseCode"].toString(),
+                                                    groupNumber = room["groupNumber"].toString().toInt(),
+                                                    startTime = sdf.parse(sdf.format(startTime)),
+                                                    endTime = sdf.parse(sdf.format(endTime)),
+                                                    dayAssigned = room["dayAssigned"].toString(),
+                                                    roomNumber = room["roomNumber"].toString())
+                                            )
+                                        }
+
+                                    }
+
+
+
                                 }
                             }
                         }
+                    //endregion
+
+                    //region INSERTING TEACHERS BASED ON SCHEDULE
+                    FirebaseFirestore.getInstance().collection("userDB")
+                        .get()
+                        .addOnCompleteListener { task ->
+                            val userSnapshot = task.result
+
+                            for(user in userSnapshot!!){
+                                val teacherIDToCheck = user["userID"] as Number
+                                for(sched in scheduleDao.getAllSchedules()){
+                                    if(sched.teacherId != null){
+                                        if(sched.teacherId == teacherIDToCheck.toInt()){
+                                            scheduleDao.insertUser(
+                                                UserDB(userID = user["userID"].toString().toInt(), idNumber = user["idNumber"].toString().toInt(),
+                                                    name = user["name"] as String, password = null, type = user["type"] as String)
+                                            )
+
+                                            Log.d("FIREBASE", "User ${user["name"]} added.")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    //endregion
                 }
             }
     }
 
     private fun getSchedule(){
         val db = ScheduleDatabase.getInstance(this)
-        var scheduleDao = db.scheduleDAO
+        val scheduleDao = db.scheduleDAO
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
         val allUserSched = scheduleDao.getAllUserSchedules(1)
-        var roomAssignmentList: MutableList<RoomAssignment>? = null
 
-        //val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay(DateManager.getDayString(day))
+        val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay(DateManager.getDayString(day))
 
         Log.d("TODAY:", getDayString(day))
 
         if(roomAssignmentList != null){
-            getOnGoingAndUpNext(scheduleDao, roomAssignmentList!!.toList())
+            getOnGoingAndUpNext(scheduleDao, roomAssignmentList.toList())
         }else {
             Log.d("NOTICE", "RoomAssignmentList is empty. Do something here (should say 'no schedule for today')")
             displayNoSchedule()
@@ -105,8 +145,9 @@ class SchedListStudent : AppCompatActivity() {
         noSchedNotif.visibility = View.VISIBLE
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun getOnGoingAndUpNext(scheduleDao: ScheduleDAO, roomAssignmentList: List<RoomAssignment>){
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
+        val sdf = java.text.SimpleDateFormat("hh:mm a")
         var isThereOnGoing = false
         var isThereUpNext = false
 
@@ -144,20 +185,21 @@ class SchedListStudent : AppCompatActivity() {
 
     }
 
-    fun refreshSchedule(view: View){
+    fun View.refreshSchedule() {
         getSchedule()
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun debugPrintAllRoomAssignments(){
         val db = ScheduleDatabase.getInstance(this)
-        var scheduleDao = db.scheduleDAO
+        val scheduleDao = db.scheduleDAO
 
-        var roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay("W")
-        var sdf = java.text.SimpleDateFormat("h:m a")
+        val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay("W")
+        val sdf = java.text.SimpleDateFormat("h:m a")
 
         for(rooms in roomAssignmentList){
-            var schedDB = scheduleDao.getScheduleByCourseCodeAndGroupNumber(rooms.courseCode, rooms.groupNumber)
-            var teacher: UserDB? = scheduleDao.getTeacherFromSchedule(schedDB?.teacherId)
+            val schedDB = scheduleDao.getScheduleByCourseCodeAndGroupNumber(rooms.courseCode, rooms.groupNumber)
+            val teacher: UserDB? = scheduleDao.getTeacherFromSchedule(schedDB?.teacherId)
 
             Log.d("ROOMASSN", "RoomID: ${rooms.roomID}")
             Log.d("ROOMASSN", "Teacher: ${teacher?.name}")
