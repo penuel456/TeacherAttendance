@@ -42,28 +42,7 @@ class Menu_fragment_pe : Fragment() {
 
             pe_hiddenwing.setChecked(true)
 
-            if(radioButton.text.toString().equals("1st Floor") || radioButton.text.toString().equals("2nd Floor")
-                || radioButton.text.toString().equals("3rd Floor")|| radioButton.text.toString().equals("4th Floor")){
-                chooseAWing.visibility = View.VISIBLE
-                pe_wings.visibility = View.VISIBLE
-                pe_wing1.text = "Main Hallway"
-
-                wingSelect(pe_wing1.text.toString(), radioButton)
-            }
-        }
-
-    }
-
-    fun wingSelect(firstWing: String, radio: RadioButton) {
-        wingGroup = myView.findViewById(R.id.pe_wings)
-
-        wingGroup.setOnCheckedChangeListener { wingGroup, checkedId ->
-            val wingID = pe_wings.checkedRadioButtonId
-            val wingBtn = myView.findViewById<RadioButton>(wingID)
-
-            if(wingBtn.text.equals(firstWing)){
-
-                if(radio.text.toString().equals("1st Floor")){
+                if(radioButton.text.toString().equals("1st Floor")){
                     peScrollView.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
                     peRoomSix.visibility = View.VISIBLE
@@ -73,7 +52,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFour.text = peBuilding[0][3]
                     peRoomFive.text = peBuilding[0][4]
                     peRoomSix.text = peBuilding[0][5]
-                }else if(radio.text.toString().equals("2nd Floor")){
+                }else if(radioButton.text.toString().equals("2nd Floor")){
                     peScrollView.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
                     peRoomSix.visibility = View.VISIBLE
@@ -83,7 +62,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFour.text = peBuilding[1][3]
                     peRoomFive.text = peBuilding[1][4]
                     peRoomSix.text = peBuilding[1][5]
-                }else if(radio.text.toString().equals("3rd Floor")){
+                }else if(radioButton.text.toString().equals("3rd Floor")){
                     peScrollView.visibility = View.VISIBLE
                     peRoomThree.visibility = View.VISIBLE
                     peRoomOne.text = peBuilding[2][0]
@@ -92,7 +71,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFour.text = peBuilding[2][3]
                     peRoomFive.visibility = View.INVISIBLE
                     peRoomSix.visibility = View.INVISIBLE
-                }else if(radio.text.toString().equals("4th Floor")){
+                }else if(radioButton.text.toString().equals("4th Floor")){
                     peScrollView.visibility = View.VISIBLE
                     peRoomOne.text =  peBuilding[3][0]
                     peRoomTwo.text = peBuilding[3][1]
@@ -101,8 +80,15 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFive.visibility = View.INVISIBLE
                     peRoomSix.visibility = View.INVISIBLE
                 }
-            }
 
         }
+
     }
+
+
+
+
+
+
+
 }
