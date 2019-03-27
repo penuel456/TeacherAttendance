@@ -50,28 +50,28 @@ class roomSchedule : AppCompatActivity() {
             if(dayAssigned.equals("M")){
                 monDAY.text = dayAssigned
                 monSubject.text = roomNumber[i].courseCode
-                monSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                monSched.text = roomNumber[i].startTime?.hours.toString() + ":" + roomNumber[i].startTime!!.minutes.toString() + " - " + roomNumber[i].endTime!!.hours.toString() + ":" + roomNumber[i].endTime!!.minutes.toString()
                 monTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
 
             }else if(dayAssigned.equals("T")){
                 tueDAY.text = dayAssigned
                 tueSubject.text = roomNumber[i].courseCode
-                tueSched.text =  roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                tueSched.text =  roomNumber[i].startTime!!.hours.toString() + ":" + roomNumber[i].startTime!!.minutes.toString() + " - " + roomNumber[i].endTime!!.hours.toString() + ":" + roomNumber[i].endTime!!.minutes.toString()
                 tueTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("W")){
                 wedDAY.text = dayAssigned
                 wedSubject.text =  roomNumber[i].courseCode
-                wedSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                wedSched.text = roomNumber[i].startTime!!.hours.toString() + ":" + roomNumber[i].startTime!!.minutes.toString() + " - " + roomNumber[i].endTime!!.hours.toString() + ":" + roomNumber[i].endTime!!.minutes.toString()
                 wedTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("TH")){
                 thuDAY.text = dayAssigned
                 thuSubject.text = roomNumber[i].courseCode
-                thuSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                thuSched.text = roomNumber[i].startTime!!.hours.toString() + ":" + roomNumber[i].startTime!!.minutes.toString() + " - " + roomNumber[i].endTime!!.hours.toString() + ":" + roomNumber[i].endTime!!.minutes.toString()
                 thuTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("F")){
                 friDAY.text = dayAssigned
                 friSubject.text = roomNumber[i].courseCode
-                friSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                friSched.text = roomNumber[i].startTime!!.hours.toString() + ":" + roomNumber[i].startTime!!.minutes.toString() + " - " + roomNumber[i].endTime!!.hours.toString() + ":" + roomNumber[i].endTime!!.minutes.toString()
                 friTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }
         }

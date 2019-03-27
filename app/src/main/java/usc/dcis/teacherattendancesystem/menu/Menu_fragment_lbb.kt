@@ -399,8 +399,9 @@ class Menu_fragment_lbb : Fragment() {
         val scheduleListTest = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("h:m a")
 
-
-        //basement
+        //lbb rooms
+        //region
+        //basement lbb
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("10:30 AM"),
@@ -420,7 +421,7 @@ class Menu_fragment_lbb : Fragment() {
             )
         )
 
-        //1st floor
+        //1st floor lbb
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, "IT5001", 1, bunzelBuilding_first[0][0], sdf.parse("1:00 PM"),
@@ -459,9 +460,61 @@ class Menu_fragment_lbb : Fragment() {
             )
         )
 
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT1101", 1, bunzelBuilding_first[1][0], sdf.parse("9:30 AM"),
+                sdf.parse("11:00 aM"), "W"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_first[1][0], sdf.parse("02:30 PM"),
+                sdf.parse("04:00 PM"), "TH"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[1][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_first[1][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+
+        //2nd floor lbb
 
 
-       // ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
+
+        //endregion
+        //ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
 
         /*
         //region
