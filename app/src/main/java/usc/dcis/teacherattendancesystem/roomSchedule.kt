@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ class roomSchedule : AppCompatActivity() {
 
 
 
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_schedule)
@@ -23,7 +25,7 @@ class roomSchedule : AppCompatActivity() {
         val scheduleListTest = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("KK:m")
 
-        var roomTitle: String = intent.getStringExtra("RoomTxt")
+        val roomTitle: String = intent.getStringExtra("RoomTxt")
 
         roomNumTxt.text = roomTitle
 
@@ -50,28 +52,33 @@ class roomSchedule : AppCompatActivity() {
             if(dayAssigned.equals("M")){
                 monDAY.text = dayAssigned
                 monSubject.text = roomNumber[i].courseCode
-                monSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                monSched.text =
+                    "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 monTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
 
             }else if(dayAssigned.equals("T")){
                 tueDAY.text = dayAssigned
                 tueSubject.text = roomNumber[i].courseCode
-                tueSched.text =  roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                tueSched.text =
+                    "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 tueTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("W")){
                 wedDAY.text = dayAssigned
                 wedSubject.text =  roomNumber[i].courseCode
-                wedSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                wedSched.text =
+                    "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 wedTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("TH")){
                 thuDAY.text = dayAssigned
                 thuSubject.text = roomNumber[i].courseCode
-                thuSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                thuSched.text =
+                    "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 thuTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }else if(dayAssigned.equals("F")){
                 friDAY.text = dayAssigned
                 friSubject.text = roomNumber[i].courseCode
-                friSched.text = roomNumber[i].startTime.hours.toString() + ":" + roomNumber[i].startTime.minutes.toString() + " - " + roomNumber[i].endTime.hours.toString() + ":" + roomNumber[i].endTime.minutes.toString()
+                friSched.text =
+                    "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 friTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }
         }
