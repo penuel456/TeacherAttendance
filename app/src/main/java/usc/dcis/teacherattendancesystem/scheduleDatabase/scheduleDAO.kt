@@ -138,6 +138,9 @@ interface ScheduleDAO {
     @Query("DELETE FROM Statuses")
     fun deleteAllStatus()
 
+    @Query("DELETE FROM Users")
+    fun deleteAllUsers()
+
     /******************************* ALL DELETION QUERIES ******************************************/
 
     /******************************* ALL COUNT QUERIES *********************************************/

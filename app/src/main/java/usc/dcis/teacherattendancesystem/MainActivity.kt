@@ -11,23 +11,15 @@ import android.widget.Toast
 import android.util.Log
 import usc.dcis.teacherattendancesystem.menu.Menu
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
-import java.util.*
 import com.google.firebase.FirebaseApp
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.*
-import com.google.firebase.firestore.EventListener
-import usc.dcis.tea.ScheduleFirebase
-import usc.dcis.tea.ScheduleFirebaseDebug
-import usc.dcis.teacherattendancesystem.DateManager.Companion.getCurrentDay
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class MainActivity : AppCompatActivity() {
 
 
-    var firestore = FirebaseFirestore.getInstance()
-    val settings = FirebaseFirestoreSettings.Builder()
+    private var firestore = FirebaseFirestore.getInstance()
+    private val settings = FirebaseFirestoreSettings.Builder()
         .setTimestampsInSnapshotsEnabled(true)
         .build()
 
@@ -42,10 +34,13 @@ class MainActivity : AppCompatActivity() {
 
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
-        testDatabase()
+        //testDatabase()
         //testUserDatabase()
+        deleteOldDatabase()
 
     }
+
+
 
     fun check(view : View){
         Toast.makeText(this, "Attempting to login", Toast.LENGTH_SHORT).show()
@@ -144,7 +139,7 @@ class MainActivity : AppCompatActivity() {
     fun testUserDatabase(){
         val TAG = "USER"
         val db = ScheduleDatabase.getInstance(this)
-        var userList = db.scheduleDAO
+        val userList = db.scheduleDAO
 
 
         userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
@@ -311,7 +306,16 @@ class MainActivity : AppCompatActivity() {
         //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
 
         //ScheduleDatabase.destroyInstance()
+        */
+    }
 
+    private fun deleteOldDatabase() {
+        val dao = ScheduleDatabase.getInstance(this).scheduleDAO
+
+        dao.deleteAllSchedules()
+        dao.deleteAllRoomAssignments()
+        dao.deleteAllStatus()
+        dao.deleteAllUsers()
     }
 
 }
