@@ -142,9 +142,9 @@ class MainActivity : AppCompatActivity() {
         val userList = db.scheduleDAO
 
 
-        userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
-        userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
-        userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
+        //userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
+        //userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
+        //userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
 
 
         //ScheduleFirebase.AddMultipleUsers(firestore, userList.getAllUsers())
