@@ -350,24 +350,16 @@ class Menu_fragment_lbb : Fragment() {
         val sdf = java.text.SimpleDateFormat("h:m a")
 
         lbbRoomOne.setOnClickListener {
-            if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])[0].roomNumber)){
-
                 val activity = Intent(getActivity(), roomSchedule::class.java)
-                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])
+                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomOne)
                 activity.putExtra("RoomTxt", lista[0].roomNumber.toString())
                 startActivity(activity)
-            }else if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])[0].roomNumber)){
 
-                val activity = Intent(getActivity(), roomSchedule::class.java)
-                val listo = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])
-                activity.putExtra("RoomTxt", listo[0].roomNumber.toString())
-                startActivity(activity)
-            }
 
         }
 
         lbbRoomTwo.setOnClickListener {
-            if(roomTwo.equals("LB111TC")) {
+            if(roomTwo.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][1])[0].roomNumber)) {
                 val activity = Intent(getActivity(), roomSchedule::class.java)
                 activity.putExtra("RoomTxt", roomTwo)
                 startActivity(activity)
@@ -379,17 +371,20 @@ class Menu_fragment_lbb : Fragment() {
 
         lbbRoomThree.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomThree )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomThree)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
         lbbRoomFour.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomFour )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFour)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
         lbbRoomFive.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomFive )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFive)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
     }
