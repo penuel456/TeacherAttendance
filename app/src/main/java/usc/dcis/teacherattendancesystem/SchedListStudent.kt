@@ -30,12 +30,12 @@ class SchedListStudent : AppCompatActivity() {
 
     }
 
+    @Suppress("NAME_SHADOWING")
     @SuppressLint("SimpleDateFormat")
     private fun createSchedules(){
         val db = ScheduleDatabase.getInstance(this)
         val sdf = java.text.SimpleDateFormat("hh:mm a")
         val scheduleDao = db.scheduleDAO
-        val cal = Calendar.getInstance()
 
         Toast.makeText(this, "Please wait while we're getting your schedules.", Toast.LENGTH_SHORT).show()
 
@@ -124,8 +124,6 @@ class SchedListStudent : AppCompatActivity() {
         val dao = db.scheduleDAO
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
-
-        val allUserSched = dao.getAllUserSchedules(1)
 
         val roomAssignmentList = dao.getAllRoomAssignmentsByDay(DateManager.getDayString(day))
 
