@@ -116,68 +116,6 @@ class ScheduleFirebase {
     }
 }
 
-class ScheduleFirebaseDebug {
-    companion object {
-        /*
-        fun printRoomAssignment(db: FirebaseFirestore){
-            db.collection("roomAssignment")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
-                        }
-                    } else {
-                        Log.w("FIREBASE", "Error getting documents.", task.exception)
-                    }
-                }
-        }
-
-        fun printStatus(db: FirebaseFirestore){
-            db.collection("status")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
-                        }
-                    } else {
-                        Log.w("FIREBASE", "Error getting documents.", task.exception)
-                    }
-                }
-        }
-
-        fun printScheduleDB(db: FirebaseFirestore){
-            db.collection("scheduleDB")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
-                        }
-                    } else {
-                        Log.w("FIREBASE", "Error getting documents.", task.exception)
-                    }
-                }
-        }
-
-        fun printUserDB(db: FirebaseFirestore){
-            db.collection("userDB")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            Log.d("FIREBASE", "ID: ${document.id} => ${document.data}")
-                        }
-                    } else {
-                        Log.w("FIREBASE", "Error getting documents.", task.exception)
-                    }
-                }
-        }
-        */
-    }
-}
-
 /********************************* FIREBASE QUERY INSTRUCTIONS ************************************************
 
  ****To create or overwrite a single document, use the set() method:
