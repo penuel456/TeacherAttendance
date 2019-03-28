@@ -204,7 +204,7 @@ class MainActivity : AppCompatActivity() {
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
         //region ALL INSERTION
-        /*
+
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT1101"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "MATH25"))

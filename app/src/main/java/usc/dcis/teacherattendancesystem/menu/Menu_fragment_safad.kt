@@ -39,31 +39,7 @@ class Menu_fragment_safad : Fragment() {
 
             safad_hiddenwing.setChecked(true)
 
-            if(radioButton.text.toString().equals("3rd Basement") || radioButton.text.toString().equals("2nd Basement")
-                || radioButton.text.toString().equals("1st Basement") || radioButton.text.toString().equals("1st Floor")
-                || radioButton.text.toString().equals("2nd Floor")){
-                safad_wings.visibility = View.VISIBLE
-                chooseAWing.visibility = View.VISIBLE
-                safad_wing1.text = "Main Wing"
-
-                wingSelect(safad_wing1.text.toString(), radioButton)
-
-            }
-        }
-
-    }
-
-
-    fun wingSelect(firstWing: String, radio: RadioButton){
-        wingGroup = myView.findViewById(R.id.safad_wings)
-
-        wingGroup.setOnCheckedChangeListener { wingGroup, checkedId ->
-            val wingID = safad_wings.checkedRadioButtonId
-            val wingBtn = myView.findViewById<RadioButton>(wingID)
-
-            if(wingBtn.text.equals(firstWing)){
-
-                if(radio.text.toString().equals("3rd Basement")){
+                if(radioButton.text.toString().equals("3rd Basement")){
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomOne.visibility = View.VISIBLE
                     safadRoomTwo.visibility = View.VISIBLE
@@ -82,7 +58,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
 
-                }else if(radio.text.toString().equals("2nd Basement")){
+                }else if(radioButton.text.toString().equals("2nd Basement")){
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -101,7 +77,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomTen.visibility = View.INVISIBLE
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
-                }else if(radio.text.toString().equals("1st Basement")){
+                }else if(radioButton.text.toString().equals("1st Basement")){
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -123,7 +99,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomTen.text = SAFADBuilding[2][9]
                     safadRoomEleven.text = SAFADBuilding[2][10]
                     safadRoomTwelve.text = SAFADBuilding[2][11]
-                } else if(radio.text.toString().equals("1st Floor")){
+                } else if(radioButton.text.toString().equals("1st Floor")){
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -143,7 +119,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomTen.text = SAFADBuilding[3][9]
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
-                }else if(radio.text.toString().equals("2nd Floor")){
+                }else if(radioButton.text.toString().equals("2nd Floor")){
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -163,8 +139,9 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
                 }
-            }
 
         }
+
     }
+
 }

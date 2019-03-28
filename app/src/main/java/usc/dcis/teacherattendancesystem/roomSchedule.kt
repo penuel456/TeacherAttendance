@@ -23,7 +23,7 @@ class roomSchedule : AppCompatActivity() {
         val dao = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("KK:m")
 
-        var roomTitle: String = intent.getStringExtra("RoomTxt")
+        val roomTitle: String = intent.getStringExtra("RoomTxt")
 
         roomNumTxt.text = roomTitle
 

@@ -131,27 +131,27 @@ class Menu_fragment_lbb : Fragment() {
 
                 wingSelect(lbb_wing1.text.toString(), lbb_wing2.text.toString(), lbb_wing3.text.toString(), lbb_wing4.text.toString(), lbb_wing5.text.toString(), radioButton)
             }else if(radioButton.text.toString().equals("5th Floor")){
-                chooseAWing.visibility = View.GONE
-                lbb_wings.visibility = View.GONE
+                chooseAWing.visibility = View.INVISIBLE
+                lbb_wings.visibility = View.INVISIBLE
                 lbbScrollView.visibility = View.VISIBLE
                 lbbRoomTwo.visibility = View.VISIBLE
                 lbbRoomThree.visibility = View.VISIBLE
                 lbbRoomOne.text = bunzelBuilding_fifth[0]
                 lbbRoomTwo.text = bunzelBuilding_fifth[1]
                 lbbRoomThree.text = bunzelBuilding_fifth[2]
-                lbbRoomFour.visibility = View.GONE
-                lbbRoomFive.visibility = View.GONE
+                lbbRoomFour.visibility = View.INVISIBLE
+                lbbRoomFive.visibility = View.INVISIBLE
                 roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(),
                     "", "")
             }else if(radioButton.text.toString().equals("Basement")){
-                chooseAWing.visibility = View.GONE
-                lbb_wings.visibility = View.GONE
+                chooseAWing.visibility = View.INVISIBLE
+                lbb_wings.visibility = View.INVISIBLE
                 lbbScrollView.visibility = View.VISIBLE
                 lbbRoomOne.text = bunzelBuilding_basement[0]
-                lbbRoomTwo.visibility = View.GONE
-                lbbRoomThree.visibility = View.GONE
-                lbbRoomFour.visibility = View.GONE
-                lbbRoomFive.visibility = View.GONE
+                lbbRoomTwo.visibility = View.INVISIBLE
+                lbbRoomThree.visibility = View.INVISIBLE
+                lbbRoomFour.visibility = View.INVISIBLE
+                lbbRoomFive.visibility = View.INVISIBLE
                 roomSelect(lbbRoomOne.text.toString(), "", "", "", "")
 
             }
@@ -178,8 +178,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomOne.text = bunzelBuilding_first[0][0]
                     lbbRoomTwo.text = bunzelBuilding_first[0][1]
                     lbbRoomThree.text = bunzelBuilding_first[0][2]
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -190,7 +190,7 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomTwo.text = bunzelBuilding_second[0][1]
                     lbbRoomThree.text = bunzelBuilding_second[0][2]
                     lbbRoomFour.text = bunzelBuilding_second[0][3]
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFive.visibility = View.INVISIBLE
 
                 }else if(radio.text.toString().equals("3rd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -199,8 +199,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomOne.text = bunzelBuilding_third[1][0]
                     lbbRoomTwo.text = bunzelBuilding_third[1][1]
                     lbbRoomThree.text = bunzelBuilding_third[1][2]
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
@@ -221,9 +221,9 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomOne.text = bunzelBuilding_first[1][0]
                     lbbRoomTwo.text = bunzelBuilding_first[1][1]
-                    lbbRoomThree.visibility = View.GONE
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomThree.visibility = View.INVISIBLE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
 
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -244,8 +244,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomOne.text = bunzelBuilding_third[2][0]
                     lbbRoomTwo.text = bunzelBuilding_third[2][1]
                     lbbRoomThree.text = bunzelBuilding_third[2][1]
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
@@ -256,7 +256,7 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomThree.text =  bunzelBuilding_fourth[2][2]
                     lbbRoomFour.text =  bunzelBuilding_fourth[2][3]
 
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }
             }else if(wingBtn.text.equals(thirdWing)){
 
@@ -265,9 +265,9 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomOne.text = bunzelBuilding_first[2][0]
                     lbbRoomTwo.text = bunzelBuilding_first[2][1]
-                    lbbRoomThree.visibility = View.GONE
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomThree.visibility = View.INVISIBLE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
@@ -278,7 +278,7 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomThree.text =  bunzelBuilding_second[2][2]
                     lbbRoomFour.text =  bunzelBuilding_second[2][3]
 
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFive.visibility = View.INVISIBLE
 
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
@@ -297,18 +297,18 @@ class Menu_fragment_lbb : Fragment() {
                 if(radio.text.toString().equals("2nd Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomOne.text = bunzelBuilding_second[3][0]
-                    lbbRoomTwo.visibility = View.GONE
-                    lbbRoomThree.visibility = View.GONE
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomTwo.visibility = View.INVISIBLE
+                    lbbRoomThree.visibility = View.INVISIBLE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("4th Floor")){
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
                     lbbRoomOne.text = bunzelBuilding_fourth[4][0]
                     lbbRoomTwo.text = bunzelBuilding_fourth[4][1]
-                    lbbRoomThree.visibility = View.GONE
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomThree.visibility = View.INVISIBLE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }
             }else if(wingBtn.text.equals(fifthWing)){
 
@@ -320,8 +320,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomOne.text = bunzelBuilding_third[0][0]
                     lbbRoomTwo.text = bunzelBuilding_third[0][1]
                     lbbRoomThree.text = bunzelBuilding_third[0][2]
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("4th Floor")) {
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
@@ -330,8 +330,8 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomOne.text = bunzelBuilding_fourth[0][0]
                     lbbRoomTwo.text = bunzelBuilding_fourth[0][1]
                     lbbRoomThree.text = bunzelBuilding_fourth[0][2]
-                    lbbRoomFour.visibility = View.GONE
-                    lbbRoomFive.visibility = View.GONE
+                    lbbRoomFour.visibility = View.INVISIBLE
+                    lbbRoomFive.visibility = View.INVISIBLE
                 }
             }
 
@@ -350,24 +350,16 @@ class Menu_fragment_lbb : Fragment() {
         val sdf = java.text.SimpleDateFormat("h:m a")
 
         lbbRoomOne.setOnClickListener {
-            if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])[0].roomNumber)){
-
                 val activity = Intent(getActivity(), roomSchedule::class.java)
-                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_basement[0])
+                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomOne)
                 activity.putExtra("RoomTxt", lista[0].roomNumber.toString())
                 startActivity(activity)
-            }else if(roomOne.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])[0].roomNumber)){
 
-                val activity = Intent(getActivity(), roomSchedule::class.java)
-                val listo = scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][0])
-                activity.putExtra("RoomTxt", listo[0].roomNumber.toString())
-                startActivity(activity)
-            }
 
         }
 
         lbbRoomTwo.setOnClickListener {
-            if(roomTwo.equals("LB111TC")) {
+            if(roomTwo.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][1])[0].roomNumber)) {
                 val activity = Intent(getActivity(), roomSchedule::class.java)
                 activity.putExtra("RoomTxt", roomTwo)
                 startActivity(activity)
@@ -379,17 +371,20 @@ class Menu_fragment_lbb : Fragment() {
 
         lbbRoomThree.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomThree )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomThree)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
         lbbRoomFour.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomFour )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFour)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
         lbbRoomFive.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt",roomFive )
+            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFive)
+            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
             startActivity(activity)
         }
     }
@@ -399,8 +394,9 @@ class Menu_fragment_lbb : Fragment() {
         val scheduleListTest = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("h:m a")
 
-
-        //basement
+        //lbb rooms
+        //region
+        //basement lbb
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("10:30 AM"),
@@ -420,7 +416,7 @@ class Menu_fragment_lbb : Fragment() {
             )
         )
 
-        //1st floor
+        //1st floor lbb
         scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, "IT5001", 1, bunzelBuilding_first[0][0], sdf.parse("1:00 PM"),
@@ -459,9 +455,61 @@ class Menu_fragment_lbb : Fragment() {
             )
         )
 
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT1101", 1, bunzelBuilding_first[1][0], sdf.parse("9:30 AM"),
+                sdf.parse("11:00 aM"), "W"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_first[1][0], sdf.parse("02:30 PM"),
+                sdf.parse("04:00 PM"), "TH"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[1][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001", 1, bunzelBuilding_first[1][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "MATH25", 1, bunzelBuilding_first[2][1], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "F"
+            )
+        )
+
+        //2nd floor lbb
 
 
-       // ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
+
+        //endregion
+        //ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
 
         /*
         //region
