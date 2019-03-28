@@ -311,7 +311,7 @@ class MainActivity : AppCompatActivity() {
         //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
 
         //ScheduleDatabase.destroyInstance()
-
+        */
     }
 
 }
