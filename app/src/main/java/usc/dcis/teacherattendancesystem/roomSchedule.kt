@@ -81,6 +81,7 @@ class roomSchedule : AppCompatActivity() {
                     "${roomNumber[i].startTime!!.hours}:${roomNumber[i].startTime!!.minutes} - ${roomNumber[i].endTime!!.hours}:${roomNumber[i].endTime!!.minutes}"
                 friTeacher.text = scheduleListTest.getTeacherFromSchedule(scheduleListTest.getScheduleByCourseCodeAndGroupNumber(roomNumber[i].courseCode, roomNumber[i].groupNumber)!!.teacherId).name
             }
+
         }
 
 
