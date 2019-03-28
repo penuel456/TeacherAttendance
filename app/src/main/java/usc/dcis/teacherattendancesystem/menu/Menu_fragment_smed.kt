@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.ScrollView
 import kotlinx.android.synthetic.main.menu_fragment_smed.*
 import usc.dcis.teacherattendancesystem.R
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
@@ -39,28 +40,84 @@ class Menu_fragment_smed : Fragment() {
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = smed_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
-
+            val scrollView = myView.findViewById<ScrollView>(R.id.smedScrollView)
 
             //lbb_hiddenwing.setChecked(true)
 
-            if(radioButton.text.toString().equals("Basement")||radioButton.text.toString().equals("1st Floor")
-                ||radioButton.text.toString().equals("2nd Floor") || radioButton.text.toString().equals("3rd Floor")){
+            if (radioButton.text.toString().equals("Basement")) {
+                smedScrollView.visibility = View.INVISIBLE
                 smed_wings.visibility = View.VISIBLE
                 chooseWing_2.visibility = View.VISIBLE
                 smed_wing3.visibility = View.VISIBLE
-                //smed_wing1.text = "Wing 1"
-                //smed_wing2.text = "Wing 2"
-                //smed_wing3.text = "Wing 3"
-                //smed_wing4.visibility = View.INVISIBLE
-                //lbb_wing5.visibility = View.INVISIBLE
+                smed_wing1.visibility = View.VISIBLE
+                smed_wing2.visibility = View.GONE
+                smed_wing3.visibility = View.GONE
+                smed_wing4.visibility = View.GONE
+                wingSelect(
+                    smed_wing1.text.toString(),
+                    smed_wing2.text.toString(),
+                    smed_wing3.text.toString(),
+                    smed_wing4.text.toString(),
+                    "",
+                    radioButton,
+                    scrollView
+                )
+            } else if (radioButton.text.toString().equals("1st Floor")) {
+                smedScrollView.visibility = View.INVISIBLE
+                smed_wings.visibility = View.VISIBLE
+                chooseWing_2.visibility = View.VISIBLE
+                smed_wing1.visibility = View.GONE
+                smed_wing2.visibility = View.GONE
+                smed_wing3.visibility = View.GONE
+                smed_wing4.visibility = View.VISIBLE
+                wingSelect(
+                    smed_wing1.text.toString(),
+                    smed_wing2.text.toString(),
+                    smed_wing3.text.toString(),
+                    smed_wing4.text.toString(),
+                    "",
+                    radioButton,
+                    scrollView
+                )
+            } else if (radioButton.text.toString().equals("2nd Floor")) {
+                smedScrollView.visibility = View.INVISIBLE
+                smed_wings.visibility = View.VISIBLE
+                chooseWing_2.visibility = View.VISIBLE
+                smed_wing1.visibility = View.VISIBLE
+                smed_wing2.visibility = View.VISIBLE
+                smed_wing3.visibility = View.GONE
+                smed_wing4.visibility = View.GONE
+                wingSelect(
+                    smed_wing1.text.toString(),
+                    smed_wing2.text.toString(),
+                    smed_wing3.text.toString(),
+                    smed_wing4.text.toString(),
+                    "",
+                    radioButton,
+                    scrollView
+                )
 
-                wingSelect(smed_wing1.text.toString(), smed_wing2.text.toString(), smed_wing3.text.toString(), smed_wing4.text.toString(), "", radioButton)
+            } else if (radioButton.text.toString().equals("3rd Floor")) {
+                smedScrollView.visibility = View.INVISIBLE
+                smed_wings.visibility = View.VISIBLE
+                chooseWing_2.visibility = View.VISIBLE
+                smed_wing1.visibility = View.VISIBLE
+                smed_wing2.visibility = View.GONE
+                smed_wing3.visibility = View.VISIBLE
+                smed_wing4.visibility = View.GONE
+                wingSelect(
+                    smed_wing1.text.toString(),
+                    smed_wing2.text.toString(),
+                    smed_wing3.text.toString(),
+                    smed_wing4.text.toString(),
+                    "",
+                    radioButton,
+                    scrollView
+                )
             }
-
         }
-
     }
-    fun wingSelect(Mathematics: String, Biology: String, Chemistry: String, Physics: String, fifthWing:String, radio: RadioButton){
+    fun wingSelect(Mathematics: String, Biology: String, Chemistry: String, Physics: String, fifthWing:String, radio: RadioButton, scrollView: ScrollView){
         wingGroup = myView.findViewById(R.id.smed_wings)
         val db = ScheduleDatabase.getInstance(context!!)
         val scheduleListTest = db.scheduleDAO
@@ -73,6 +130,7 @@ class Menu_fragment_smed : Fragment() {
             if(wingBtn.text.equals(Mathematics)){
 
                 if(radio.text.toString().equals("2nd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomFour.visibility = View.VISIBLE
                     smedRoomFive.visibility = View.VISIBLE
@@ -88,6 +146,7 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomNine.visibility = View.INVISIBLE
 
                 }else if(radio.text.toString().equals("3rd Floor")) {
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomOne.text = SMEDBuilding_third[0][0]
                     smedRoomTwo.text = SMEDBuilding_third[0][1]
@@ -99,6 +158,7 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomEight.visibility = View.INVISIBLE
                     smedRoomNine.visibility = View.INVISIBLE
                 }else if(radio.text.toString().equals("Basement")) {
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomOne.text = SMEDbuilding_basement[0]
                     smedRoomTwo.text = SMEDbuilding_basement[1]
@@ -115,6 +175,7 @@ class Menu_fragment_smed : Fragment() {
             }else if(wingBtn.text.equals(Biology)){
 
                 if(radio.text.toString().equals("2nd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomFour.visibility = View.VISIBLE
                     smedRoomFive.visibility = View.VISIBLE
@@ -135,7 +196,8 @@ class Menu_fragment_smed : Fragment() {
                 }
             }else if(wingBtn.text.equals(Chemistry)){
 
-                if(radio.text.toString().equals("1st Floor")){
+                if(radio.text.toString().equals("3rd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomFour.visibility = View.VISIBLE
                     smedRoomFive.visibility = View.VISIBLE
@@ -158,6 +220,7 @@ class Menu_fragment_smed : Fragment() {
             }else if(wingBtn.text.equals(Physics)){
 
                 if(radio.text.toString().equals("1st Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     smedScrollView.visibility = View.VISIBLE
                     smedRoomFour.visibility = View.VISIBLE
                     smedRoomFive.visibility = View.VISIBLE
@@ -170,11 +233,7 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomSeven.visibility = View.INVISIBLE
                     smedRoomEight.visibility = View.INVISIBLE
                     smedRoomNine.visibility = View.INVISIBLE
-                }else{
-                smedScrollView.visibility = View.INVISIBLE
                 }
-            }else {
-                smedScrollView.visibility = View.INVISIBLE
             }
 
            /* roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(),
