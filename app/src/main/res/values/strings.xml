@@ -38,5 +38,17 @@
     <string name="title_activity_room_assignment_info">room_assignment_info</string>
     <string name="title_activity_room_schedule">roomSchedule</string>
     <string name="title_activity_sched_list_teacher">SchedListTeacher</string>
+    <string name="refresh">Refresh</string>
+    <string name="edit">Edit</string>
+    <string name="no_schedule_for_today">No Schedule for Today</string>
+    <string name="submit">Submit</string>
+    <string name="ongoing">OnGoing</string>
+    <string name="status">Status</string>
+    <string name="up_next">Up Next</string>
+    <string name="state_your_reason">State your Reason</string>
+    <string name="teacher">Teacher</string>
+    <string name="schedule">schedule</string>
+    <string name="room">room</string>
+    <string name="course_code">course_code</string>
 
 </resources>
