@@ -43,6 +43,9 @@ interface ScheduleDAO {
     @Query("SELECT * FROM users WHERE userID = :teacherID")
     fun getTeacherFromSchedule(teacherID: Int?): UserDB
 
+    @Query("SELECT * FROM users WHERE userID = :teacherID AND type = 'teacher'")
+    fun getTeacherByType(teacherID: Int?): UserDB
+
     /******************************* ALL SCHEDULEDB QUERIES ****************************************/
 
     /******************************* ALL USERSWITHSCHEDULES QUERIES ********************************/
@@ -150,6 +153,10 @@ interface ScheduleDAO {
 
     @Query("SELECT COUNT(*) FROM Schedules WHERE groupNumber = :groupNumber AND courseCode = :courseCode")
     fun getScheduleCountByCourseCodeAndGroupNumber(groupNumber: Int, courseCode: String): Int
+
+    // Getting all Room Assignments by COURSE CODE and GROUP NUMBER
+    @Query("SELECT COUNT(*) FROM Room_Assignments WHERE courseCode = :courseCode AND groupNumber = :groupNumber")
+    fun getRoomAssignmentCountByCourseCodeAndGroupNumber(courseCode: String, groupNumber: Int): Int
 
     @Query("SELECT COUNT(*) FROM Room_Assignments")
     fun getRoomAssignmentsCount(): Int

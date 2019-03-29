@@ -35,8 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         //testDatabase()
-        //testUserDatabase()
         deleteOldDatabase()
+        testUserDatabase()
+
 
     }
 
@@ -142,7 +143,34 @@ class MainActivity : AppCompatActivity() {
         val userList = db.scheduleDAO
 
 
-        //userList.insertUser(UserDB(0, 3, "Nico Nico", "student", "student"))
+        //userList.insertUser'(UserDB(0, 3, "Nico Nico", "student", "student"))
+
+        /*firestore.collection("userDB").document("2")
+            .get()
+            .addOnCompleteListener { task ->
+                val user = task.result
+
+                userList.insertUser(UserDB(userID = user?.get("userID").toString().toInt(), idNumber = user?.get("idNumber").toString().toInt(),
+                    name = user?.get("name") as String, password = null, type = user["type"] as String)
+                )
+
+                Log.d("FIREBASE", "User ${user["name"]} added.")
+
+            }*/
+
+        //if u want to insert all into the local db
+       /* firestore.collection("userDB")
+            .get()
+            .addOnCompleteListener { task ->
+                val users = task.result
+
+                for(user in users!!){
+                    userList.insertUser(user.toObject(UserDB::class.java))
+                }
+
+
+            }*/
+
         //userList.insertUser(UserDB(0, 2, "Ms. Cantara", "teacher", "teacher"))
         //userList.insertUser(UserDB(0, 1, "Dean", "dean", "dean"))
 
@@ -204,13 +232,13 @@ class MainActivity : AppCompatActivity() {
         var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
 
         //region ALL INSERTION
-
+        /*
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT1101"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "MATH25"))
         scheduleListTest.insert(ScheduleDB(0, 2, null, 1, "NIPPONGO1"))
         scheduleListTest.insert(ScheduleDB(0, 3, null, 1, "NIPPONGO1"))
-
+        */
         /*
         ScheduleDebug.printAllSchedules(scheduleListTest)
         scheduleListTest.insertRoomAssignment(
@@ -282,7 +310,7 @@ class MainActivity : AppCompatActivity() {
         */
         //endregion
 
-        ScheduleDebug.printAllSchedules(scheduleListTest)
+        //ScheduleDebug.printAllSchedules(scheduleListTest)
 
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 3)
 

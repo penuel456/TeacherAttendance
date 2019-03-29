@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem.menu
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -370,44 +371,38 @@ class Menu_fragment_lbb : Fragment() {
 
         lbbRoomOne.setOnClickListener {
                 val activity = Intent(getActivity(), roomSchedule::class.java)
-                val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomOne)
-                activity.putExtra("RoomTxt", lista[0].roomNumber.toString())
+                activity.putExtra("RoomTxt", roomOne)
                 startActivity(activity)
 
 
         }
 
         lbbRoomTwo.setOnClickListener {
-            if(roomTwo.equals(scheduleListTest.getAllRoomAssignmentsByRoomNumber(bunzelBuilding_first[0][1])[0].roomNumber)) {
-                val activity = Intent(getActivity(), roomSchedule::class.java)
-                activity.putExtra("RoomTxt", roomTwo)
-                startActivity(activity)
-            }
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            activity.putExtra("RoomTxt", roomTwo)
+            activity.putExtra("RoomTxt", roomTwo )
             startActivity(activity)
         }
 
         lbbRoomThree.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomThree)
-            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
+            activity.putExtra("RoomTxt", roomThree )
             startActivity(activity)
         }
         lbbRoomFour.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFour)
-            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
+
+            activity.putExtra("RoomTxt", roomFour )
             startActivity(activity)
         }
         lbbRoomFive.setOnClickListener {
             val activity = Intent(getActivity(), roomSchedule::class.java)
-            val lista = scheduleListTest.getAllRoomAssignmentsByRoomNumber(roomFive)
-            activity.putExtra("RoomTxt", lista[0].roomNumber.toString() )
+
+            activity.putExtra("RoomTxt", roomFive )
             startActivity(activity)
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun insertRooms(){
         val db = ScheduleDatabase.getInstance(context!!)
         val scheduleListTest = db.scheduleDAO
@@ -416,7 +411,7 @@ class Menu_fragment_lbb : Fragment() {
         //lbb rooms
         //region
         //basement lbb
-        scheduleListTest.insertRoomAssignment(
+        /*scheduleListTest.insertRoomAssignment(
             RoomAssignment(
                 0, "IT5001", 1, bunzelBuilding_basement[0], sdf.parse("10:30 AM"),
                 sdf.parse("12:00 PM"), "M"
@@ -524,9 +519,14 @@ class Menu_fragment_lbb : Fragment() {
         )
 
         //2nd floor lbb
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                0, "IT5001  ", 1, bunzelBuilding_second[0][0], sdf.parse("10:30 AM"),
+                sdf.parse("12:00 PM"), "M"
+            )
+        )
 
-
-
+        */
         //endregion
         //ScheduleFirebase.AddMultipleRoomAssignments(FirebaseFirestore.getInstance(), scheduleListTest.getAllRoomAssignments())
 
