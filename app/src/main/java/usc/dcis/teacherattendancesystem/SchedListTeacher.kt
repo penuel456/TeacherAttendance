@@ -26,12 +26,12 @@ class SchedListTeacher : AppCompatActivity() {
         createSchedules()
     }
 
+    @Suppress("NAME_SHADOWING")
     @SuppressLint("SimpleDateFormat")
     private fun createSchedules(){
         val db = ScheduleDatabase.getInstance(this)
         val sdf = java.text.SimpleDateFormat("hh:mm a")
         val scheduleDao = db.scheduleDAO
-        val cal = Calendar.getInstance()
 
         Toast.makeText(this, "Please wait while we're getting your schedules.", Toast.LENGTH_SHORT).show()
 
@@ -43,8 +43,15 @@ class SchedListTeacher : AppCompatActivity() {
 
                 if(!scheduleSnapshot?.isEmpty!!){
                     for(sched in scheduleSnapshot){
-                        scheduleDao.insert(sched.toObject(ScheduleDB::class.java))
-                        Log.d("FIREBASE", "${sched["courseCode"]} added")
+                        val groupNumber = sched["groupNumber"] as Number
+
+                        //region CHECKS IF SCHEDULE IN LOCAL DATABASE EXISTS
+                        if(scheduleDao.getScheduleCountByCourseCodeAndGroupNumber(courseCode = sched["courseCode"].toString(),
+                                groupNumber = groupNumber.toInt()) == 0){
+                            scheduleDao.insert(sched.toObject(ScheduleDB::class.java))
+                            Log.d("FIREBASE", "${sched["courseCode"]} added")
+                        }
+                        //endregion
                     }
 
                     //region INSERTING ROOM ASSIGNMENT TO LOCAL DATABASE
@@ -52,7 +59,6 @@ class SchedListTeacher : AppCompatActivity() {
                         .get()
                         .addOnCompleteListener { task ->
                             val roomSnapshot = task.result
-
 
                             if(!roomSnapshot?.isEmpty!!){
                                 for(room in roomSnapshot){
@@ -66,7 +72,7 @@ class SchedListTeacher : AppCompatActivity() {
                                         val endTime = endTimestamp?.toDate()
                                         val roomIDToCheck = room["roomID"] as Number
 
-
+                                        //region CHECKS IF ROOM ASSIGNMENT IN LOCAL DATABASE EXISTS
                                         if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck.toInt()) == 0){
                                             scheduleDao.insertRoomAssignment(
                                                 RoomAssignment(roomID = room["roomID"].toString().toInt(),
@@ -78,24 +84,34 @@ class SchedListTeacher : AppCompatActivity() {
                                                     roomNumber = room["roomNumber"].toString())
                                             )
                                         }
+                                        //endregion
                                     }
                                 }
 
                                 //region INSERTING STATUS BASED ON TODAY'S ROOM ASSIGNMENT
-                                val today = scheduleDao.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
+                                val rooms = scheduleDao.getAllRoomAssignmentsByDay(
+                                    dayAssigned = DateManager.getCurrentDay()
+                                )
 
-                                for (sched in today) {
-                                    val statusCheck = scheduleDao.getStatusCountByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID)
+                                for (room in rooms) {
+                                    val statusCheck = scheduleDao.getStatusCountByRoomIdAndDate(
+                                        date = DateManager.getCurrentDate(),
+                                        roomID = room.roomID
+                                    )
+
 
                                     if (statusCheck == 0) {
-                                        scheduleDao.insertStatus(Status(0, sched.roomID, DateManager.getCurrentDate(), "Absent"))
-                                        ScheduleFirebase.AddStatus(FirebaseFirestore.getInstance(),
-                                            scheduleDao.getStatusByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID))
+                                        scheduleDao.insertStatus(Status(0, room.roomID, DateManager.getCurrentDate(), "Absent"))
+
+                                        val status = scheduleDao.getStatusByRoomIdAndDate(
+                                            date = DateManager.getCurrentDate(),
+                                            roomID = room.roomID
+                                        )
+                                        ScheduleFirebase.AddStatus(db = FirebaseFirestore.getInstance(), status = status)
                                     }
                                 }
                                 //endregion
 
-                                debugPrintAllRoomAssignments()
                                 getSchedule()
                             }
                         }
@@ -114,7 +130,6 @@ class SchedListTeacher : AppCompatActivity() {
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
-        val scheduleList = scheduleDao.getAllSchedules()
         val roomAssignmentList = scheduleDao.getAllRoomAssignmentsByDay(getDayString(day))
         Log.d("TODAY:", getDayString(day))
 
@@ -145,28 +160,33 @@ class SchedListTeacher : AppCompatActivity() {
         for(rooms in roomAssignmentList){
             Log.d("TODAYROOM: ", rooms.toString())
             val currentSched = dao.getScheduleByCourseCodeAndGroupNumber(rooms.courseCode, rooms.groupNumber)
-            if(sdfTime.after(rooms?.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is FINISHED in ${rooms?.roomNumber}")
+            if(sdfTime.after(rooms.endTime)){
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is FINISHED in ${rooms.roomNumber}")
             }else if(sdfTime.before(rooms.startTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is ABOUT TO GO in ${rooms?.roomNumber}")
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is ABOUT TO GO in ${rooms.roomNumber}")
                 Schedule_teacher_layout.studNextCourseCode.text = currentSched?.courseCode
-                Schedule_teacher_layout.studNextBuilding.text = rooms?.roomNumber
-                Schedule_teacher_layout.studNextStartTime.text = sdf.format(rooms?.startTime)
-                Schedule_teacher_layout.studNextEndTime.text = sdf.format(rooms?.endTime)
+                Schedule_teacher_layout.studNextBuilding.text = rooms.roomNumber
+                Schedule_teacher_layout.studNextStartTime.text = sdf.format(rooms.startTime)
+                Schedule_teacher_layout.studNextEndTime.text = sdf.format(rooms.endTime)
                 isThereUpNext = true
             }else if(sdfTime.after(rooms.startTime) && sdfTime.before(rooms.endTime)){
-                Log.d("TIMEDEBUG:", "Schedule ${rooms?.roomID} is CURRENTLY in ${rooms?.roomNumber}")
+                Log.d("TIMEDEBUG:", "Schedule ${rooms.roomID} is CURRENTLY in ${rooms.roomNumber}")
+                currentRoomID = rooms.roomID
                 Schedule_teacher_layout.teachCourseCode.text = currentSched?.courseCode
-                Schedule_teacher_layout.teachBuilding.text = rooms?.roomNumber
-                Schedule_teacher_layout.teachStartTime.text = sdf.format(rooms?.startTime)
-                Schedule_teacher_layout.teachEndTime.text = sdf.format(rooms?.endTime)
+                Schedule_teacher_layout.teachBuilding.text = rooms.roomNumber
+                Schedule_teacher_layout.teachStartTime.text = sdf.format(rooms.startTime)
+                Schedule_teacher_layout.teachEndTime.text = sdf.format(rooms.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-               Schedule_teacher_layout.studStatus.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
+                Schedule_teacher_layout.studStatus.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID).status
                 isThereOnGoing = true
             }
 
             if(isThereOnGoing && isThereUpNext) break
+        }
+
+        if(!isThereOnGoing && !isThereUpNext){
+            displayNoSchedule()
         }
 
     }
@@ -207,8 +227,24 @@ class SchedListTeacher : AppCompatActivity() {
         }
     }*/
 
+    fun submitStatus(view: View){
+        val dao = ScheduleDatabase.getInstance(this).scheduleDAO
+
+        dao.updateStatusState(roomID = currentRoomID, date = DateManager.getCurrentDate(),
+            status = view?.status!!.selectedItem.toString())
+        val currentStatus = dao.getStatusByRoomIdAndDate(date = DateManager.getCurrentDate(), roomID = currentRoomID)
+        ScheduleFirebase.UpdateStatus(db = FirebaseFirestore.getInstance(), status = currentStatus)
+
+
+        Toast.makeText(this, "Status updated.", Toast.LENGTH_SHORT).show()
+    }
+
     fun editSched(view: View){
         val chooseSched = Intent(this, chooseschedule::class.java)
         startActivity(chooseSched)
+    }
+
+    companion object {
+        var currentRoomID: Int = 0
     }
 }
