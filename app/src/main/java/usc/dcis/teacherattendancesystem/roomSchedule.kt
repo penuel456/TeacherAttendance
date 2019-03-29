@@ -3,7 +3,7 @@ package usc.dcis.teacherattendancesystem
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_room_schedule.*
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDAO
@@ -49,37 +49,43 @@ class roomSchedule : AppCompatActivity() {
 
         for(room in roomNumber){
             val dayAssigned = room.dayAssigned
-            if(dayAssigned.equals("M")){
-                monDAY.text = dayAssigned
-                monSubject.text = room.courseCode
-                monSched.text =
-                    "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                monTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            when {
+                dayAssigned.equals("M") -> {
+                    monDAY.text = dayAssigned
+                    monSubject.text = room.courseCode
+                    monSched.text =
+                        "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                    monTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
-            }else if(dayAssigned.equals("T")){
-                tueDAY.text = dayAssigned
-                tueSubject.text = room.courseCode
-                tueSched.text =
-                    "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                tueTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
-            }else if(dayAssigned.equals("W")){
-                wedDAY.text = dayAssigned
-                wedSubject.text =  room.courseCode
-                wedSched.text =
-                    "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                wedTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
-            }else if(dayAssigned.equals("TH")){
-                thuDAY.text = dayAssigned
-                thuSubject.text = room.courseCode
-                thuSched.text =
-                    "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                thuTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
-            }else if(dayAssigned.equals("F")){
-                friDAY.text = dayAssigned
-                friSubject.text = room.courseCode
-                friSched.text =
-                    "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                friTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                }
+                dayAssigned.equals("T") -> {
+                    tueDAY.text = dayAssigned
+                    tueSubject.text = room.courseCode
+                    tueSched.text =
+                        "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                    tueTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                }
+                dayAssigned.equals("W") -> {
+                    wedDAY.text = dayAssigned
+                    wedSubject.text =  room.courseCode
+                    wedSched.text =
+                        "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                    wedTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                }
+                dayAssigned.equals("TH") -> {
+                    thuDAY.text = dayAssigned
+                    thuSubject.text = room.courseCode
+                    thuSched.text =
+                        "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                    thuTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                }
+                dayAssigned.equals("F") -> {
+                    friDAY.text = dayAssigned
+                    friSubject.text = room.courseCode
+                    friSched.text =
+                        "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                    friTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                }
             }
         }
 
