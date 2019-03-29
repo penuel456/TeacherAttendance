@@ -112,6 +112,13 @@ class ScheduleFirebase {
                 }
             }
         }
+
+        fun UpdateStatus(db: FirebaseFirestore, status: Status){
+            FirebaseFirestore.getInstance().collection("status").document(status.statusId.toString())
+                .set(status)
+                .addOnSuccessListener { Log.d(TAG, "Status successfully updated") }
+                .addOnFailureListener { task -> Log.d(TAG, "Status failed to update: ${task.message}") }
+        }
         //endregion
     }
 }
