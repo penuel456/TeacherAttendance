@@ -1,9 +1,11 @@
 package usc.dcis.teacherattendancesystem.menu
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import android.widget.RadioGroup
 import android.widget.ScrollView
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.menu_fragment_lbb.*
+import kotlinx.android.synthetic.main.menu_fragment_smed.*
 import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.teacherattendancesystem.R
 import usc.dcis.teacherattendancesystem.roomSchedule
@@ -74,6 +77,7 @@ class Menu_fragment_lbb : Fragment() {
             lbb_hiddenwing.setChecked(true)
 
             if(radioButton.text.toString().equals("1st Floor")){
+                lbbScrollView.visibility = View.INVISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wing3.visibility = View.VISIBLE
@@ -89,6 +93,7 @@ class Menu_fragment_lbb : Fragment() {
                     scrollView
                 )
             }else if(radioButton.text.toString().equals("2nd Floor")){
+                lbbScrollView.visibility = View.INVISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wing3.visibility = View.VISIBLE
@@ -104,6 +109,7 @@ class Menu_fragment_lbb : Fragment() {
                     scrollView
                 )
             }else if(radioButton.text.toString().equals("3rd Floor")){
+                lbbScrollView.visibility = View.INVISIBLE
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 lbb_wing5.visibility = View.VISIBLE
@@ -119,6 +125,7 @@ class Menu_fragment_lbb : Fragment() {
                     scrollView
                 )
             }else if(radioButton.text.toString().equals("4th Floor")){
+                lbbScrollView.visibility = View.INVISIBLE
                 chooseAWing.visibility = View.VISIBLE
                 lbb_wings.visibility = View.VISIBLE
                 lbb_wing3.visibility = View.VISIBLE
@@ -328,9 +335,9 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomFour.visibility = View.INVISIBLE
                     lbbRoomFive.visibility = View.INVISIBLE
                 }
-            }else if(wingBtn.text.equals(fifthWing)){
+            }else if(wingBtn.text.equals(fifthWing)) {
 
-                if(radio.text.toString().equals("3rd Floor")){
+                if (radio.text.toString().equals("3rd Floor")) {
                     scrollView.fullScroll(ScrollView.FOCUS_UP)
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
@@ -341,7 +348,7 @@ class Menu_fragment_lbb : Fragment() {
                     lbbRoomThree.text = bunzelBuilding_third[0][2]
                     lbbRoomFour.visibility = View.INVISIBLE
                     lbbRoomFive.visibility = View.INVISIBLE
-                }else if(radio.text.toString().equals("4th Floor")) {
+                } else if (radio.text.toString().equals("4th Floor")) {
                     scrollView.fullScroll(ScrollView.FOCUS_UP)
                     lbbScrollView.visibility = View.VISIBLE
                     lbbRoomTwo.visibility = View.VISIBLE
