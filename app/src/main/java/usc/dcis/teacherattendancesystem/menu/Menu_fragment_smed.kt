@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
 import kotlinx.android.synthetic.main.menu_fragment_smed.*
+import usc.dcis.teacherattendancesystem.roomSchedule
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 
 
@@ -234,10 +236,73 @@ class Menu_fragment_smed : Fragment() {
                 }
             }
 
-           /* roomSelect(lbbRoomOne.text.toString(), lbbRoomTwo.text.toString(), lbbRoomThree.text.toString(),
-                lbbRoomFour.text.toString(), lbbRoomFive.text.toString())*/
+            roomSelect(smedRoomOne.text.toString(), smedRoomTwo.text.toString(),smedRoomThree.text.toString(),
+                smedRoomFour.text.toString(), smedRoomFive.text.toString(), smedRoomSix.text.toString(),
+                smedRoomSeven.text.toString(), smedRoomEight.text.toString(), smedRoomNine.text.toString())
         }
 
+    }
+
+    fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String, roomSix: String,
+                   roomSeven: String, roomEight: String, roomNine: String)
+    {
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
+
+        smedRoomOne.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomOne)
+            startActivity(activity)
+        }
+
+        smedRoomTwo.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomTwo )
+            startActivity(activity)
+        }
+
+        smedRoomThree.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomThree )
+            startActivity(activity)
+        }
+        smedRoomFour.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFour )
+            startActivity(activity)
+        }
+        smedRoomFive.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFive )
+            startActivity(activity)
+        }
+        smedRoomSix.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomSix )
+            startActivity(activity)
+        }
+        smedRoomSeven.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomSeven )
+            startActivity(activity)
+        }
+        smedRoomEight.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomEight )
+            startActivity(activity)
+        }
+        smedRoomNine.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomNine )
+            startActivity(activity)
+        }
     }
 
 }
