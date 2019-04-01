@@ -119,6 +119,12 @@ class ScheduleFirebase {
                 .addOnSuccessListener { Log.d(TAG, "Status successfully updated") }
                 .addOnFailureListener { task -> Log.d(TAG, "Status failed to update: ${task.message}") }
         }
+        fun UpdateRoomAssignments(db: FirebaseFirestore, roomAssignment: RoomAssignment ){
+            FirebaseFirestore.getInstance().collection("roomAssignment").document(roomAssignment.roomID.toString())
+                .set(roomAssignment)
+                .addOnSuccessListener { Log.d(TAG, "RoomAssignment successfully updated") }
+                .addOnFailureListener { task -> Log.d(TAG, "Status failed to update: ${task.message}") }
+        }
         //endregion
     }
 }
