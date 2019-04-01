@@ -47,8 +47,8 @@
     <string name="up_next">Up Next</string>
     <string name="state_your_reason">State your Reason</string>
     <string name="teacher">Teacher</string>
-    <string name="schedule">schedule</string>
-    <string name="room">room</string>
-    <string name="course_code">course_code</string>
+    <string name="schedule">Schedule</string>
+    <string name="room">Room</string>
+    <string name="course_code">Course Code</string>
 
 </resources>
