@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.util.Log
 import java.util.*
 
@@ -15,24 +16,29 @@ class DateManager {
             return "NONE"
         }
 
+        @SuppressLint("SimpleDateFormat")
         fun getCurrentDate(): Date {
-            val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-            val year = indiaTime.get(Calendar.YEAR)
-            val month = indiaTime.get(Calendar.MONTH) + 1
-            val day = indiaTime.get(Calendar.DAY_OF_MONTH)
+            val timeZone = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+            val year = timeZone.get(Calendar.YEAR)
+            val month = timeZone.get(Calendar.MONTH) + 1
+            val day = timeZone.get(Calendar.DAY_OF_MONTH)
+            val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+            sdf.timeZone = TimeZone.getTimeZone("GMT+8")
 
-            Log.d("CURRENT DATE: ", java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day").toString())
-            return java.text.SimpleDateFormat("yyyy-MM-dd").parse("$year-$month-$day")
+            Log.d("CURRENT DATE: ", sdf.parse("$year-$month-$day").toString())
+            return sdf.parse("$year-$month-$day")
         }
 
+        @SuppressLint("SimpleDateFormat")
         fun getCurrentTime(): Date{
-            val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-            var hour = indiaTime.get(Calendar.HOUR_OF_DAY)
-            val minute = indiaTime.get(Calendar.MINUTE)
-            var sdf = java.text.SimpleDateFormat("hh:mm a")
+            val timeZone = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+            var hour = timeZone.get(Calendar.HOUR_OF_DAY)
+            val minute = timeZone.get(Calendar.MINUTE)
+            val sdf = java.text.SimpleDateFormat("hh:mm a")
+            sdf.timeZone = TimeZone.getTimeZone("GMT+8")
 
             var am_pm: String
-            if(indiaTime.get(Calendar.HOUR_OF_DAY) < 12){
+            if(timeZone.get(Calendar.HOUR_OF_DAY) < 12){
                 am_pm = "AM"
             }else {
                 am_pm = "PM"
@@ -46,8 +52,8 @@ class DateManager {
         }
 
         fun getCurrentDay(): String {
-            val indiaTime = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
-            val day = indiaTime.get(Calendar.DAY_OF_WEEK)
+            val timeZone = GregorianCalendar(TimeZone.getTimeZone("Asia/Singapore"))
+            val day = timeZone.get(Calendar.DAY_OF_WEEK)
 
             Log.d("TODAY: ", getDayString(day))
 
