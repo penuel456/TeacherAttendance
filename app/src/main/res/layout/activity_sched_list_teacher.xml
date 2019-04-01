@@ -7,6 +7,24 @@
         android:layout_height="match_parent"
         tools:context=".SchedListTeacher">
 
+    <ImageButton
+            android:layout_width="60dp"
+            android:onClick="refreshSchedule"
+            android:layout_height="60dp" app:srcCompat="@drawable/refresh_white_54x54"
+            android:id="@+id/imageButton"
+            android:background="@drawable/rounded_green_btn" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"/>
+    <ImageButton
+            android:layout_width="60dp"
+            android:onClick="editSched"
+            android:layout_height="60dp" app:srcCompat="@drawable/edit_white_54x54"
+            android:id="@+id/imageButton2"
+            android:background="@drawable/rounded_green_btn"
+            app:layout_constraintStart_toEndOf="@+id/imageButton" android:layout_marginStart="256dp"
+            android:layout_marginLeft="256dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" app:layout_constraintHorizontal_bias="0.272"/>
     <Button
             android:layout_width="182dp"
             android:layout_height="49dp" android:id="@+id/refresh2"
@@ -14,7 +32,8 @@
             android:onClick="refreshSchedule" android:background="@color/colorPrimary"
             android:layout_marginTop="28dp"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp" android:text="@string/refresh"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:text="@string/refresh" android:editable="false" android:visibility="gone"/>
     <Button
             android:layout_width="165dp"
             android:layout_height="52dp"
@@ -24,7 +43,8 @@
             android:layout_marginTop="28dp"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:layout_constraintStart_toEndOf="@+id/refresh2"
-            android:layout_marginStart="20dp" android:layout_marginLeft="20dp" tools:text="Edit" android:text="@string/edit"/>
+            android:layout_marginStart="20dp" android:layout_marginLeft="20dp" tools:text="Edit"
+            android:text="@string/edit" android:visibility="gone"/>
     <TextView
             android:text="@string/no_schedule_for_today"
             android:layout_width="wrap_content"

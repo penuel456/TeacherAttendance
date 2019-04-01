@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.ScrollView
 import kotlinx.android.synthetic.main.content_chooseschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_pe.*
 import usc.dcis.teacherattendancesystem.R
@@ -39,10 +40,11 @@ class Menu_fragment_pe : Fragment() {
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = pe_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
-
+            val scrollView = myView.findViewById<ScrollView>(R.id.peScrollView)
             pe_hiddenwing.setChecked(true)
 
                 if(radioButton.text.toString().equals("1st Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     peScrollView.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
                     peRoomSix.visibility = View.VISIBLE
@@ -53,6 +55,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFive.text = peBuilding[0][4]
                     peRoomSix.text = peBuilding[0][5]
                 }else if(radioButton.text.toString().equals("2nd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     peScrollView.visibility = View.VISIBLE
                     peRoomFive.visibility = View.VISIBLE
                     peRoomSix.visibility = View.VISIBLE
@@ -63,6 +66,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFive.text = peBuilding[1][4]
                     peRoomSix.text = peBuilding[1][5]
                 }else if(radioButton.text.toString().equals("3rd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     peScrollView.visibility = View.VISIBLE
                     peRoomThree.visibility = View.VISIBLE
                     peRoomOne.text = peBuilding[2][0]
@@ -72,6 +76,7 @@ class Menu_fragment_pe : Fragment() {
                     peRoomFive.visibility = View.INVISIBLE
                     peRoomSix.visibility = View.INVISIBLE
                 }else if(radioButton.text.toString().equals("4th Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     peScrollView.visibility = View.VISIBLE
                     peRoomOne.text =  peBuilding[3][0]
                     peRoomTwo.text = peBuilding[3][1]

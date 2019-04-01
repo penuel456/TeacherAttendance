@@ -9,13 +9,16 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
 import kotlinx.android.synthetic.main.menu_fragment_smed.*
-import usc.dcis.teacherattendancesystem.R
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
+
+
+
 
 class Menu_fragment_smed : Fragment() {
     lateinit var radioGroup: RadioGroup
     lateinit var wingGroup: RadioGroup
     lateinit var myView: View
+
     val SMEDBuilding_third = arrayOf(
         arrayOf("D314","D316", "D318"),
         arrayOf("EO323","EO325", "EO328", "EO329", "EO331","EO333", "EO336", "EO337","EO338")
@@ -27,21 +30,22 @@ class Menu_fragment_smed : Fragment() {
     val SMEDbuilding_first = arrayOf("FO115", "FO117", "FO118", "FO120", "ES122")
     val SMEDbuilding_basement = arrayOf("SMB1", "SMB2", "SMB3")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       myView = inflater.inflate(R.layout.menu_fragment_smed, null)
+       myView = inflater.inflate(usc.dcis.teacherattendancesystem.R.layout.menu_fragment_smed, null)
         return  myView
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        radioGroup = myView.findViewById(R.id.smed_floors)
+        radioGroup = myView.findViewById(usc.dcis.teacherattendancesystem.R.id.smed_floors)
+
 
         //insertRooms()
 
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = smed_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
-            val scrollView = myView.findViewById<ScrollView>(R.id.smedScrollView)
-
+            val scrollView = myView.findViewById<ScrollView>(usc.dcis.teacherattendancesystem.R.id.smedScrollView)
+            var radioGroup_dept = myView.findViewById<RadioGroup>(usc.dcis.teacherattendancesystem.R.id.smed_wings)
             //lbb_hiddenwing.setChecked(true)
 
             if (radioButton.text.toString().equals("Basement")) {
@@ -118,7 +122,7 @@ class Menu_fragment_smed : Fragment() {
         }
     }
     fun wingSelect(Mathematics: String, Biology: String, Chemistry: String, Physics: String, fifthWing:String, radio: RadioButton, scrollView: ScrollView){
-        wingGroup = myView.findViewById(R.id.smed_wings)
+        wingGroup = myView.findViewById(usc.dcis.teacherattendancesystem.R.id.smed_wings)
         val db = ScheduleDatabase.getInstance(context!!)
         val scheduleListTest = db.scheduleDAO
         val sdf = java.text.SimpleDateFormat("h:m a")
@@ -169,8 +173,6 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomSeven.visibility = View.INVISIBLE
                     smedRoomEight.visibility = View.INVISIBLE
                     smedRoomNine.visibility = View.INVISIBLE
-                }else{
-                    smedScrollView.visibility = View.INVISIBLE
                 }
             }else if(wingBtn.text.equals(Biology)){
 
@@ -191,8 +193,6 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomEight.visibility = View.INVISIBLE
                     smedRoomNine.visibility = View.INVISIBLE
 
-                }else{
-                    smedScrollView.visibility = View.INVISIBLE
                 }
             }else if(wingBtn.text.equals(Chemistry)){
 
@@ -214,8 +214,6 @@ class Menu_fragment_smed : Fragment() {
                     smedRoomSeven.text = SMEDBuilding_third[1][6]
                     smedRoomEight.text = SMEDBuilding_third[1][7]
                     smedRoomNine.text = SMEDBuilding_third[1][8]
-                }else{
-                    smedScrollView.visibility = View.INVISIBLE
                 }
             }else if(wingBtn.text.equals(Physics)){
 

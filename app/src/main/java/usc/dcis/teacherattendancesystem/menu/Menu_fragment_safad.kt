@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.ScrollView
 import kotlinx.android.synthetic.main.menu_fragment_safad.*
 import usc.dcis.teacherattendancesystem.R
 
@@ -36,10 +37,11 @@ class Menu_fragment_safad : Fragment() {
         radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             val id = safad_floors.checkedRadioButtonId
             val radioButton = myView.findViewById<RadioButton>(id)
-
+            val scrollView = myView.findViewById<ScrollView>(R.id.safadScrollView)
             safad_hiddenwing.setChecked(true)
 
                 if(radioButton.text.toString().equals("3rd Basement")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomOne.visibility = View.VISIBLE
                     safadRoomTwo.visibility = View.VISIBLE
@@ -59,6 +61,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomTwelve.visibility = View.INVISIBLE
 
                 }else if(radioButton.text.toString().equals("2nd Basement")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -78,6 +81,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
                 }else if(radioButton.text.toString().equals("1st Basement")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -100,6 +104,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomEleven.text = SAFADBuilding[2][10]
                     safadRoomTwelve.text = SAFADBuilding[2][11]
                 } else if(radioButton.text.toString().equals("1st Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
@@ -120,6 +125,7 @@ class Menu_fragment_safad : Fragment() {
                     safadRoomEleven.visibility = View.INVISIBLE
                     safadRoomTwelve.visibility = View.INVISIBLE
                 }else if(radioButton.text.toString().equals("2nd Floor")){
+                    scrollView.fullScroll(ScrollView.FOCUS_UP)
                     safadScrollView.visibility = View.VISIBLE
                     safadRoomFive.visibility = View.VISIBLE
                     safadRoomSix.visibility = View.VISIBLE
