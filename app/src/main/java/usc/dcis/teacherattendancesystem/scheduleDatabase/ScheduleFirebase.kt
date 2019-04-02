@@ -1,5 +1,6 @@
 package usc.dcis.tea
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
@@ -128,6 +129,46 @@ class ScheduleFirebase {
         //endregion
     }
 }
+
+class DebugFirebase {
+
+    companion object {
+        const val TAG = "FIREBASE"
+
+        @SuppressLint("SimpleDateFormat")
+        fun displayRoomAssignment(db: FirebaseFirestore){
+            val sdf = java.text.SimpleDateFormat("hh:mm a")
+            sdf.timeZone = TimeZone.getTimeZone("GMT+8")
+
+            db.collection("roomAssignment")
+                .whereEqualTo("dayAssigned", "W")
+                .get()
+                .addOnCompleteListener { task ->
+                    val snapshot = task.result
+
+                    if(!snapshot?.isEmpty!!){
+                        for(snap in snapshot){
+                            val roomIDToCheck = snap["roomID"] as Number
+                            val startTimestamp = snap.getTimestamp("startTime")
+                            val endTimestamp = snap.getTimestamp("endTime")
+                            val startTime = startTimestamp?.toDate()
+                            val endTime = endTimestamp?.toDate()
+
+                            Log.d(TAG, "RoomID: ${roomIDToCheck.toInt()}, CourseCode: ${snap["courseCode"]}, GroupNumber: ${snap["groupNumber"]}" +
+                                    "\nTime: ${sdf.format(startTime)} - ${sdf.format(endTime)}" +
+                                    "\nRoomNumber: ${snap["roomNumber"]}" +
+                                    "\nDay: ${snap["dayAssigned"]}")
+                        }
+                    }else {
+                        Log.d(TAG, "RoomAssignment is empty.")
+                    }
+
+                }
+        }
+    }
+}
+
+
 
 /********************************* FIREBASE QUERY INSTRUCTIONS ************************************************
 
