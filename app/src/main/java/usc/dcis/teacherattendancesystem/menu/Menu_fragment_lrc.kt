@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.menu_fragment_lrc.*
 import usc.dcis.teacherattendancesystem.R
+import usc.dcis.teacherattendancesystem.roomSchedule
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 
 class Menu_fragment_lrc : Fragment() {
 
@@ -58,6 +61,48 @@ class Menu_fragment_lrc : Fragment() {
                 lrcRoomTwo.text = josefBuilding[1][1]
 
             }
+
+            roomSelect(lrcRoomOne.text.toString(), lrcRoomTwo.text.toString(), lrcRoomThree.text.toString(),
+                lrcRoomFour.text.toString(), lrcRoomFive.text.toString())
+        }
+    }
+
+    fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String)
+    {
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
+
+        lrcRoomOne.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomOne)
+            startActivity(activity)
+
+
+        }
+
+        lrcRoomTwo.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomTwo )
+            startActivity(activity)
+        }
+
+        lrcRoomThree.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomThree )
+            startActivity(activity)
+        }
+        lrcRoomFour.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFour )
+            startActivity(activity)
+        }
+        lrcRoomFive.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFive )
+            startActivity(activity)
         }
     }
 }

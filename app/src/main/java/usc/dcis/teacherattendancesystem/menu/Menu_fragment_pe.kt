@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
@@ -11,6 +12,8 @@ import android.widget.ScrollView
 import kotlinx.android.synthetic.main.content_chooseschedule.*
 import kotlinx.android.synthetic.main.menu_fragment_pe.*
 import usc.dcis.teacherattendancesystem.R
+import usc.dcis.teacherattendancesystem.roomSchedule
+import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 
 class Menu_fragment_pe : Fragment() {
 
@@ -86,11 +89,57 @@ class Menu_fragment_pe : Fragment() {
                     peRoomSix.visibility = View.INVISIBLE
                 }
 
+
+            roomSelect(peRoomOne.text.toString(), peRoomTwo.text.toString(), peRoomThree.text.toString(),
+                peRoomThree.text.toString(), peRoomFour.text.toString(), peRoomFive.text.toString())
         }
 
     }
 
+    fun roomSelect(roomOne: String, roomTwo: String, roomThree: String, roomFour: String, roomFive: String, roomSix: String)
+    {
+        val db = ScheduleDatabase.getInstance(context!!)
+        val scheduleListTest = db.scheduleDAO
+        val sdf = java.text.SimpleDateFormat("h:m a")
 
+        peRoomOne.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomOne)
+            startActivity(activity)
+
+
+        }
+
+        peRoomTwo.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomTwo )
+            startActivity(activity)
+        }
+
+        peRoomThree.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+            activity.putExtra("RoomTxt", roomThree )
+            startActivity(activity)
+        }
+        peRoomFour.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFour )
+            startActivity(activity)
+        }
+        peRoomFive.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomFive )
+            startActivity(activity)
+        }
+        peRoomSix.setOnClickListener {
+            val activity = Intent(getActivity(), roomSchedule::class.java)
+
+            activity.putExtra("RoomTxt", roomSix )
+            startActivity(activity)
+        }
+    }
 
 
 
