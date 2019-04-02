@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_main.*
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
@@ -14,6 +15,8 @@ import usc.dcis.teacherattendancesystem.scheduleDatabase.*
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import usc.dcis.tea.DebugFirebase
+import usc.dcis.tea.ScheduleFirebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         //val loginBtn = findViewById<Button>(R.id.loginBtn)
         //testDatabase()
         deleteOldDatabase()
-        testUserDatabase()
+        //testUserDatabase()
 
 
     }
@@ -185,52 +188,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     // For testing database. Subject to change.
+    @SuppressLint("SimpleDateFormat")
     private fun testDatabase() {
-
-        Log.d("DEBUG: ", "Inside testDatabase function")
-
-        //var db = FirebaseFirestore.getInstance()
-        /*val settings = FirebaseFirestoreSettings.Builder()
-            .setTimestampsInSnapshotsEnabled(true)
-            .build()*/
-        //db.firestoreSettings = settings
-
-       /* var user = HashMap<String, Any>()
-        user.put("id_number", 4)
-        user.put("password", 4)
-        user.put("type", "student")
-        user.put("userID", 4)*/
-
         /*
-        firestore.collection("userDB").document("1")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    var snapshot = task.result
+        Log.d("DEBUG: ", "Inside testDatabase function")
+        val scheduleListTest = ScheduleDatabase.getInstance(this).scheduleDAO
+        val sdf = java.text.SimpleDateFormat("hh:mm a")
 
-                    if (snapshot.exists() && snapshot != null) {
-                        var type = snapshot.getString("type")
-                        Log.d("FIREBASE", "Type: ${type}")
-                    }
-                } else {
-                    Log.e("FIREBASE", "Error: ${task.exception?.message}")
-                }
+        DebugFirebase.displayRoomAssignment(firestore)
 
-            }
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                19, "IT1101", 1, "LB484TC", sdf.parse("1:30 PM"),
+                sdf.parse("5:00 PM"), "M"
+            )
+        )
+
+        scheduleListTest.insertRoomAssignment(
+            RoomAssignment(
+                20, "MATH25", 1, "LB306TC", sdf.parse("5:30 PM"),
+                sdf.parse("6:30 PM"), "M"
+            )
+        )
+
+        ScheduleFirebase.AddMultipleRoomAssignments(firestore, scheduleListTest.getAllRoomAssignments())
         */
-
-        //ScheduleFirebase.GetIDAndPassword(db, 1, "1")
-        //var testUser = ScheduleFirebase.GetIDAndPassword(db, 1, "1")
-
-        //ScheduleFirebaseDebug.printUserDB(db)
-        val db = ScheduleDatabase.getInstance(this)
-        var scheduleListTest = db.scheduleDAO
-
-
-
-        var sdf = java.text.SimpleDateFormat("h:m a")
-        var sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
-
         //region ALL INSERTION
         /*
         scheduleListTest.insert(ScheduleDB(0, 3, 2, 1, "IT5001"))
@@ -315,21 +297,6 @@ class MainActivity : AppCompatActivity() {
         //ScheduleDebug.printAllUserSchedules(scheduleListTest, 3)
 
 
-        /*
-        // For dynamically creating today's room assignment statuses. KEEP THIS UNCOMMENTED SO SCHEDLIST WON'T CRASH
-        var today = scheduleListTest.getAllRoomAssignmentsByDay(DateManager.getCurrentDay())
-
-        for (sched in today) {
-            val statusCheck = scheduleListTest.getStatusCountByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID)
-
-            if (statusCheck == 0) {
-                scheduleListTest.insertStatus(Status(0, sched.roomID, DateManager.getCurrentDate(), "Absent"))
-                ScheduleFirebase.AddStatus(FirebaseFirestore.getInstance(),
-                    scheduleListTest.getStatusByRoomIdAndDate(DateManager.getCurrentDate(), sched.roomID))
-            }
-        }
-        */
-
         //ScheduleDebug.printAllStatus(scheduleListTest)
         //ScheduleDebug.printAllRoomAssignmentsByDay(scheduleListTest, getCurrentDay())
 
@@ -344,6 +311,8 @@ class MainActivity : AppCompatActivity() {
         dao.deleteAllRoomAssignments()
         dao.deleteAllStatus()
         dao.deleteAllUsers()
+
+        ScheduleDatabase.destroyInstance()
     }
 
 }
