@@ -9,10 +9,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.google.firebase.firestore.FirebaseFirestore
 
 import kotlinx.android.synthetic.main.activity_choooseschedule.*
 import kotlinx.android.synthetic.main.content_chooseschedule.view.*
 import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
+import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.lang.StringBuilder
 
@@ -24,8 +26,49 @@ class chooseschedule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choooseschedule)
         setSupportActionBar(toolbar)
+        var sdf = java.text.SimpleDateFormat("hh:mm a")
+
         val db = ScheduleDatabase.getInstance(this)
         var scheduleDao = db.scheduleDAO
+        FirebaseFirestore.getInstance().collection("roomAssignment")
+            .get()
+            .addOnCompleteListener { task ->
+                val roomSnapshot = task.result
+
+
+                if(!roomSnapshot?.isEmpty!!){
+                    for(room in roomSnapshot){
+                        val groupNumber = room["groupNumber"] as Number
+                        if(scheduleDao.
+                                getScheduleCountByCourseCodeAndGroupNumber
+                                    (groupNumber.toInt(), room["courseCode"].toString()) != 0){
+                            val startTimestamp = room.getTimestamp("startTime")
+                            val endTimestamp = room.getTimestamp("endTime")
+                            val startTime = startTimestamp?.toDate()
+                            val endTime = endTimestamp?.toDate()
+                            val roomIDToCheck = room["roomID"] as Number
+
+
+                            if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck.toInt()) == 0){
+                                scheduleDao.insertRoomAssignment(
+                                    RoomAssignment(roomID = room["roomID"].toString().toInt(),
+                                        courseCode = room["courseCode"].toString(),
+                                        groupNumber = room["groupNumber"].toString().toInt(),
+                                        startTime = sdf.parse(sdf.format(startTime)),
+                                        endTime = sdf.parse(sdf.format(endTime)),
+                                        dayAssigned = room["dayAssigned"].toString(),
+                                        roomNumber = room["roomNumber"].toString())
+                                )
+                            }
+
+                        }
+
+
+
+                    }
+                }
+            }
+        //end
         var roomAssignmentCount = scheduleDao.getRoomAssignmentsCount()
 
         val chooseSched = findViewById<Spinner>(R.id.choosesched)
@@ -34,7 +77,7 @@ class chooseschedule : AppCompatActivity() {
         val schedList: MutableList<String> = mutableListOf()
         val RoomID: MutableList<Int> = mutableListOf()
         //val sb = StringBuilder()
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
+        //region INSERTING ROOM ASSIGNMENT TO LOCAL DATABASE
 
         for(i in 0 until roomAssignmentCount) {
             val daysList = scheduleDao.getAllRoomAssignments()
