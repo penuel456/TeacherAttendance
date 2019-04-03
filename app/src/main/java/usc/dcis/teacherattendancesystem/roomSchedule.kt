@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 import kotlinx.android.synthetic.main.activity_room_schedule.*
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
+import java.util.*
 
 class roomSchedule : AppCompatActivity() {
 
@@ -29,7 +30,7 @@ class roomSchedule : AppCompatActivity() {
 
         roomNumTxt.text = roomTitle
 
-        val roomNumber = dao.getAllRoomAssignmentsByRoomNumber(roomTitle)
+       // val roomNumber = dao.getAllRoomAssignmentsByRoomNumber(roomTitle)
         //ScheduleDebug.printAllRoomAssignments(dao)
 
         createSchedules()
@@ -59,10 +60,25 @@ class roomSchedule : AppCompatActivity() {
     fun displayRooms(dao: ScheduleDAO, roomNumber: List<RoomAssignment>){
         val hourSdf = java.text.SimpleDateFormat("hh:mm a")
 
+
         for(room in roomNumber){
             Log.d("MAO NI ANG TEACHERID: ",  "${dao.getScheduleByCourseCodeAndGroupNumber(room.courseCode, room.groupNumber)?.teacherId}")
 
-            val dayAssigned = room.dayAssigned
+            roomNumTxt.text = room.roomNumber + "( '" + room.dayAssigned + "' Schedule )"
+
+            if(room.roomID.equals(roomNumber[0].roomID)){
+                courseCode1.text = room.courseCode
+                groupNumber1.text = room.groupNumber.toString()
+                schedTime1.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher1.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            }else if(room.roomID.equals(roomNumber[1].roomID)){
+                courseCode2.text = room.courseCode
+                groupNumber2.text = room.groupNumber.toString()
+                schedTime2.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher2.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            }
+
+            /*val dayAssigned = room.dayAssigned
             when {
                 dayAssigned.equals("M") -> {
                     monDAY.text = dayAssigned
@@ -107,7 +123,7 @@ class roomSchedule : AppCompatActivity() {
                             "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
                     satTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
                 }
-            }
+            }*/
         }
     }
 
@@ -197,8 +213,9 @@ class roomSchedule : AppCompatActivity() {
                                             }
                                         }
 
-                                        displayRooms(scheduleDao, scheduleDao.getAllRoomAssignmentsByRoomNumber(
-                                            intent.getStringExtra("RoomTxt")))
+                                        displayRooms(scheduleDao, scheduleDao.getAllRoomAssignmentsByRoomNumberAndDay(
+                                            intent.getStringExtra("RoomTxt"),
+                                            DateManager.getDayString(Calendar.getInstance().get(Calendar.DAY_OF_WEEK))))
                                     }
                                 //endregion
                             }
