@@ -7,10 +7,9 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         tools:context=".MainActivity">
-
     <ImageView
-            android:layout_width="407dp"
-            android:layout_height="408dp" app:srcCompat="@drawable/schoolbg" android:id="@+id/imageView7"
+            android:layout_width="410dp"
+            android:layout_height="412dp" app:srcCompat="@drawable/schoolbg" android:id="@+id/imageView7"
             android:layout_marginBottom="324dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +36,9 @@
             android:importantForAutofill="no" android:hint="ID Number"
             tools:targetApi="o" app:layout_constraintHorizontal_bias="0.459"
             tools:textColor="@android:color/background_light"
-            android:layout_marginBottom="28dp" app:layout_constraintBottom_toTopOf="@+id/password"/>
+            android:layout_marginBottom="28dp" app:layout_constraintBottom_toTopOf="@+id/password"
+    />
+
     <Button
             android:text="@string/login"
             android:layout_width="177dp"
@@ -49,15 +50,14 @@
             style="@style/Widget.AppCompat.Button.Small" android:textSize="18sp"
             android:background="#0ba156"
             android:textColor="@android:color/white" android:onClick="check"/>
-
     <ImageView
-            android:layout_width="248dp"
-            android:layout_height="219dp" app:srcCompat="@drawable/logo"
+            android:layout_width="282dp"
+            android:layout_height="273dp" app:srcCompat="@drawable/logo"
             android:id="@+id/imageView3"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" android:layout_marginTop="56dp" app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="usclogo" app:layout_constraintHorizontal_bias="0.496"
-    />
+            android:layout_marginRight="8dp" android:layout_marginTop="52dp" app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="usclogo"
+            app:layout_constraintHorizontal_bias="0.495"/>
 
 </android.support.constraint.ConstraintLayout>

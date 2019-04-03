@@ -6,6 +6,24 @@
                                              android:layout_height="match_parent"
                                              android:background="@android:color/background_light"
                                              android:id="@+id/frameLayout3">
+    <ImageView
+            android:layout_width="61dp"
+            android:onClick="refreshSchedule"
+            android:layout_height="57dp" app:srcCompat="@drawable/refresh_white_54x54"
+            android:id="@+id/imageView17" android:background="@drawable/style1_btn"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="340dp" android:layout_marginStart="340dp" android:layout_marginTop="8dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/refresh"
+            android:layout_marginTop="72dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Refresh"
+            android:onClick="refreshSchedule" android:background="@color/colorPrimary"
+            android:text="@string/refresh" android:layout_marginStart="288dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="288dp"
+            android:visibility="gone"/>
     <TextView
             android:text="@string/no_schedule_for_today"
             android:layout_width="wrap_content"
@@ -18,19 +36,38 @@
             app:layout_constraintHorizontal_bias="0.0" tools:text="No Schedule For Today"/>
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="636dp"
+            android:layout_height="734dp"
             android:layout_marginTop="56dp"
             app:layout_constraintTop_toTopOf="@+id/appBarLayout" app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/Schedule_layout">
 
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/refresh"
-                android:layout_marginTop="76dp"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/onGoingText"
-                android:layout_marginLeft="144dp" android:layout_marginStart="144dp" tools:text="Refresh"
-                android:onClick="refreshSchedule" android:background="@color/colorPrimary"
-                android:text="@string/refresh"/>
+        <ImageView
+                android:layout_width="200dp"
+                android:layout_height="145dp" app:srcCompat="@drawable/usclogocrop2"
+                android:id="@+id/imageView19"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:layout_marginTop="52dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.497"/>
+        <ImageView
+                android:layout_width="393dp"
+                android:layout_height="177dp" app:srcCompat="@drawable/padded_green_table"
+                android:id="@+id/imageView16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/upNextText" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintHorizontal_bias="0.16" android:layout_marginTop="4dp"/>
+        <ImageView
+                android:layout_width="395dp"
+                android:layout_height="212dp" app:srcCompat="@drawable/padded_green_table"
+                android:id="@+id/imageView15"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintHorizontal_bias="1.0" app:layout_constraintTop_toBottomOf="@+id/onGoingText"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,12 +86,13 @@
                 android:textColor="@android:color/background_dark" tools:text="Teacher" android:text="@string/teacher"/>
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="29dp"
                 android:id="@+id/studCourseCode" android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="28dp"
                 android:layout_marginStart="28dp"
                 android:textColor="@android:color/background_dark"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="132dp" tools:text="IT 5001"/>
+                tools:text="IT 5001" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/onGoingText"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +119,7 @@
                 android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
                 app:layout_constraintHorizontal_bias="0.027"
                 android:textStyle="bold" tools:textColor="@color/lightGreen" tools:text="Up Next"
-                android:text="@string/up_next" android:layout_marginTop="52dp"
+                android:text="@string/up_next" android:layout_marginTop="24dp"
                 app:layout_constraintTop_toBottomOf="@+id/scheduleText3"/>
         <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/studUpNextCourseCode" android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/upNextCourseCodeText" android:layout_marginLeft="32dp"
-                android:layout_marginStart="32dp" android:layout_marginTop="108dp"
+                android:layout_marginStart="32dp" android:layout_marginTop="76dp"
                 app:layout_constraintTop_toBottomOf="@+id/studStatus"
                 android:textColor="@android:color/background_dark" tools:text="MATH 25"/>
         <TextView
@@ -165,7 +203,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 android:textStyle="bold"
                 tools:textColor="@color/lightGreen" tools:text="OnGoing" android:text="@string/ongoing"
-                android:layout_marginTop="76dp" app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_marginTop="164dp" app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -232,7 +270,7 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/include" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/appBarLayout2">
 
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

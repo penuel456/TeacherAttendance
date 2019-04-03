@@ -213,7 +213,7 @@ class SchedListTeacher : AppCompatActivity() {
                 Schedule_teacher_layout.teachEndTime.text = sdf.format(rooms.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-                Schedule_teacher_layout.studStatus.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
+                Schedule_teacher_layout?.studStatus?.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
                 isThereOnGoing = true
             }
 
