@@ -76,8 +76,12 @@ class roomSchedule : AppCompatActivity() {
                 groupNumber2.text = room.groupNumber.toString()
                 schedTime2.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
                 courseTeacher2.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            }else if(room.roomID.equals(roomNumber[2].roomID)){
+                courseCode3.text = room.courseCode
+                groupNumber3.text = room. groupNumber.toString()
+                schedTime3.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher3.text = getTeacherName(dao, room.courseCode, room.groupNumber)
             }
-
             /*val dayAssigned = room.dayAssigned
             when {
                 dayAssigned.equals("M") -> {
