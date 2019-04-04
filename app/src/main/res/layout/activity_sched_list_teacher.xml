@@ -7,70 +7,25 @@
         android:layout_height="match_parent"
         tools:context=".SchedListTeacher">
 
-    <ImageButton
-            android:layout_width="67dp"
-            android:onClick="refreshSchedule"
-            android:layout_height="67dp" app:srcCompat="@drawable/refreshnew"
-            android:id="@+id/imageButton4"
-            android:background="@drawable/style1_btn"
-            android:layout_marginEnd="324dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="324dp" android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-    />
-    <ImageButton
-            android:layout_width="67dp"
-            android:onClick="editSched"
-            android:layout_height="67dp" app:srcCompat="@drawable/edit_white_54x54"
-            android:id="@+id/imageButton2"
-            android:background="@drawable/style1_btn"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="8dp" android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-    />
-    <Button
-            android:layout_width="182dp"
-            android:layout_height="49dp" android:id="@+id/refresh2"
-            tools:text="Refresh"
-            android:onClick="refreshSchedule" android:background="@color/colorPrimary"
-            android:layout_marginTop="28dp"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
-            android:text="@string/refresh" android:editable="false" android:visibility="gone"/>
-    <Button
-            android:layout_width="165dp"
-            android:layout_height="52dp"
-            android:id="@+id/editBtn"
-            android:onClick="editSched"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginTop="28dp"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintStart_toEndOf="@+id/refresh2"
-            android:layout_marginStart="20dp" android:layout_marginLeft="20dp" tools:text="Edit"
-            android:text="@string/edit" android:visibility="gone"/>
-    <TextView
-            android:text="@string/no_schedule_for_today"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/noSchedNotif2"
-            android:textSize="24sp" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="84dp"
-            android:layout_marginStart="84dp"
-            app:layout_constraintTop_toTopOf="@+id/Schedule_teacher_layout" android:visibility="invisible"
-            android:layout_marginTop="304dp"/>
     <android.support.constraint.ConstraintLayout
-            android:layout_width="408dp"
-            android:layout_height="671dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:id="@+id/Schedule_teacher_layout" android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" app:layout_constraintStart_toStartOf="parent"
-    >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp">
         <ImageView
-                android:layout_width="397dp"
+                android:layout_width="0dp"
                 android:layout_height="182dp" app:srcCompat="@drawable/padded_green_table"
                 android:id="@+id/imageView12"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                app:layout_constraintHorizontal_bias="0.2" app:layout_constraintTop_toBottomOf="@+id/onGoingText"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/onGoingText"
+                android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp" android:layout_marginBottom="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/Submit"/>
         <ImageView
                 android:layout_width="393dp"
                 android:layout_height="143dp" app:srcCompat="@drawable/padded_green_table"
@@ -82,23 +37,26 @@
                 app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/upNextText"/>
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="29dp"
                 android:id="@+id/teachEndTime" android:textSize="20sp"
                 android:textColor="@android:color/background_dark"
                 tools:text="LBB 466TC"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/teachBuilding"
                 app:layout_constraintStart_toEndOf="@+id/teachStartTime" android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"/>
+                android:layout_marginLeft="24dp" android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="16dp"
+                app:layout_constraintHorizontal_bias="0.0" app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMinTextSize="14dp" app:autoSizeTextType="uniform" android:autoText="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/teachStartTime" android:textSize="20sp"
                 android:textColor="@android:color/background_dark"
                 tools:text="LBB 466TC"
-                app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginStart="72dp"
-                android:layout_marginLeft="72dp" android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/scheduleText" android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp" android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/teachBuilding"/>
         <TextView
                 android:layout_width="wrap_content"
@@ -173,9 +131,10 @@
                 android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-                app:layout_constraintHorizontal_bias="0.029" android:layout_marginTop="100dp"
-                app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
-                tools:textColor="@color/lightGreen"/>
+                app:layout_constraintHorizontal_bias="0.028"
+                android:textStyle="bold"
+                tools:textColor="@color/lightGreen" android:layout_marginTop="120dp"
+                app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:text="@string/up_next"
                 android:layout_width="wrap_content"
@@ -191,35 +150,37 @@
                 android:text="@string/course_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/courseCodeText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+                android:id="@+id/courseCodeText" android:textSize="20sp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/onGoingText" android:textStyle="bold"
-                android:textColor="@android:color/background_dark"/>
+                android:textColor="@android:color/background_dark" android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/teachCourseCode" android:textSize="20sp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
                 app:layout_constraintStart_toEndOf="@+id/courseCodeText" android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintHorizontal_bias="0.167" android:textColor="@android:color/background_dark"
+                app:layout_constraintHorizontal_bias="0.0" android:textColor="@android:color/background_dark"
                 tools:text="IT 5001" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/onGoingText"/>
+                app:layout_constraintTop_toBottomOf="@+id/onGoingText" app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMinTextSize="14dp" android:layout_marginEnd="120dp" android:layout_marginRight="120dp"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/teachBuilding" android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="104dp"
-                android:layout_marginStart="104dp"
+                app:layout_constraintStart_toEndOf="@+id/buildingText" android:layout_marginLeft="68dp"
+                android:layout_marginStart="68dp"
                 android:textColor="@android:color/background_dark"
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/teachCourseCode"
-                tools:text="LBB 466TC"/>
+                tools:text="LBB 466TC" android:layout_marginEnd="120dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="120dp" app:layout_constraintHorizontal_bias="0.027"/>
         <TextView
                 android:text="@string/room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buildingText" android:textSize="20sp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+                android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
                 android:textStyle="bold"
                 android:textColor="@android:color/background_dark" android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/courseCodeText"/>
@@ -230,8 +191,8 @@
                 android:id="@+id/scheduleText" android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/background_dark" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/buildingText" android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/buildingText" android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"/>
         <TextView
                 android:text="@string/status"
                 android:layout_width="wrap_content"
@@ -239,8 +200,8 @@
                 android:id="@+id/scheduleText2" android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/background_dark"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/scheduleText"/>
         <Spinner
                 android:layout_width="164dp"
@@ -250,7 +211,7 @@
                 android:prompt="@string/status_prompt"
                 android:spinnerMode="dropdown"
                 android:visibility="visible" app:layout_constraintStart_toEndOf="@+id/scheduleText2"
-                android:layout_marginStart="92dp" android:layout_marginLeft="92dp"
+                android:layout_marginStart="60dp" android:layout_marginLeft="60dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/teachStartTime"
         />
         <Button
@@ -289,14 +250,66 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView12" android:layout_marginEnd="144dp"
                 android:layout_marginRight="144dp"/>
         <ImageView
-                android:layout_width="187dp"
-                android:layout_height="122dp" app:srcCompat="@drawable/usclogocrop2"
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@drawable/usclogocrop2"
                 android:id="@+id/imageView18"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.492"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="100dp" android:layout_marginStart="100dp" android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView12" app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintVertical_bias="0.315" android:layout_marginTop="10dp"/>
     </android.support.constraint.ConstraintLayout>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:onClick="refreshSchedule"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/refreshnew"
+            android:id="@+id/imageButton4"
+            android:background="@drawable/style1_btn"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+    />
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:onClick="editSched"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/edit_white_54x54"
+            android:id="@+id/imageButton2"
+            android:background="@drawable/style1_btn"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+    />
+    <Button
+            android:layout_width="182dp"
+            android:layout_height="49dp" android:id="@+id/refresh2"
+            tools:text="Refresh"
+            android:onClick="refreshSchedule" android:background="@color/colorPrimary"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:text="@string/refresh" android:editable="false" android:visibility="gone"/>
+    <Button
+            android:layout_width="165dp"
+            android:layout_height="52dp"
+            android:id="@+id/editBtn"
+            android:onClick="editSched"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_constraintStart_toEndOf="@+id/refresh2"
+            android:layout_marginStart="20dp" android:layout_marginLeft="20dp" tools:text="Edit"
+            android:text="@string/edit" android:visibility="gone"/>
+    <TextView
+            android:text="@string/no_schedule_for_today"
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:id="@+id/noSchedNotif2"
+            android:textSize="24sp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Schedule_teacher_layout" android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.015" android:gravity="center"/>
     <android.support.design.widget.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
