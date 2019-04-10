@@ -44,35 +44,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                <ImageView
+                        android:layout_width="390dp"
+                        android:layout_height="180dp" app:srcCompat="@drawable/padded_green_table"
+                        android:id="@+id/imageView10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="4dp"/>
+                <ImageView
+                        android:layout_width="390dp"
+                        android:layout_height="195dp" app:srcCompat="@drawable/padded_green_table"
+                        android:id="@+id/imageView11"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="300dp"/>
+                <ImageView
+                        android:layout_width="390dp"
+                        android:layout_height="213dp" app:srcCompat="@drawable/padded_green_table"
+                        android:id="@+id/imageView12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="612dp"
+                        android:layout_marginEnd="12dp" android:layout_marginRight="12dp"/>
                 <TextView
                         android:layout_width="147dp"
                         android:layout_height="27dp" android:id="@+id/courseCode1"
                         android:layout_marginTop="16dp"
-                        android:layout_marginLeft="76dp" android:layout_marginStart="76dp" android:textSize="18sp"
+                        android:layout_marginLeft="68dp" android:layout_marginStart="68dp" android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/courseCodeLabel"
                         app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/groupNumber1"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintTop_toBottomOf="@+id/courseCode1"
                         android:textSize="18sp"
-                        app:layout_constraintStart_toEndOf="@+id/groupNumLabel" android:layout_marginLeft="52dp"
-                        android:layout_marginStart="52dp"/>
+                        app:layout_constraintStart_toEndOf="@+id/groupNumLabel" android:layout_marginLeft="48dp"
+                        android:layout_marginStart="48dp"/>
                 <TextView
-                        android:layout_width="259dp"
-                        android:layout_height="41dp" android:id="@+id/schedTime1"
-                        android:layout_marginTop="20dp"
+                        android:layout_width="202dp"
+                        android:layout_height="30dp" android:id="@+id/schedTime1"
+                        android:layout_marginTop="28dp"
                         app:layout_constraintTop_toBottomOf="@+id/groupNumber1"
                         android:textSize="16sp" app:layout_constraintStart_toEndOf="@+id/schedTimeLabel"
-                        android:layout_marginLeft="16dp" android:layout_marginStart="16dp"/>
+                        android:layout_marginLeft="88dp" android:layout_marginStart="88dp"
+                />
                 <TextView
                         android:layout_width="214dp"
-                        android:layout_height="33dp" android:id="@+id/courseTeacher1"
-                        android:layout_marginTop="4dp"
+                        android:layout_height="26dp" android:id="@+id/courseTeacher1"
                         app:layout_constraintTop_toBottomOf="@+id/schedTime1" android:textSize="18sp"
-                        app:layout_constraintStart_toEndOf="@+id/teacherLabel" android:layout_marginStart="48dp"
-                        android:layout_marginLeft="48dp"/>
+                        app:layout_constraintStart_toEndOf="@+id/teacherLabel" android:layout_marginStart="104dp"
+                        android:layout_marginLeft="104dp" android:layout_marginTop="8dp"/>
                 <TextView
                         android:text="Course Code:"
                         android:layout_width="wrap_content"
@@ -80,7 +101,7 @@
                         android:id="@+id/courseCodeLabel" android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginLeft="28dp" android:layout_marginStart="28dp" android:textSize="18sp"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"/>
                 <TextView
                         android:text="Group Number: "
                         android:layout_width="wrap_content"
@@ -89,79 +110,79 @@
                         app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel"
                         android:textSize="18sp" android:layout_marginStart="28dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="28dp"/>
+                        android:layout_marginLeft="28dp" android:textStyle="bold"/>
                 <TextView
                         android:text="Schedule: "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/schedTimeLabel" android:textSize="18sp"
-                        android:layout_marginTop="36dp" app:layout_constraintTop_toBottomOf="@+id/groupNumLabel"
-                        android:layout_marginStart="32dp" app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="32dp"/>
+                        android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/groupNumLabel"
+                        android:layout_marginStart="28dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="28dp" android:textStyle="bold"/>
                 <TextView
                         android:text="Teacher:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/teacherLabel"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintTop_toBottomOf="@+id/schedTimeLabel" android:textSize="18sp"
-                        android:layout_marginStart="32dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="32dp"
-                />
-                <Button
-                        android:text="No Students"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/noStudBtn1"
-                        app:layout_constraintStart_toEndOf="@+id/noTeachBtn1" android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="208dp" app:layout_constraintTop_toTopOf="parent"/>
-                <Button
+                        android:layout_marginStart="28dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="28dp"
+                        android:textStyle="bold"/>
+                <CheckBox
                         android:text="No Teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/noTeachBtn1" android:layout_marginTop="208dp"
-                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"/>
-                <ImageButton
-                        android:layout_width="57dp"
-                        android:layout_height="47dp" app:srcCompat="@drawable/ic_menu_camera"
-                        android:id="@+id/camera1" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="64dp"
-                        android:layout_marginRight="64dp" app:layout_constraintStart_toEndOf="@+id/noStudBtn1"
-                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                        app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="208dp"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:id="@+id/noTeacherBox1" android:layout_marginTop="28dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"/>
+                <CheckBox
+                        android:text="No Students"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/noStudBox1" app:layout_constraintStart_toEndOf="@+id/noTeacherBox1"
+                        android:layout_marginLeft="12dp" android:layout_marginStart="12dp"
+                        android:layout_marginTop="28dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView10"/>
+                <Button
+                        android:text="Submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/submitBtn1" app:layout_constraintStart_toEndOf="@+id/noStudBox1"
+                        android:layout_marginLeft="36dp" android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintTop_toBottomOf="@+id/courseTeacher1"/>
                 <TextView
                         android:layout_width="147dp"
                         android:layout_height="27dp" android:id="@+id/courseCode2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/courseCodeLabel2"
-                        android:layout_marginLeft="76dp" android:layout_marginStart="76dp"
-                        android:layout_marginTop="312dp"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:layout_marginLeft="68dp" android:layout_marginStart="68dp"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/imageView11"/>
                 <TextView
                         android:layout_width="28dp"
                         android:layout_height="24dp" android:id="@+id/groupNumber2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/groupNumLabel2"
-                        android:layout_marginLeft="64dp" android:layout_marginStart="64dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="56dp" android:layout_marginStart="56dp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintTop_toBottomOf="@+id/courseCode2"/>
                 <TextView
-                        android:layout_width="210dp"
-                        android:layout_height="42dp" android:id="@+id/schedTime2"
+                        android:layout_width="219dp"
+                        android:layout_height="22dp" android:id="@+id/schedTime2"
                         android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/schedTimeLabel2"
-                        android:layout_marginLeft="108dp" android:layout_marginStart="108dp"
-                        android:layout_marginTop="36dp"
-                        app:layout_constraintTop_toBottomOf="@+id/groupNumber2"/>
+                        android:layout_marginLeft="96dp" android:layout_marginStart="96dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintTop_toBottomOf="@+id/groupNumber2"
+                />
                 <TextView
                         android:layout_width="214dp"
-                        android:layout_height="33dp" android:id="@+id/courseTeacher2"
+                        android:layout_height="24dp" android:id="@+id/courseTeacher2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/teacherLabel2"
-                        android:layout_marginLeft="84dp" android:layout_marginStart="84dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="108dp" android:layout_marginStart="108dp"
+                        android:layout_marginTop="32dp"
                         app:layout_constraintTop_toBottomOf="@+id/schedTime2"/>
                 <TextView
                         android:text="Group Number: "
@@ -170,9 +191,9 @@
                         android:id="@+id/groupNumLabel2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel2"/>
+                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
+                        app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel2" android:layout_marginTop="24dp"
+                        android:textStyle="bold"/>
                 <TextView
                         android:text="Course Code:"
                         android:layout_width="wrap_content"
@@ -180,82 +201,82 @@
                         android:id="@+id/courseCodeLabel2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
-                        android:layout_marginTop="56dp"
-                        app:layout_constraintTop_toBottomOf="@+id/noTeachBtn1"/>
+                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
+                        android:textStyle="bold" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="@+id/imageView11"/>
                 <TextView
                         android:text="Schedule: "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/schedTimeLabel2" android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="12dp" android:layout_marginStart="12dp"
-                        android:layout_marginTop="52dp"
-                        app:layout_constraintTop_toBottomOf="@+id/groupNumLabel2"/>
+                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
+                        android:layout_marginTop="28dp"
+                        app:layout_constraintTop_toBottomOf="@+id/groupNumLabel2" android:textStyle="bold"/>
                 <TextView
                         android:text="Teacher:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/teacherLabel2"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
+                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
                         android:layout_marginTop="28dp"
-                        app:layout_constraintTop_toBottomOf="@+id/schedTimeLabel2"/>
-                <Button
-                        android:text="No Students"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/noStudBtn2"
-                        app:layout_constraintStart_toEndOf="@+id/noTeachBtn1" android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="528dp" app:layout_constraintTop_toTopOf="parent"/>
-                <Button
+                        app:layout_constraintTop_toBottomOf="@+id/schedTimeLabel2" android:textStyle="bold"/>
+                <CheckBox
                         android:text="No Teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/noTeachBtn2" android:layout_marginTop="528dp"
-                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="24dp" android:layout_marginStart="24dp"/>
-                <ImageButton
-                        android:layout_width="57dp"
-                        android:layout_height="47dp" app:srcCompat="@drawable/ic_menu_camera"
-                        android:id="@+id/camera2" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="64dp"
-                        android:layout_marginRight="64dp" app:layout_constraintStart_toEndOf="@+id/noStudBtn1"
-                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                        app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="528dp"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:id="@+id/noTeacherBox2" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                        android:layout_marginTop="28dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView11"/>
+                <Button
+                        android:text="Submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/submitBtn2"
+                        android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                        app:layout_constraintStart_toEndOf="@+id/noStudBox2" android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"/>
+                <CheckBox
+                        android:text="No Students"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/noStudBox2"
+                        android:layout_marginTop="28dp" app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                        app:layout_constraintStart_toEndOf="@+id/noTeacherBox2" android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"/>
                 <TextView
                         android:layout_width="147dp"
                         android:layout_height="27dp" android:id="@+id/courseCode3"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/courseCodeLabel3"
-                        android:layout_marginLeft="56dp" android:layout_marginStart="56dp"
-                        android:layout_marginTop="624dp"
+                        android:layout_marginLeft="76dp" android:layout_marginStart="76dp"
+                        android:layout_marginTop="620dp"
                         app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
                         android:layout_width="28dp"
                         android:layout_height="24dp" android:id="@+id/groupNumber3"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/groupNumLabel3"
-                        android:layout_marginLeft="60dp" android:layout_marginStart="60dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="56dp" android:layout_marginStart="56dp"
+                        android:layout_marginTop="28dp"
                         app:layout_constraintTop_toBottomOf="@+id/courseCode3"/>
                 <TextView
                         android:layout_width="210dp"
-                        android:layout_height="42dp" android:id="@+id/schedTime3"
+                        android:layout_height="27dp" android:id="@+id/schedTime3"
                         android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/schedTimeLabel3"
-                        android:layout_marginLeft="68dp" android:layout_marginStart="68dp"
-                        android:layout_marginTop="36dp"
+                        android:layout_marginLeft="92dp" android:layout_marginStart="92dp"
+                        android:layout_marginTop="32dp"
                         app:layout_constraintTop_toBottomOf="@+id/groupNumber3"/>
                 <TextView
                         android:layout_width="214dp"
                         android:layout_height="30dp" android:id="@+id/courseTeacher3"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@+id/teacherLabel3"
-                        android:layout_marginLeft="76dp" android:layout_marginStart="76dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="96dp" android:layout_marginStart="96dp"
+                        android:layout_marginTop="28dp"
                         app:layout_constraintTop_toBottomOf="@+id/schedTime3"/>
                 <TextView
                         android:text="Group Number: "
@@ -266,7 +287,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
                         android:layout_marginTop="32dp"
-                        app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel3"/>
+                        app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel3" android:textStyle="bold"/>
                 <TextView
                         android:text="Course Code:"
                         android:layout_width="wrap_content"
@@ -274,8 +295,9 @@
                         android:id="@+id/courseCodeLabel3"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="28dp" android:layout_marginStart="28dp"
-                        android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/noTeachBtn2"/>
+                        android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                        android:textStyle="bold" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="@+id/imageView12"/>
                 <TextView
                         android:text="Schedule: "
                         android:layout_width="wrap_content"
@@ -284,40 +306,39 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginLeft="28dp" android:layout_marginStart="28dp"
                         android:layout_marginTop="360dp"
-                        app:layout_constraintTop_toBottomOf="@+id/groupNumLabel2"/>
+                        app:layout_constraintTop_toBottomOf="@+id/groupNumLabel2" android:textStyle="bold"/>
                 <TextView
                         android:text="Teacher:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/teacherLabel3"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="28dp" android:layout_marginStart="28dp"
-                        android:layout_marginTop="332dp"
-                        app:layout_constraintTop_toBottomOf="@+id/schedTimeLabel2"/>
-                <Button
-                        android:text="No Students"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/noStudBtn3"
-                        app:layout_constraintStart_toEndOf="@+id/noTeachBtn1" android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="832dp" app:layout_constraintTop_toTopOf="parent"/>
-                <Button
+                        android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
+                        android:layout_marginTop="364dp"
+                        app:layout_constraintTop_toBottomOf="@+id/schedTimeLabel2" android:textStyle="bold"/>
+                <CheckBox
                         android:text="No Teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/noTeachBtn3" android:layout_marginTop="832dp"
-                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginLeft="28dp" android:layout_marginStart="28dp"/>
-                <ImageButton
-                        android:layout_width="57dp"
-                        android:layout_height="47dp" app:srcCompat="@drawable/ic_menu_camera"
-                        android:id="@+id/camera3" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="64dp"
-                        android:layout_marginRight="64dp" app:layout_constraintStart_toEndOf="@+id/noStudBtn1"
-                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                        app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="832dp"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:id="@+id/noTeacherBox3" android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"/>
+                <CheckBox
+                        android:text="No Students"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/noStudBox3" android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+                        app:layout_constraintStart_toEndOf="@+id/noTeacherBox3" android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"/>
+                <Button
+                        android:text="Submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/submitBtn3" app:layout_constraintStart_toEndOf="@+id/noStudBox3"
+                        android:layout_marginLeft="40dp" android:layout_marginStart="40dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView12"/>
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
     </android.support.constraint.ConstraintLayout>
