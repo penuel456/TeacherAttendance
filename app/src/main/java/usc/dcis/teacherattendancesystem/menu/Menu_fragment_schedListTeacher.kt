@@ -48,9 +48,9 @@ class Menu_fragment_schedListTeacher : Fragment() {
                 // date.text = buildingName
                 when (statusValue){
                     "Present" -> {
-                        reason.visibility = View.GONE
+                        reason_2.visibility = View.GONE
                     }
-                    "Absent" -> reason.visibility = View.VISIBLE
+                    "Absent" -> reason_2.visibility = View.VISIBLE
                 }
 
             }
