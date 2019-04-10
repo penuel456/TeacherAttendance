@@ -135,7 +135,7 @@
                         android:id="@+id/noTeacherBox1" android:layout_marginTop="28dp"
                         app:layout_constraintTop_toBottomOf="@+id/imageView10"
                         app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
-                        android:layout_marginStart="24dp"/>
+                        android:layout_marginStart="24dp" android:checked="false"/>
                 <CheckBox
                         android:text="No Students"
                         android:layout_width="wrap_content"

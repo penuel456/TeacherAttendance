@@ -5,10 +5,15 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import com.google.android.gms.common.internal.FallbackServiceBroker
 import com.google.firebase.firestore.FirebaseFirestore
+import io.grpc.util.TransmitStatusRuntimeExceptionInterceptor
 
 import kotlinx.android.synthetic.main.activity_room_schedule.*
+import kotlinx.android.synthetic.main.activity_sched_list_teacher.view.*
+import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
 import java.util.*
 
@@ -71,6 +76,19 @@ class roomSchedule : AppCompatActivity() {
                 groupNumber1.text = room.groupNumber.toString()
                 schedTime1.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
                 courseTeacher1.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+
+                submitBtn1.setOnClickListener {
+                    if(noStudBox1.isChecked == true && noTeacherBox1.isChecked == false){
+
+                        Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox1.isChecked == false &&noTeacherBox1.isChecked == true){
+                        Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox1.isChecked == true && noTeacherBox1.isChecked == true){
+                        Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox1.isChecked == false && noTeacherBox1.isChecked == false){
+                        Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }else if(room.roomID.equals(roomNumber[1].roomID)){
                 courseCode2.text = room.courseCode
                 groupNumber2.text = room.groupNumber.toString()
@@ -231,6 +249,18 @@ class roomSchedule : AppCompatActivity() {
         //endregion
 
     }
+
+    /*fun submitStatus(){
+        val dao = ScheduleDatabase.getInstance(this).scheduleDAO
+
+        dao.updateStatusStateRemarks(roomID = room.currentRoomID, date = DateManager.getCurrentDate(),
+            status = view?.status!!.selectedItem.toString(), remarks = "")
+        val currentStatus = dao.getStatusByRoomIdAndDate(date = DateManager.getCurrentDate(), roomID = SchedListTeacher.currentRoomID)
+        ScheduleFirebase.UpdateStatus(db = FirebaseFirestore.getInstance(), status = currentStatus)
+
+
+        Toast.makeText(this, "Status updated.", Toast.LENGTH_SHORT).show()
+    }*/
 
     private fun getTeacherName(dao: ScheduleDAO, courseCode: String, groupNumber: Int): String{
         return dao.getTeacherFromSchedule(dao.getScheduleByCourseCodeAndGroupNumber(courseCode, groupNumber)?.teacherId)?.name
