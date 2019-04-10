@@ -10,29 +10,34 @@
         tools:context=".chooseschedule">
 
     <FrameLayout
-            android:layout_width="395dp"
+            android:layout_width="0dp"
             android:layout_height="84dp" android:layout_marginTop="88dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            android:background="@drawable/padded_green_table">
+            android:background="@drawable/padded_green_table" android:id="@+id/frameLayout5"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp">
 
     </FrameLayout>
     <Spinner
-            android:layout_width="347dp"
+            android:layout_width="0dp"
             android:layout_height="29dp"
             android:id="@+id/choosesched" android:layout_marginTop="132dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            android:background="@color/colorPrimaryDark"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="@+id/frameLayout5"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayout5" android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" android:layout_marginLeft="16dp" android:layout_marginStart="16dp"/>
     <Button
             android:text="Submit"
             android:layout_width="122dp"
             android:layout_height="46dp"
             android:onClick="goToEditSchedActivity"
-            android:id="@+id/submitSched" android:layout_marginBottom="84dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="144dp" android:layout_marginRight="144dp"
-            android:background="@color/colorPrimary" android:textColor="@color/colorPrimaryDark"/>
+            android:id="@+id/submitSched" android:layout_marginBottom="76dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorPrimary" android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="116dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="116dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.026"/>
     <TextView
             android:text="Choose a schedule to edit"
             android:layout_width="wrap_content"
