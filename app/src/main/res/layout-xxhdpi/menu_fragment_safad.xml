@@ -198,17 +198,18 @@
             android:layout_width="167dp"
             android:layout_height="27dp" android:id="@+id/textView3"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            android:layout_marginTop="188dp"
+            android:layout_marginTop="212dp"
             android:textColor="@android:color/background_dark"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.0" tools:textSize="24sp" android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.004" tools:textSize="24sp" android:textStyle="bold"
             android:textSize="24sp"/>
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="180dp" app:srcCompat="@drawable/cafanew"
+            android:layout_height="206dp" app:srcCompat="@drawable/cafanew"
             android:id="@+id/imageView4" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+    />
 </android.support.constraint.ConstraintLayout>

@@ -162,8 +162,8 @@
             android:textSize="24sp" android:textStyle="bold"/>
     <TextView
             android:text="Choose a Wing"
-            android:layout_width="136dp"
-            android:layout_height="27dp" android:id="@+id/chooseWing_2"
+            android:layout_width="170dp"
+            android:layout_height="33dp" android:id="@+id/chooseWing_2"
             android:layout_marginTop="216dp"
             android:layout_marginBottom="633dp" tools:textSize="18sp"
             android:textColor="@android:color/background_dark" tools:text="Choose a Wing"
