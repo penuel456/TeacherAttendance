@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_sched_list_teacher.*
 import kotlinx.android.synthetic.main.activity_sched_list_teacher.view.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*

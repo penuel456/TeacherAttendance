@@ -107,7 +107,7 @@ interface ScheduleDAO {
     @Query("UPDATE Statuses SET status = :status WHERE roomID = :roomID AND date = :date")
     fun updateStatusState(roomID: Int, date: Date, status: String)
 
-    @Query("UPDATE Statuses SET status = :status AND remarks = :remarks WHERE roomID = :roomID AND date = :date")
+    @Query("UPDATE Statuses SET status = :status, remarks = :remarks WHERE roomID = :roomID AND date = :date")
     fun updateStatusStateRemarks(roomID: Int, date: Date, status: String, remarks: String)
 
     @Query("SELECT * FROM Statuses")
