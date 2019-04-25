@@ -50,5 +50,6 @@
     <string name="schedule">Schedule</string>
     <string name="room">Room</string>
     <string name="course_code">Course Code</string>
+    <string name="title_activity_camera">Camera</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package usc.dcis.teacherattendancesystem
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -359,6 +360,10 @@ class roomSchedule : AppCompatActivity() {
 
     private fun getTeacherName(dao: ScheduleDAO, courseCode: String, groupNumber: Int): String{
         return dao.getTeacherFromSchedule(dao.getScheduleByCourseCodeAndGroupNumber(courseCode, groupNumber)?.teacherId)?.name
+    }
+    fun takeAPic(view: View){
+        val activity = Intent(this, Camera::class.java)
+        startActivity(activity)
     }
 
 }
