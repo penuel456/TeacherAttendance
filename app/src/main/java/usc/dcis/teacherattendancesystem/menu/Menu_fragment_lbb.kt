@@ -43,7 +43,7 @@ class Menu_fragment_lbb : Fragment() {
         arrayOf("LB220")
     )
     private  val bunzelBuilding_third =arrayOf(
-        arrayOf("LB306","LB305","LB304"),
+        arrayOf("LB306TC","LB305","LB304"),
         arrayOf("LB380","LB381", "LB382", "LB383", "LB384", "LB386"),
         arrayOf("LB363","LB364","LB366")
     )
