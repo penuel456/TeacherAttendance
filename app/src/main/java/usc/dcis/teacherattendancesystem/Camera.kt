@@ -16,37 +16,63 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
+import android.util.Log
 
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import android.widget.ProgressBar
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.nav_header_menu.*
 import java.io.File
 import java.io.IOException
+import java.nio.file.Files.createFile
 import java.text.SimpleDateFormat
 import java.util.*;
 
 class Camera : AppCompatActivity() {
-    lateinit var imageView: ImageView
-    lateinit var captureButton: Button
+    private var PICK_IMAGE_REQUEST = 2
 
+
+    private lateinit var imageView: ImageView
+    private lateinit var captureButton: Button
+    private lateinit var mButtonChooseImage: Button
+    private lateinit var  mButtonUpload: Button
+    private lateinit var mTextViewShowUploads: TextView
+    private lateinit var mEditTextFileName: EditText
+    private lateinit var  mImageView: ImageView
+    private lateinit var mProgressBar: ProgressBar
+    private lateinit var mImageUri: Uri
     val REQUEST_IMAGE_CAPTURE = 1
 
 
     private val PERMISSION_REQUEST_CODE: Int = 101
 
-    private var mCurrentPhotoPath: String? = null;
+    private var mCurrentPhotoPath: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-
+        mButtonChooseImage = findViewById(R.id.button_choose_image)
+        mButtonUpload = findViewById(R.id.button_upload)
+        mTextViewShowUploads = findViewById(R.id.text_view_show_uploads)
+        mEditTextFileName = findViewById(R.id.edit_text_file_name)
+        mImageView = findViewById(R.id.image_view)
+        mProgressBar = findViewById(R.id.progress_bar)
+        mButtonChooseImage.setOnClickListener( View.OnClickListener {
+            openFileChooser()
+        } )
         imageView = findViewById(R.id.image_view)
         captureButton = findViewById(R.id.btn_capture)
         captureButton.setOnClickListener(View.OnClickListener {
             if (checkPersmission()) takePicture() else requestPermission()
         })
+
+
+        mButtonUpload.setOnClickListener { }
+
+        mTextViewShowUploads.setOnClickListener { }
 
 
     }
@@ -72,7 +98,12 @@ class Camera : AppCompatActivity() {
             }
         }
     }
-
+    fun openFileChooser(){
+        val intent = Intent()
+        intent.setType("image/*")
+        intent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent, "Select a file"), PICK_IMAGE_REQUEST)
+    }
     private fun takePicture() {
 
         val intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -89,7 +120,15 @@ class Camera : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+            /*&& data != null && data.data != null*/) {
+            val selectedFile = data?.data
+            //mImageUri = data.data
+            Log.d("adfsf", "Naaabot sya dri sa onactivity")
+            //Picasso.get().load(mImageUri).into(mImageView)
+        }
+       /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
             //To get the File for further usage
             val auxFile = File(mCurrentPhotoPath)
@@ -98,7 +137,8 @@ class Camera : AppCompatActivity() {
             var bitmap: Bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath)
             imageView.setImageBitmap(bitmap)
 
-        }
+        }*/
+
     }
 
     private fun checkPersmission(): Boolean {
@@ -125,4 +165,7 @@ class Camera : AppCompatActivity() {
             mCurrentPhotoPath = absolutePath
         }
     }
+
+
+
 }
