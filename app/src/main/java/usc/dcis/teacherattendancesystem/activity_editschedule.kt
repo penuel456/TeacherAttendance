@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.TimePickerDialog
 import android.os.Build
@@ -729,12 +730,14 @@ class activity_editschedule : AppCompatActivity() {
                   .setAction("Action", null).show()
           }*/
     }
+    @SuppressLint("SimpleDateFormat")
     @TargetApi(Build.VERSION_CODES.P)
     fun clickTimePicker(view: View) {
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
         var sdf = java.text.SimpleDateFormat("hh:mm a")
+        sdf.timeZone = TimeZone.getTimeZone("GMT+8")
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
             var hourformat:Int
             var status = "AM"
@@ -747,7 +750,7 @@ class activity_editschedule : AppCompatActivity() {
             }else{
                 hourformat = h
             }
-            startTime = java.text.SimpleDateFormat("h:m a").parse("$hourformat:$m $status")
+            startTime = sdf.parse("$hourformat:$m $status")
             Toast.makeText(this, hourformat.toString() + ":" + String.format("%02d", m)+" "+status , Toast.LENGTH_LONG).show()
             val Start_time_textview = findViewById<TextView>(R.id.start_time)
             Start_time_textview.text = sdf.format(startTime)
@@ -757,12 +760,14 @@ class activity_editschedule : AppCompatActivity() {
         tpd.show()
 
     }
+    @SuppressLint("SimpleDateFormat")
     @TargetApi(Build.VERSION_CODES.P)
     fun clickTimePicker_end(view: View) {
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
+        val sdf = java.text.SimpleDateFormat("hh:mm a")
+        sdf.timeZone = TimeZone.getTimeZone("GMT+8")
 
         val tpd = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
             var hourformat:Int
@@ -777,7 +782,7 @@ class activity_editschedule : AppCompatActivity() {
                 hourformat = h
             }
             Toast.makeText(this, hourformat.toString() + ":" + String.format("%02d", m)+" "+status , Toast.LENGTH_LONG).show()
-            endTime = java.text.SimpleDateFormat("hh:mm a").parse("$hourformat:$m $status")
+            endTime = sdf.parse("$hourformat:$m $status")
             val End_time_textview = findViewById<TextView>(R.id.end_time)
             End_time_textview.text = sdf.format(endTime)
             endTimeText = sdf.format(endTime)
@@ -796,9 +801,9 @@ class activity_editschedule : AppCompatActivity() {
 
         val dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener(function = { view, year, monthOfYear, dayOfMonth  ->
 
-            Toast.makeText(this, monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString() , Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "$monthOfYear / $dayOfMonth/$year", Toast.LENGTH_LONG).show()
             val date = findViewById<TextView>(R.id.date)
-            date.text = monthOfYear.toString() + " / " + dayOfMonth.toString() +"/"+ year.toString()
+            date.text = "$monthOfYear / $dayOfMonth/$year"
 
         }),year, month, day)
 
