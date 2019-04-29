@@ -7,11 +7,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_sched_list_teacher.*
 import kotlinx.android.synthetic.main.activity_sched_list_teacher.view.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.*
+import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import kotlinx.android.synthetic.main.sched_list_student.view.*
 import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
@@ -24,6 +30,32 @@ class SchedListTeacher : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sched_list_teacher)
+        val statusSpinner = findViewById<Spinner>(R.id.status)
+        val teacherStatus = arrayOf("Present", "Absent")
+        val statusSpinner_adapter = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            teacherStatus // Array
+        )
+        statusSpinner.adapter = statusSpinner_adapter
+        statusSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long){
+                // Display the selected item text on text view
+                val statusValue ="${parent.getItemAtPosition(position).toString()}"
+                // date.text = buildingName
+                when (statusValue){
+                    "Present" -> {
+                        reason.visibility = View.GONE
+                    }
+                    "Absent" -> reason.visibility = View.VISIBLE
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>){
+                // Another interface callback
+            }
+        }
         createSchedules()
     }
 
@@ -213,7 +245,7 @@ class SchedListTeacher : AppCompatActivity() {
                 Schedule_teacher_layout.teachEndTime.text = sdf.format(rooms.endTime)
 
                 /* For status, it's supposed to get from the database that the teacher inputted. */
-                Schedule_teacher_layout.studStatus.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
+                Schedule_teacher_layout?.studStatus?.text = dao.getStatusByRoomIdAndDate(sdfDate, rooms.roomID)?.status
                 isThereOnGoing = true
             }
 

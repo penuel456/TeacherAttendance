@@ -87,26 +87,28 @@ class SchedListStudent : AppCompatActivity() {
 
                                         //CHECKS IF ROOM ASSIGNMENT EXISTS IN LOCAL DATABASE
                                         if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck.toInt()) == 0){
-                                            scheduleDao.insertRoomAssignment(
-                                                RoomAssignment(roomID = room["roomID"].toString().toInt(),
-                                                    courseCode = room["courseCode"].toString(),
-                                                    groupNumber = room["groupNumber"].toString().toInt(),
-                                                    startTime = sdf.parse(sdf.format(startTime)),
-                                                    endTime = sdf.parse(sdf.format(endTime)),
-                                                    dayAssigned = room["dayAssigned"].toString(),
-                                                    roomNumber = room["roomNumber"].toString())
-                                            )
+                                                scheduleDao.insertRoomAssignment(
+                                                    RoomAssignment(roomID = room["roomID"].toString().toInt(),
+                                                        courseCode = room["courseCode"].toString(),
+                                                        groupNumber = room["groupNumber"].toString().toInt(),
+                                                        startTime = sdf.parse(sdf.format(startTime)),
+                                                        endTime = sdf.parse(sdf.format(endTime)),
+                                                        dayAssigned = room["dayAssigned"].toString(),
+                                                        roomNumber = room["roomNumber"].toString())
+                                                )
 
-                                            Log.d("FIREBASE", "RoomAssignment ${room["courseCode"]} " +
-                                                    " at group number ${room["groupNumber"]} added")
+                                                Log.d("FIREBASE", "RoomAssignment ${room["courseCode"]} " +
+                                                        " at group number ${room["groupNumber"]} added")
                                         }
                                     }
                                 }
                             }
 
+
                             isRoomAssignmentComplete = true
 
                             checkFirebaseState(isScheduleComplete, isRoomAssignmentComplete, isUserComplete)
+
                         }
                     //endregion
 
@@ -136,9 +138,12 @@ class SchedListStudent : AppCompatActivity() {
 
                             checkFirebaseState(isScheduleComplete, isRoomAssignmentComplete, isUserComplete)
 
+
                         }
+
                     //endregion
                 }
+                getSchedule()
             }
     }
 

@@ -20,6 +20,7 @@ import android.content.Intent
 import android.icu.lang.UCharacter.JoiningGroup.PE
 import android.support.v4.content.ContextCompat.startActivity
 import android.widget.*
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.*
 import kotlinx.android.synthetic.main.content_activity_editschedule.view.*
@@ -31,6 +32,7 @@ import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.util.Calendar.DAY_OF_MONTH
 import java.util.*
 import java.util.Calendar.AM
+import usc.dcis.tea.ScheduleFirebase
 
 
 class activity_editschedule : AppCompatActivity() {
@@ -44,6 +46,7 @@ class activity_editschedule : AppCompatActivity() {
         var floorName:String = "empty"
         var wingName:String = "empty"
         var buildingName:String = "empty"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editschedule)
@@ -171,6 +174,11 @@ class activity_editschedule : AppCompatActivity() {
             this, // Context
             android.R.layout.simple_spinner_item, // Layout
             bunzelBuilding_fourth[3] // Array
+        )
+        val bunzel_wing_fourth_e  = ArrayAdapter(
+            this, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            bunzelBuilding_fourth[4] // Array
         )
         val bunzel_wing_third_a = ArrayAdapter(
             this, // Context
@@ -402,6 +410,7 @@ class activity_editschedule : AppCompatActivity() {
         bunzel_wing_fourth_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_fourth_c.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_fourth_d.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        bunzel_wing_fourth_e.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_third_a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_third_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bunzel_wing_third_c.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -474,7 +483,7 @@ class activity_editschedule : AppCompatActivity() {
                         floor!!.setAdapter(floor_a)
                         wing!!.setAdapter(wing_d)}
                     "Lawrence Bunzel Building" -> {
-                        floor!!.setAdapter(floor_a)
+                        floor!!.setAdapter(floor_e)
                         wing!!.setAdapter(wing_a)}
                     "SAFAD Building" -> {
                         floor!!.setAdapter(floor_d)
@@ -508,21 +517,23 @@ class activity_editschedule : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 floorName = "${parent.getItemAtPosition(position).toString()}"
                 //region LBB
-                if(wingName.equals("First Wing") && floorName.equals("5th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                if(wingName.equals("Main Wing") && floorName.equals("5th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                    room!!.setAdapter(bunzel_fifth)
+                }else if(wingName.equals("Main Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_a)
                 }else if(wingName.equals("First Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
-                    room!!.setAdapter(bunzel_wing_fourth_a)
-                }else if(wingName.equals("Second Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_b)
-                }else if(wingName.equals("Third Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Second Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_c)
-                }else if(wingName.equals("Fourth Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Third Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_d)
-                }else if(wingName.equals("First Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")) {
+                }else if(wingName.equals("Fourth Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                    room!!.setAdapter(bunzel_wing_fourth_e)
+                }else if(wingName.equals("Main Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")) {
                     room!!.setAdapter(bunzel_wing_third_a)
-                }else if(wingName.equals("Second Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("First Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_third_b)
-                }else if(wingName.equals("Third Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Second Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_third_c)
                 }else if(wingName.equals("First Wing") && floorName.equals("2nd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_second_a)
@@ -538,7 +549,7 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(bunzel_wing_first_b)
                 }else if(wingName.equals("Third Wing") && floorName.equals("1st Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_first_c)
-                }else if(wingName.equals("First Wing") && floorName.equals("Basement") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Main Wing") && floorName.equals("Basement") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_basement)
             }
                 //endregion
@@ -605,19 +616,23 @@ class activity_editschedule : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
               wingName = "${parent.getItemAtPosition(position).toString()}"
                 //region LBB
-                if(wingName.equals("First Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                if(wingName.equals("Main Wing") && floorName.equals("5th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                    room!!.setAdapter(bunzel_fifth)
+                }else if(wingName.equals("Main Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_a)
-                }else if(wingName.equals("Second Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("First Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_b)
-                }else if(wingName.equals("Third Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Second Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_c)
-                }else if(wingName.equals("Fourth Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Third Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_fourth_d)
-                }else if(wingName.equals("First Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")) {
+                }else if(wingName.equals("Fourth Wing") && floorName.equals("4th Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                    room!!.setAdapter(bunzel_wing_fourth_e)
+                }else if(wingName.equals("Main Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")) {
                     room!!.setAdapter(bunzel_wing_third_a)
-                }else if(wingName.equals("Second Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("First Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_third_b)
-                }else if(wingName.equals("Third Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Second Wing") && floorName.equals("3rd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_third_c)
                 }else if(wingName.equals("First Wing") && floorName.equals("2nd Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_second_a)
@@ -633,7 +648,7 @@ class activity_editschedule : AppCompatActivity() {
                     room!!.setAdapter(bunzel_wing_first_b)
                 }else if(wingName.equals("Third Wing") && floorName.equals("1st Floor") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_wing_first_c)
-                }else if(wingName.equals("Fourth Wing") && floorName.equals("Basement") && buildingName.equals("Lawrence Bunzel Building")){
+                }else if(wingName.equals("Main Wing") && floorName.equals("Basement") && buildingName.equals("Lawrence Bunzel Building")){
                     room!!.setAdapter(bunzel_basement)
                 }
                 //endregion
@@ -797,6 +812,8 @@ class activity_editschedule : AppCompatActivity() {
             Toast.makeText(this, "Please fill out all required fields." , Toast.LENGTH_LONG).show()
         }else{
             dbDAO.updateRoomAssignmentsByRoomId(roomId, roomNumber, startTime, endTime, day)
+            val roomAssignment = dbDAO.getRoomAssignmentByRoomId(roomId)
+            ScheduleFirebase.UpdateRoomAssignments(db = FirebaseFirestore.getInstance(), roomAssignment = roomAssignment)
             val activity = Intent(this, SchedListTeacher::class.java)
             startActivity(activity)
         }
