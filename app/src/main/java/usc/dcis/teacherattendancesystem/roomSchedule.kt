@@ -64,7 +64,7 @@ class roomSchedule : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     fun displayRooms(dao: ScheduleDAO, roomNumber: List<RoomAssignment>){
         val hourSdf = java.text.SimpleDateFormat("hh:mm a")
 
@@ -332,6 +332,26 @@ class roomSchedule : AppCompatActivity() {
                                 //endregion
                             }
                         }
+
+                    /*
+                    FirebaseFirestore.getInstance().collection("status")
+                        .get()
+                        .addOnCompleteListener { task ->
+                            val statusSnapshot = task.result;
+
+                            if(!statusSnapshot?.isEmpty!!){
+                                for(room in scheduleDao.getAllRoomAssignmentsByRoomNumber(intent.getStringExtra("RoomTxt"))){
+                                    for(status in statusSnapshot){
+                                        if(scheduleDao.getStatusCountByRoomIdAndDate(DateManager.getCurrentDate() , status["roomID"].toString().toInt()) == 0){
+
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+                        */
 
                 }
 
