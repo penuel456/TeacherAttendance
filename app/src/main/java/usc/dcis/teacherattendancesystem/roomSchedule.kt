@@ -81,16 +81,21 @@ class roomSchedule : AppCompatActivity() {
                 courseTeacher1.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
                 submitBtn1.setOnClickListener {
-                    if(noStudBox1.isChecked == true && noTeacherBox1.isChecked == false){
+                    if(noStudBox1.isChecked && !noTeacherBox1.isChecked && !allPresentBox1.isChecked){
                         submitStatus(room.roomID, "Absent", "No students.")
                         Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox1.isChecked == false &&noTeacherBox1.isChecked == true){
+                    }else if(!noStudBox1.isChecked && noTeacherBox1.isChecked && !allPresentBox1.isChecked){
                         submitStatus(room.roomID, "Absent", "No teacher.")
                         Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox1.isChecked == true && noTeacherBox1.isChecked == true){
+                    }else if(noStudBox1.isChecked && noTeacherBox1.isChecked && !allPresentBox1.isChecked) {
                         submitStatus(room.roomID, "Absent", "No students and teacher.")
                         Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox1.isChecked == false && noTeacherBox1.isChecked == false){
+                    }else if(!noStudBox1.isChecked && !noTeacherBox1.isChecked && allPresentBox1.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox1.isChecked || noTeacherBox1.isChecked ) && allPresentBox1.isChecked){
+                            Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox1.isChecked  && !noTeacherBox1.isChecked  && !allPresentBox1.isChecked ){
                         Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -101,16 +106,21 @@ class roomSchedule : AppCompatActivity() {
                 courseTeacher2.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
                 submitBtn2.setOnClickListener {
-                    if(noStudBox2.isChecked && !noTeacherBox2.isChecked){
+                    if(noStudBox2.isChecked && !noTeacherBox2.isChecked && !allPresentBox2.isChecked){
                         submitStatus(room.roomID, "Absent", "No students.")
                         Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(!noStudBox2.isChecked && noTeacherBox2.isChecked){
+                    }else if(!noStudBox2.isChecked && noTeacherBox2.isChecked && !allPresentBox2.isChecked){
                         submitStatus(room.roomID, "Absent", "No teacher.")
                         Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox2.isChecked && noTeacherBox2.isChecked){
+                    }else if(noStudBox2.isChecked && noTeacherBox2.isChecked && !allPresentBox2.isChecked) {
                         submitStatus(room.roomID, "Absent", "No students and teacher.")
                         Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                    }else if(!noStudBox2.isChecked && !noTeacherBox2.isChecked){
+                    }else if(!noStudBox2.isChecked && !noTeacherBox2.isChecked && allPresentBox2.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox2.isChecked || noTeacherBox2.isChecked ) && allPresentBox2.isChecked){
+                        Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox2.isChecked  && !noTeacherBox2.isChecked  && !allPresentBox2.isChecked ){
                         Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -121,16 +131,21 @@ class roomSchedule : AppCompatActivity() {
                 courseTeacher3.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
                 submitBtn3.setOnClickListener {
-                    if(noStudBox3.isChecked == true && noTeacherBox3.isChecked == false){
+                    if(noStudBox3.isChecked && !noTeacherBox3.isChecked && !allPresentBox3.isChecked){
                         submitStatus(room.roomID, "Absent", "No students.")
                         Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox3.isChecked == false &&noTeacherBox3.isChecked == true){
+                    }else if(!noStudBox3.isChecked && noTeacherBox3.isChecked && !allPresentBox3.isChecked){
                         submitStatus(room.roomID, "Absent", "No teacher.")
                         Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox3.isChecked == true && noTeacherBox3.isChecked == true){
+                    }else if(noStudBox3.isChecked && noTeacherBox3.isChecked && !allPresentBox3.isChecked) {
                         submitStatus(room.roomID, "Absent", "No students and teacher.")
                         Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                    }else if(noStudBox3.isChecked == false && noTeacherBox3.isChecked == false){
+                    }else if(!noStudBox3.isChecked && !noTeacherBox3.isChecked && allPresentBox3.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox3.isChecked || noTeacherBox3.isChecked ) && allPresentBox3.isChecked){
+                        Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox3.isChecked  && !noTeacherBox3.isChecked  && !allPresentBox3.isChecked ){
                         Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
