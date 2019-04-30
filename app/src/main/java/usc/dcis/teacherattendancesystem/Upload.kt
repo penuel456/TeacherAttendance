@@ -1,10 +1,10 @@
 package usc.dcis.teacherattendancesystem
 
-public class Upload{
+public class Upload(trim: String, toString: String) {
     private lateinit var mName:String
     private lateinit var mImageUrl: String
 
-    public fun Upload(){
+    fun Upload(){
 
     }
     fun Upload(name: String, imageUrl: String) {
