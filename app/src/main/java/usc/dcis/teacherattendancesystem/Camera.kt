@@ -20,11 +20,18 @@ import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.util.Log
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.storage.FirebaseStorage
 
+import com.google.firebase.storage.OnProgressListener
 import android.view.View
 import android.widget.*
 import android.widget.ProgressBar
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
 import com.squareup.picasso.Picasso
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.nav_header_menu.*
 import java.io.File
 import java.io.IOException
@@ -45,6 +52,11 @@ class Camera : AppCompatActivity() {
     private lateinit var  mImageView: ImageView
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mImageUri: Uri
+
+    private lateinit var mStorageRef: StorageReference
+   // private val mDatabaseRef: DatabaseReference
+
+   // private lateinit var mUploadTask : StorageTask
     val REQUEST_IMAGE_CAPTURE = 1
 
 
@@ -122,22 +134,19 @@ class Camera : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
-            /*&& data != null && data.data != null*/) {
-            val selectedFile = data?.data
-            //mImageUri = data.data
+            && data != null && data.data != null) {
+            mImageUri = data.data
             Log.d("adfsf", "Naaabot sya dri sa onactivity")
-            //Picasso.get().load(mImageUri).into(mImageView)
+            Picasso.get().load(mImageUri).into(mImageView)
         }
-       /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+       if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
             //To get the File for further usage
             val auxFile = File(mCurrentPhotoPath)
-
-
             var bitmap: Bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath)
             imageView.setImageBitmap(bitmap)
 
-        }*/
+        }
 
     }
 
@@ -165,6 +174,12 @@ class Camera : AppCompatActivity() {
             mCurrentPhotoPath = absolutePath
         }
     }
+    private fun uploadFile(){
+        if(mImageUri != null){
+
+        }
+    }
+
 
 
 
