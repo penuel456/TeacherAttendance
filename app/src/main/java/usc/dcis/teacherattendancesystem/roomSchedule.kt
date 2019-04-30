@@ -74,68 +74,79 @@ class roomSchedule : AppCompatActivity() {
 
             roomNumTxt.text = room.roomNumber + "( '" + room.dayAssigned + "' Schedule )"
 
-            when {
-                room.roomID == roomNumber[0].roomID -> {
-                    courseCode1.text = room.courseCode
-                    groupNumber1.text = room.groupNumber.toString()
-                    schedTime1.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                    courseTeacher1.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            if(room.roomID.equals(roomNumber[0].roomID)){
+                courseCode1.text = room.courseCode
+                groupNumber1.text = room.groupNumber.toString()
+                schedTime1.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher1.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
-                    submitBtn1.setOnClickListener {
-                        if(noStudBox1.isChecked && !noTeacherBox1.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students.")
-                            Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox1.isChecked && noTeacherBox1.isChecked){
-                            submitStatus(room.roomID, "Absent", "No teacher.")
-                            Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(noStudBox1.isChecked && noTeacherBox1.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students and teacher.")
-                            Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox1.isChecked && !noTeacherBox1.isChecked){
-                            Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
-                        }
+                submitBtn1.setOnClickListener {
+                    if(noStudBox1.isChecked && !noTeacherBox1.isChecked && !allPresentBox1.isChecked){
+                        submitStatus(room.roomID, "Absent", "No students.")
+                        Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox1.isChecked && noTeacherBox1.isChecked && !allPresentBox1.isChecked){
+                        submitStatus(room.roomID, "Absent", "No teacher.")
+                        Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox1.isChecked && noTeacherBox1.isChecked && !allPresentBox1.isChecked) {
+                        submitStatus(room.roomID, "Absent", "No students and teacher.")
+                        Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox1.isChecked && !noTeacherBox1.isChecked && allPresentBox1.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox1.isChecked || noTeacherBox1.isChecked ) && allPresentBox1.isChecked){
+                            Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox1.isChecked  && !noTeacherBox1.isChecked  && !allPresentBox1.isChecked ){
+                        Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                room.roomID == roomNumber[1].roomID -> {
-                    courseCode2.text = room.courseCode
-                    groupNumber2.text = room.groupNumber.toString()
-                    schedTime2.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                    courseTeacher2.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            }else if(room.roomID.equals(roomNumber[1].roomID)){
+                courseCode2.text = room.courseCode
+                groupNumber2.text = room.groupNumber.toString()
+                schedTime2.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher2.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
-                    submitBtn2.setOnClickListener {
-                        if(noStudBox2.isChecked && !noTeacherBox2.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students.")
-                            Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox2.isChecked && noTeacherBox2.isChecked){
-                            submitStatus(room.roomID, "Absent", "No teacher.")
-                            Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(noStudBox2.isChecked && noTeacherBox2.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students and teacher.")
-                            Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox2.isChecked && !noTeacherBox2.isChecked){
-                            Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
-                        }
+                submitBtn2.setOnClickListener {
+                    if(noStudBox2.isChecked && !noTeacherBox2.isChecked && !allPresentBox2.isChecked){
+                        submitStatus(room.roomID, "Absent", "No students.")
+                        Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox2.isChecked && noTeacherBox2.isChecked && !allPresentBox2.isChecked){
+                        submitStatus(room.roomID, "Absent", "No teacher.")
+                        Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox2.isChecked && noTeacherBox2.isChecked && !allPresentBox2.isChecked) {
+                        submitStatus(room.roomID, "Absent", "No students and teacher.")
+                        Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox2.isChecked && !noTeacherBox2.isChecked && allPresentBox2.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox2.isChecked || noTeacherBox2.isChecked ) && allPresentBox2.isChecked){
+                        Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox2.isChecked  && !noTeacherBox2.isChecked  && !allPresentBox2.isChecked ){
+                        Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                room.roomID == roomNumber[2].roomID -> {
-                    courseCode3.text = room.courseCode
-                    groupNumber3.text = room. groupNumber.toString()
-                    schedTime3.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
-                    courseTeacher3.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+            }else if(room.roomID.equals(roomNumber[2].roomID)){
+                courseCode3.text = room.courseCode
+                groupNumber3.text = room. groupNumber.toString()
+                schedTime3.text =  "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                courseTeacher3.text = getTeacherName(dao, room.courseCode, room.groupNumber)
 
-                    submitBtn3.setOnClickListener {
-                        if(noStudBox3.isChecked && !noTeacherBox3.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students.")
-                            Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox3.isChecked && noTeacherBox3.isChecked){
-                            submitStatus(room.roomID, "Absent", "No teacher.")
-                            Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
-                        }else if(noStudBox3.isChecked && noTeacherBox3.isChecked){
-                            submitStatus(room.roomID, "Absent", "No students and teacher.")
-                            Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
-                        }else if(!noStudBox3.isChecked && !noTeacherBox3.isChecked){
-                            Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
-                        }
+                submitBtn3.setOnClickListener {
+                    if(noStudBox3.isChecked && !noTeacherBox3.isChecked && !allPresentBox3.isChecked){
+                        submitStatus(room.roomID, "Absent", "No students.")
+                        Toast.makeText(this, "No students attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox3.isChecked && noTeacherBox3.isChecked && !allPresentBox3.isChecked){
+                        submitStatus(room.roomID, "Absent", "No teacher.")
+                        Toast.makeText(this, "No teacher attended the class.", Toast.LENGTH_SHORT).show()
+                    }else if(noStudBox3.isChecked && noTeacherBox3.isChecked && !allPresentBox3.isChecked) {
+                        submitStatus(room.roomID, "Absent", "No students and teacher.")
+                        Toast.makeText(this, "Both the teachers and students are absent.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox3.isChecked && !noTeacherBox3.isChecked && allPresentBox3.isChecked) {
+                        submitStatus(room.roomID, "Present", "Both attended.")
+                        Toast.makeText(this, "Present. Both attended.", Toast.LENGTH_SHORT).show()
+                    }else if((noStudBox3.isChecked || noTeacherBox3.isChecked ) && allPresentBox3.isChecked){
+                        Toast.makeText(this, "Invalid.", Toast.LENGTH_SHORT).show()
+                    }else if(!noStudBox3.isChecked  && !noTeacherBox3.isChecked  && !allPresentBox3.isChecked ){
+                        Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 /*val dayAssigned = room.dayAssigned
