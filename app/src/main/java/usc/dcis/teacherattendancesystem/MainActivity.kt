@@ -314,5 +314,4 @@ class MainActivity : AppCompatActivity() {
 
         ScheduleDatabase.destroyInstance()
     }
-
 }
