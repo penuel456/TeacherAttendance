@@ -149,6 +149,52 @@ class roomSchedule : AppCompatActivity() {
                         Toast.makeText(this, "Please check the checkboxes.", Toast.LENGTH_SHORT).show()
                     }
                 }
+                /*val dayAssigned = room.dayAssigned
+                when {
+                    dayAssigned.equals("M") -> {
+                        monDAY.text = dayAssigned
+                        monSubject.text = room.courseCode
+                        monSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        monTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+
+                    }
+                    dayAssigned.equals("T") -> {
+                        tueDAY.text = dayAssigned
+                        tueSubject.text = room.courseCode
+                        tueSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        tueTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                    }
+                    dayAssigned.equals("W") -> {
+                        wedDAY.text = dayAssigned
+                        wedSubject.text =  room.courseCode
+                        wedSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        wedTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                    }
+                    dayAssigned.equals("TH") -> {
+                        thuDAY.text = dayAssigned
+                        thuSubject.text = room.courseCode
+                        thuSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        thuTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                    }
+                    dayAssigned.equals("F") -> {
+                        friDAY.text = dayAssigned
+                        friSubject.text = room.courseCode
+                        friSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        friTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                    }
+                    dayAssigned.equals("SAT") -> {
+                        saturDAY.text = dayAssigned
+                        satSubject.text = room.courseCode
+                        satSched.text =
+                                "${hourSdf.format(room.startTime)} - ${hourSdf.format(room.endTime)}"
+                        satTeacher.text = getTeacherName(dao, room.courseCode, room.groupNumber)
+                    }
+                }*/
             }
             /*val dayAssigned = room.dayAssigned
             when {
@@ -301,7 +347,7 @@ class roomSchedule : AppCompatActivity() {
                                                         val statusID = status["statusId"] as Number
                                                         Log.d("STATUS ID: ", "${statusID.toInt()}")
                                                         Log.d("ROOM ID: ", "${roomID.toInt()}")
-                                                        Log.d("statusDate: ", "${statusDate}")
+                                                        Log.d("statusDate: ", "$statusDate")
                                                         ScheduleDebug.printAllStatus(dao = scheduleDao)
                                                         scheduleDao.insertStatus(
                                                             Status(
@@ -347,27 +393,6 @@ class roomSchedule : AppCompatActivity() {
                                 //endregion
                             }
                         }
-
-                    /*
-                    FirebaseFirestore.getInstance().collection("status")
-                        .get()
-                        .addOnCompleteListener { task ->
-                            val statusSnapshot = task.result;
-
-                            if(!statusSnapshot?.isEmpty!!){
-                                for(room in scheduleDao.getAllRoomAssignmentsByRoomNumber(intent.getStringExtra("RoomTxt"))){
-                                    for(status in statusSnapshot){
-                                        if(scheduleDao.getStatusCountByRoomIdAndDate(DateManager.getCurrentDate() , status["roomID"].toString().toInt()) == 0){
-
-                                        }
-                                    }
-                                }
-
-
-                            }
-                        }
-                        */
-
                 }
 
             }
@@ -396,6 +421,7 @@ class roomSchedule : AppCompatActivity() {
     private fun getTeacherName(dao: ScheduleDAO, courseCode: String, groupNumber: Int): String{
         return dao.getTeacherFromSchedule(dao.getScheduleByCourseCodeAndGroupNumber(courseCode, groupNumber)?.teacherId)?.name
     }
+
     fun takeAPic(view: View){
         val activity = Intent(this, Camera::class.java)
         startActivity(activity)
