@@ -128,6 +128,9 @@ interface ScheduleDAO {
     @Query("SELECT COUNT(*) FROM Statuses WHERE date = :date AND roomID = :roomID")
     fun getStatusCountByRoomIdAndDate(date: Date, roomID: Int): Int
 
+    @Query("SELECT COUNT(*) FROM Statuses WHERE roomID = :roomID")
+    fun getStatusCountByRoomId(roomID: Int): Int
+
     @Query("SELECT * FROM Statuses WHERE date = :date AND roomID = :roomID LIMIT 1")
     fun getStatusByRoomIdAndDate(date: Date, roomID: Int): Status
 
