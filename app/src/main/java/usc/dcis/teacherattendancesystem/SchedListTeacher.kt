@@ -280,8 +280,8 @@ class SchedListTeacher : AppCompatActivity() {
 
         ScheduleDatabase.destroyInstance()
     }
-
-    /*fun check_stat(){
+    /*
+    fun check_stat(view: View){
         Log.d("Click", "Senpai clicked me")
         val Text = view?.status!!.selectedItem.toString()
         //status.text = Text
@@ -292,15 +292,18 @@ class SchedListTeacher : AppCompatActivity() {
         }else{
             reason.visibility = View.INVISIBLE
         }
-    }*/
+    }
+    */
 
     fun submitStatus(view: View){
         val dao = ScheduleDatabase.getInstance(this).scheduleDAO
 
+        Log.d("SUBMIT", "$currentRoomID ${DateManager.getCurrentDate()} ${view.status?.selectedItem}")
+
         dao.updateStatusState(roomID = currentRoomID, date = DateManager.getCurrentDate(),
-            status = view?.status!!.selectedItem.toString())
-        val currentStatus = dao.getStatusByRoomIdAndDate(date = DateManager.getCurrentDate(), roomID = currentRoomID)
-        ScheduleFirebase.UpdateStatus(db = FirebaseFirestore.getInstance(), status = currentStatus)
+            status = view.status?.selectedItem.toString())
+        //val currentStatus = dao.getStatusByRoomIdAndDate(date = DateManager.getCurrentDate(), roomID = currentRoomID)
+        //ScheduleFirebase.UpdateStatus(db = FirebaseFirestore.getInstance(), status = currentStatus)
 
 
         Toast.makeText(this, "Status updated.", Toast.LENGTH_SHORT).show()
