@@ -23,22 +23,25 @@ class ScheduleFirebase {
         fun AddSchedule(db: FirebaseFirestore, sched: ScheduleDB) {
             db.collection("scheduleDB").document(sched.courseID.toString())
                 .set(sched)
-                .addOnSuccessListener { Log.d(TAG, "ScheduleDB document successfully written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing ScheduleDB document", e) }
+                .addOnSuccessListener { Log.d(TAG, "ScheduleDB ${sched.courseCode} with GRP #${sched.groupNumber} " +
+                        "successfully written!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error writing ScheduleDB " +
+                        "${sched.courseCode} with GRP #${sched.groupNumber}", e) }
         }
 
         fun AddRoomAssignment(db: FirebaseFirestore, room: RoomAssignment) {
             db.collection("roomAssignment").document(room.roomID.toString())
                 .set(room)
-                .addOnSuccessListener { Log.d(TAG, "RoomAssignment document successfully written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing RoomAssignment document", e) }
+                .addOnSuccessListener { Log.d(TAG, "RoomAssignment ${room.roomID} successfully written!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error writing RoomAssignment ${room.roomID}", e) }
         }
 
         fun AddStatus(db: FirebaseFirestore, status: Status) {
             db.collection("status").document(status.statusId.toString())
                 .set(status)
-                .addOnSuccessListener { Log.d(TAG, "Status document successfully written!") }
-                .addOnFailureListener { e -> Log.w(TAG, "Error writing Status document", e) }
+                .addOnSuccessListener { Log.d(TAG, "Status ${status.statusId} on date ${status.date} " +
+                        "successfully written!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error writing Status ${status.statusId} on date ${status.date}", e) }
         }
 
         fun AddUser(db: FirebaseFirestore, user: UserDB) {
