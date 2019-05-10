@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "Users")
 data class UserDB(
-    @PrimaryKey(autoGenerate = true) var userID: Int,
+    @PrimaryKey var userID: Int,
     var idNumber: Int = 0,
     var name: String,
     var password: String? = null,
@@ -24,7 +24,7 @@ class UsersWithSchedules {
 
 @Entity(tableName = "Schedules")
 data class ScheduleDB(
-    @PrimaryKey(autoGenerate = true) var courseID: Int = 0,
+    @PrimaryKey var courseID: Int = 0,
     var userID: Int = 0,
     var teacherId: Int? = null,
     var groupNumber: Int = 0,
