@@ -1,5 +1,6 @@
 package usc.dcis.teacherattendancesystem
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
@@ -17,19 +18,22 @@ import kotlinx.android.synthetic.main.menu_fragment_schedlistteacher.view.*
 import usc.dcis.teacherattendancesystem.scheduleDatabase.RoomAssignment
 import usc.dcis.teacherattendancesystem.scheduleDatabase.ScheduleDatabase
 import java.lang.StringBuilder
+import java.util.*
 
 class chooseschedule : AppCompatActivity() {
 
     var roomIdToPass: Int = 0
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choooseschedule)
         setSupportActionBar(toolbar)
-        var sdf = java.text.SimpleDateFormat("hh:mm a")
+        val sdf = java.text.SimpleDateFormat("hh:mm a")
+        sdf.timeZone = TimeZone.getTimeZone("GMT+8")
 
         val db = ScheduleDatabase.getInstance(this)
-        var scheduleDao = db.scheduleDAO
+        val scheduleDao = db.scheduleDAO
         FirebaseFirestore.getInstance().collection("roomAssignment")
             .get()
             .addOnCompleteListener { task ->
@@ -69,11 +73,11 @@ class chooseschedule : AppCompatActivity() {
                 }
             }
         //end
-        var roomAssignmentCount = scheduleDao.getRoomAssignmentsCount()
+        val roomAssignmentCount = scheduleDao.getRoomAssignmentsCount()
 
         val chooseSched = findViewById<Spinner>(R.id.choosesched)
 
-        val schedule = scheduleDao.getAllSchedules()
+
         val schedList: MutableList<String> = mutableListOf()
         val RoomID: MutableList<Int> = mutableListOf()
         //val sb = StringBuilder()
@@ -100,7 +104,7 @@ class chooseschedule : AppCompatActivity() {
         chooseSched.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
                 // Display the selected item text on text view
-                val Schedule ="${parent.getItemAtPosition(position).toString()}"
+
                 // date.text = buildingName
                 roomIdToPass = RoomID[position]
 

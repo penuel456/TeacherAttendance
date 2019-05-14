@@ -28,7 +28,9 @@ data class ScheduleDB(
     var userID: Int = 0,
     var teacherId: Int? = null,
     var groupNumber: Int = 0,
-    var courseCode: String = ""
+    var courseCode: String = "",
+    var department: String = "",
+    var courseName: String = ""
 )
 
 // ROOM ASSIGNMENTS
