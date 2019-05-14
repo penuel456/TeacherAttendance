@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <supports-screens
             android:largeScreens="true"
             android:normalScreens="true"
@@ -20,6 +21,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity
+                android:name=".Images"
+                android:label="@string/title_activity_images"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <provider
                 android:name="android.support.v4.content.FileProvider"
                 android:authorities="com.example.android.fileprovider"
@@ -28,14 +35,13 @@
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/filepath">
-
             </meta-data>
         </provider>
+
         <activity
                 android:name=".Camera"
                 android:label="@string/title_activity_camera"
                 android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
                 android:name=".splashscreen"

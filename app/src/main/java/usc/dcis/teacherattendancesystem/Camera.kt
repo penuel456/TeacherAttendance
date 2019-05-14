@@ -99,8 +99,11 @@ class Camera : AppCompatActivity() {
         mButtonUpload.setOnClickListener (View.OnClickListener{
                 uploadFile()
         })
+        mTextViewShowUploads.setOnClickListener(View.OnClickListener{
+            openImagesActivity()
+        })
 
-        mTextViewShowUploads.setOnClickListener { }
+
 
 
     }
@@ -263,6 +266,10 @@ class Camera : AppCompatActivity() {
             }
 
     }
+     fun  openImagesActivity(){
+         val activity = Intent(this, Images::class.java)
+         startActivity(activity)
+     }
 
 
 }
