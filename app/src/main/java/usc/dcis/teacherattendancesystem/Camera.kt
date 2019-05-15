@@ -23,6 +23,7 @@ import android.provider.MediaStore
 import android.support.annotation.NonNull
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.content.FileProvider
 import android.util.Log
 import com.google.android.gms.tasks.OnSuccessListener
@@ -33,14 +34,18 @@ import android.widget.*
 import android.widget.ProgressBar
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.common.io.Files.getFileExtension
 
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.*
 import com.squareup.picasso.Picasso
+
 
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
+import java.nio.file.Files.createFile
 import java.text.SimpleDateFormat
 import java.util.*;
 
@@ -64,10 +69,10 @@ class Camera : AppCompatActivity() {
 
     lateinit var filePath : Uri
 
-    //private lateinit var mStorageRef: StorageReference
-    //private lateinit var mDatabaseRef: DatabaseReference
+    private lateinit var mStorageRef: StorageReference
+    private lateinit var mDatabaseRef: DatabaseReference
 
-    //private var mUploadTask : StorageTask<*>? = null
+    private lateinit var mUploadTask : StorageTask<*>
 
     val REQUEST_IMAGE_CAPTURE = 1
 
@@ -86,6 +91,8 @@ class Camera : AppCompatActivity() {
         mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mButtonChooseImage.setOnClickListener( View.OnClickListener {
             openFileChooser()
         } )
@@ -97,7 +104,9 @@ class Camera : AppCompatActivity() {
 
 
         mButtonUpload.setOnClickListener (View.OnClickListener{
+
                 uploadFile()
+
         })
         mTextViewShowUploads.setOnClickListener(View.OnClickListener{
             openImagesActivity()
@@ -249,21 +258,43 @@ class Camera : AppCompatActivity() {
 
         val data = FirebaseStorage.getInstance()
         var value = 0.0
-        var storage = data.getReference().child("mypic.jpg").putFile(mImageUri)
+
+        var storage = mStorageRef.child(mEditTextFileName.getText().toString()+"."+ getFileExtension(mImageUri))//.putFile(mImageUri)
+           mUploadTask = storage.putFile(mImageUri)
             .addOnProgressListener { taskSnapshot ->
                 value = (100.0 * taskSnapshot.bytesTransferred) / taskSnapshot.totalByteCount
                 Log.v("value","value=="+value)
                 progress.setMessage("Uploaded.. " + value.toInt() + "%")
             }
-            .addOnSuccessListener { taskSnapshot -> progress.dismiss()
-                val uri = taskSnapshot.metadata?.reference?.getDownloadUrl()
-                Log.v("Download File","File.." +uri);
+            .addOnSuccessListener{ taskSnapshot -> progress.dismiss()
+                storage.downloadUrl.addOnCompleteListener(){ taskSnapshot->
+                    var uri =taskSnapshot.result.toString()
+                    println("url =" + uri.toString ())
+                    val imageName = mEditTextFileName.text.toString().trim()
+                    val upload = Upload(
+                        imageName, uri
+                    )
+                    val uploadId = mDatabaseRef.push().key
+                    mDatabaseRef.child(uploadId.toString()).setValue(upload)
 
-                Glide.with(this@Camera).load(uri).into(mImageView)
+                    Log.d("Download File","File.." +uri)
+                    Glide.with(this@Camera).load(uri).into(mImageView)
+                }
+               /* val imageName = mEditTextFileName.text.toString().trim()
+                //val uri = storage.downloadUrl!!.toString()/*mStorageRef.child(mEditTextFileName.getText().toString()+"."+ getFileExtension(mImageUri)).downloadUrl.toString()*///taskSnapshot.metadata?.reference?.downloadUrl.toString()
+                val upload = Upload(
+                    imageName, uri
+                )
+                val uploadId = mDatabaseRef.push().key
+                mDatabaseRef.child(uploadId.toString()).setValue(upload)
+
+                Log.d("Download File","File.." +uri)
+                Glide.with(this@Camera).load(uri).into(mImageView)*/
             }
             .addOnFailureListener{
                     exception -> exception.printStackTrace()
             }
+
 
     }
      fun  openImagesActivity(){

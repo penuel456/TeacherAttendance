@@ -16,7 +16,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
     >
         <ImageView
-                android:layout_width="324dp"
+                android:layout_width="0dp"
                 android:layout_height="129dp" app:srcCompat="@drawable/padded_green_table"
                 android:id="@+id/imageView12"
                 app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/Submit" app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.0"/>
         <ImageView
-                android:layout_width="324dp"
+                android:layout_width="0dp"
                 android:layout_height="107dp" app:srcCompat="@drawable/padded_green_table"
                 android:id="@+id/imageView14"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
