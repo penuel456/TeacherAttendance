@@ -67,12 +67,13 @@ class roomSchedule : AppCompatActivity() {
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     fun displayRooms(dao: ScheduleDAO, roomNumber: List<RoomAssignment>){
         val hourSdf = java.text.SimpleDateFormat("hh:mm a")
+        hourSdf.timeZone = TimeZone.getTimeZone("GMT+8")
 
 
         for(room in roomNumber){
             Log.d("MAO NI ANG TEACHERID: ",  "${dao.getScheduleByCourseCodeAndGroupNumber(room.courseCode, room.groupNumber)?.teacherId}")
 
-            roomNumTxt.text = room.roomNumber + "( '" + room.dayAssigned + "' Schedule )"
+            //roomNumTxt.text = room.roomNumber + "( '" + room.dayAssigned + "' Schedule )"
 
             if(room.roomID.equals(roomNumber[0].roomID)){
                 courseCode1.text = room.courseCode
