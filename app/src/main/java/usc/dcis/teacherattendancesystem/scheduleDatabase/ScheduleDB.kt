@@ -52,14 +52,11 @@ data class RoomAssignment(
    var dayAssigned: String? = null
 )
 
-@Entity(tableName = "Statuses", foreignKeys = arrayOf(ForeignKey(entity = RoomAssignment::class,
-    parentColumns = arrayOf("roomID"),
-    childColumns = arrayOf("roomID"),
-    onDelete = ForeignKey.CASCADE,
-    onUpdate = ForeignKey.CASCADE)))
+@Entity(tableName = "Statuses")
 data class Status(
-    // FOREIGN KEY
+
     @PrimaryKey(autoGenerate = true) var statusId: Int = 0,
+    // FOREIGN KEY ON ROOM ASSIGNMENT
     var roomID: Int = 0,
 
     // FOR KNOWING WHICH DAY IS PRESENT OR ABSENT
