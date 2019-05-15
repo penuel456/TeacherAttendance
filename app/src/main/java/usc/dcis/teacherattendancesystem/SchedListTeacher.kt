@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.sched_list_student.view.*
 import usc.dcis.tea.ScheduleFirebase
 import usc.dcis.teacherattendancesystem.DateManager.Companion.getDayString
 import usc.dcis.teacherattendancesystem.scheduleDatabase.*
+import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -68,15 +69,17 @@ class SchedListTeacher : AppCompatActivity() {
             .whereEqualTo("userID", 2)
             .get()
             .addOnCompleteListener { task ->
+                Log.d("FIREBASE", "Getting schedules")
                 val scheduleSnapshot = task.result
 
                 if(!scheduleSnapshot?.isEmpty!!){
                     for(sched in scheduleSnapshot){
-                        val groupNumber = sched["groupNumber"] as Number
+                        val groupNumber = parseInt(sched["groupNumber"].toString())
+                        Log.d("FIREBASE", "GRP #$groupNumber")
 
                         //region CHECKS IF SCHEDULE IN LOCAL DATABASE EXISTS
                         if(scheduleDao.getScheduleCountByCourseCodeAndGroupNumber(courseCode = sched["courseCode"].toString(),
-                                groupNumber = groupNumber.toInt()) == 0){
+                                groupNumber = groupNumber) == 0){
                             scheduleDao.insert(sched.toObject(ScheduleDB::class.java))
                         }
                         //endregion
@@ -93,7 +96,8 @@ class SchedListTeacher : AppCompatActivity() {
                                     val sdf = java.text.SimpleDateFormat("hh:mm a", Locale.getDefault())
                                     sdf.timeZone = TimeZone.getTimeZone("Asia/Singapore")
 
-                                    val groupNumber = room["groupNumber"] as Number
+                                    val groupNumber = parseInt(room["groupNumber"].toString())
+
                                     if(scheduleDao.
                                             getScheduleCountByCourseCodeAndGroupNumber
                                                 (groupNumber.toInt(), room["courseCode"].toString()) != 0){
@@ -101,10 +105,10 @@ class SchedListTeacher : AppCompatActivity() {
                                         val endTimestamp = room.getTimestamp("endTime")
                                         val startTime = sdf.format(startTimestamp?.toDate())
                                         val endTime = sdf.format(endTimestamp?.toDate())
-                                        val roomIDToCheck = room["roomID"] as Number
+                                        val roomIDToCheck = parseInt(room["roomID"].toString())
 
                                         //region CHECKS IF ROOM ASSIGNMENT IN LOCAL DATABASE EXISTS
-                                        if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck.toInt()) == 0){
+                                        if(scheduleDao.getRoomAssignmentCountByRoomID(roomIDToCheck) == 0){
                                             scheduleDao.insertRoomAssignment(
                                                 RoomAssignment(roomID = room["roomID"].toString().toInt(),
                                                     courseCode = room["courseCode"].toString(),
@@ -134,13 +138,13 @@ class SchedListTeacher : AppCompatActivity() {
                                                 val dateTimestamp = status.getTimestamp("date")
                                                 val statusDate = sdf.format(dateTimestamp?.toDate())
                                                 Log.d("STATUSDATE", statusDate)
-                                                val roomID = status["roomID"] as Number
-                                                val statusID = status["statusId"] as Number
+                                                val roomID = parseInt(status["roomID"].toString())
+                                                val statusID = parseInt(status["statusId"].toString())
 
                                                 scheduleDao.insertStatus(
                                                     Status(
-                                                        statusId = statusID.toInt(),
-                                                        roomID = roomID.toInt(),
+                                                        statusId = statusID,
+                                                        roomID = roomID,
                                                         date = sdf.parse(statusDate),
                                                         status = status["status"].toString(),
                                                         remarks = status["remarks"].toString()
