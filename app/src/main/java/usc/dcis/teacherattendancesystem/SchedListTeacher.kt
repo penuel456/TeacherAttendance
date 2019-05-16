@@ -210,6 +210,7 @@ class SchedListTeacher : AppCompatActivity() {
         Log.d("TODAY:", getDayString(day))
 
         if(roomAssignmentList.isNotEmpty()){
+            displaySchedule()
             getOnGoingAndUpNext(scheduleDao, roomAssignmentList)
         }else {
             Log.d("NOTICE", "RoomAssignmentList is empty. Do something here (should say 'no schedule for today')")
@@ -222,6 +223,11 @@ class SchedListTeacher : AppCompatActivity() {
         Schedule_teacher_layout.visibility = View.INVISIBLE
         noSchedNotif2.visibility = View.VISIBLE
     }
+    private fun displaySchedule(){
+        Schedule_teacher_layout.visibility = View.VISIBLE
+        noSchedNotif2.visibility = View.INVISIBLE
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     private fun getOnGoingAndUpNext(dao: ScheduleDAO, roomAssignmentList: List<RoomAssignment>){

@@ -9,7 +9,7 @@
             android:text="BCT 1"
             android:layout_width="142dp"
             android:layout_height="69dp"
-            android:id="@+id/bct1" android:onClick="goToSchedList" android:layout_marginStart="8dp"
+            android:id="@+id/bct1"  android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -17,12 +17,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             android:textColor="#FFFFFFFF"
-            android:background="@drawable/rounded_green_btn" android:textSize="18sp"/>
+            android:background="@drawable/rounded_green_btn" android:textSize="18sp"
+            />
     <Button
             android:text="BCT 2"
             android:layout_width="142dp"
             android:layout_height="69dp"
-            android:id="@+id/bct2" android:onClick="goToSchedList" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/bct2" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="52dp"

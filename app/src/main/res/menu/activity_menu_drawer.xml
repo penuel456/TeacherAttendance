@@ -22,9 +22,6 @@
         <item
                 android:id="@+id/nav_lrc"
                 android:title="LRC"/>
-        <item
-                android:id="@+id/nav_chapel"
-                android:title="AJB"/>
     </group>
 
 </menu>
